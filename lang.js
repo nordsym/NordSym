@@ -210,6 +210,7 @@ const NordSymLang = {
       // System description  
       gallerySystemDesc: 'Färdiga produkter och Micro-Apps lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
       gallerySystemContext: 'Utforska systemen',
+      galleryContextText: 'Utforska produkterna',
 
       // ============================================
       // STACK CARDS (3 value-prop kort)
@@ -566,6 +567,7 @@ const NordSymLang = {
       // System description  
       gallerySystemDesc: 'Ready-made products and Micro-Apps solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
       gallerySystemContext: 'Explore systems',
+      galleryContextText: 'Explore products',
 
       // ============================================
       // STACK CARDS (3 value-prop cards)
