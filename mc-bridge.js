@@ -12,7 +12,8 @@
     CONVEX_URL: 'https://agile-crane-840.convex.cloud',
     POLL_INTERVAL: 10000, // 10 seconds for MC polling
     MORPH_INTERVAL: 7000, // 7 seconds between morphs - ALWAYS ALIVE
-    USER_INTERACTION_PAUSE: 30000, // 30 seconds pause after user click (reduced from 60)
+    INITIAL_DELAY: 15000, // 15 seconds - let the beautiful sphere breathe on landing
+    USER_INTERACTION_PAUSE: 30000, // 30 seconds pause after user click
 
     // State
     lastEventId: null,
@@ -127,28 +128,17 @@
       }
     },
 
-    // Poll MC for new events (can influence next morph)
+    // Poll MC for new events (logs them, random cycle handles morphing)
     async pollMC() {
       const events = await this.fetchLatestEvents();
       
       if (events.length > 0) {
         const latestEvent = events[0];
         
-        // If new event, queue its shape for next morph
+        // Just log new events - don't force morph (let random cycle be organic)
         if (latestEvent.id !== this.lastEventId) {
-          console.log('[MC-Bridge] 📡 New MC event:', latestEvent.type, latestEvent.title);
+          console.log('[MC-Bridge] 📡 MC event:', latestEvent.type, '-', latestEvent.title);
           this.lastEventId = latestEvent.id;
-          
-          // Find matching shape and add to front of cycle
-          const type = latestEvent.type?.toLowerCase() || 'task';
-          const mapping = this.ACTIVITY_MAP[type];
-          if (mapping) {
-            // Immediately morph to event shape (if not paused)
-            const timeSinceUser = Date.now() - this.lastUserInteraction;
-            if (timeSinceUser >= this.USER_INTERACTION_PAUSE) {
-              this.applyMorph(mapping);
-            }
-          }
         }
       }
     },
@@ -179,15 +169,20 @@
             return originalMorph(...args);
           };
 
-          // Start the LIVING morph cycle - every 7 seconds
-          this.morphIntervalId = setInterval(() => this.doLivingMorph(), this.MORPH_INTERVAL);
-          console.log('[MC-Bridge] 💓 Living morph started (every 7s)');
-
-          // Also poll MC for events (influences shape selection)
-          setInterval(() => this.pollMC(), this.POLL_INTERVAL);
+          // Let the beautiful landing sphere breathe for 15 seconds
+          console.log('[MC-Bridge] 🌟 Letting landing sphere breathe for 15s...');
           
-          // Initial MC poll
-          this.pollMC();
+          setTimeout(() => {
+            // Start the LIVING morph cycle - every 7 seconds
+            this.morphIntervalId = setInterval(() => this.doLivingMorph(), this.MORPH_INTERVAL);
+            console.log('[MC-Bridge] 💓 Living morph started (every 7s)');
+
+            // Also poll MC for events (influences shape selection)
+            setInterval(() => this.pollMC(), this.POLL_INTERVAL);
+            
+            // Initial MC poll (but don't morph immediately - let random cycle handle it)
+            this.pollMC();
+          }, this.INITIAL_DELAY);
 
         } else {
           setTimeout(checkReady, 1000);
