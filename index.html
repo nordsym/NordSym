@@ -5013,7 +5013,7 @@
        <span id="toggle-human" onclick="document.getElementById('cta-human').style.display='inline-block'; document.getElementById('cta-agent').style.display='none'; document.getElementById('toggle-human').style.background='rgba(255,255,255,0.3)'; document.getElementById('toggle-agent').style.background='rgba(255,255,255,0.1)';" style="cursor: pointer; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 12px; width: 70px; text-align: center;" data-i18n="bannerImHuman">I'm a 👤</span>
      </span>
      <span style="min-width: 200px; text-align: center;">
-       <code id="cta-agent" style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace;">npx @nordsym/apiclaw mcp-install</code>
+       <button id="cta-agent" onclick="navigator.clipboard.writeText('npx @nordsym/apiclaw mcp-install'); this.innerHTML='✓ Copied! Run in terminal'; this.style.background='rgba(34,197,94,0.8)'; setTimeout(() => { this.innerHTML='npx @nordsym/apiclaw mcp-install'; this.style.background='rgba(0,0,0,0.3)'; }, 2000);" style="cursor: pointer; background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace; border: none; color: white; transition: all 0.2s;">npx @nordsym/apiclaw mcp-install</button>
        <a id="cta-human" href="https://apiclaw.nordsym.com" target="_blank" style="display: none; font-size: 12px; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 4px; color: white; text-decoration: none;" data-i18n="bannerVisitSite">Visit site →</a>
      </span>
    </span>
