@@ -66,7 +66,7 @@ Three ways to start:
 
 1. **Form:** Visit **nordsym.com** and scroll to the demo request form
 2. **Email:** Send to **symbot@nordsym.com** with company, challenge, and email
-3. **Telegram:** Message **@Symbot_nordsym_bot** directly
+3. **Telegram:** Message [@Symbot_nordsym_bot](https://t.me/Symbot_nordsym_bot?start=nordsym) directly
 
 Include:
 - Company name
