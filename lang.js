@@ -329,7 +329,15 @@ const NordSymLang = {
       showcaseFlowVaultCta: 'Öppna Valvet',
 
       // ============================================
-      // DEMO FACTORY
+      // SYMBOT CHAT
+      // ============================================
+      symbotChatTitle: 'Prata med Symbot',
+      symbotChatIntro: 'Berätta vad som tar tid i er verksamhet.',
+      symbotChatPlaceholder: 'Beskriv ert problem...',
+      symbotChatSuccess: 'Symbot svarar inom minuter. Gustav läser med.',
+
+      // ============================================
+      // DEMO FACTORY (Legacy - keeping for reference)
       // ============================================
       demoFactoryBadge: 'Demo Fabrik',
       demoFactoryTitle: 'Få en demo byggd för er',
@@ -686,7 +694,15 @@ const NordSymLang = {
       showcaseFlowVaultCta: 'Open Vault',
 
       // ============================================
-      // DEMO FACTORY
+      // SYMBOT CHAT
+      // ============================================
+      symbotChatTitle: 'Talk to Symbot',
+      symbotChatIntro: 'Tell us what\'s taking time in your business.',
+      symbotChatPlaceholder: 'Describe your problem...',
+      symbotChatSuccess: 'Symbot responds within minutes. Gustav reads along.',
+
+      // ============================================
+      // DEMO FACTORY (Legacy - keeping for reference)
       // ============================================
       demoFactoryBadge: 'Demo Factory',
       demoFactoryTitle: 'Get a demo built for you',

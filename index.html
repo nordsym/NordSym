@@ -4792,19 +4792,19 @@
  }
 
  /* ========================================
-    DEMO FACTORY LEAD CAPTURE FORM
+    SYMBOT CHAT COMPONENT
     ======================================== */
- .demo-factory-container {
+ .symbot-chat-container {
    max-width: 600px;
    margin: 4rem auto 0;
-   padding: 2rem;
+   padding: 0 1rem;
  }
 
- .demo-factory-card {
+ .symbot-chat-card {
    background: rgba(12, 20, 39, 0.85);
    border: 1px solid rgba(0, 212, 255, 0.2);
    border-radius: 1rem;
-   padding: 2rem;
+   padding: 1.5rem;
    backdrop-filter: blur(25px);
    box-shadow: 
      0 0 30px rgba(0, 212, 255, 0.1),
@@ -4812,189 +4812,310 @@
    transition: all 0.3s ease;
  }
 
- .demo-factory-card:hover {
-   border-color: rgba(0, 212, 255, 0.4);
+ .symbot-chat-card:hover {
+   border-color: rgba(0, 212, 255, 0.35);
    box-shadow: 
-     0 0 40px rgba(0, 212, 255, 0.15),
-     0 25px 60px -12px rgba(0, 0, 0, 0.6);
+     0 0 40px rgba(0, 212, 255, 0.12),
+     0 25px 60px -12px rgba(0, 0, 0, 0.55);
  }
 
- .demo-factory-header {
-   text-align: center;
-   margin-bottom: 1.5rem;
+ .symbot-chat-header {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   margin-bottom: 1rem;
+   padding-bottom: 1rem;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
  }
 
- .demo-factory-badge {
-   display: inline-block;
-   padding: 0.25rem 0.75rem;
-   font-size: 0.65rem;
-   font-weight: 700;
-   letter-spacing: 0.15em;
-   text-transform: uppercase;
-   color: var(--nord-sym-cyan);
-   border: 1px solid rgba(0, 212, 255, 0.3);
-   border-radius: 9999px;
-   margin-bottom: 0.75rem;
+ .symbot-chat-avatar {
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, var(--nord-sym-cyan) 0%, rgba(0, 180, 220, 0.8) 100%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+   box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
  }
 
- .demo-factory-title {
-   font-family: 'Comfortaa', sans-serif;
+ .symbot-chat-avatar i {
    font-size: 1.5rem;
+   color: var(--nord-sym-deep-space-blue);
+ }
+
+ .symbot-chat-header-text {
+   flex-grow: 1;
+ }
+
+ .symbot-chat-title {
+   font-family: 'Comfortaa', sans-serif;
+   font-size: 1.25rem;
    font-weight: 700;
    color: #ffffff;
-   margin-bottom: 0.5rem;
+   margin: 0 0 0.25rem 0;
  }
 
- .demo-factory-subtitle {
+ .symbot-chat-intro {
    font-size: 0.9rem;
    color: rgba(255, 255, 255, 0.7);
+   margin: 0;
+   line-height: 1.4;
+ }
+
+ .symbot-chat-messages {
+   max-height: 200px;
+   overflow-y: auto;
+   margin-bottom: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   scrollbar-width: thin;
+   scrollbar-color: var(--nord-sym-cyan) transparent;
+ }
+
+ .symbot-chat-messages::-webkit-scrollbar {
+   width: 4px;
+ }
+
+ .symbot-chat-messages::-webkit-scrollbar-thumb {
+   background-color: var(--nord-sym-cyan);
+   border-radius: 4px;
+ }
+
+ .symbot-chat-messages:empty {
+   display: none;
+ }
+
+ .symbot-chat-message {
+   max-width: 85%;
+   animation: symbot-msg-appear 0.3s ease-out;
+ }
+
+ @keyframes symbot-msg-appear {
+   from {
+     opacity: 0;
+     transform: translateY(10px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+ .symbot-chat-message p {
+   margin: 0;
+   padding: 0.75rem 1rem;
+   border-radius: 1rem;
+   font-size: 0.9rem;
    line-height: 1.5;
  }
 
- .demo-factory-form {
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
+ .symbot-chat-message-user {
+   align-self: flex-end;
  }
 
- .demo-factory-input,
- .demo-factory-textarea {
-   width: 100%;
+ .symbot-chat-message-user p {
+   background: var(--nord-sym-cyan);
+   color: var(--nord-sym-deep-space-blue);
+   border-bottom-right-radius: 0.25rem;
+ }
+
+ .symbot-chat-form {
+   margin: 0;
+ }
+
+ .symbot-chat-input-wrapper {
+   display: flex;
+   gap: 0.75rem;
+   align-items: flex-end;
+ }
+
+ .symbot-chat-input {
+   flex-grow: 1;
    padding: 0.875rem 1rem;
    font-size: 0.95rem;
    font-family: inherit;
    color: #ffffff;
    background: rgba(8, 12, 20, 0.8);
-   border: 1px solid rgba(255, 255, 255, 0.1);
-   border-radius: 0.5rem;
+   border: 1px solid rgba(255, 255, 255, 0.15);
+   border-radius: 0.75rem;
    outline: none;
    transition: all 0.2s ease;
+   resize: none;
+   min-height: 48px;
+   max-height: 120px;
+   line-height: 1.5;
  }
 
- .demo-factory-input::placeholder,
- .demo-factory-textarea::placeholder {
+ .symbot-chat-input::placeholder {
    color: rgba(255, 255, 255, 0.4);
  }
 
- .demo-factory-input:focus,
- .demo-factory-textarea:focus {
+ .symbot-chat-input:focus {
    border-color: var(--nord-sym-cyan);
    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
  }
 
- .demo-factory-textarea {
-   min-height: 80px;
-   resize: vertical;
- }
-
- .demo-factory-submit {
-   width: 100%;
-   padding: 1rem 1.5rem;
-   font-size: 1rem;
-   font-weight: 700;
-   font-family: 'Comfortaa', sans-serif;
-   color: var(--nord-sym-deep-space-blue);
+ .symbot-chat-send {
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
    background: var(--nord-sym-cyan);
    border: none;
-   border-radius: 0.5rem;
    cursor: pointer;
-   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+   transition: all 0.2s ease;
+   box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+ }
+
+ .symbot-chat-send i {
+   font-size: 1.25rem;
+   color: var(--nord-sym-deep-space-blue);
+ }
+
+ .symbot-chat-send:hover {
+   transform: scale(1.05);
+   box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+ }
+
+ .symbot-chat-send:active {
+   transform: scale(0.95);
+ }
+
+ .symbot-chat-success {
    display: flex;
    align-items: center;
    justify-content: center;
    gap: 0.5rem;
+   padding: 0.75rem;
+   margin-top: 0.75rem;
+   background: rgba(0, 212, 255, 0.1);
+   border: 1px solid rgba(0, 212, 255, 0.2);
+   border-radius: 0.5rem;
+   animation: symbot-success-appear 0.3s ease-out;
  }
 
- .demo-factory-submit:hover {
-   transform: translateY(-2px);
-   box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+ @keyframes symbot-success-appear {
+   from {
+     opacity: 0;
+     transform: translateY(-5px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
  }
 
- .demo-factory-submit:disabled {
-   opacity: 0.6;
-   cursor: not-allowed;
-   transform: none;
- }
-
- .demo-factory-submit .spinner {
-   width: 18px;
-   height: 18px;
-   border: 2px solid transparent;
-   border-top-color: var(--nord-sym-deep-space-blue);
-   border-radius: 50%;
-   animation: spin 0.8s linear infinite;
- }
-
- @keyframes spin {
-   to { transform: rotate(360deg); }
- }
-
- .demo-factory-success {
-   text-align: center;
-   padding: 2rem;
- }
-
- .demo-factory-success-icon {
-   font-size: 3rem;
-   margin-bottom: 1rem;
- }
-
- .demo-factory-success h4 {
-   font-family: 'Comfortaa', sans-serif;
+ .symbot-chat-success i {
    font-size: 1.25rem;
-   color: #ffffff;
-   margin-bottom: 0.5rem;
+   color: var(--nord-sym-cyan);
  }
 
- .demo-factory-success p {
-   color: rgba(255, 255, 255, 0.7);
-   font-size: 0.9rem;
+ .symbot-chat-success p {
+   margin: 0;
+   font-size: 0.85rem;
+   color: rgba(255, 255, 255, 0.8);
  }
 
- /* Light theme overrides */
- body.light-theme .demo-factory-card {
+ /* ========================================
+    SYMBOT CHAT - LIGHT THEME
+    ======================================== */
+ body.light-theme .symbot-chat-card {
    background: rgba(255, 255, 255, 0.95);
    border-color: var(--nord-sym-blueprint-lines);
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+   box-shadow: 
+     8px 8px 0px rgba(148, 163, 184, 0.2),
+     0 10px 30px rgba(0, 0, 0, 0.08);
  }
 
- body.light-theme .demo-factory-title {
-   color: var(--nord-sym-blueprint-ink);
- }
-
- body.light-theme .demo-factory-subtitle {
-   color: rgba(0, 30, 60, 0.7);
- }
-
- body.light-theme .demo-factory-input,
- body.light-theme .demo-factory-textarea {
-   background: rgba(240, 245, 250, 0.9);
-   border-color: var(--nord-sym-blueprint-lines);
-   color: var(--nord-sym-blueprint-ink);
- }
-
- body.light-theme .demo-factory-input::placeholder,
- body.light-theme .demo-factory-textarea::placeholder {
-   color: rgba(0, 30, 60, 0.4);
- }
-
- body.light-theme .demo-factory-input:focus,
- body.light-theme .demo-factory-textarea:focus {
+ body.light-theme .symbot-chat-card:hover {
    border-color: var(--nord-sym-blueprint-cyan);
-   box-shadow: 0 0 0 3px rgba(0, 150, 200, 0.15);
+   box-shadow: 
+     12px 12px 0px rgba(2, 132, 199, 0.15),
+     0 15px 40px rgba(0, 0, 0, 0.1);
+   transform: translate(-2px, -2px);
  }
 
- body.light-theme .demo-factory-submit {
+ body.light-theme .symbot-chat-header {
+   border-bottom-color: var(--nord-sym-blueprint-lines-faint);
+ }
+
+ body.light-theme .symbot-chat-avatar {
+   background: linear-gradient(135deg, var(--nord-sym-blueprint-cyan) 0%, rgba(2, 132, 199, 0.8) 100%);
+   box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.3);
+ }
+
+ body.light-theme .symbot-chat-avatar i {
+   color: #ffffff;
+ }
+
+ body.light-theme .symbot-chat-title {
+   color: var(--nord-sym-blueprint-ink);
+ }
+
+ body.light-theme .symbot-chat-intro {
+   color: var(--nord-sym-blueprint-text-secondary);
+ }
+
+ body.light-theme .symbot-chat-messages {
+   scrollbar-color: var(--nord-sym-blueprint-cyan) var(--nord-sym-blueprint-lines-faint);
+ }
+
+ body.light-theme .symbot-chat-messages::-webkit-scrollbar-thumb {
+   background-color: var(--nord-sym-blueprint-cyan);
+ }
+
+ body.light-theme .symbot-chat-message-user p {
    background: var(--nord-sym-blueprint-cyan);
    color: #ffffff;
  }
 
- body.light-theme .demo-factory-success h4 {
+ body.light-theme .symbot-chat-input {
+   background: rgba(248, 250, 252, 0.95);
+   border-color: var(--nord-sym-blueprint-lines);
    color: var(--nord-sym-blueprint-ink);
  }
 
- body.light-theme .demo-factory-success p {
-   color: rgba(0, 30, 60, 0.7);
+ body.light-theme .symbot-chat-input::placeholder {
+   color: var(--nord-sym-blueprint-text-secondary);
+   opacity: 0.6;
+ }
+
+ body.light-theme .symbot-chat-input:focus {
+   border-color: var(--nord-sym-blueprint-cyan);
+   box-shadow: 4px 4px 0px rgba(2, 132, 199, 0.1);
+ }
+
+ body.light-theme .symbot-chat-send {
+   background: var(--nord-sym-blueprint-cyan);
+   box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.3);
+ }
+
+ body.light-theme .symbot-chat-send i {
+   color: #ffffff;
+ }
+
+ body.light-theme .symbot-chat-send:hover {
+   box-shadow: 6px 6px 0px rgba(2, 132, 199, 0.3);
+   transform: translate(-1px, -1px) scale(1.02);
+ }
+
+ body.light-theme .symbot-chat-success {
+   background: rgba(2, 132, 199, 0.08);
+   border-color: rgba(2, 132, 199, 0.2);
+ }
+
+ body.light-theme .symbot-chat-success i {
+   color: var(--nord-sym-blueprint-cyan);
+ }
+
+ body.light-theme .symbot-chat-success p {
+   color: var(--nord-sym-blueprint-text-secondary);
  }
  
  </style>
@@ -6210,53 +6331,109 @@
  <!-- ÅTERSTÄLLD: Paginering och stängningstaggar som saknades -->
  <div id="galleryPagination" class="flex justify-center mt-6 gap-3"></div>
 
- <!-- DEMO FACTORY LEAD CAPTURE -->
- <div class="demo-factory-container">
-   <div class="demo-factory-card">
-     <div class="demo-factory-header">
-       <span class="demo-factory-badge">🏭 <span data-i18n="demoFactoryBadge">Demo Fabrik</span></span>
-       <h3 class="demo-factory-title" data-i18n="demoFactoryTitle">Få en demo byggd för er</h3>
-       <p class="demo-factory-subtitle">
-         Se vad som är möjligt. Submitta. Symbot analyserar, sen bygger en skräddarsydd demo baserad på vad ni <span class="animate-emphasis relative inline-block px-1 py-0.5 mx-0.5 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-xs rounded shadow-[0_0_10px_rgba(0,212,255,0.5)] border border-white/20 align-middle">FAKTISKT</span> behöver. Klar innan fikan är slut.
-       </p>
+ <!-- SYMBOT CHAT COMPONENT -->
+ <div class="symbot-chat-container">
+   <div class="symbot-chat-card">
+     <div class="symbot-chat-header">
+       <div class="symbot-chat-avatar">
+         <i class="ph ph-robot"></i>
+       </div>
+       <div class="symbot-chat-header-text">
+         <h3 class="symbot-chat-title" data-i18n="symbotChatTitle">Prata med Symbot</h3>
+         <p class="symbot-chat-intro" data-i18n="symbotChatIntro">Berätta vad som tar tid i er verksamhet.</p>
+       </div>
      </div>
      
-     <form id="demo-factory-form" class="demo-factory-form">
-       <input 
-         type="text" 
-         name="company" 
-         class="demo-factory-input" 
-         placeholder="Företagsnamn *"
-         data-i18n-placeholder="demoFactoryCompany"
-         required
-       />
-       <input 
-         type="email" 
-         name="email" 
-         class="demo-factory-input" 
-         placeholder="Er mejladress *"
-         data-i18n-placeholder="demoFactoryEmail"
-         required
-       />
-       <textarea 
-         name="challenge" 
-         class="demo-factory-textarea" 
-         placeholder="Vad vill ni lösa? (valfritt)"
-         data-i18n-placeholder="demoFactoryChallenge"
-       ></textarea>
-       <button type="submit" class="demo-factory-submit">
-         <span data-i18n="demoFactoryCTA">Begär Demo</span>
-         <i class="ph ph-arrow-right"></i>
-       </button>
+     <div id="symbot-chat-messages" class="symbot-chat-messages">
+       <!-- Messages will be inserted here -->
+     </div>
+     
+     <form id="symbot-chat-form" class="symbot-chat-form">
+       <div class="symbot-chat-input-wrapper">
+         <textarea 
+           id="symbot-chat-input"
+           name="message" 
+           class="symbot-chat-input" 
+           placeholder="Beskriv ert problem..."
+           data-i18n-placeholder="symbotChatPlaceholder"
+           rows="1"
+           required
+         ></textarea>
+         <button type="submit" class="symbot-chat-send" aria-label="Skicka meddelande">
+           <i class="ph ph-paper-plane-tilt"></i>
+         </button>
+       </div>
      </form>
 
-     <div id="demo-factory-success" class="demo-factory-success" style="display: none;">
-       <div class="demo-factory-success-icon">🤖</div>
-       <h4 data-i18n="demoFactorySuccessTitle">Symbot är på det!</h4>
-       <p data-i18n="demoFactorySuccessText">Vår AI-agent researchar ert företag och bygger en demo. Ni får den på mejl inom 24h.</p>
+     <div id="symbot-chat-success" class="symbot-chat-success" style="display: none;">
+       <i class="ph ph-check-circle"></i>
+       <p data-i18n="symbotChatSuccess">Symbot svarar inom minuter. Gustav läser med.</p>
      </div>
    </div>
  </div>
+
+ <script>
+ (function() {
+   const form = document.getElementById('symbot-chat-form');
+   const input = document.getElementById('symbot-chat-input');
+   const messagesContainer = document.getElementById('symbot-chat-messages');
+   const successEl = document.getElementById('symbot-chat-success');
+   
+   // Auto-resize textarea
+   input.addEventListener('input', function() {
+     this.style.height = 'auto';
+     this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+   });
+   
+   // Handle Enter key (submit on Enter, new line on Shift+Enter)
+   input.addEventListener('keydown', function(e) {
+     if (e.key === 'Enter' && !e.shiftKey) {
+       e.preventDefault();
+       form.dispatchEvent(new Event('submit'));
+     }
+   });
+   
+   form.addEventListener('submit', async function(e) {
+     e.preventDefault();
+     
+     const message = input.value.trim();
+     if (!message) return;
+     
+     // Add user message to chat
+     const userMsgEl = document.createElement('div');
+     userMsgEl.className = 'symbot-chat-message symbot-chat-message-user';
+     userMsgEl.innerHTML = '<p>' + message.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>';
+     messagesContainer.appendChild(userMsgEl);
+     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+     
+     // Clear input
+     input.value = '';
+     input.style.height = 'auto';
+     
+     // Send to webhook
+     try {
+       await fetch('https://nordsym.app.n8n.cloud/webhook/symbot-website-chat', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+           message: message,
+           timestamp: new Date().toISOString(),
+           source: 'nordsym.com'
+         })
+       });
+       
+       // Show success message
+       successEl.style.display = 'flex';
+       setTimeout(() => {
+         successEl.style.display = 'none';
+       }, 5000);
+       
+     } catch (err) {
+       console.error('Symbot chat error:', err);
+     }
+   });
+ })();
+ </script>
 
  </div>
  </section>
