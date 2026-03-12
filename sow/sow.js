@@ -72,6 +72,8 @@
   }
 
   const customerId = body.getAttribute('data-customer-id');
+  const params = new URLSearchParams(window.location.search);
+  const demoMode = params.get('demo') === '1' || params.get('demo_success') === '1';
   const data = window.NORDSYM_SOW_DATA && window.NORDSYM_SOW_DATA[customerId];
   const root = document.getElementById('sow-root');
   if (!data || !root) {
@@ -119,6 +121,7 @@
     '</div>',
     '<div id="msg"></div>',
     '<div class="sow-actions"><button id="sign-btn" class="sow-btn" disabled>' + (data.paymentLink ? 'Sign & Continue to Payment' : 'Sign SoW') + '</button></div>',
+    (demoMode ? '<p class="sow-demo-note">Demo mode active: after signing, you will be sent to onboarding without payment.</p>' : ''),
     '</section></div></div>'
   ].join('');
 
@@ -218,9 +221,22 @@
         if (!r.ok) throw new Error(payload.error || 'Signing failed');
         msg.className = 'sow-msg ok';
         msg.textContent = 'Signed successfully. Thank you.';
+        const successUrl = '/sow/success?customerId=' + encodeURIComponent(customerId) +
+          '&signerName=' + encodeURIComponent(nameInput.value.trim()) +
+          '&demo=' + (demoMode ? '1' : '0');
+        if (demoMode) {
+          setTimeout(function () {
+            window.location.href = successUrl;
+          }, 500);
+          return;
+        }
         if (data.paymentLink) {
           setTimeout(function () {
             window.location.href = data.paymentLink;
+          }, 500);
+        } else {
+          setTimeout(function () {
+            window.location.href = successUrl;
           }, 500);
         }
       })
