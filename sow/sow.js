@@ -2,6 +2,54 @@
   const body = document.body;
   const themeToggleBtn = document.getElementById('theme-toggle');
   const defaultTheme = localStorage.getItem('theme') || 'light';
+  let starCanvas = null;
+  let starCtx = null;
+  let starAnim = null;
+  let stars = [];
+
+  function initStarfall() {
+    if (starCanvas) return;
+    starCanvas = document.createElement('canvas');
+    starCanvas.className = 'sow-starfall';
+    document.body.appendChild(starCanvas);
+    starCtx = starCanvas.getContext('2d');
+
+    function resize() {
+      starCanvas.width = window.innerWidth;
+      starCanvas.height = window.innerHeight;
+      stars = Array.from({ length: Math.max(18, Math.floor(window.innerWidth / 120)) }, function () {
+        return {
+          x: Math.random() * starCanvas.width,
+          y: Math.random() * starCanvas.height,
+          r: Math.random() * 1.4 + 0.5,
+          vy: Math.random() * 0.15 + 0.04,
+          a: Math.random() * 0.45 + 0.2
+        };
+      });
+    }
+
+    function draw() {
+      if (!starCtx) return;
+      starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+        s.y += s.vy;
+        if (s.y > starCanvas.height + 3) {
+          s.y = -3;
+          s.x = Math.random() * starCanvas.width;
+        }
+        starCtx.beginPath();
+        starCtx.fillStyle = 'rgba(186, 230, 253,' + s.a.toFixed(3) + ')';
+        starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        starCtx.fill();
+      }
+      starAnim = requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  }
 
   function setTheme(theme) {
     body.classList.remove('light-theme', 'dark-theme');
@@ -9,6 +57,10 @@
     localStorage.setItem('theme', theme);
     if (themeToggleBtn) {
       themeToggleBtn.textContent = theme === 'light' ? 'Dark' : 'Light';
+    }
+    if (theme === 'dark') initStarfall();
+    if (starCanvas) {
+      starCanvas.style.display = theme === 'dark' ? 'block' : 'none';
     }
   }
 
