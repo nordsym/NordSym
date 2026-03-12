@@ -75,7 +75,7 @@ const NordSymLang = {
       pricingMLPFeature1: 'Anpassad kod',
       pricingMLPFeature2: 'Exakt Lösning',
       pricingMLPBtn: 'Starta Pilot',
-      pricingMLPNote: 'Exakt arkitektur definieras tillsammans med kund',
+      pricingMLPNote: 'Exact architecture is defined together with the client',
 
       // Pricing - Operating System
       pricingOSTitle: 'OPERATIVSYSTEM',
@@ -439,7 +439,7 @@ const NordSymLang = {
       pricingMLPFeature1: 'Custom Code',
       pricingMLPFeature2: 'Exact Solution',
       pricingMLPBtn: 'Start Pilot',
-      pricingMLPNote: 'Exact architecture defined together with client',
+      pricingMLPNote: 'Exact architecture is defined together with the client',
 
       // Pricing - Operating System
       pricingOSTitle: 'OPERATING SYSTEM',
