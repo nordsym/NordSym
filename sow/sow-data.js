@@ -11,7 +11,7 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Excom</strong>, represented by Peter Larnholt"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to Excom, specifically focused on:",
@@ -83,7 +83,7 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Nakama</strong>, represented by Beidos"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to Nakama, specifically focused on:",
@@ -159,7 +159,7 @@ window.NORDSYM_SOW_DATA = {
         "<strong>HotClen</strong>, represented by Hasse Ali"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to HotClen, specifically focused on:",
@@ -230,7 +230,7 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Lazy Genius</strong>, represented by Fredrik"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services for Lazy Genius, specifically focused on:",
