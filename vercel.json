@@ -5,6 +5,12 @@
   "framework": null,
   "installCommand": null,
   "rewrites": [
+    { "source": "/sow/excom", "destination": "/sow/excom.html" },
+    { "source": "/sow/nakama", "destination": "/sow/nakama.html" },
+    { "source": "/sow/hotclean", "destination": "/sow/hotclen.html" },
+    { "source": "/sow/hotclen", "destination": "/sow/hotclen.html" },
+    { "source": "/sow/upwork", "destination": "/sow/lazy-genius.html" },
+    { "source": "/sow/lazy-genius", "destination": "/sow/lazy-genius.html" },
     { "source": "/agent-info", "destination": "/api/agent-info" },
     { "source": "/contact", "destination": "/api/contact" },
     { "source": "/audit", "destination": "/api/audit" },
