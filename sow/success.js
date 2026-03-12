@@ -48,7 +48,12 @@
     primaryGoal: '',
     constraints: '',
     stakeholders: '',
-    agenda: ''
+    agenda: '',
+    selectedDateObj: null,
+    calMonth: null,
+    calYear: null,
+    hour: '11',
+    minute: '00'
   };
 
   const steps = ['Contact', 'Context', 'Agenda', 'Book'];
@@ -148,9 +153,20 @@
 
     panel.innerHTML = [
       '<h2>Book Checkpoint Meeting</h2>',
-      '<div class="flow-grid">',
-      '<input id="date" class="sow-input" type="date">',
-      '<input id="time" class="sow-input" type="time">',
+      '<div class="book-layout">',
+      '  <div class="mini-cal">',
+      '    <div class="mini-cal-head"><button class="mini-cal-nav" id="cal-prev" type="button">‹</button><div class="mini-cal-title" id="cal-title"></div><button class="mini-cal-nav" id="cal-next" type="button">›</button></div>',
+      '    <div class="mini-cal-grid" id="cal-grid"></div>',
+      '  </div>',
+      '  <div class="time-wheel">',
+      '    <div class="time-wheel-title">Meeting Time</div>',
+      '    <div class="time-wheel-row">',
+      '      <div class="time-col" id="hour-col"></div>',
+      '      <div class="time-sep">:</div>',
+      '      <div class="time-col" id="min-col"></div>',
+      '    </div>',
+      '    <div class="time-preview">Selected: <strong id="time-preview"></strong></div>',
+      '  </div>',
       '</div>',
       '<p style="color:var(--muted);font-size:14px">We will request a <strong>Google Meet</strong> invite and send a polished confirmation email with the final agenda.</p>',
       '<div id="status" class="flow-status"></div>',
@@ -158,9 +174,12 @@
     ].join('');
 
     document.getElementById('prev').onclick = prev;
+    initCalendarAndTimePicker();
     document.getElementById('book').onclick = async function () {
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
+      const date = state.selectedDateObj
+        ? state.selectedDateObj.toISOString().slice(0, 10)
+        : '';
+      const time = state.hour + ':' + state.minute;
       if (!date || !time) return alert('Select date and time.');
 
       const status = document.getElementById('status');
@@ -194,6 +213,98 @@
         status.innerHTML = '<span class="sow-msg err">' + escapeHtml(err.message) + '</span>';
       }
     };
+  }
+
+  function initCalendarAndTimePicker() {
+    const now = new Date();
+    if (!state.selectedDateObj) {
+      state.selectedDateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    }
+    if (state.calMonth === null) {
+      state.calMonth = state.selectedDateObj.getMonth();
+      state.calYear = state.selectedDateObj.getFullYear();
+    }
+
+    const hourCol = document.getElementById('hour-col');
+    const minCol = document.getElementById('min-col');
+    const preview = document.getElementById('time-preview');
+
+    const hours = [];
+    for (let h = 8; h <= 19; h++) hours.push(String(h).padStart(2, '0'));
+    const mins = ['00', '15', '30', '45'];
+
+    hourCol.innerHTML = hours.map(h => '<div class="time-opt' + (h === state.hour ? ' active' : '') + '" data-h="' + h + '">' + h + '</div>').join('');
+    minCol.innerHTML = mins.map(m => '<div class="time-opt' + (m === state.minute ? ' active' : '') + '" data-m="' + m + '">' + m + '</div>').join('');
+
+    hourCol.querySelectorAll('.time-opt').forEach(el => el.onclick = function () {
+      state.hour = this.getAttribute('data-h');
+      hourCol.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+      preview.textContent = state.hour + ':' + state.minute;
+    });
+    minCol.querySelectorAll('.time-opt').forEach(el => el.onclick = function () {
+      state.minute = this.getAttribute('data-m');
+      minCol.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+      preview.textContent = state.hour + ':' + state.minute;
+    });
+    preview.textContent = state.hour + ':' + state.minute;
+
+    renderCalendar();
+    document.getElementById('cal-prev').onclick = function () {
+      state.calMonth -= 1;
+      if (state.calMonth < 0) { state.calMonth = 11; state.calYear -= 1; }
+      renderCalendar();
+    };
+    document.getElementById('cal-next').onclick = function () {
+      state.calMonth += 1;
+      if (state.calMonth > 11) { state.calMonth = 0; state.calYear += 1; }
+      renderCalendar();
+    };
+  }
+
+  function renderCalendar() {
+    const title = document.getElementById('cal-title');
+    const grid = document.getElementById('cal-grid');
+    if (!title || !grid) return;
+    const d = new Date(state.calYear, state.calMonth, 1);
+    const monthName = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    title.textContent = monthName;
+
+    const firstDow = (new Date(state.calYear, state.calMonth, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(state.calYear, state.calMonth + 1, 0).getDate();
+    const prevMonthDays = new Date(state.calYear, state.calMonth, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    const dow = ['M','T','W','T','F','S','S'];
+    const cells = dow.map(x => '<div class="mini-cal-dow">' + x + '</div>');
+
+    for (let i = 0; i < firstDow; i++) {
+      const n = prevMonthDays - firstDow + i + 1;
+      cells.push('<button class="mini-cal-day muted" type="button" disabled>' + n + '</button>');
+    }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateObj = new Date(state.calYear, state.calMonth, day);
+      const isPast = dateObj < today;
+      const isSelected = state.selectedDateObj &&
+        dateObj.toDateString() === state.selectedDateObj.toDateString();
+      cells.push('<button class="mini-cal-day' + (isSelected ? ' selected' : '') + (isPast ? ' muted' : '') +
+        '" type="button" data-day="' + day + '"' + (isPast ? ' disabled' : '') + '>' + day + '</button>');
+    }
+    const totalCells = firstDow + daysInMonth;
+    const trailing = (7 - (totalCells % 7)) % 7;
+    for (let i = 1; i <= trailing; i++) {
+      cells.push('<button class="mini-cal-day muted" type="button" disabled>' + i + '</button>');
+    }
+
+    grid.innerHTML = cells.join('');
+    grid.querySelectorAll('.mini-cal-day[data-day]').forEach(el => {
+      el.onclick = function () {
+        const day = Number(this.getAttribute('data-day'));
+        state.selectedDateObj = new Date(state.calYear, state.calMonth, day);
+        renderCalendar();
+      };
+    });
   }
 
   render();

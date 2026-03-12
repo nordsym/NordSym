@@ -122,3 +122,31 @@ body.dark-theme .sow-starfall { opacity: .18; }
   .flow-stepper { grid-template-columns: 1fr 1fr; }
   .flow-grid { grid-template-columns: 1fr; }
 }
+
+/* Mini calendar + time wheel */
+.book-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; margin-top: 8px; }
+.mini-cal { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.mini-cal-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.mini-cal-title { font-weight: 700; }
+.mini-cal-nav { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); width: 30px; height: 30px; cursor: pointer; }
+.mini-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 10px; }
+.mini-cal-dow { font-size: 11px; color: var(--muted); text-align: center; }
+.mini-cal-day { border: 1px solid transparent; border-radius: 8px; height: 34px; background: transparent; color: var(--text); cursor: pointer; }
+.mini-cal-day:hover { border-color: var(--line); background: var(--surface-2); }
+.mini-cal-day.muted { color: var(--muted); opacity: .55; }
+.mini-cal-day.selected { background: var(--primary); color: #fff; font-weight: 700; border-color: var(--primary); }
+
+.time-wheel { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 10px; }
+.time-wheel-title { font-size: 12px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
+.time-wheel-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.time-col { height: 162px; overflow-y: auto; border: 1px solid var(--line); border-radius: 10px; scroll-snap-type: y mandatory; background: var(--surface-2); }
+.time-col::-webkit-scrollbar { width: 0; height: 0; }
+.time-opt { height: 40px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; cursor: pointer; color: var(--muted); }
+.time-opt.active { color: var(--text); font-weight: 700; background: color-mix(in srgb, var(--primary) 16%, transparent); }
+.time-sep { font-size: 22px; font-weight: 700; color: var(--muted); }
+.time-preview { margin-top: 10px; text-align: center; font-size: 14px; color: var(--muted); }
+.time-preview strong { color: var(--text); }
+
+@media (max-width: 780px) {
+  .book-layout { grid-template-columns: 1fr; }
+}
