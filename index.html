@@ -1543,15 +1543,48 @@
  border-bottom-color: var(--nord-sym-blueprint-cyan);
  }
 
- .venn-diagram-container {
- display: flex; justify-content: center; align-items: center;
- min-height: 350px;
+.venn-diagram-container {
+display: flex; justify-content: center; align-items: center;
+min-height: 350px;
+}
+
+ .home-diagram-copy-shell {
+ position: relative;
+ padding: 1.75rem 2rem;
+ border-radius: 1.5rem;
+ border: 1px solid rgba(0, 212, 255, 0.28);
+ background: linear-gradient(180deg, rgba(12, 20, 39, 0.62) 0%, rgba(12, 20, 39, 0.36) 100%);
+ backdrop-filter: blur(10px);
+ -webkit-backdrop-filter: blur(10px);
+ box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
  }
- /* LIGHT THEME VENN DIAGRAM FIX */
- body.light-theme .venn-circle {
- background: rgba(255, 255, 255, 0.6);
- border-color: var(--nord-sym-blueprint-lines);
- box-shadow: 0 0 30px rgba(0,0,0,0.05);
+ .home-diagram-copy-shell .home-diagram-kicker {
+ font-size: 0.68rem;
+ letter-spacing: 0.22em;
+ text-transform: uppercase;
+ color: #7dd3fc;
+ font-weight: 700;
+ margin-bottom: 0.65rem;
+ }
+ .home-diagram-copy-shell .home-diagram-body {
+ color: #cbe8ff;
+ }
+ .home-diagram-copy-shell .home-diagram-link {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.35rem;
+ margin-top: 0.7rem;
+ padding: 0.35rem 0.7rem;
+ border-radius: 999px;
+ border: 1px solid rgba(0, 212, 255, 0.45);
+ background: rgba(0, 212, 255, 0.12);
+ }
+
+/* LIGHT THEME VENN DIAGRAM FIX */
+body.light-theme .venn-circle {
+background: rgba(255, 255, 255, 0.6);
+border-color: var(--nord-sym-blueprint-lines);
+box-shadow: 0 0 30px rgba(0,0,0,0.05);
  }
  body.light-theme .venn-circle-text {
  color: var(--nord-sym-blueprint-ink) !important;
@@ -1563,8 +1596,23 @@
  text-shadow: 2px 2px 0px #ffffff; /* Outline effekt för läsbarhet vid överlapp */
  font-weight: 900;
  }
- body.light-theme .venn-overlap-text i {
- color: var(--nord-sym-blueprint-cyan) !important;
+body.light-theme .venn-overlap-text i {
+color: var(--nord-sym-blueprint-cyan) !important;
+}
+ body.light-theme .home-diagram-copy-shell {
+ background: rgba(255, 255, 255, 0.88);
+ border-color: rgba(15, 30, 58, 0.18);
+ box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
+ }
+ body.light-theme .home-diagram-copy-shell .home-diagram-kicker {
+ color: #0f7ab8;
+ }
+ body.light-theme .home-diagram-copy-shell .home-diagram-body {
+ color: var(--nord-sym-blueprint-text-secondary) !important;
+ }
+ body.light-theme .home-diagram-copy-shell .home-diagram-link {
+ background: rgba(15, 122, 184, 0.08);
+ border-color: rgba(15, 122, 184, 0.45);
  }
 
  .venn-diagram-wrapper {
@@ -1633,9 +1681,10 @@
  }
  
  /* Harmoni-fix: Responsiv typografi för Venn-diagrammet */
- @media (max-width: 768px) {
- .venn-diagram-wrapper { width: 450px; height: 280px; }
- .venn-circle { width: 280px; height: 280px; }
+@media (max-width: 768px) {
+.home-diagram-copy-shell { padding: 1.2rem 1rem; border-radius: 1.1rem; }
+.venn-diagram-wrapper { width: 450px; height: 280px; }
+.venn-circle { width: 280px; height: 280px; }
  .venn-circle-text { font-size: 1.1rem; max-width: 140px; }
  .venn-circle-1 { padding-left: 2rem; }
  .venn-circle-2 { padding-right: 2rem; }
@@ -5425,20 +5474,16 @@
  </div>
 
  <div class="text-center mb-16 max-w-4xl mx-auto">
- <!-- Rubrik designad som en stor tagg -->
- <div class="inline-block">
- <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-6" data-i18n="homeDiagramTitle">
+ <div class="home-diagram-copy-shell">
+ <p class="home-diagram-kicker">Growth Layer</p>
+ <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-4 light-theme:text-nord-sym-blueprint-ink" data-i18n="homeDiagramTitle">
  Frigör er potential
  </h2>
- </div>
- 
- <!-- Fixat dålig kontrast i Light Mode (text-gray-900 + font-medium) -->
- <p class="text-lg text-sky-200 mt-2 leading-relaxed light-theme:text-gray-900 light-theme:font-medium">
- <!-- Fas 2.5 Copy - Jordnära, skräddarsydd mjukvara + länk -->
- <!-- Rensat bort "Vi" och "Våra" för att passa Solo Founder -->
- <span data-i18n="homeDiagramDesc">Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla agentanpassad mjukvara, system som både människor och AI kan använda, dygnet runt.</span> 
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1 light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink" data-i18n="homeDiagramLink">Utforska tjänster →</a>
+ <p class="home-diagram-body text-lg mt-2 leading-relaxed">
+ <span data-i18n="homeDiagramDesc">Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla agentanpassad mjukvara, system som både människor och AI kan använda, dygnet runt.</span>
  </p>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" class="home-diagram-link text-nord-sym-cyan font-semibold hover:text-white transition-colors light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink" data-i18n="homeDiagramLink">Utforska tjänster →</a>
+ </div>
  </div>
  <div class="venn-diagram-container">
  <div class="venn-diagram-wrapper">
