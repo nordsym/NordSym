@@ -2968,6 +2968,36 @@
  box-shadow: 0 4px 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.15) !important;
  }
 
+ /* PRODUCTS PAGE: light mode contrast hardening */
+ body.light-theme #om-oss .text-white {
+ color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #om-oss .text-sky-100\/85,
+ body.light-theme #om-oss .text-sky-100\/80,
+ body.light-theme #om-oss .text-sky-100 {
+ color: var(--nord-sym-blueprint-text-secondary) !important;
+ opacity: 1 !important;
+ }
+ body.light-theme #om-oss .text-sky-300,
+ body.light-theme #om-oss .text-sky-200 {
+ color: #27567a !important;
+ opacity: 1 !important;
+ }
+ body.light-theme #om-oss a.rounded-3xl,
+ body.light-theme #om-oss div.rounded-3xl,
+ body.light-theme #om-oss div.rounded-2xl {
+ background: rgba(255, 255, 255, 0.88) !important;
+ border-color: rgba(39, 86, 122, 0.24) !important;
+ box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06) !important;
+ }
+ body.light-theme #om-oss a.rounded-3xl:hover {
+ border-color: var(--nord-sym-blueprint-cyan) !important;
+ box-shadow: 0 10px 26px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.16) !important;
+ }
+ body.light-theme #om-oss .text-nord-sym-cyan {
+ color: #0f7ab8 !important;
+ }
+
  #chat-widget-container {
  opacity: 0;
  transform: scale(0.8);
