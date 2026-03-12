@@ -12,12 +12,12 @@
 }
 
 body.light-theme {
-  --bg: #f7fafc;
+  --bg: #f0f4f8;
   --surface: #ffffff;
   --surface-2: #f0f6ff;
   --text: #0f172a;
-  --muted: #4b5563;
-  --line: #dbe6f4;
+  --muted: #475569;
+  --line: #cbd5e1;
   --primary: #0284c7;
   --primary-2: #06b6d4;
 }
@@ -34,9 +34,9 @@ body.light-theme::before {
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .sow-wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; position: relative; z-index: 1; }
