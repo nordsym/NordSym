@@ -27,7 +27,7 @@ const NordSymLang = {
       heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> som bygger verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> gör skillnad.',
       btnBookCall: 'Boka Strategisamtal',
       btnRnD: 'R&D',
-      labelMicroApps: 'MICRO-APPS',
+      labelMicroApps: 'PRODUCTS',
       labelIntelligentArch: 'INTELLIGENT ARKITEKTUR',
       labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
       placeholderAsk: 'Fråga NordSym...',
@@ -105,7 +105,7 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Grundare',
-      founderBio1: 'Jag hjälper otekniska grundare bygga AI micro-appar som automatiserar deras verksamhet.',
+      founderBio1: 'Jag hjälper otekniska grundare bygga AI-produkter som automatiserar deras verksamhet.',
       founderBio2: 'Framtidssäkrat från dag ett.',
 
       // FAQ
@@ -152,12 +152,12 @@ const NordSymLang = {
       modalWaitlistDesc: 'Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.',
       modalWaitlistBtn: 'Bevaka lansering',
       modalCloseLabel: 'Stäng',
-      modalFounderBio: 'Jag hjälper otekniska grundare bygga AI micro-appar som automatiserar deras verksamhet.',
+      modalFounderBio: 'Jag hjälper otekniska grundare bygga AI-produkter som automatiserar deras verksamhet.',
       modalBookIntro: 'Boka Intro',
 
       // Navigation
       navHome: 'Hem',
-      navMicroApps: 'Micro-Apps',
+      navMicroApps: 'Produkter',
       navServices: 'Tjänster',
       navRnD: 'R&D',
 
@@ -208,7 +208,7 @@ const NordSymLang = {
       galleryStackContext: 'Utforska stacken',
       
       // System description  
-      gallerySystemDesc: 'Färdiga produkter och Micro-Apps lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
+      gallerySystemDesc: 'Färdiga produkter och produktlösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
       gallerySystemContext: 'Utforska systemen',
       galleryContextText: 'Utforska produkterna',
 
@@ -240,11 +240,11 @@ const NordSymLang = {
       stackCard3Indicator: 'Ni styr. De utför.',
 
       // ============================================
-      // MICRO-APPS PRODUCT CARDS
+      // PRODUCT CARDS
       // ============================================
-      microAppsBadge: 'Micro-Apps & Verktyg',
-      microAppsDesc: '<strong class="text-white">Micro-Apps</strong> är fokuserad mjukvara för specifika problem.',
-      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-Apps. Ni kan börja använda dem direkt, helt utan kostnad.',
+      microAppsBadge: 'Produkter & Verktyg',
+      microAppsDesc: '<strong class="text-white">Produkter</strong> är fokuserad mjukvara för specifika problem.',
+      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra produkter. Ni kan börja använda dem direkt, helt utan kostnad.',
       aeoIntro: '<strong>AEO & GEO</strong> är ett gratis verktyg vi tagit fram för analys av ditt företags hemsida. Testa din synlighet i AI-sök direkt via knappen.',
       
       // Showcase labels & CTAs
@@ -391,7 +391,7 @@ const NordSymLang = {
       heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building tools that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> make a difference.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
-      labelMicroApps: 'MICRO-APPS',
+      labelMicroApps: 'PRODUCTS',
       labelIntelligentArch: 'INTELLIGENT ARCHITECTURE',
       labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
       placeholderAsk: 'Ask NordSym...',
@@ -469,7 +469,7 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Founder',
-      founderBio1: 'I help non-technical founders build AI micro-apps to automate their business.',
+      founderBio1: 'I help non-technical founders build AI products to automate their business.',
       founderBio2: 'Future-proofed from day one.',
 
       // FAQ
@@ -517,12 +517,12 @@ const NordSymLang = {
       modalWaitlistDesc: 'We are finalizing the interactive demo. Sign up and we will notify you when it is ready.',
       modalWaitlistBtn: 'Watch launch',
       modalCloseLabel: 'Close',
-      modalFounderBio: 'I help non-technical founders build AI micro-apps to automate their business.',
+      modalFounderBio: 'I help non-technical founders build AI products to automate their business.',
       modalBookIntro: 'Book Intro',
 
       // Navigation
       navHome: 'Home',
-      navMicroApps: 'Micro-Apps',
+      navMicroApps: 'Products',
       navServices: 'Services',
       navRnD: 'R&D',
 
@@ -573,7 +573,7 @@ const NordSymLang = {
       galleryStackContext: 'Explore the stack',
       
       // System description  
-      gallerySystemDesc: 'Ready-made products and Micro-Apps solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
+      gallerySystemDesc: 'Ready-made products and product solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
       gallerySystemContext: 'Explore systems',
       galleryContextText: 'Explore products',
 
@@ -605,11 +605,11 @@ const NordSymLang = {
       stackCard3Indicator: 'You steer. They execute.',
 
       // ============================================
-      // MICRO-APPS PRODUCT CARDS
+      // PRODUCT CARDS
       // ============================================
-      microAppsBadge: 'Micro-Apps & Tools',
-      microAppsDesc: '<strong class="text-white">Micro-Apps</strong> are focused software for specific problems.',
-      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-Apps. You can start using them right away, completely free.',
+      microAppsBadge: 'Products & Tools',
+      microAppsDesc: '<strong class="text-white">Products</strong> are focused software for specific problems.',
+      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our products. You can start using them right away, completely free.',
       aeoIntro: '<strong>AEO & GEO</strong> is a free tool we built for analyzing your company website. Test your visibility in AI search directly via the button.',
       
       // Showcase labels & CTAs
