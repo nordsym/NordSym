@@ -6338,10 +6338,6 @@
        </div>
      </form>
 
-     <div id="symbot-chat-success" class="symbot-chat-success" style="display: none;">
-       <i class="ph ph-check-circle"></i>
-       <p data-i18n="symbotChatSuccess">Symbot svarar inom minuter. Gustav läser med.</p>
-     </div>
    </div>
  </div>
 
@@ -6352,7 +6348,19 @@
    const form = document.getElementById('symbot-chat-form');
    const input = document.getElementById('symbot-chat-input');
    const messagesContainer = document.getElementById('symbot-chat-messages');
-   const successEl = document.getElementById('symbot-chat-success');
+ 
+   const escapeHtml = (text) => String(text)
+     .replace(/&/g, '&amp;')
+     .replace(/</g, '&lt;')
+     .replace(/>/g, '&gt;');
+
+   const addBotMessage = (text) => {
+     const botMsgEl = document.createElement('div');
+     botMsgEl.className = 'symbot-chat-message';
+     botMsgEl.innerHTML = '<p>' + escapeHtml(text).replace(/\n/g, '<br>') + '</p>';
+     messagesContainer.appendChild(botMsgEl);
+     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+   };
    
    // Auto-resize textarea
    input.addEventListener('input', function() {
@@ -6387,7 +6395,7 @@
      
      // Send to webhook
      try {
-      await fetch(SYMBOT_WEBHOOK_URL, {
+      const response = await fetch(SYMBOT_WEBHOOK_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({
@@ -6398,15 +6406,18 @@
            locale: 'en'
          })
        });
-       
-       // Show success message
-       successEl.style.display = 'flex';
-       setTimeout(() => {
-         successEl.style.display = 'none';
-       }, 5000);
+
+       const data = await response.json().catch(() => ({}));
+       const botReply = data?.output || data?.response || data?.message || data?.text;
+       if (typeof botReply === 'string' && botReply.trim()) {
+         addBotMessage(botReply.trim());
+       } else {
+         addBotMessage('Symbot received your message. Could you share one more detail so I can help precisely?');
+       }
        
      } catch (err) {
        console.error('Symbot chat error:', err);
+       addBotMessage('Connection issue right now. Please try again in a moment.');
      }
    });
  })();

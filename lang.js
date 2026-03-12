@@ -699,7 +699,7 @@ const NordSymLang = {
       symbotChatTitle: 'Talk to Symbot',
       symbotChatIntro: 'Tell us what\'s taking time in your business.',
       symbotChatPlaceholder: 'Describe your problem...',
-      symbotChatSuccess: 'Symbot responds within minutes. Gustav reads along.',
+      symbotChatSuccess: 'Symbot is ready to help.',
 
       // ============================================
       // DEMO FACTORY (Legacy - keeping for reference)
