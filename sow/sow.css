@@ -26,8 +26,8 @@ body.light-theme {
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); position: relative; overflow-x: hidden; }
 a { color: var(--primary); }
 
-/* NordSym-like architectural grid */
-body::before {
+/* NordSym-like architectural grid (light mode only) */
+body.light-theme::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -37,11 +37,6 @@ body::before {
     linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
-}
-body.dark-theme::before {
-  background-image:
-    linear-gradient(rgba(14, 165, 233, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.07) 1px, transparent 1px);
 }
 
 .sow-wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; position: relative; z-index: 1; }
@@ -59,7 +54,23 @@ body.dark-theme::before {
 .sow-section { margin-bottom: 24px; }
 .sow-section h2 { margin: 0 0 10px; font-size: 18px; color: var(--primary); border-bottom: 1px solid var(--line); padding-bottom: 8px; }
 .sow-section p { margin: 8px 0; line-height: 1.45; }
-.sow-item { background: var(--surface-2); border-left: 4px solid var(--primary); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
+.sow-item {
+  background: var(--surface-2);
+  border-left: 4px solid var(--primary);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: transform .22s ease, box-shadow .25s ease, border-left-color .2s ease, background-color .2s ease;
+}
+.sow-item:hover {
+  transform: translateY(-2px);
+  border-left-color: var(--primary-2);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.18);
+  background: color-mix(in srgb, var(--surface-2) 86%, var(--primary) 14%);
+}
+body.dark-theme .sow-item:hover {
+  box-shadow: 0 10px 28px rgba(0, 212, 255, 0.2);
+}
 
 .sow-invest { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin: 20px 0; }
 .sow-invest h3 { margin: 0 0 10px; }
