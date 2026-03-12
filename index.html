@@ -1905,7 +1905,7 @@
  opacity: 0.5;
  }
  .archetype-card.teaser::after {
- content: 'UNDER UTVECKLING';
+ content: 'IN DEVELOPMENT';
  position: absolute;
  top: 50%;
  left: 50%;
@@ -5185,9 +5185,9 @@
  <ul>
  <li><a href="#hero">Start</a></li>
  <li><a href="#om-oss">Our Architecture and Philosophy</a></li>
- <li><a href="#system">Systempaket och Priser</a></li>
- <li><a href="#ritbordet">Ritbordet och Process</a></li>
- <li><a href="#atom-gallery-section">AI-Byggstenar och Products</a></li>
+ <li><a href="#system">System Packages and Pricing</a></li>
+ <li><a href="#ritbordet">The Drawing Board and Process</a></li>
+ <li><a href="#atom-gallery-section">AI Building Blocks and Products</a></li>
  </ul>
  </nav>
 
@@ -5198,9 +5198,9 @@
  <header id="header" class="fixed w-full top-0 left-0 right-0 z-40 bg-nord-sym-deep-space-blue/95 transition-all duration-300" itemscope itemtype="https://schema.org/WPHeader">
  <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center"> 
  <a href="#" id="header-logo-link" onclick="window.nord.handleHeaderLogoClick(event); return false;" class="flex-shrink-0">
- <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16 md:h-20 transition-all duration-300">
+ <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" class="h-16 md:h-20 transition-all duration-300">
  </a>
- <nav aria-label="Huvudnavigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
+ <nav aria-label="Main navigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Home</a>
  <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Products</a>
  
@@ -5267,7 +5267,7 @@
  <div class="section-content-wrapper">
  <div class="flex flex-col items-center gap-y-6 md:gap-y-8"> <!-- Minskat gap på mobil -->
  <div id="hero-logo-wrapper" style="display:none;" onclick="window.nord.showPage('om-oss');">
- <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" width="200" height="57">
+ <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" width="200" height="57">
  </div>
  
  <!-- HERO FOUNDER BADGE -->
@@ -5464,12 +5464,12 @@
  </div>
  <div class="venn-circle venn-circle-2">
  <!-- Soft hyphen (&shy;) för att tillåta brytning vid extrem platsbrist -->
- <span class="venn-circle-text">Agent-Redo<br>Mjukvara</span>
+ <span class="venn-circle-text">Agent-Ready<br>Software</span>
  </div>
- <!-- Symbol för oändlighet + Sparade Timmar -->
+ <!-- Symbol för oändlighet + Hours Saved -->
  <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
  <i class="ph ph-infinity text-4xl mb-1 text-nord-sym-light-accent"></i>
- <span class="text-sm md:text-base leading-tight">Sparade<br>Timmar</span>
+ <span class="text-sm md:text-base leading-tight">Hours<br>Saved</span>
  </div>
  </div>
  </div>
@@ -6043,7 +6043,7 @@
          </div>
          <div>
           <p class="testimonial-name">Erik L.</p>
-          <p class="testimonial-role">VD, Konsultbolag</p>
+          <p class="testimonial-role">CEO, Consulting firm</p>
          </div>
         </div>
        </div>
@@ -6062,7 +6062,7 @@
          </div>
          <div>
           <p class="testimonial-name">Linda S.</p>
-          <p class="testimonial-role">Produktchef, E-handel</p>
+          <p class="testimonial-role">Product Manager, E-commerce</p>
          </div>
         </div>
        </div>
@@ -6081,7 +6081,7 @@
          </div>
          <div>
           <p class="testimonial-name">Pontus V.</p>
-          <p class="testimonial-role">VD, Bluecollar</p>
+          <p class="testimonial-role">CEO, Bluecollar</p>
          </div>
         </div>
        </div>
@@ -6339,11 +6339,11 @@
  </div>
  </div>
  <div class="flex items-center justify-center mt-16 gap-4 sm:gap-6">
- <button id="galleryPrev" aria-label="Previous byggsten" class="gallery-control-btn">
+ <button id="galleryPrev" aria-label="Previous" class="gallery-control-btn">
  <i class="ph-arrow-left-bold"></i>
  </button>
  <span id="gallery-context-text" class="text-base sm:text-lg text-sky-300 select-none">Explore products</span>
- <button id="galleryNext" aria-label="Next byggsten" class="gallery-control-btn">
+ <button id="galleryNext" aria-label="Next" class="gallery-control-btn">
  <i class="ph-arrow-right-bold"></i>
  </button>
  </div>
@@ -6811,7 +6811,7 @@
  </div>
  <form id="schedulerBookingForm" class="space-y-4">
  <div><input type="text" name="name" required placeholder="Ditt namn" data-i18n-placeholder="placeholderYourName" class="form-input text-center"></div>
- <div><input type="email" name="email" required placeholder="E-post" data-i18n-placeholder="placeholderEmail" class="form-input text-center"></div>
+ <div><input type="email" name="email" required placeholder="Email" data-i18n-placeholder="placeholderEmail" class="form-input text-center"></div>
  <button type="submit" class="btn-base btn-cta-revised w-full mt-4">Book meeting</button>
  </form>
  </div>
@@ -6870,7 +6870,7 @@
  <i class="ph-x"></i>
  </button>
  <i id="modal-waitlist-icon" class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
- <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
+ <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2">Demo in development</h3>
  <p id="modal-waitlist-desc" class="text-sky-300 mb-4">We're finalizing the interactive demo. Sign up and we'll notify you when it's ready.</p>
  
  <!-- DYNAMISK LÄNK (Tjuvkika) -->
@@ -6883,10 +6883,10 @@
  <input type="hidden" id="modal-waitlist-subject" name="_subject" value="New signup: Waitlist">
  <div class="space-y-4">
  <div>
- <label for="waitlist-email" class="form-label sr-only">E-post</label>
+ <label for="waitlist-email" class="form-label sr-only">Email</label>
  <input type="email" name="email" id="waitlist-email" required class="form-input text-center" placeholder="Din e-postadress" data-i18n-placeholder="placeholderYourEmail">
  </div>
- <button type="submit" class="btn-base btn-cta-revised w-full">Bevaka lansering</button>
+ <button type="submit" class="btn-base btn-cta-revised w-full">Get notified</button>
  </div>
  <div class="form-success-container hidden mt-4">
  <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> <span>You are signed up!</span></p>
@@ -6940,7 +6940,7 @@
 
  <!-- Tydlig Stäng-knapp för bättre UX på mobil -->
  <button onclick="window.nord.closeFounderModal()" class="mt-6 text-sm text-sky-300 hover:text-white underline decoration-dotted underline-offset-4 transition-colors light-theme:text-gray-500 light-theme:hover:text-black">
- Stäng
+ Close
  </button>
  </div>
  </div>
@@ -6955,12 +6955,12 @@
  <div class="grid md:grid-cols-4 gap-8 text-sm">
  <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" class="inline-block mb-4">
- <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16" loading="lazy" decoding="async">
+ <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" class="h-16" loading="lazy" decoding="async">
  </a>
  
  <p class="text-sm font-bold text-white mb-1">Ready to scale up?</p>
  <!-- Skarpare copy. Från "AI-First" till konkret infrastruktur/tillväxt. -->
- <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
+ <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym builds the infrastructure for scalable, agent-driven growth.</p>
  <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Book Strategy Call</a>
 
  </div>
@@ -7002,7 +7002,7 @@
  </div>
 
  <!-- GDPR LOGO (Solid, Smaller & Clean) -->
- <div class="mt-8 flex flex-col items-center md:items-start opacity-60 hover:opacity-100 transition-opacity duration-300 select-none cursor-help" title="Dataskydd och Integritet">
+ <div class="mt-8 flex flex-col items-center md:items-start opacity-60 hover:opacity-100 transition-opacity duration-300 select-none cursor-help" title="Data Protection and Privacy">
  <svg width="100" height="32" viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-nord-sym-text-light">
  <!-- Huvudtext "GDPR" (Solid - Inget mask-hål) -->
  <text x="0" y="28" font-family="'Inter', sans-serif" font-weight="900" font-size="32" fill="currentColor" letter-spacing="-1">GDPR</text>
@@ -9985,7 +9985,7 @@ Max 3 parallel pilots. Quality > quantity.`;
  customLogo: `
  <div class="genprd-logo-wrapper">
  <div class="genprd-logo-inner">
- <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="AI-Sök" class="genprd-logo-img">
+ <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="AI Search" class="genprd-logo-img">
  </div>
  </div>
  `,
@@ -10012,7 +10012,7 @@ Max 3 parallel pilots. Quality > quantity.`;
  customLogo: `
  <div class="genprd-logo-wrapper">
  <div class="genprd-logo-inner">
- <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/foxPRDthink.svg?alt=media&token=f22ea0fe-8edd-41de-84e0-b87e706ea07d" alt="GenPRD Räv" class="genprd-logo-img">
+ <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/foxPRDthink.svg?alt=media&token=f22ea0fe-8edd-41de-84e0-b87e706ea07d" alt="GenPRD Fox" class="genprd-logo-img">
  </div>
  </div>
  `,
@@ -10052,7 +10052,7 @@ Max 3 parallel pilots. Quality > quantity.`;
  customLogo: `
  <div class="genprd-logo-wrapper">
  <div class="genprd-logo-inner">
- <img src="https://raw.githubusercontent.com/nordsym/Skeppa/main/Gra%CC%88vling%20Skeppa%20avatar.svg" alt="Skeppa Grävling" class="genprd-logo-img">
+ <img src="https://raw.githubusercontent.com/nordsym/Skeppa/main/Gra%CC%88vling%20Skeppa%20avatar.svg" alt="Skeppa Badger" class="genprd-logo-img">
  </div>
  </div>
  `,
