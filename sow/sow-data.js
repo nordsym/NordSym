@@ -4,6 +4,7 @@ window.NORDSYM_SOW_DATA = {
     customerRep: "Peter Larnholt",
     vertical: "Go-to-Market for Handled",
     pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
+    paymentLink: "https://buy.stripe.com/5kQdRbgIQ8uC5GI2GQcMM0r",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
@@ -74,7 +75,8 @@ window.NORDSYM_SOW_DATA = {
     customerName: "Nakama",
     customerRep: "Beidos",
     vertical: "Nakama Interface for Reselling Services",
-    pricing: { fixed: 300, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
+    pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
+    paymentLink: "https://buy.stripe.com/5kQdRbgIQ8uC5GI2GQcMM0r",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",

@@ -118,7 +118,7 @@
     '</div>',
     '</div>',
     '<div id="msg"></div>',
-    '<div class="sow-actions"><button id="sign-btn" class="sow-btn" disabled>Sign SoW</button></div>',
+    '<div class="sow-actions"><button id="sign-btn" class="sow-btn" disabled>' + (data.paymentLink ? 'Sign & Continue to Payment' : 'Sign SoW') + '</button></div>',
     '</section></div></div>'
   ].join('');
 
@@ -218,6 +218,11 @@
         if (!r.ok) throw new Error(payload.error || 'Signing failed');
         msg.className = 'sow-msg ok';
         msg.textContent = 'Signed successfully. Thank you.';
+        if (data.paymentLink) {
+          setTimeout(function () {
+            window.location.href = data.paymentLink;
+          }, 500);
+        }
       })
       .catch(function (err) {
         msg.className = 'sow-msg err';
