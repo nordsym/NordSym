@@ -187,7 +187,7 @@ ${sectionsHtml}
 <tr><td style="padding:24px 32px;">
 <div style="height:1px;background:#e2e8f0;margin-bottom:20px;"></div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="color:#94a3b8;font-size:12px;line-height:1.6;"><strong style="color:#64748b;">NordSym AB</strong> · org.nr 559535-5768<br><a href="https://nordsym.com" style="color:#00d4ff;text-decoration:none;">nordsym.com</a></td>
+<td style="color:#94a3b8;font-size:12px;line-height:1.6;"><strong style="color:#64748b;">NordSym AB</strong> · org.nr 559535-5768<br><a href="https://nordsym.com" style="color:#00d4ff;text-decoration:none;">nordsym.com</a><br><br><span style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:6px 10px;display:inline-block;color:#64748b;font-size:11px;">📎 A copy of this signed SoW is attached. Download the file and open it in your browser to view a formatted version.</span></td>
 <td align="right" style="color:#94a3b8;font-size:11px;">Signed Scope of Work · ${new Date().getFullYear()}</td>
 </tr></table>
 </td></tr>
