@@ -179,57 +179,9 @@ ${sectionsHtml}
 }
 
 
-function generateEmailBody(sow, signedDate) {
-  return `<!DOCTYPE html>
-<html>
-<body style="margin: 0; padding: 40px; background: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
-  <div style="max-width: 500px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    <div style="background: linear-gradient(135deg, #00D4FF 0%, #9370DB 100%); color: white; padding: 32px; text-align: center;">
-      <div style="font-size: 32px; font-weight: bold;">NordSym</div>
-      <h1 style="margin: 12px 0 0; font-size: 20px;">NordSym X ${sow.customerName}</h1>
-    </div>
-    <div style="padding: 32px;">
-      <div style="background: #F0FDF4; border-left: 4px solid #166534; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
-        <p style="margin: 0; color: #166534; font-weight: 600;">✓ Scope of Work has been signed</p>
-      </div>
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr>
-          <td style="padding: 12px 0; color: #737373; font-size: 14px;">Signed by</td>
-          <td style="padding: 12px 0; font-weight: 600; text-align: right;">${sow.signedBy}</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px 0; color: #737373; font-size: 14px;">Title</td>
-          <td style="padding: 12px 0; font-weight: 600; text-align: right;">${sow.signerTitle}</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px 0; color: #737373; font-size: 14px;">Date</td>
-          <td style="padding: 12px 0; font-weight: 600; text-align: right;">${signedDate}</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px 0; color: #737373; font-size: 14px;">Document</td>
-          <td style="padding: 12px 0; font-weight: 600; text-align: right;">Signed document (see below)</td>
-        </tr>
-      </table>
-    </div>
-    <div style="padding: 20px 32px; background: #fafafa; border-top: 1px solid #e5e5e5; text-align: center;">
-      <p style="margin: 0; font-size: 12px; color: #737373;">NordSym AB - Full Stack AI Partner</p>
-      <p style="margin: 4px 0 0; font-size: 12px; color: #737373;">nordsym.com</p>
-    </div>
-  </div>
-</body>
-</html>`;
-}
-
 async function sendEmailWithAttachment(to, subject, sow, signedDate, sowHtml, filename) {
   try {
-    // Send the full signed SoW document as the email body (renders properly in all clients)
-    // Prepend a small confirmation banner above the SoW document
-    const confirmationBanner = `<div style="background:linear-gradient(135deg,#00D4FF 0%,#9370DB 100%);padding:20px 32px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
-      <div style="font-size:28px;font-weight:bold;color:white;">NordSym</div>
-      <p style="margin:8px 0 0;color:rgba(255,255,255,0.9);font-size:14px;">✓ Scope of Work — Signed ${signedDate}</p>
-    </div>`;
-    const fullBody = sowHtml.replace('<body', '<body').replace(/(<body[^>]*>)/, `$1${confirmationBanner}`);
-
+    // Send the full signed SoW document as the email body
     const response = await fetch(N8N_WEBHOOK, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -237,7 +189,7 @@ async function sendEmailWithAttachment(to, subject, sow, signedDate, sowHtml, fi
         action: "send",
         to,
         subject,
-        message: fullBody,
+        message: sowHtml,
       }),
     });
 
