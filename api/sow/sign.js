@@ -279,32 +279,27 @@ export default async function handler(req, res) {
     });
 
     const queryResult = await queryResponse.json();
-    const sow = queryResult.value || SOW_FALLBACK_DATA[customerId] || null;
+    const convexSow = queryResult.value || null;
+    const sow = convexSow || SOW_FALLBACK_DATA[customerId] || null;
 
     if (!sow) {
       return res.status(404).json({ error: 'SoW not found' });
     }
 
-    // Sign the SoW in Convex
-    const signResponse = await fetch(`${CONVEX_URL}/api/mutation`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        path: 'sows:sign',
-        args: {
-          customerId,
-          signatureDataUrl,
-          signerName,
-          signerTitle,
-          signerIp,
-        },
-      }),
-    });
-
-    const signResult = await signResponse.json();
-
-    if (signResult.status === 'error') {
-      return res.status(500).json({ error: signResult.errorMessage || 'Failed to sign SoW' });
+    // Sign the SoW in Convex (only if record exists there — skip if using fallback data)
+    if (convexSow) {
+      const signResponse = await fetch(`${CONVEX_URL}/api/mutation`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: 'sows:sign',
+          args: { customerId, signatureDataUrl, signerName, signerTitle, signerIp },
+        }),
+      });
+      const signResult = await signResponse.json();
+      if (signResult.status === 'error') {
+        return res.status(500).json({ error: signResult.errorMessage || 'Failed to sign SoW' });
+      }
     }
 
     // Generate signed SoW HTML
