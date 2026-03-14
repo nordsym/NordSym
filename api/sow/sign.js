@@ -12,6 +12,70 @@ const partnerEmails = {
   upwork: "fredrik@[NEEDS_EMAIL]" // TODO: Add Fredrik's email
 };
 
+// ─── SoW fallback data — mirrors sow-data.js so signing works before Convex is seeded ───
+const SOW_FALLBACK_DATA = {
+  excom: {
+    customerName: "Excom", customerRep: "Peter Larnholt",
+    vertical: "Go-to-Market for Handled",
+    pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint)" },
+    paymentLink: "https://buy.stripe.com/5kQdRbgIQ8uC5GI2GQcMM0r",
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>Excom</strong>, represented by Peter Larnholt"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."] },
+      { title: "3. Purpose & Scope", content: ["NordSym provides AI agent execution services to Excom:", "• Managed swarm orchestration for Handled GTM", "• Headless Telegram execution layer", "• Swarm oversight and real-time optimization", "• Infrastructure monitoring and performance optimization"] },
+      { title: "4. Selected Service Scope", items: [{ label: "APIClaw Execution Infrastructure", value: "Enterprise-grade agent orchestration and deployment infrastructure" }, { label: "Managed Swarm Orchestration", value: "Handled-specific agents for onboarding, support, and engagement" }, { label: "Headless Telegram Execution Layer", value: "Zero-UI backend communication and task distribution" }, { label: "Swarm Oversight & Optimization", value: "Real-time monitoring, performance tuning, and infrastructure management" }] },
+      { title: "5. Investment", content: ["• <strong>Monthly Fee:</strong> $500/month", "• All pricing in USD, billed monthly via Stripe", "• Infrastructure execution costs billed separately based on actual API usage"] },
+      { title: "11. Duration & Termination", content: ["• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint", "• <strong>Notice Period:</strong> 30 days written notice"] },
+      { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of: business strategies and roadmaps, technical implementations, customer data, and pricing terms."] }
+    ]
+  },
+  nakama: {
+    customerName: "Nakama", customerRep: "Beidos",
+    vertical: "Nakama Interface for Reselling Services",
+    pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint)" },
+    paymentLink: "https://buy.stripe.com/5kQ6oJ9goeT01qsbdmcMM0w",
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>Nakama</strong>, represented by Beidos"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."] },
+      { title: "3. Purpose & Scope", content: ["NordSym provides AI agent execution services to Nakama:", "• Managed swarm orchestration for white-label reselling", "• Headless Telegram execution layer", "• Swarm oversight and real-time optimization", "• Revenue-sharing framework for infrastructure resale"] },
+      { title: "4. Selected Service Scope", items: [{ label: "APIClaw Execution Infrastructure", value: "Enterprise-grade orchestration with Nakama white-label branding" }, { label: "Managed Swarm Orchestration", value: "Multi-tenant agent deployment for Nakama end customers" }, { label: "Headless Telegram Execution Layer", value: "Zero-UI backend communication under Nakama brand" }, { label: "Swarm Oversight & Optimization", value: "Real-time monitoring, partner enablement, and infrastructure management" }] },
+      { title: "5. Investment", content: ["• <strong>Monthly Fee:</strong> $300/month", "• All pricing in USD, billed monthly via Stripe", "• Infrastructure execution costs billed separately based on actual API usage"] },
+      { title: "11. Duration & Termination", content: ["• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint", "• <strong>Notice Period:</strong> 30 days written notice"] },
+      { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of: business strategies and roadmaps, technical implementations, customer data, and pricing terms."] }
+    ]
+  },
+  hotclen: {
+    customerName: "HotClen", customerRep: "Hasse Ali",
+    vertical: "AI Marketing & Customer Engagement",
+    pricing: { fixed: 100, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint)" },
+    paymentLink: "https://buy.stripe.com/00wfZj9go4emede3KUcMM0q",
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>HotClen</strong>, represented by Hasse Ali"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."] },
+      { title: "3. Purpose & Scope", content: ["NordSym provides AI agent execution services to HotClen:", "• AI-powered marketing automation", "• Customer outreach and lead generation agents", "• Multi-channel engagement (email, SMS, WhatsApp)", "• Customer support and booking automation"] },
+      { title: "4. Selected Service Scope", items: [{ label: "Business Platform Access", value: "Full access to agent marketplace and execution infrastructure" }, { label: "Marketing Agents", value: "Custom agents for email campaigns, outreach, and customer engagement" }, { label: "Booking & Support Automation", value: "AI agents handling inquiries, booking management, and coordination" }, { label: "Campaign Optimization", value: "Performance monitoring and continuous agent tuning" }] },
+      { title: "5. Investment", content: ["• <strong>Monthly Fee:</strong> $100/month", "• All pricing in USD, billed monthly via Stripe", "• Infrastructure execution costs billed separately based on actual API usage"] },
+      { title: "11. Duration & Termination", content: ["• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint", "• <strong>Notice Period:</strong> 30 days written notice"] },
+      { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of: business strategies and roadmaps, technical implementations, customer data, and pricing terms."] }
+    ]
+  },
+  "lazy-genius": {
+    customerName: "Lazy Genius", customerRep: "Fredrik",
+    vertical: "Upwork Lead Generation & Platform Automation",
+    pricing: { fixed: 100, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint)" },
+    paymentLink: "https://buy.stripe.com/6oU5kFcsA6mu0modlucMM0v",
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>Lazy Genius</strong>, represented by Fredrik"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."] },
+      { title: "3. Purpose & Scope", content: ["NordSym provides AI agent execution services for Lazy Genius:", "• Automated job discovery and proposal generation", "• Platform integration for workflow optimization", "• AI-powered client communication and project management", "• Multi-freelancer orchestration"] },
+      { title: "4. Selected Service Scope", items: [{ label: "Business Platform Access", value: "Full access to agent marketplace and execution infrastructure" }, { label: "Automation Agents", value: "Custom agents for job scanning, proposal generation, and communication" }, { label: "Workflow Integration", value: "Agent orchestration for freelance workflow management" }, { label: "Agent Optimization", value: "Continuous proposal refinement and workflow iteration" }] },
+      { title: "5. Investment", content: ["• <strong>Monthly Fee:</strong> $100/month", "• All pricing in USD, billed monthly via Stripe", "• Infrastructure execution costs billed separately based on actual API usage"] },
+      { title: "11. Duration & Termination", content: ["• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint", "• <strong>Notice Period:</strong> 30 days written notice"] },
+      { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of: business strategies and roadmaps, technical implementations, customer data, and pricing terms."] }
+    ]
+  }
+};
+
 function generateSowHtml(sow, signatureDataUrl, signedDate) {
   const sections = sow.sections.map(section => {
     let content = `<h2 style="color: #00D4FF; margin-top: 30px;">${section.title}</h2>`;
@@ -215,7 +279,7 @@ export default async function handler(req, res) {
     });
 
     const queryResult = await queryResponse.json();
-    const sow = queryResult.value;
+    const sow = queryResult.value || SOW_FALLBACK_DATA[customerId] || null;
 
     if (!sow) {
       return res.status(404).json({ error: 'SoW not found' });
