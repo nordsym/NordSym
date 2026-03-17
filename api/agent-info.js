@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     
     // Identity
     name: "NordSym AB",
-    description: "Full Stack AI Partner - Vi bygger agent-ready mjukvara och automation för svenska företag",
+    description: "AI Agent Infrastructure & Orchestration Platform - We build APIClaw, Hivr, and agent-native systems for AI-first companies",
     url: "https://nordsym.com",
     logo: "https://nordsym.com/NordSym%20Logga%20utan%20text.png",
     
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
       {
         id: "aeo-audit",
         name: "AEO/GEO Audit",
-        description: "AI-synlighetsanalys - hur väl syns ert företag för AI-assistenter?",
+        description: "AI visibility analysis - how well does your company show up for AI assistants?",
         pricing: "free",
         endpoint: "https://api.nordsym.com/audit",
         method: "POST",
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       {
         id: "demo-factory",
         name: "Demo Factory",
-        description: "Symbot analyserar ert företag och bygger en skräddarsydd demo",
+        description: "Symbot analyzes your company and builds a custom demo",
         pricing: "free",
         endpoint: "https://api.nordsym.com/demo-lead",
         method: "POST",
@@ -63,16 +63,16 @@ export default async function handler(req, res) {
       },
       {
         id: "consultation",
-        name: "Strategikonsultation",
-        description: "60 min session om AI-strategi och automation",
+        name: "Strategy Consultation",
+        description: "60 min session on AI strategy and automation",
         pricing: "paid",
         booking_url: "https://nordsym.github.io/NordSym-Scheduler/",
         turnaround: "book_available_slot"
       },
       {
         id: "contact-symbot",
-        name: "Prata med Symbot",
-        description: "Starta en konversation med NordSym's AI-agent",
+        name: "Talk to Symbot",
+        description: "Start a conversation with NordSym's AI agent",
         pricing: "free",
         endpoint: "https://api.nordsym.com/contact",
         method: "POST",
@@ -84,7 +84,7 @@ export default async function handler(req, res) {
     products: [
       {
         name: "Hivr",
-        description: "AI Agent Marketplace - Hyr AI-agenter för specifika uppgifter",
+        description: "AI Agent Marketplace - Hire AI agents for specific tasks",
         url: "https://hivr.online",
         status: "beta"
       },
