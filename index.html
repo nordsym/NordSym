@@ -9673,7 +9673,7 @@ Max 3 parallel pilots. Quality > quantity.`;
  }
  ];
  this.valueCardsData = [
- { type: 'default', icon: 'ph-graph', title: 'TRANSFORMATION', description: 'Intelligenta system som växer med er verksamhet och möjliggör obegränsad skalning.', buttonText: 'Läs Caset →', externalLink: 'https://gushem.github.io/Landningsida-Nordsym-Klara-agent/' },
+ { type: 'default', icon: 'ph-graph', title: 'TRANSFORMATION', description: 'Intelligent systems that grow with your business and enable unlimited scaling.', buttonText: 'Read Case Study →', externalLink: 'https://gushem.github.io/Landningsida-Nordsym-Klara-agent/' },
  { type: 'default', icon: 'ph-atom', title: 'CORE COMPONENTS', description: 'Distributed intelligence built on your business rules - system som förstår er branschlogik och utvecklas med den.', buttonText: 'Utforska Arkitekturen', page: 'system', tooltip: 'Vår motor för sömlös synkronisering av intelligens.' },
  { type: 'pricing-preview', title: 'INVESTERING', price: '75k - 500k+', description: 'Från investering till intelligent evolution. Er framtidsförsäkring börjar här.', buttonText: 'Se Paket →', page: 'system' }
  ];
@@ -9696,8 +9696,8 @@ Max 3 parallel pilots. Quality > quantity.`;
  }
  
  createCardHTML(card) {
- // Harmoni-fix: Länken "Läs Caset" pekar nu mot den externa landningssidan.
- // Logiken har anpassats för att hantera både interna och externa länkar.
+ // Harmony fix: "Read Case Study" link now points to external landing page.
+ // Logic adapted to handle both internal and external links.
  let buttonHTML = '';
  if (card.buttonText) {
  if (card.externalLink) {
@@ -11255,9 +11255,9 @@ Max 3 parallel pilots. Quality > quantity.`;
       
       // Show toast error
       if (window.nord && window.nord.showToast) {
-        window.nord.showToast('Något gick fel. Försök igen.', 'error');
+        window.nord.showToast('Something went wrong. Try again.', 'error');
       } else {
-        alert('Något gick fel. Vänligen försök igen eller kontakta oss direkt.');
+        alert('Something went wrong. Please try again or contact us directly.');
       }
     }
   });
