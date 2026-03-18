@@ -1,6 +1,6 @@
 const DEFAULT_CONVEX_URL = 'https://agile-crane-840.convex.cloud';
 const STATUS_QUERY_PATH = process.env.SOW_STATUS_QUERY_PATH || 'sows:getStatus';
-const ALLOWED_CUSTOMERS = new Set(['excom', 'nakama', 'hotclen', 'lazy-genius']);
+const ALLOWED_CUSTOMERS = new Set(['excom', 'nakama', 'hotclen', 'lazy-genius', 'sandbox']);
 
 function setCors(req, res) {
   const reqOrigin = req.headers.origin;
