@@ -301,8 +301,9 @@ export default async function handler(req, res) {
           signatureDataUrl, 
           signerName, 
           signerTitle, 
-          signerIp,
-          test: isTestMode // Mark test entries
+          signerIp
+          // Note: test field not supported in current Convex schema
+          // Test entries identified by customerId === 'sandbox'
         },
       }),
     });
