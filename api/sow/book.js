@@ -1,5 +1,6 @@
 const BOOKING_WEBHOOK = process.env.SOW_BOOKING_WEBHOOK || 'https://nordsym.app.n8n.cloud/webhook/symbot-calendar-v2';
 const EMAIL_WEBHOOK = process.env.SOW_EMAIL_WEBHOOK || 'https://nordsym.app.n8n.cloud/webhook/symbot-gmail';
+const CONVEX_URL = "https://agile-crane-840.convex.cloud";
 
 function setCors(req, res) {
   const reqOrigin = req.headers.origin;
@@ -9,6 +10,96 @@ function setCors(req, res) {
     res.setHeader('Access-Control-Allow-Origin', reqOrigin || allowedOrigins[0] || '*');
   }
   res.setHeader('Vary', 'Origin');
+}
+
+// ─── Generate signed SoW HTML (for attachment) ─────────────────────────────────
+function generateSowHtml(sow, signatureDataUrl, signedDate) {
+  const sectionsHtml = (sow.sections || []).map(section => {
+    let rows = '';
+    if (section.content) {
+      const text = section.content.filter(Boolean).join('<br>');
+      rows = `<tr><td style="padding:12px 16px;">
+        <p style="margin:0;color:#475569;font-size:13px;line-height:1.7;">${text}</p>
+      </td></tr>`;
+    }
+    if (section.items) {
+      rows = section.items.map(it => `<tr>
+        <td style="padding:10px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;width:40%;">${it.label}</td>
+        <td style="padding:10px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;color:#0f172a;">${it.value}</td>
+      </tr>`).join('');
+    }
+    return `
+<tr><td style="padding:20px 32px 0;">
+  <p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">${section.title}</p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+    ${rows}
+  </table>
+</td></tr>
+<tr><td style="padding:16px 32px 0;"><div style="height:1px;background:#e2e8f0;"></div></td></tr>`;
+  }).join('');
+
+  return `<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NordSym X ${sow.customerName} — Signed SoW</title></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#0f172a;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;">
+<tr><td>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);">
+<tr><td style="background:#0a0c0f;padding:28px 32px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td><span style="font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-.3px;">NordSym</span><span style="font-size:22px;font-weight:300;color:#00d4ff;"> × ${sow.customerName}</span></td>
+<td align="right"><span style="display:inline-block;background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;letter-spacing:.04em;">SIGNED SOW</span></td>
+</tr></table>
+<p style="margin:10px 0 0;color:#94a3b8;font-size:14px;line-height:1.6;">Scope of Work — signed ${signedDate}</p>
+</td></tr>
+<tr><td style="padding:24px 32px 0;">
+<div style="background:#f0fdf4;border-left:4px solid #166534;border-radius:0 10px 10px 0;padding:14px 16px;">
+<p style="margin:0;color:#166534;font-weight:700;font-size:14px;">✓ Scope of Work signed by ${sow.signedBy}</p>
+</div>
+</td></tr>
+<tr><td style="padding:20px 32px 0;">
+<p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">Investment</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">Monthly fee</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:700;font-size:16px;color:#0f172a;">$${sow.pricing.fixed}</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;color:#64748b;font-size:13px;">Billing</td>
+<td style="padding:12px 16px;text-align:right;font-weight:600;font-size:13px;">Monthly via Stripe</td>
+</tr>
+</table>
+</td></tr>
+<tr><td style="padding:16px 32px 0;"><div style="height:1px;background:#e2e8f0;"></div></td></tr>
+${sectionsHtml}
+<tr><td style="padding:20px 32px 0;">
+<p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">Signatures</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">NordSym AB</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;font-style:italic;">Gustav Hemmingsson</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">${sow.customerName}</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;">${sow.signedBy}${sow.signerTitle ? ', ' + sow.signerTitle : ''}</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;color:#64748b;font-size:13px;">Date</td>
+<td style="padding:12px 16px;font-weight:600;font-size:13px;">${signedDate}</td>
+</tr>
+</table>
+</td></tr>
+<tr><td style="padding:24px 32px;">
+<div style="height:1px;background:#e2e8f0;margin-bottom:20px;"></div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="color:#94a3b8;font-size:12px;line-height:1.6;"><strong style="color:#64748b;">NordSym AB</strong> · org.nr 559535-5768<br><a href="https://nordsym.com" style="color:#00d4ff;text-decoration:none;">nordsym.com</a></td>
+<td align="right" style="color:#94a3b8;font-size:11px;">Signed Scope of Work · ${new Date().getFullYear()}</td>
+</tr></table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body></html>`;
 }
 
 // ─── Customer onboarding welcome email (sent to customer) ─────────────────────
@@ -344,17 +435,54 @@ export default async function handler(req, res) {
     });
     if (!bookingRes.ok) return res.status(502).json({ error: 'Booking provider error' });
 
-    // Email 1: Welcome email → customer
+    // Query Convex for signed SoW to attach
+    let signedSowAttachment = null;
+    try {
+      const sowQuery = await fetch(`${CONVEX_URL}/api/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: 'sows:getByCustomerId',
+          args: { customerId: body.customerId },
+        }),
+      });
+      const sowResult = await sowQuery.json();
+      const sowData = sowResult.value;
+      
+      if (sowData && sowData.status === 'signed') {
+        // Generate signed SoW HTML
+        const signedDate = new Date(sowData.signedAt).toLocaleDateString('en-US', { 
+          month: 'long', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+        const signedSowHtml = generateSowHtml(sowData, sowData.signature, signedDate);
+        const filename = `NordSym_SoW_${body.customerName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.html`;
+        signedSowAttachment = {
+          data: Buffer.from(signedSowHtml).toString('base64'),
+          filename
+        };
+      }
+    } catch (err) {
+      console.error('Failed to fetch signed SoW for attachment:', err);
+      // Continue without attachment if query fails
+    }
+
+    // Email 1: Welcome email → customer (with signed SoW attachment)
     const customerHtml = onboardingEmail(body);
+    const customerEmailPayload = {
+      action: 'send',
+      to: body.signerEmail,
+      subject: `Welcome to NordSym — Your AI Pilot Starts Now`,
+      message: customerHtml,
+    };
+    if (signedSowAttachment) {
+      customerEmailPayload.attachments = [signedSowAttachment];
+    }
     await fetch(EMAIL_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'send',
-        to: body.signerEmail,
-        subject: `Welcome to NordSym — Your AI Pilot Starts Now`,
-        message: customerHtml,
-      }),
+      body: JSON.stringify(customerEmailPayload),
     });
 
     // Email 2a: Internal booking notification → Molle + Gustav
@@ -370,17 +498,21 @@ export default async function handler(req, res) {
       }),
     });
 
-    // Email 2b: Welcome email copy → Molle + Gustav (FYI copy)
+    // Email 2b: Welcome email copy → Molle + Gustav (FYI copy with signed SoW attachment)
     const teamWelcomeHtml = onboardingEmail(body);
+    const teamWelcomePayload = {
+      action: 'send',
+      to: 'molle@nordsym.com,gustav@nordsym.com',
+      subject: `[Welcome Email] ${body.customerName} — ${body.signerName}`,
+      message: teamWelcomeHtml,
+    };
+    if (signedSowAttachment) {
+      teamWelcomePayload.attachments = [signedSowAttachment];
+    }
     await fetch(EMAIL_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'send',
-        to: 'molle@nordsym.com,gustav@nordsym.com',
-        subject: `[Welcome Email] ${body.customerName} — ${body.signerName}`,
-        message: teamWelcomeHtml,
-      }),
+      body: JSON.stringify(teamWelcomePayload),
     });
 
     return res.status(200).json({ success: true });

@@ -331,6 +331,28 @@ export default async function handler(req, res) {
         sendEmailWithAttachment('gustav@nordsym.com', emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
         sendEmailWithAttachment(partnerEmail, emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
       ]);
+
+      // Send notification to Gustav + Molle (simple alert, no attachment)
+      const notificationHtml = `<!doctype html>
+<html><body style="font-family:sans-serif;padding:20px;background:#f1f5f9;">
+<div style="max-width:500px;margin:0 auto;background:#fff;padding:24px;border-radius:12px;border-left:4px solid #00d4ff;">
+<h2 style="margin:0 0 12px;color:#0a0c0f;font-size:18px;">🎉 New SoW Signed</h2>
+<p style="margin:0 0 8px;color:#475569;font-size:14px;"><strong>${sow.customerName}</strong> signed by <strong>${signerName}</strong> (${signerTitle})</p>
+<p style="margin:0;color:#64748b;font-size:13px;">Signed: ${signedDate} | IP: ${signerIp}</p>
+<p style="margin:16px 0 0;color:#64748b;font-size:13px;">Next: Customer will book Week 1 checkpoint via onboarding page.</p>
+</div>
+</body></html>`;
+
+      await fetch(N8N_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'send',
+          to: 'gustav@nordsym.com,molle@nordsym.com',
+          subject: `[New Signup] ${sow.customerName} — ${signerName}`,
+          message: notificationHtml,
+        }),
+      });
     }
 
     // 🧪 TEST MODE: Skip or simulate payment
