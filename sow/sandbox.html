@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/nordsym-logo-transparent.png" type="image/png">
+  <title>NordSym X Sandbox (TEST) - SoW</title>
+  <link rel="stylesheet" href="/sow/sow.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .test-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #ff6b6b;
+      color: white;
+      padding: 8px;
+      text-align: center;
+      font-weight: 600;
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .sow-wrap {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body class="light-theme" data-customer-id="sandbox">
+  <div class="test-banner">⚠️ TEST MODE - This is a sandbox environment</div>
+  <div class="sow-wrap">
+    <div class="sow-header">
+      <a class="sow-home" href="/">← nordsym.com</a>
+      <div class="sow-brand"><img class="sow-logo" src="/nordsym-logo-transparent.png" alt="NordSym logo">Scope of Work</div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="ph-fill ph-moon"></i></button>
+    </div>
+    <div id="sow-root"></div>
+  </div>
+  <script src="/sow/sow-data.js"></script>
+  <script src="/sow/sow.js"></script>
+</body>
+</html>

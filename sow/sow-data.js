@@ -344,5 +344,46 @@ window.NORDSYM_SOW_DATA = {
         "NordSym will reasonably support transition efforts (knowledge transfer, ongoing agent context, infrastructure insights) while preserving its IP and platform controls."
       ]}
     ]
+  },
+
+  sandbox: {
+    customerName: "Test Company AB",
+    customerRep: "Test User",
+    vertical: "Sandbox Testing Environment",
+    pricing: { fixed: 100, nectar: "Test pricing - no actual charges" },
+    paymentLink: "https://buy.stripe.com/test_SANDBOX", // Will be intercepted
+    sections: [
+      { title: "1. Parties", content: [
+        "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
+        "<strong>Test Company AB</strong>, represented by Test User"
+      ]},
+      { title: "2. Effective Date", content: [
+        "This Scope of Work becomes effective on <strong>TEST DATE</strong> upon signing by both parties."
+      ]},
+      { title: "3. Purpose & Scope", content: [
+        "This is a sandbox environment for testing the SoW signing flow:",
+        "• Test signature capture",
+        "• Test payment flow (can be skipped)",
+        "• Test email notifications",
+        "• Test database storage"
+      ]},
+      { title: "4. Test Modes", items: [
+        { label: "Normal Test", value: "Default mode - skips Stripe payment" },
+        { label: "Stripe Test Mode", value: "Add ?stripe=test to URL - uses Stripe test keys" },
+        { label: "Skip Payment", value: "Add ?stripe=skip to URL - simulates successful payment" }
+      ]},
+      { title: "5. Investment", content: [
+        "• <strong>Monthly Fee:</strong> $100/month (TEST ONLY)",
+        "• No actual charges will be made",
+        "• This is for testing purposes only"
+      ]},
+      { title: "6. Standard Terms", content: [
+        "<strong>Test Disclaimer:</strong> This is a sandbox environment. No real legal agreement is created by signing this document.",
+        "",
+        "<strong>Data:</strong> Test signatures are marked with test: true in the database and can be easily filtered or deleted.",
+        "",
+        "<strong>Testing:</strong> You can sign this document multiple times. Previous test signatures will be overwritten."
+      ]}
+    ]
   }
 };

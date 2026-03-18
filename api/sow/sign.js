@@ -1,7 +1,7 @@
 // NordSym SoW Signing API
 // Handles signature submission and email delivery
 
-const CONVEX_URL = "https://laudable-ladybug-188.convex.cloud";
+const CONVEX_URL = "https://agile-crane-840.convex.cloud";
 const N8N_WEBHOOK = "https://nordsym.app.n8n.cloud/webhook/symbot-gmail";
 
 // Partner email configuration
@@ -9,7 +9,8 @@ const partnerEmails = {
   nakama: "beidos@nakamaisland.io",
   excom: "peter@excom.ai",
   hotclean: "hasse@hotclean.se",
-  upwork: "fredrik@[NEEDS_EMAIL]" // TODO: Add Fredrik's email
+  "lazy-genius": "freddanlindstrom@yahoo.se",
+  sandbox: "gustav@nordsym.com" // Test mode - only Gustav receives email
 };
 
 // ─── SoW fallback data — full mirror of sow-data.js so signing works before Convex is seeded ───
@@ -92,6 +93,20 @@ const SOW_FALLBACK_DATA = {
       { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of:", "• Business strategies and roadmaps", "• Technical implementations and custom agent configurations", "• Customer data and usage patterns", "• Pricing and commercial terms"] },
       { title: "13. Partner Collaboration Terms", content: ["Both parties agree to keep client ownership, engagement, and growth efforts transparent:", "• Each party retains ownership of the clients they originate. Lazy Genius owns the relationships it brings to this collaboration and NordSym owns the relationships it sources.", "• Nothing in this agreement transfers ownership of a client relationship from one party to the other.", "• Neither party will bypass or directly solicit the other party's clients introduced during the collaboration without mutual written consent.", "• Lazy Genius may package or present solutions built on NordSym infrastructure under its own brand while optionally referencing NordSym as a technical partner.", "• Lazy Genius remains free to sell consulting services, automation solutions, work via freelance platforms (including Upwork), and advise independently; NordSym remains free to operate the platform with other partners and clients.", "• Lazy Genius leads client relationships, consulting, scoping, and communication while NordSym supplies infrastructure, agent orchestration, and technical delivery support.", "• Client-specific implementations stay tied to the respective engagement while NordSym retains ownership of its platform, infrastructure, and core technologies.", "• Both parties commit to collaborate in good faith to expand joint opportunities that combine Lazy Genius' business development with NordSym's technical infrastructure."] },
       { title: "14. Client Continuity", content: ["If this collaboration ends for any reason, the parties agree to cooperate in good faith to preserve continuity of service for any active Lazy Genius clients.", "Lazy Genius retains the right to maintain those client relationships and may transition work to alternate infrastructure when required, always respecting NordSym's intellectual property and proprietary technologies.", "NordSym will reasonably support transition efforts (knowledge transfer, ongoing agent context, infrastructure insights) while preserving its IP and platform controls."] }
+    ]
+  },
+  sandbox: {
+    customerName: "Test Company AB", customerRep: "Test User",
+    vertical: "Sandbox Testing Environment",
+    pricing: { fixed: 100, nectar: "Test pricing - no actual charges" },
+    paymentLink: "https://buy.stripe.com/test_SANDBOX",
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>Test Company AB</strong>, represented by Test User"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>TEST DATE</strong> upon signing by both parties."] },
+      { title: "3. Purpose & Scope", content: ["This is a sandbox environment for testing the SoW signing flow:", "• Test signature capture", "• Test payment flow (can be skipped)", "• Test email notifications", "• Test database storage"] },
+      { title: "4. Test Modes", items: [{ label: "Normal Test", value: "Default mode - skips Stripe payment" }, { label: "Stripe Test Mode", value: "Add ?stripe=test to URL - uses Stripe test keys" }, { label: "Skip Payment", value: "Add ?stripe=skip to URL - simulates successful payment" }] },
+      { title: "5. Investment", content: ["• <strong>Monthly Fee:</strong> $100/month (TEST ONLY)", "• No actual charges will be made", "• This is for testing purposes only"] },
+      { title: "6. Standard Terms", content: ["<strong>Test Disclaimer:</strong> This is a sandbox environment. No real legal agreement is created by signing this document.", "", "<strong>Data:</strong> Test signatures are marked with test: true in the database and can be easily filtered or deleted.", "", "<strong>Testing:</strong> You can sign this document multiple times. Previous test signatures will be overwritten."] }
     ]
   }
 };
@@ -241,6 +256,13 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    // 🧪 TEST MODE DETECTION
+    const isTestMode = customerId === 'sandbox';
+    const stripeMode = req.query.stripe || (isTestMode ? 'skip' : 'live');
+    const skipPayment = stripeMode === 'skip';
+    
+    console.log(`[SoW Sign] ${customerId} | Test: ${isTestMode} | Stripe: ${stripeMode}`);
+
     const partnerEmail = partnerEmails[customerId];
     if (!partnerEmail || partnerEmail.includes('[NEEDS_EMAIL]')) {
       return res.status(400).json({ error: 'Partner email not configured' });
@@ -268,20 +290,25 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'SoW not found' });
     }
 
-    // Sign the SoW in Convex (only if record exists there — skip if using fallback data)
-    if (convexSow) {
-      const signResponse = await fetch(`${CONVEX_URL}/api/mutation`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          path: 'sows:sign',
-          args: { customerId, signatureDataUrl, signerName, signerTitle, signerIp },
-        }),
-      });
-      const signResult = await signResponse.json();
-      if (signResult.status === 'error') {
-        return res.status(500).json({ error: signResult.errorMessage || 'Failed to sign SoW' });
-      }
+    // Sign the SoW in MC Convex (always — auto-creates record if not exists)
+    const signResponse = await fetch(`${CONVEX_URL}/api/mutation`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        path: 'sows:sign',
+        args: { 
+          customerId, 
+          signatureDataUrl, 
+          signerName, 
+          signerTitle, 
+          signerIp,
+          test: isTestMode // Mark test entries
+        },
+      }),
+    });
+    const signResult = await signResponse.json();
+    if (signResult.status === 'error') {
+      return res.status(500).json({ error: signResult.errorMessage || 'Failed to sign SoW' });
     }
 
     // Generate signed SoW HTML
@@ -297,12 +324,29 @@ export default async function handler(req, res) {
     const emailSubject = `Signed SoW: NordSym X ${sow.customerName}`;
 
     // Send emails to both parties
-    await Promise.all([
-      sendEmailWithAttachment('gustav@nordsym.com', emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
-      sendEmailWithAttachment(partnerEmail, emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
-    ]);
+    if (!isTestMode || stripeMode !== 'skip') {
+      // Send emails unless explicitly skipping
+      await Promise.all([
+        sendEmailWithAttachment('gustav@nordsym.com', emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
+        sendEmailWithAttachment(partnerEmail, emailSubject, { ...sow, signedBy: signerName, signerTitle }, signedDate, sowHtml, filename),
+      ]);
+    }
 
-    return res.status(200).json({ success: true });
+    // 🧪 TEST MODE: Skip or simulate payment
+    if (skipPayment) {
+      return res.status(200).json({ 
+        success: true, 
+        test: true,
+        paymentSkipped: true,
+        message: 'Test mode: Payment skipped. SoW signed successfully.'
+      });
+    }
+
+    // Normal flow: return payment link
+    return res.status(200).json({ 
+      success: true,
+      paymentLink: sow.paymentLink
+    });
   } catch (error) {
     console.error('SoW signing error:', error);
     return res.status(500).json({ error: 'Internal server error' });
