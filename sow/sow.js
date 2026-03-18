@@ -243,11 +243,13 @@
           }, 500);
           return;
         }
-        if (data.paymentLink) {
+        // Check API response for payment link, not static data
+        if (payload.paymentLink) {
           setTimeout(function () {
-            window.location.href = data.paymentLink;
+            window.location.href = payload.paymentLink;
           }, 500);
         } else {
+          // No payment link (test mode or error) - show success page
           setTimeout(function () {
             window.location.href = successUrl;
           }, 500);
