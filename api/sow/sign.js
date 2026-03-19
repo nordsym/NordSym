@@ -8,7 +8,7 @@ const N8N_WEBHOOK = "https://nordsym.app.n8n.cloud/webhook/symbot-gmail";
 const partnerEmails = {
   nakama: "beidos@nakamaisland.io",
   excom: "peter@excom.ai",
-  hotclean: "hasse@hotclean.se",
+  hotclean: "info@bortforsla.nu",
   "lazy-genius": "freddanlindstrom@yahoo.se",
   sandbox: "gustav@nordsym.com" // Test mode - only Gustav receives email
 };
