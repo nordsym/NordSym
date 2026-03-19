@@ -54,6 +54,16 @@ const SOW_FALLBACK_DATA = {
       { title: "12. Confidentiality", content: ["Both parties agree to maintain confidentiality of:", "• Business strategies and roadmaps", "• Technical implementations and custom agent configurations", "• Customer data and usage patterns", "• Pricing and commercial terms"] }
     ]
   },
+  hotclean: {
+    customerName: "Hotclean AB (Bortforsla.nu)", customerRep: "Hasse Ali",
+    vertical: "AI-Driven Operations for Bortforsla.nu",
+    pricing: { fixed: 100, nectar: "✅ Paid March 16th, 2026" },
+    paymentLink: null,
+    sections: [
+      { title: "1. Parties", content: ["<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO", "<strong>Hotclean AB</strong>, represented by Hasse Ali (VD)"] },
+      { title: "2. Effective Date", content: ["This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong>.", "Client may choose to start execution immediately upon signing."] }
+    ]
+  },
   hotclen: {
     customerName: "HotClen", customerRep: "Hasse Ali",
     vertical: "AI Marketing & Customer Engagement",
