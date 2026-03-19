@@ -103,16 +103,14 @@ window.NORDSYM_SOW_DATA = {
         "• Reputation health reporting via Telegram",
         "• Ongoing optimization and trend analysis"
       ]},
-      { title: "4. Initial Scope", content: [
-        "<strong>Covered Locations:</strong> 2 Google Business Profile properties",
-        "• German Experts Dubai",
-        "• [Second location to be confirmed]",
-        "",
-        "<strong>Deliverables:</strong>",
-        "• Bi-weekly reputation reports (PDF via Telegram)",
-        "• Real-time alerts for critical reviews",
-        "• Monthly performance summary",
-        "• Fake review removal requests as needed"
+      { title: "4. Selected Scope of Service", items: [
+        { label: "Covered Locations", value: "2 Google Business Profile properties (German Experts Dubai + 1 additional location)" },
+        { label: "Review Monitoring", value: "Automated daily scanning for new reviews, sentiment analysis, and pattern detection" },
+        { label: "Fake Review Identification", value: "AI-powered flagging of suspicious reviews with evidence documentation" },
+        { label: "Removal Request Drafting", value: "Google policy-compliant removal requests for flagged reviews" },
+        { label: "Bi-weekly Reporting", value: "PDF reports delivered via Telegram every 2 days with key metrics and insights" },
+        { label: "Critical Alerts", value: "Real-time notifications for urgent reputation issues within 24 hours" },
+        { label: "Monthly Performance Summary", value: "Comprehensive monthly analysis with trends and recommendations" }
       ]},
       { title: "5. Service Requirements", content: [
         "<strong>Client Responsibilities:</strong>",
