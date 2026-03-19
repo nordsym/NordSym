@@ -1,5 +1,5 @@
 window.NORDSYM_SOW_DATA = {
-    excom: {
+  excom: {
     customerName: "Excom AB (Handled.sh)",
     customerRep: "Peter Larnholt",
     vertical: "AI-Driven GTM for Handled.sh",
@@ -8,7 +8,7 @@ window.NORDSYM_SOW_DATA = {
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
-        "<strong>Excom AB</strong>, represented by Peter Larnholt"
+        "<strong>Excom</strong>, represented by Peter Larnholt"
       ]},
       { title: "2. Effective Date", content: [
         "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties."
@@ -128,10 +128,7 @@ window.NORDSYM_SOW_DATA = {
         "• All pricing in USD, billed monthly via Stripe",
         "• Covers up to 2 Google Business Profile locations",
         "• Includes all energy costs (browser automation, analysis, reporting)",
-        "",
-        "<strong>Expansion:</strong>",
-        "• Additional GBP locations can be added subject to scope review and pricing adjustment",
-        "• Other GE Holding projects (e.g., Eagle Eye) require separate Scope of Work"
+        "• Additional locations can be added subject to scope review and pricing adjustment"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff (March 30th, 2026)",
@@ -233,110 +230,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
         "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
       ]},
-      { title: "9. Standard Terms of Execution", content: [
-        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
-        "",
-        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
-        "",
-        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
-        "",
-        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
-        "",
-        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
-      ]},
-      { title: "10. Duration & Termination", content: [
-        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
-        "• <strong>Notice Period:</strong> 30 days written notice",
-        "• Active agent deployments and access continue through notice period",
-        "• Outstanding infrastructure charges settled upon termination"
-      ]},
-      { title: "11. Confidentiality", content: [
-        "Both parties agree to maintain confidentiality of:",
-        "• Business strategies and roadmaps",
-        "• Technical implementations and custom agent configurations",
-        "• Customer data and usage patterns",
-        "• Pricing and commercial terms"
-      ]}
-    ]
-  },
-
-
-  hotclean: {
-    customerName: "Hotclean AB (Bortforsla.nu)",
-    customerRep: "Hasse Ali",
-    vertical: "AI-Driven Operations for Bortforsla.nu",
-    pricing: { fixed: 100, nectar: "✅ Paid March 16th, 2026" },
-    paymentLink: null,
-    sections: [
-      { title: "📋 Document Versions", content: [
-        "<strong>Original (Signed & Paid):</strong> <a href='/sow/hotclen.html' target='_blank'>hotclen.html</a> — Signed March 16th, 2026 with typo 'HotClen'",
-        "<strong>Corrected Version:</strong> This document (hotclean.html) — Updated company name spelling",
-        "",
-        "<em>Both versions are legally equivalent. The original signed version remains binding. This corrected version is provided for reference.</em>"
-      ]},
-      { title: "1. Parties", content: [
-        "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
-        "<strong>Hotclean AB</strong>, represented by Hasse Ali (VD)"
-      ]},
-      { title: "2. Effective Date", content: [
-        "Original agreement became effective on <strong>Monday, March 16th, 2026</strong>.",
-        "",
-        "This updated version with corrected spelling is provided for reference. The original signed agreement remains legally binding."
-      ]},
-      { title: "3. Purpose & Scope", content: [
-        "NordSym provides AI agent infrastructure for <strong>Bortforsla.nu</strong> — Hotclean AB's transport and removal service brand.",
-        "",
-        "<strong>Symbot as Operational Brain:</strong>",
-        "• Automated lead generation and customer outreach",
-        "• Multi-channel booking coordination (WhatsApp, SMS, email)",
-        "• CRM management via Airtable",
-        "• Campaign optimization and performance tracking",
-        "• Customer support automation",
-        "",
-        "<strong>Business Goal:</strong> Scale Bortforsla.nu operations through AI-driven customer engagement and operational efficiency."
-      ]},
-      { title: "4. Selected Service Scope", items: [
-        { label: "Symbot Deployment", value: "AI agent as operational brain for Bortforsla.nu" },
-        { label: "Lead Generation", value: "Automated prospecting and outreach campaigns" },
-        { label: "Booking Automation", value: "Multi-channel coordination (WhatsApp, SMS, email)" },
-        { label: "CRM Management", value: "Airtable pipeline management and customer tracking" },
-        { label: "Campaign Optimization", value: "Real-time performance monitoring and agent tuning" },
-        { label: "Customer Support", value: "AI-powered inquiry handling and follow-ups" }
-      ]},
-      { title: "5. Investment", content: [
-        "• <strong>Monthly Fee:</strong> $100/month",
-        "• All pricing in USD, billed monthly via Stripe",
-        "• Infrastructure execution costs billed separately based on actual API usage",
-        "",
-        "✅ <strong>Payment Status:</strong> Already paid March 16th, 2026"
-      ]},
-      { title: "6. Week 1 Checkpoint", content: [
-        "• <strong>Meeting:</strong> March 20th, 2026 at 11:00 CET",
-        "• <strong>Attendees:</strong> Hasse Ali (VD), Gustav Hemmingsson (NordSym), Molle (Advisor)",
-        "",
-        "<strong>Agenda:</strong>",
-        "1. Bortforsla.nu business objectives and desired outcomes",
-        "2. Week 1 scope validation and success criteria",
-        "3. Technical constraints and integration boundaries",
-        "4. Roles, ownership, and communication cadence",
-        "5. Next actions and timeline",
-        "",
-        "<strong>Outcomes:</strong> Continue / Revise / Terminate"
-      ]},
-      { title: "7. Additional Development", content: [
-        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
-        "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
-        "• Quoted separately based on scope and complexity"
-      ]},
-      { title: "8. VAT & Tax", content: [
-        "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
-        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
-        "• <strong>EU business clients:</strong> Reverse charge mechanism applies - Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
-        "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
-        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
-        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
-      ]},
-      { title: "9. Standard Terms of Execution", content: [
+      { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
         "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
@@ -421,7 +315,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
         "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
       ]},
-      { title: "9. Standard Terms of Execution", content: [
+      { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
         "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
