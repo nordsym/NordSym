@@ -122,6 +122,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
         "• Covers 2 Google Business Profile locations",
+        "• Includes all energy costs (browser automation, analysis, reporting)",
         "• No additional infrastructure or usage charges"
       ]},
       { title: "6. Expansion Pricing", content: [
@@ -135,11 +136,12 @@ window.NORDSYM_SOW_DATA = {
         "Estimated GE Holding portfolio: 7-10 total locations"
       ]},
       { title: "7. Week 1 Checkpoint", content: [
-        "• <strong>Checkpoint Date:</strong> 7 days after project kickoff",
-        "• <strong>Purpose:</strong> Review initial findings and service performance",
+        "• <strong>Checkpoint Date:</strong> 7 days after project kickoff (March 30th, 2026)",
+        "• <strong>Purpose:</strong> Review initial findings, service performance, and actual energy consumption from real data",
+        "• <strong>Energy Review:</strong> Analyze actual computational costs (browser automation, AI analysis) to ensure pricing alignment",
         "• <strong>Outcomes:</strong>",
-        "  - <strong>Continue:</strong> Proceed with monthly service",
-        "  - <strong>Adjust:</strong> Modify scope or approach as needed",
+        "  - <strong>Continue:</strong> Proceed with monthly service at current pricing",
+        "  - <strong>Adjust:</strong> Modify scope, approach, or pricing based on actual energy usage",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
       { title: "8. Additional Services", content: [
