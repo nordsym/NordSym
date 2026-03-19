@@ -24,7 +24,7 @@ window.NORDSYM_SOW_DATA = {
       ]},
       { title: "4. Selected Service Scope", items: [
         { label: "Email Marketing Campaigns", value: "AI-powered prospecting, drip sequences, and conversion campaigns for Handled.sh" },
-        { label: "Landing Page Creation", value: "Campaign-specific landing pages with copy, design, and conversion optimization" },
+        { label: "Landing Page Creation", value: "Up to 20 campaign-specific landing pages with copy, design, and conversion optimization" },
         { label: "Lead Generation", value: "Outbound prospecting and lead qualification for Handled.sh target market" },
         { label: "GTM Coordination", value: "Symbot as operational brain coordinating all marketing activities" },
         { label: "Performance Tracking", value: "Campaign analytics, A/B testing, and continuous optimization" }
@@ -33,6 +33,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
         "• Includes all energy costs (email automation, landing pages, lead generation)",
+        "• <strong>Scope includes:</strong> Up to 20 landing pages per month",
         "• No additional infrastructure or usage charges"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
