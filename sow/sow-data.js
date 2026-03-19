@@ -11,7 +11,8 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Excom</strong>, represented by Peter Larnholt"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties.",
+        "Client may choose to start execution immediately upon signing."
       ]},
       { title: "3. Project Scope", content: [
         "AI-powered go-to-market execution for <strong>Handled.sh</strong> — WhatsApp-based customer support platform.",
@@ -99,7 +100,8 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Client:</strong> Nakama / GE Holding, represented by Beidos"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties.",
+        "Client may choose to start execution immediately upon signing."
       ]},
       { title: "3. Selected Scope of Service", 
         content: [
@@ -276,7 +278,8 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Hotclean AB</strong>, represented by Hasse Ali (VD)"
       ]},
       { title: "2. Effective Date", content: [
-        "Original agreement became effective on <strong>Monday, March 16th, 2026</strong>."
+        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong>.",
+        "Client may choose to start execution immediately upon signing."
       ]},
       { title: "3. Project Scope", content: [
         "AI-powered operations for <strong>Bortforsla.nu</strong> — waste removal and logistics service.",
