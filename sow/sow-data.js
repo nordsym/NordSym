@@ -44,6 +44,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Proceed with monthly service at current pricing",
         "  - <strong>Adjust:</strong> Modify scope, approach, or pricing based on actual usage",
+        "  - <strong>Scale:</strong> Expand scope and increase investment for accelerated growth",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
       { title: "7. Additional Services", content: [
@@ -140,6 +141,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Proceed with monthly service at current pricing",
         "  - <strong>Adjust:</strong> Modify scope, approach, or pricing based on actual energy usage",
+        "  - <strong>Scale:</strong> Expand to additional locations or services for accelerated growth",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
       { title: "7. Additional Services", content: [
@@ -310,6 +312,7 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Proceed with execution",
         "  - <strong>Adjust:</strong> Modify scope or approach",
+        "  - <strong>Scale:</strong> Expand services and increase investment for growth",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
       { title: "7. Standard Terms", content: [
