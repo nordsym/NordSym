@@ -84,7 +84,7 @@ window.NORDSYM_SOW_DATA = {
     customerRep: "Beidos",
     vertical: "Google Sword & Shield — Reputation Management",
     pricing: { fixed: 500, nectar: "Flat monthly fee for 2 Google Business Profile locations" },
-    paymentLink: "https://buy.stripe.com/6oE14peAI5iqd9a2GQcMM0t",
+    paymentLink: "https://buy.stripe.com/5kQ6oJ9goeT01qsbdmcMM0w",
     sections: [
       { title: "1. Project & Parties", content: [
         "<strong>Project Name:</strong> Google Sword & Shield — Reputation Management for GE Holding",
