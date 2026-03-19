@@ -257,6 +257,80 @@ window.NORDSYM_SOW_DATA = {
     ]
   },
 
+  hotclean: {
+    customerName: "Hotclean AB (Bortforsla.nu)",
+    customerRep: "Hasse Ali",
+    vertical: "AI-Driven Operations for Bortforsla.nu",
+    pricing: { fixed: 100, nectar: "✅ Paid March 16th, 2026" },
+    paymentLink: null,
+    sections: [
+      { title: "📋 Document Versions", content: [
+        "<strong>Original (Signed & Paid):</strong> <a href='/sow/hotclen.html' target='_blank'>hotclen.html</a> — Signed March 16th, 2026",
+        "<strong>Corrected Version:</strong> This document (hotclean.html) — Updated company name spelling",
+        "",
+        "<em>Both versions are legally equivalent. The original signed version remains binding.</em>"
+      ]},
+      { title: "1. Parties", content: [
+        "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
+        "<strong>Hotclean AB</strong>, represented by Hasse Ali (VD)"
+      ]},
+      { title: "2. Effective Date", content: [
+        "Original agreement became effective on <strong>Monday, March 16th, 2026</strong>."
+      ]},
+      { title: "3. Project Scope", content: [
+        "AI-powered operations for <strong>Bortforsla.nu</strong> — waste removal and logistics service.",
+        "",
+        "<strong>NordSym (Symbot) serves as the operational brain:</strong>",
+        "• Email marketing (customer acquisition + retention)",
+        "• Lead generation and qualification",
+        "• Booking and scheduling automation",
+        "• Customer communication (SMS, email, WhatsApp)",
+        "• Campaign management and optimization"
+      ]},
+      { title: "4. Selected Service Scope", items: [
+        { label: "Email Marketing", value: "Customer acquisition campaigns and retention flows for Bortforsla.nu" },
+        { label: "Lead Generation", value: "Outbound prospecting and lead qualification" },
+        { label: "Booking Automation", value: "Automated booking confirmation and scheduling" },
+        { label: "Customer Communication", value: "Multi-channel engagement (SMS, email, WhatsApp)" },
+        { label: "Operational Brain", value: "Symbot coordinates all marketing and operations activities" }
+      ]},
+      { title: "5. Investment", content: [
+        "• <strong>Monthly Fee:</strong> $100/month (flat rate)",
+        "• All pricing in USD, billed monthly via Stripe",
+        "• Includes all energy costs",
+        "• ✅ <strong>Paid March 16th, 2026</strong>"
+      ]},
+      { title: "6. Week 1 Checkpoint", content: [
+        "• <strong>Checkpoint Date:</strong> Friday, March 20th, 2026 at 11:00",
+        "• <strong>Purpose:</strong> Review objectives, scope, and constraints",
+        "• <strong>Outcomes:</strong>",
+        "  - <strong>Continue:</strong> Proceed with execution",
+        "  - <strong>Adjust:</strong> Modify scope or approach",
+        "  - <strong>Terminate:</strong> End service with no further obligation"
+      ]},
+      { title: "7. Standard Terms", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI-powered operational support. Client is responsible for validating outputs before business-critical use.",
+        "",
+        "<strong>Data Sovereignty:</strong> All client data remains client property. Not used for training without consent.",
+        "",
+        "<strong>Intellectual Property:</strong> Custom configurations developed for Client remain Client IP. Platform infrastructure remains NordSym IP.",
+        "",
+        "<strong>Liability Limitation:</strong> NordSym's total liability shall not exceed fees paid in the 12 months preceding any claim."
+      ]},
+      { title: "8. Duration & Termination", content: [
+        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
+        "• <strong>Notice Period:</strong> 30 days written notice"
+      ]},
+      { title: "9. Confidentiality", content: [
+        "Both parties agree to maintain confidentiality of:",
+        "• Business strategies",
+        "• Technical implementations",
+        "• Customer data",
+        "• Pricing and commercial terms"
+      ]}
+    ]
+  },
+
   "lazy-genius": {
     customerName: "Lazy Genius",
     customerRep: "Fredrik",
