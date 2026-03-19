@@ -33,9 +33,9 @@ window.NORDSYM_SOW_DATA = {
       { title: "5. Investment", content: [
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
-        "• Includes all energy costs (email automation, landing pages, lead generation)",
         "• <strong>Scope includes:</strong> Up to 20 landing pages per month",
-        "• No additional infrastructure or usage charges"
+        "• Energy costs (email automation, landing pages, lead generation) covered in monthly fee",
+        "• Week 1 checkpoint reviews actual energy consumption and scope alignment"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff (March 30th, 2026)",
@@ -131,7 +131,8 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
         "• Covers up to 2 Google Business Profile locations",
-        "• Includes all energy costs (browser automation, analysis, reporting)",
+        "• Energy costs (browser automation, analysis, reporting) covered in monthly fee",
+        "• Week 1 checkpoint reviews actual energy consumption and scope alignment",
         "• Additional locations can be added subject to scope review and pricing adjustment"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
@@ -303,7 +304,8 @@ window.NORDSYM_SOW_DATA = {
       { title: "5. Investment", content: [
         "• <strong>Monthly Fee:</strong> $100/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
-        "• Includes all energy costs",
+        "• Energy costs covered in monthly fee",
+        "• Week 1 checkpoint reviews actual consumption and scope alignment",
         "• ✅ <strong>Paid March 16th, 2026</strong>"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
