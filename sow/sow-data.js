@@ -123,7 +123,10 @@ window.NORDSYM_SOW_DATA = {
         "• All pricing in USD, billed monthly via Stripe",
         "• Covers up to 2 Google Business Profile locations",
         "• Includes all energy costs (browser automation, analysis, reporting)",
-        "• Additional locations can be added subject to scope review and pricing adjustment"
+        "",
+        "<strong>Expansion:</strong>",
+        "• Additional GBP locations can be added subject to scope review and pricing adjustment",
+        "• Other GE Holding projects (e.g., Eagle Eye) require separate Scope of Work"
       ]},
       { title: "6. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff (March 30th, 2026)",
