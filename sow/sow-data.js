@@ -44,7 +44,7 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "9. VAT & Tax", content: [
+      { title: "8. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
         "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
         "• <strong>EU business clients:</strong> Reverse charge mechanism applies - Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
@@ -63,13 +63,13 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
       ]},
-      { title: "11. Duration & Termination", content: [
+      { title: "10. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
         "• Active agent deployments and access continue through notice period",
         "• Outstanding infrastructure charges settled upon termination"
       ]},
-      { title: "12. Confidentiality", content: [
+      { title: "11. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
         "• Business strategies and roadmaps",
         "• Technical implementations and custom agent configurations",
@@ -100,7 +100,7 @@ window.NORDSYM_SOW_DATA = {
           "Comprehensive Google Business Profile reputation management for GE Holding properties, including automated review monitoring, fake review identification and removal, and ongoing reputation health reporting via Telegram."
         ],
         items: [
-          { label: "Covered Locations", value: "2 Google Business Profile properties (German Experts Dubai + 1 additional location)" },
+          { label: "Covered Locations", value: "Up to 2 Google Business Profile properties (starting with German Experts Dubai)" },
           { label: "Review Monitoring", value: "Automated daily scanning for new reviews, sentiment analysis, and pattern detection" },
           { label: "Fake Review Identification", value: "AI-powered flagging of suspicious reviews with evidence documentation" },
           { label: "Removal Request Drafting", value: "Google policy-compliant removal requests for flagged reviews" },
@@ -121,21 +121,11 @@ window.NORDSYM_SOW_DATA = {
       { title: "5. Investment", content: [
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
-        "• Covers 2 Google Business Profile locations",
+        "• Covers up to 2 Google Business Profile locations",
         "• Includes all energy costs (browser automation, analysis, reporting)",
-        "• No additional infrastructure or usage charges"
+        "• Additional locations can be added subject to scope review and pricing adjustment"
       ]},
-      { title: "6. Expansion Pricing", content: [
-        "<strong>Additional Locations:</strong> $250/location/month",
-        "",
-        "To add locations:",
-        "• Provide Manager access to new property",
-        "• Updated pricing takes effect following month",
-        "• Prorated for mid-month additions",
-        "",
-        "Estimated GE Holding portfolio: 7-10 total locations"
-      ]},
-      { title: "7. Week 1 Checkpoint", content: [
+      { title: "6. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff (March 30th, 2026)",
         "• <strong>Purpose:</strong> Review initial findings, service performance, and actual energy consumption from real data",
         "• <strong>Energy Review:</strong> Analyze actual computational costs (browser automation, AI analysis) to ensure pricing alignment",
@@ -144,18 +134,18 @@ window.NORDSYM_SOW_DATA = {
         "  - <strong>Adjust:</strong> Modify scope, approach, or pricing based on actual energy usage",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
-      { title: "8. Additional Services", content: [
+      { title: "7. Additional Services", content: [
         "Services beyond this SoW (custom integrations, advanced analytics, additional GE Holding projects) can be commissioned through:",
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "9. VAT & Tax", content: [
+      { title: "8. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
         "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
         "• <strong>Stripe Checkout:</strong> VAT is handled automatically based on billing country",
         "• For VAT questions, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
       ]},
-      { title: "10. Standard Terms", content: [
+      { title: "9. Standard Terms", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI-powered reputation management services. Review analysis accuracy depends on available data and context. Client is responsible for final approval of any public-facing actions.",
         "",
         "<strong>Data Sovereignty:</strong> All client data processed remains client property. NordSym does not claim ownership of review data, reports, or analysis results. Client data is not used for other purposes without explicit consent.",
@@ -166,13 +156,13 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>Liability Limitation:</strong> NordSym's total liability shall not exceed the total fees paid by Client in the 12 months preceding any claim. NordSym is not liable for indirect, consequential, or punitive damages."
       ]},
-      { title: "11. Duration & Termination", content: [
+      { title: "10. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
         "• Service continues through notice period",
         "• Outstanding fees settled upon termination"
       ]},
-      { title: "12. Confidentiality", content: [
+      { title: "11. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
         "• Business strategies and competitive intelligence",
         "• Technical methodologies and automation approaches",
@@ -227,7 +217,7 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "9. VAT & Tax", content: [
+      { title: "8. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
         "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
         "• <strong>EU business clients:</strong> Reverse charge mechanism applies - Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
@@ -246,13 +236,13 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
       ]},
-      { title: "11. Duration & Termination", content: [
+      { title: "10. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
         "• Active agent deployments and access continue through notice period",
         "• Outstanding infrastructure charges settled upon termination"
       ]},
-      { title: "12. Confidentiality", content: [
+      { title: "11. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
         "• Business strategies and roadmaps",
         "• Technical implementations and custom agent configurations",
@@ -312,7 +302,7 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "9. VAT & Tax", content: [
+      { title: "8. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
         "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
         "• <strong>EU business clients:</strong> Reverse charge mechanism applies - Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
@@ -331,13 +321,13 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
       ]},
-      { title: "11. Duration & Termination", content: [
+      { title: "10. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
         "• Active agent deployments and access continue through notice period",
         "• Outstanding infrastructure charges settled upon termination"
       ]},
-      { title: "12. Confidentiality", content: [
+      { title: "11. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
         "• Business strategies and roadmaps",
         "• Technical implementations and custom agent configurations",
