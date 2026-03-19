@@ -95,24 +95,21 @@ window.NORDSYM_SOW_DATA = {
       { title: "2. Effective Date", content: [
         "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties."
       ]},
-      { title: "3. Project: Google Sword & Shield", content: [
-        "Comprehensive Google Business Profile reputation management for GE Holding properties, including:",
-        "• Automated review monitoring and analysis",
-        "• Fake review identification and flagging",
-        "• Review removal request drafting and submission",
-        "• Reputation health reporting via Telegram",
-        "• Ongoing optimization and trend analysis"
-      ]},
-      { title: "4. Selected Scope of Service", items: [
-        { label: "Covered Locations", value: "2 Google Business Profile properties (German Experts Dubai + 1 additional location)" },
-        { label: "Review Monitoring", value: "Automated daily scanning for new reviews, sentiment analysis, and pattern detection" },
-        { label: "Fake Review Identification", value: "AI-powered flagging of suspicious reviews with evidence documentation" },
-        { label: "Removal Request Drafting", value: "Google policy-compliant removal requests for flagged reviews" },
-        { label: "Bi-weekly Reporting", value: "PDF reports delivered via Telegram every 2 days with key metrics and insights" },
-        { label: "Critical Alerts", value: "Real-time notifications for urgent reputation issues within 24 hours" },
-        { label: "Monthly Performance Summary", value: "Comprehensive monthly analysis with trends and recommendations" }
-      ]},
-      { title: "5. Service Requirements", content: [
+      { title: "3. Selected Scope of Service", 
+        content: [
+          "Comprehensive Google Business Profile reputation management for GE Holding properties, including automated review monitoring, fake review identification and removal, and ongoing reputation health reporting via Telegram."
+        ],
+        items: [
+          { label: "Covered Locations", value: "2 Google Business Profile properties (German Experts Dubai + 1 additional location)" },
+          { label: "Review Monitoring", value: "Automated daily scanning for new reviews, sentiment analysis, and pattern detection" },
+          { label: "Fake Review Identification", value: "AI-powered flagging of suspicious reviews with evidence documentation" },
+          { label: "Removal Request Drafting", value: "Google policy-compliant removal requests for flagged reviews" },
+          { label: "Bi-weekly Reporting", value: "PDF reports delivered via Telegram every 2 days with key metrics and insights" },
+          { label: "Critical Alerts", value: "Real-time notifications for urgent reputation issues within 24 hours" },
+          { label: "Monthly Performance Summary", value: "Comprehensive monthly analysis with trends and recommendations" }
+        ]
+      },
+      { title: "4. Service Requirements", content: [
         "<strong>Client Responsibilities:</strong>",
         "• Provide Manager-level access to all covered Google Business Profiles",
         "• Grant access within 48 hours of project kickoff",
@@ -120,7 +117,7 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>NordSym cannot execute work without proper Manager access to target properties.</strong>"
       ]},
-      { title: "6. Communication Channel", content: [
+      { title: "5. Communication Channel", content: [
         "All project updates, reports, and alerts delivered via dedicated Telegram group.",
         "",
         "Client receives:",
@@ -129,13 +126,13 @@ window.NORDSYM_SOW_DATA = {
         "• Monthly performance summaries",
         "• Direct channel for questions and requests"
       ]},
-      { title: "7. Investment", content: [
+      { title: "6. Investment", content: [
         "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
         "• Covers 2 Google Business Profile locations",
         "• No additional infrastructure or usage charges"
       ]},
-      { title: "8. Expansion Pricing", content: [
+      { title: "7. Expansion Pricing", content: [
         "<strong>Additional Locations:</strong> $250/location/month",
         "",
         "To add locations:",
@@ -145,7 +142,7 @@ window.NORDSYM_SOW_DATA = {
         "",
         "Estimated GE Holding portfolio: 7-10 total locations"
       ]},
-      { title: "9. Week 1 Checkpoint", content: [
+      { title: "8. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff",
         "• <strong>Purpose:</strong> Review initial findings and service performance",
         "• <strong>Outcomes:</strong>",
@@ -153,18 +150,18 @@ window.NORDSYM_SOW_DATA = {
         "  - <strong>Adjust:</strong> Modify scope or approach as needed",
         "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
-      { title: "10. Additional Services", content: [
+      { title: "9. Additional Services", content: [
         "Services beyond this SoW (custom integrations, advanced analytics, additional GE Holding projects) can be commissioned through:",
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "11. VAT & Tax", content: [
+      { title: "10. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
         "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
         "• <strong>Stripe Checkout:</strong> VAT is handled automatically based on billing country",
         "• For VAT questions, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
       ]},
-      { title: "12. Standard Terms", content: [
+      { title: "11. Standard Terms", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI-powered reputation management services. Review analysis accuracy depends on available data and context. Client is responsible for final approval of any public-facing actions.",
         "",
         "<strong>Data Sovereignty:</strong> All client data processed remains client property. NordSym does not claim ownership of review data, reports, or analysis results. Client data is not used for other purposes without explicit consent.",
@@ -175,13 +172,13 @@ window.NORDSYM_SOW_DATA = {
         "",
         "<strong>Liability Limitation:</strong> NordSym's total liability shall not exceed the total fees paid by Client in the 12 months preceding any claim. NordSym is not liable for indirect, consequential, or punitive damages."
       ]},
-      { title: "13. Duration & Termination", content: [
+      { title: "12. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
         "• Service continues through notice period",
         "• Outstanding fees settled upon termination"
       ]},
-      { title: "14. Confidentiality", content: [
+      { title: "13. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
         "• Business strategies and competitive intelligence",
         "• Technical methodologies and automation approaches",
