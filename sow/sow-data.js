@@ -86,12 +86,14 @@ window.NORDSYM_SOW_DATA = {
     pricing: { fixed: 500, nectar: "Flat monthly fee for 2 Google Business Profile locations" },
     paymentLink: "https://buy.stripe.com/6oE14peAI5iqd9a2GQcMM0t",
     sections: [
-      { title: "1. Parties", content: [
-        "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
-        "<strong>Nakama / GE Holding</strong>, represented by Beidos"
+      { title: "1. Project & Parties", content: [
+        "<strong>Project Name:</strong> Google Sword & Shield — Reputation Management for GE Holding",
+        "",
+        "<strong>Service Provider:</strong> NordSym AB (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
+        "<strong>Client:</strong> Nakama / GE Holding, represented by Beidos"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Monday, March 23rd, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Project: Google Sword & Shield", content: [
         "Comprehensive Google Business Profile reputation management for GE Holding properties, including:",
