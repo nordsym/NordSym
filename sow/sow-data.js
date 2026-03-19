@@ -1,4 +1,5 @@
-  excom: {
+window.NORDSYM_SOW_DATA = {
+    excom: {
     customerName: "Excom AB (Handled.sh)",
     customerRep: "Peter Larnholt",
     vertical: "AI-Driven GTM for Handled.sh",
