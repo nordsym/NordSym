@@ -113,7 +113,7 @@ window.NORDSYM_SOW_DATA = {
           { label: "Review Monitoring", value: "Automated daily scanning for new reviews, sentiment analysis, and pattern detection" },
           { label: "Fake Review Identification", value: "AI-powered flagging of suspicious reviews with evidence documentation" },
           { label: "Removal Request Drafting", value: "Google policy-compliant removal requests for flagged reviews" },
-          { label: "Bi-weekly Reporting", value: "PDF reports delivered via Telegram every 2 days with key metrics and insights" },
+          { label: "Regular Reporting", value: "PDF reports delivered via Telegram every 2 days with key metrics and insights" },
           { label: "Critical Alerts", value: "Real-time notifications for urgent reputation issues within 24 hours" },
           { label: "Monthly Performance Summary", value: "Comprehensive monthly analysis with trends and recommendations" },
           { label: "Communication Interface", value: "Dedicated Telegram group for all project updates, reports, alerts, and direct support" }
