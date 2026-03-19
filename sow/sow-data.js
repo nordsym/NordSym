@@ -80,85 +80,112 @@ window.NORDSYM_SOW_DATA = {
   },
 
   nakama: {
-    customerName: "Nakama",
+    customerName: "Nakama / GE Holding",
     customerRep: "Beidos",
-    vertical: "Nakama Interface for Reselling Services",
-    pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
-    paymentLink: "https://buy.stripe.com/5kQ6oJ9goeT01qsbdmcMM0w",
+    vertical: "Google Sword & Shield — Reputation Management",
+    pricing: { fixed: 500, nectar: "Flat monthly fee for 2 Google Business Profile locations" },
+    paymentLink: "https://buy.stripe.com/6oE14peAI5iqd9a2GQcMM0t",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
-        "<strong>Nakama</strong>, represented by Beidos"
+        "<strong>Nakama / GE Holding</strong>, represented by Beidos"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective on <strong>Monday, March 16th, 2026</strong> upon signing by both parties."
+        "This Scope of Work becomes effective upon signing by both parties."
       ]},
-      { title: "3. Purpose & Scope", content: [
-        "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to Nakama, specifically focused on:",
-        "• Managed swarm orchestration for white-label reselling",
-        "• Headless Telegram execution layer",
-        "• Swarm oversight and real-time optimization",
-        "• Revenue-sharing framework for infrastructure resale"
+      { title: "3. Project: Google Sword & Shield", content: [
+        "Comprehensive Google Business Profile reputation management for GE Holding properties, including:",
+        "• Automated review monitoring and analysis",
+        "• Fake review identification and flagging",
+        "• Review removal request drafting and submission",
+        "• Reputation health reporting via Telegram",
+        "• Ongoing optimization and trend analysis"
       ]},
-      { title: "4. Selected Service Scope", items: [
-        { label: "APIClaw Execution Infrastructure", value: "Enterprise-grade orchestration with Nakama white-label branding" },
-        { label: "Managed Swarm Orchestration", value: "Multi-tenant agent deployment for Nakama end customers" },
-        { label: "Headless Telegram Execution Layer", value: "Zero-UI backend communication under Nakama brand" },
-        { label: "Swarm Oversight & Optimization", value: "Real-time monitoring, partner enablement, and infrastructure management" }
+      { title: "4. Initial Scope", content: [
+        "<strong>Covered Locations:</strong> 2 Google Business Profile properties",
+        "• German Experts Dubai",
+        "• [Second location to be confirmed]",
+        "",
+        "<strong>Deliverables:</strong>",
+        "• Bi-weekly reputation reports (PDF via Telegram)",
+        "• Real-time alerts for critical reviews",
+        "• Monthly performance summary",
+        "• Fake review removal requests as needed"
       ]},
-      { title: "5. Investment", content: [
-        "• <strong>Monthly Fee:</strong> $300/month",
+      { title: "5. Service Requirements", content: [
+        "<strong>Client Responsibilities:</strong>",
+        "• Provide Manager-level access to all covered Google Business Profiles",
+        "• Grant access within 48 hours of project kickoff",
+        "• Maintain valid GBP credentials throughout service period",
+        "",
+        "<strong>NordSym cannot execute work without proper Manager access to target properties.</strong>"
+      ]},
+      { title: "6. Communication Channel", content: [
+        "All project updates, reports, and alerts delivered via dedicated Telegram group.",
+        "",
+        "Client receives:",
+        "• Bi-weekly PDF reports",
+        "• Critical alerts within 24 hours",
+        "• Monthly performance summaries",
+        "• Direct channel for questions and requests"
+      ]},
+      { title: "7. Investment", content: [
+        "• <strong>Monthly Fee:</strong> $500/month (flat rate)",
         "• All pricing in USD, billed monthly via Stripe",
-        "• Infrastructure execution costs billed separately based on actual API usage"
+        "• Covers 2 Google Business Profile locations",
+        "• No additional infrastructure or usage charges"
       ]},
-      { title: "6. Week 1 Pilot Checkpoint", content: [
+      { title: "8. Expansion Pricing", content: [
+        "<strong>Additional Locations:</strong> $250/location/month",
+        "",
+        "To add locations:",
+        "• Provide Manager access to new property",
+        "• Updated pricing takes effect following month",
+        "• Prorated for mid-month additions",
+        "",
+        "Estimated GE Holding portfolio: 7-10 total locations"
+      ]},
+      { title: "9. Week 1 Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff",
-        "• <strong>Purpose:</strong> Evaluate pilot performance and alignment with objectives",
+        "• <strong>Purpose:</strong> Review initial findings and service performance",
         "• <strong>Outcomes:</strong>",
-        "  - <strong>Continue:</strong> Approve production tier and continue operations",
-        "  - <strong>Revise:</strong> Adjust scope or approach and continue",
-        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs"
+        "  - <strong>Continue:</strong> Proceed with monthly service",
+        "  - <strong>Adjust:</strong> Modify scope or approach as needed",
+        "  - <strong>Terminate:</strong> End service with no further obligation"
       ]},
-      { title: "7. Revenue Share", content: [
-        "• Monthly reconciliation via Partner Revenue Agreement",
-        "• Revenue share terms documented separately in partner agreement",
-        "• Transparent reporting provided monthly"
-      ]},
-      { title: "8. Additional Development", content: [
-        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
+      { title: "10. Additional Services", content: [
+        "Services beyond this SoW (custom integrations, advanced analytics, additional GE Holding projects) can be commissioned through:",
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
-      { title: "9. VAT & Tax", content: [
+      { title: "11. VAT & Tax", content: [
         "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
-        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
-        "• <strong>EU business clients:</strong> Reverse charge mechanism applies - Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
         "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
-        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
-        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
+        "• <strong>Stripe Checkout:</strong> VAT is handled automatically based on billing country",
+        "• For VAT questions, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
       ]},
-      { title: "10. Standard Terms of Execution", content: [
-        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
+      { title: "12. Standard Terms", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI-powered reputation management services. Review analysis accuracy depends on available data and context. Client is responsible for final approval of any public-facing actions.",
         "",
-        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
+        "<strong>Data Sovereignty:</strong> All client data processed remains client property. NordSym does not claim ownership of review data, reports, or analysis results. Client data is not used for other purposes without explicit consent.",
         "",
-        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
+        "<strong>Service Limitations:</strong> NordSym provides review flagging and removal request drafting. Final review removal decisions are made by Google. Success rates vary by case strength and Google policy interpretation.",
         "",
-        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
+        "<strong>Intellectual Property:</strong> Custom analysis methodologies and automation logic developed for Client remain Client IP. NordSym platform infrastructure and core capabilities remain NordSym IP.",
         "",
-        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
+        "<strong>Liability Limitation:</strong> NordSym's total liability shall not exceed the total fees paid by Client in the 12 months preceding any claim. NordSym is not liable for indirect, consequential, or punitive damages."
       ]},
-      { title: "11. Duration & Termination", content: [
+      { title: "13. Duration & Termination", content: [
         "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
         "• <strong>Notice Period:</strong> 30 days written notice",
-        "• Active agent deployments and access continue through notice period",
-        "• Outstanding infrastructure charges settled upon termination"
+        "• Service continues through notice period",
+        "• Outstanding fees settled upon termination"
       ]},
-      { title: "12. Confidentiality", content: [
+      { title: "14. Confidentiality", content: [
         "Both parties agree to maintain confidentiality of:",
-        "• Business strategies and roadmaps",
-        "• Technical implementations and custom agent configurations",
-        "• Customer data and usage patterns",
+        "• Business strategies and competitive intelligence",
+        "• Technical methodologies and automation approaches",
+        "• Customer review data and sentiment analysis",
         "• Pricing and commercial terms"
       ]}
     ]
