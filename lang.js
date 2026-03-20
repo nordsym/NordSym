@@ -12,9 +12,9 @@ const NordSymLang = {
   translations: {
     sv: {
       // Meta & Title
-      metaTitle: 'NordSym AB - Bygg bort begränsningar',
-      metaDescription: 'NordSym AB är en byrå för systemautomation och AI-arkitektur. NordSym optimerar er verksamhet för AEO (Answer Engine Optimization) och bygger intelligenta ekosystem.',
-      metaKeywords: 'Systemautomation Sverige, intelligenta system, AEO, GEO, AI-arkitektur, digital transformation, NordSym',
+      metaTitle: 'NordSym AB - Full Stack AI Partner',
+      metaDescription: 'Full Stack AI Partner. Bygger Web 4.0, där AI-agenter faktiskt opererar. APIClaw (API-lager) · Hivr (exekveringslager) · NordSym (orkestrering).',
+      metaKeywords: 'AI agent infrastruktur, Web 4.0, agent orkestrering, APIClaw, Hivr, MCP, AI-arkitektur, agent marketplace, NordSym',
 
       // APIClaw Banner
       bannerTagline: 'API-lagret för AI-agenter',
@@ -23,13 +23,13 @@ const NordSymLang = {
       bannerVisitSite: 'Besök sidan →',
 
       // Hero Section
-      heroTitle: 'Bygg bort <br class="md:hidden"> begränsningar',
-      heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> som bygger verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> gör skillnad.',
+      heroTitle: '',
+      heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span><br>Bygger <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">WEB 4.0</span> där AI-agenter <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 3s;">FAKTISKT</span> opererar.',
       btnBookCall: 'Boka Strategisamtal',
       btnRnD: 'R&D',
-      labelMicroApps: 'PRODUCTS',
-      labelIntelligentArch: 'INTELLIGENT ARKITEKTUR',
-      labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
+      labelMicroApps: 'WEB 4.0',
+      labelIntelligentArch: 'FULL STACK AGENT INFRASTRUCTURE',
+      labelIntelligentAuto: 'AUTONOMY',
       placeholderAsk: 'Fråga NordSym...',
       btnSend: 'Skicka',
       labelActiveSession: 'Aktiv session',
@@ -302,7 +302,7 @@ const NordSymLang = {
       
       // Hivr
       hivrTitle: 'Hivr.Online',
-      hivrDesc: 'Marknadsplats för AI-agenter. Hyr färdiga "worker bees" eller lista dina egna agenter och tjäna pengar. Från research till automation — hitta rätt agent för jobbet.',
+      hivrDesc: 'Där agenter hittar jobb och människor hittar hjälp. Hyr färdiga AI-workers eller lista dina egna — från research till automation.',
       hivrSig1: 'Multi-Agent',
       hivrSig2: 'Marknadsplats',
       hivrSig3: 'AI Workers',
@@ -376,9 +376,9 @@ const NordSymLang = {
 
     en: {
       // Meta & Title
-      metaTitle: 'NordSym AB - Build Away Limitations',
-      metaDescription: 'NordSym AB is an agency for system automation and AI architecture. We optimize your operations for AEO (Answer Engine Optimization) and build intelligent ecosystems.',
-      metaKeywords: 'System automation, intelligent systems, AEO, GEO, AI architecture, digital transformation, NordSym',
+      metaTitle: 'NordSym AB - Full Stack AI Partner',
+      metaDescription: 'Full Stack AI Partner. Building Web 4.0, where AI agents actually operate. APIClaw (API layer) · Hivr (execution layer) · NordSym (orchestration).',
+      metaKeywords: 'AI agent infrastructure, Web 4.0, agent orchestration, APIClaw, Hivr, MCP, AI architecture, agent marketplace, NordSym',
 
       // APIClaw Banner
       bannerTagline: 'The API Layer For AI Agents',
@@ -387,13 +387,13 @@ const NordSymLang = {
       bannerVisitSite: 'Visit site →',
 
       // Hero Section
-      heroTitle: 'Build Away <br class="md:hidden"> Limitations',
-      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building tools that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> make a difference.',
+      heroTitle: '',
+      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span><br>Building <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">WEB 4.0</span> where AI agents <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 3s;">ACTUALLY</span> operate.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
-      labelMicroApps: 'PRODUCTS',
-      labelIntelligentArch: 'INTELLIGENT ARCHITECTURE',
-      labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
+      labelMicroApps: 'WEB 4.0',
+      labelIntelligentArch: 'FULL STACK AGENT INFRASTRUCTURE',
+      labelIntelligentAuto: 'AUTONOMY',
       placeholderAsk: 'Ask NordSym...',
       btnSend: 'Send',
       labelActiveSession: 'Active session',
@@ -667,7 +667,7 @@ const NordSymLang = {
       
       // Hivr
       hivrTitle: 'Hivr.Online',
-      hivrDesc: 'Marketplace for AI agents. Hire ready-made "worker bees" or list your own agents and earn money. From research to automation — find the right agent for the job.',
+      hivrDesc: 'Where agents find work and humans find help. Hire ready-made AI workers or list your own — from research to automation.',
       hivrSig1: 'Multi-Agent',
       hivrSig2: 'Marketplace',
       hivrSig3: 'AI Workers',
