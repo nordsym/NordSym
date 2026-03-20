@@ -95,6 +95,70 @@
     return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   }
 
+  // 5-day pilot timer - activates on proposal signature
+  function renderPilotTimer() {
+    const pilotSignedKey = 'proposal_signed_' + customerId;
+    const pilotSignedStr = localStorage.getItem(pilotSignedKey);
+    
+    // Before signing: show activation message
+    if (!pilotSignedStr) {
+      return [
+        '<div class="mou-countdown" style="background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);">',
+        '<div class="mou-countdown-label" style="color:#1a1a1a;"><i class="ph-fill ph-rocket-launch" style="color:#1a1a1a;"></i> Sign to activate 5-day pilot period</div>',
+        '<p style="margin-top:12px;font-size:14px;color:#1a1a1a;opacity:0.95;line-height:1.6;">',
+        '<strong>What happens during the pilot:</strong><br>',
+        '• Connect with Symbot in Telegram<br>',
+        '• Test AI automation workflows<br>',
+        '• Experience rapid execution<br>',
+        '• Decide: Kill, Pivot, or Scale',
+        '</p>',
+        '<p style="margin-top:12px;font-size:13px;color:#1a1a1a;opacity:0.8;">No commitment yet — sign below to explore</p>',
+        '</div>'
+      ].join('');
+    }
+
+    // After signing: calculate remaining pilot period
+    const pilotStart = new Date(pilotSignedStr);
+    const pilotDays = 5;
+    const pilotEnds = new Date(pilotStart.getTime() + pilotDays * 24 * 60 * 60 * 1000);
+    const now = new Date();
+    const remaining = pilotEnds - now;
+
+    // Pilot expired
+    if (remaining <= 0) {
+      return [
+        '<div class="mou-countdown expired" style="background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%);">',
+        '<div class="mou-countdown-label"><i class="ph-fill ph-warning"></i> Pilot Period Ended</div>',
+        '<p style="margin-top:12px;font-size:14px;">Time to decide: Kill, Pivot, or Scale?</p>',
+        '<div style="margin-top:20px;">',
+        '<a href="mailto:gustav@nordsym.com?subject=Pilot Decision - ' + data.customerName + '" class="sow-btn" style="background:#fff;color:#C92A2A;text-decoration:none;display:inline-block;padding:12px 24px;border-radius:8px;font-weight:600;">',
+        '<i class="ph ph-envelope"></i> Share Your Decision',
+        '</a>',
+        '</div>',
+        '</div>'
+      ].join('');
+    }
+
+    // Active pilot countdown
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+    return [
+      '<div class="mou-countdown" style="background: linear-gradient(135deg, #00FF87 0%, #60EFFF 100%);">',
+      '<div class="mou-countdown-label" style="color:#1a1a1a;"><i class="ph-fill ph-rocket-launch" style="color:#1a1a1a;"></i> Pilot active:</div>',
+      '<div class="mou-countdown-timer" style="color:#1a1a1a;">',
+      '<span class="mou-time-unit"><strong>' + days + '</strong><small>days</small></span>',
+      '<span class="mou-time-sep">:</span>',
+      '<span class="mou-time-unit"><strong>' + String(hours).padStart(2, '0') + '</strong><small>hours</small></span>',
+      '<span class="mou-time-sep">:</span>',
+      '<span class="mou-time-unit"><strong>' + String(minutes).padStart(2, '0') + '</strong><small>min</small></span>',
+      '</div>',
+      '<p style="margin-top:12px;font-size:13px;color:#1a1a1a;opacity:0.85;">Working with Symbot in Telegram. Decision at end: Kill/Pivot/Scale.</p>',
+      '</div>'
+    ].join('');
+  }
+
   // 5-day urgency timer - tracks from first visit
   function renderUrgencyTimer() {
     const firstVisitKey = 'proposal_first_visit_' + customerId;
@@ -160,6 +224,7 @@
     '<p style="margin:8px 0 0;color:#1a1a1a;font-size:14px;font-weight:500;">Fast execution. Clear deliverables. Real results.</p>',
     '</div>',
     '<div class="sow-bar"></div>',
+    '<div id="pilot-timer-container" style="margin:25px 0;">' + renderPilotTimer() + '</div>',
     '<div id="urgency-timer-container" style="margin:25px 0;">' + renderUrgencyTimer() + '</div>',
   ];
 
@@ -249,12 +314,37 @@
     html.push('</section>');
   });
 
+  // Signature Section - Activates 5-day pilot
+  html.push(
+    '<section class="sow-sign" style="margin-top:40px;">',
+    '<h2 style="display:flex;align-items:center;gap:12px;">',
+    '<i class="ph ph-pen-nib" style="font-size:28px;color:var(--cyan);"></i>',
+    'Sign to Start 5-Day Pilot',
+    '</h2>',
+    '<p style="margin-bottom:20px;">Sign below to activate your pilot period and get started with Symbot.</p>',
+    '<div class="sow-sign-grid">',
+    '<div><div class="sow-label">NordSym AB</div><div class="sow-line"><span style="font-family:cursive;font-size:24px;">Gustav Hemmingsson</span></div><p><strong>Gustav Hemmingsson</strong><br>CEO, NordSym AB<br>Date: ' + today + '</p></div>',
+    '<div>',
+    '<div class="sow-label">' + data.customerName + '</div>',
+    '<label class="sow-label" style="text-transform:none;letter-spacing:normal;">Draw your signature</label>',
+    '<canvas id="sig-canvas" class="sow-canvas" width="320" height="110"></canvas>',
+    '<button id="clear-signature" class="sow-btn-link" type="button">Clear signature</button>',
+    '<div style="margin-top:10px"><input id="signer-name" class="sow-input" placeholder="Your full name" value=""></div>',
+    '<div style="margin-top:10px"><input id="signer-title" class="sow-input" placeholder="Your title"></div>',
+    '<p style="color:var(--muted);font-size:12px;">Date: ' + today + '</p>',
+    '</div>',
+    '</div>',
+    '<div id="msg"></div>',
+    '<div class="sow-actions"><button id="sign-btn" class="sow-btn" disabled>Sign & Start Pilot</button></div>',
+    '</section>'
+  );
+
   // Next Step Section
   html.push(
     '<div class="sow-section">',
-    '<h2 class="sow-section-title"><i class="ph ph-arrow-right"></i> Next Step</h2>',
-    '<p>After expressing interest, you\'ll receive an MoU (Memorandum of Understanding) for 72-hour exploration period.</p>',
-    '<p><strong>⚡ Fast decisions win.</strong> Sign MoU → Pilot SoW → Launch together.</p>',
+    '<h2 class="sow-section-title"><i class="ph ph-arrow-right"></i> After Pilot</h2>',
+    '<p>After the 5-day pilot, you\'ll make a decision: <strong>Kill, Pivot, or Scale.</strong></p>',
+    '<p>If you choose to Scale, we\'ll move to an MoU (Memorandum of Understanding) for full partnership.</p>',
     '<p><a href="/mou/' + customerId + '" class="sow-link">Preview MoU →</a></p>',
     '</div>'
   );
@@ -290,11 +380,102 @@
 
   root.innerHTML = html.join('');
 
-  // Update urgency timer every second
+  // Update timers every second
   setInterval(function () {
-    const container = document.getElementById('urgency-timer-container');
-    if (container) {
-      container.innerHTML = renderUrgencyTimer();
+    const pilotContainer = document.getElementById('pilot-timer-container');
+    if (pilotContainer) {
+      pilotContainer.innerHTML = renderPilotTimer();
+    }
+    const urgencyContainer = document.getElementById('urgency-timer-container');
+    if (urgencyContainer) {
+      urgencyContainer.innerHTML = renderUrgencyTimer();
     }
   }, 1000);
+
+  // Signature canvas logic
+  const canvas = document.getElementById('sig-canvas');
+  const ctx = canvas && canvas.getContext('2d');
+  const nameInput = document.getElementById('signer-name');
+  const titleInput = document.getElementById('signer-title');
+  const btn = document.getElementById('sign-btn');
+  const clearBtn = document.getElementById('clear-signature');
+  const msg = document.getElementById('msg');
+
+  if (!canvas || !ctx) return; // Signature section not rendered (already signed)
+
+  let drawing = false;
+  let hasSignature = false;
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#111827';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const t = e.touches && e.touches[0];
+    const x = (t ? t.clientX : e.clientX) - rect.left;
+    const y = (t ? t.clientY : e.clientY) - rect.top;
+    return { x: x * (canvas.width / rect.width), y: y * (canvas.height / rect.height) };
+  }
+
+  function refreshBtn() {
+    btn.disabled = !(hasSignature && nameInput.value.trim() && titleInput.value.trim());
+  }
+
+  function start(e) {
+    drawing = true;
+    const p = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    e.preventDefault();
+  }
+  function move(e) {
+    if (!drawing) return;
+    const p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    hasSignature = true;
+    refreshBtn();
+    e.preventDefault();
+  }
+  function end() { drawing = false; }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', end);
+  canvas.addEventListener('mouseleave', end);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', move, { passive: false });
+  canvas.addEventListener('touchend', end);
+
+  clearBtn.addEventListener('click', function () {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    hasSignature = false;
+    refreshBtn();
+  });
+
+  nameInput.addEventListener('input', refreshBtn);
+  titleInput.addEventListener('input', refreshBtn);
+
+  // Sign button handler
+  btn.addEventListener('click', function () {
+    btn.disabled = true;
+    msg.className = '';
+    msg.textContent = '';
+
+    // Store signature timestamp to start 5-day pilot countdown
+    const pilotSignedKey = 'proposal_signed_' + customerId;
+    localStorage.setItem(pilotSignedKey, new Date().toISOString());
+    
+    msg.className = 'sow-msg ok';
+    msg.textContent = '🚀 Pilot activated! Your 5-day countdown has started. Check Telegram for Symbot.';
+    
+    // Refresh the page to show the active pilot timer
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
+  });
 })();
