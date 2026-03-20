@@ -5,86 +5,63 @@ window.NORDSYM_PROPOSAL_DATA = {
     customerEmail: "fadi@kontralaw.com",
     customerPhone: "+46735215266",
     vertical: "AEO/GEO Revenue-Share Partnership (Swedish Law Firms)",
-    problem: "Law firms in Sweden struggle with online visibility — both traditional Google search and new AI search (ChatGPT, Perplexity, Claude). Many have outdated websites and zero AI search presence.",
-    solution: "Partner with NordSym to identify and improve law firm services, then sell AEO/GEO optimization to Swedish law firms. Test what works, then scale together.",
+    problem: "Swedish law firms are invisible in AI search. Clients use ChatGPT and Perplexity to find lawyers — most firms don't show up.",
+    solution: "Build a revenue-share AEO/GEO business together. You sell (leverage your network), we deliver (tech + execution). **80% revenue to you.**",
     sections: [
       {
         title: "The Opportunity",
         content: [
-          "Swedish law firms are behind on digital visibility:",
-          "• Many have outdated websites with zero SEO",
-          "• Almost none are optimized for AI search (ChatGPT, Perplexity, Claude)",
-          "• Clients increasingly search for lawyers using AI tools",
-          "• Traditional Google SEO alone isn't enough anymore",
-          "• Firms with good online presence win more high-value cases"
+          "Swedish law firms are losing cases to competitors with better online visibility:",
+          "",
+          "• **Zero AI search presence** — invisible in ChatGPT, Perplexity, Claude",
+          "• **Outdated websites** — poor Google rankings, weak lead generation",
+          "• **High-value clients search online** — firms that show up win more business"
         ]
       },
       {
-        title: "The Partnership Model",
+        title: "How It Works",
         content: [
-          "We don't just sell you a service — we partner to build a business together.",
+          "We don't sell you a service. We build a business together.",
           "",
-          "<strong>Phase 1: Test & Research</strong>",
-          "• Identify law firm services that could be improved",
-          "• Research Swedish law firm market (Stockholm focus)",
-          "• Test messaging and positioning",
-          "• Validate demand for AEO/GEO services",
+          "**Phase 1: Test (1 Month)**",
+          "• Research Swedish law firm market + validate demand",
+          "• Build AEO/GEO service offering",
+          "• Test messaging with real prospects",
           "",
-          "<strong>Phase 2: Launch & Scale</strong>",
-          "• Sell AEO/GEO optimization to Swedish law firms",
-          "• Kontra Law leads sales (you have the relationships)",
-          "• NordSym delivers the service (we have the tech)",
-          "• Revenue split: NordSym 20% / Kontra Law 80%"
+          "**Phase 2: Scale**",
+          "• You sell to law firms (your network, your credibility)",
+          "• We deliver optimization (our tech, our execution)",
+          "• **Revenue split: 80% you / 20% us**"
         ]
       },
       {
-        title: "Investment & Process",
+        title: "Investment",
         content: [
-          "<strong>Step 1: MoU (Free, 72 hours)</strong>",
-          "• Sign Memorandum of Understanding (non-binding)",
-          "• Clarify partnership goals and expectations",
-          "• Decide if we're a good fit",
-          "• No cost, no commitment",
+          "**10,000 SEK** — 1-month pilot to prove demand.",
           "",
-          "<strong>Step 2: SoW (1 Month Pilot)</strong>",
-          "• <strong>Investment:</strong> 10,000 SEK upfront",
-          "• <strong>Scope:</strong>",
-          "  1. Research & test law firm services that could be improved",
-          "  2. Build AEO/GEO service offering for Swedish law firms",
-          "  3. Test sales messaging and demand validation",
-          "• <strong>Revenue Share:</strong> NordSym 20% / Kontra Law 80%",
-          "• <strong>Duration:</strong> 1 month pilot",
-          "",
-          "<strong>Step 3: Evaluate & Decide</strong>",
-          "After 1 month, we evaluate results:",
-          "• <strong>Kill:</strong> No traction → end partnership (no hard feelings)",
-          "• <strong>Pivot:</strong> Adjust strategy → continue testing",
-          "• <strong>Scale:</strong> Strong results → expand to more law firms",
-          "",
-          "<strong>What Revenue Share Covers:</strong>",
-          "All AEO/GEO services sold to Swedish law firms through this partnership. You sell (leveraging your network), we deliver (tech + execution), we both win."
+          "After 1 month, we choose:",
+          "• **Kill** — No traction, end partnership (no hard feelings)",
+          "• **Pivot** — Adjust strategy, keep testing",
+          "• **Scale** — Strong results, expand to more firms"
         ]
       },
       {
-        title: "Why Partner With NordSym?",
+        title: "Why Now",
         content: [
-          "• <strong>AEO/GEO Pioneers:</strong> We're not just doing SEO — we're at the forefront of AI search optimization (AEO/GEO).",
-          "• <strong>Low Risk:</strong> 10k SEK pilot + 80% of revenue to you. We only win if you win.",
-          "• <strong>Fast Execution:</strong> 1 month pilot to validate demand, then scale quickly if it works.",
-          "• <strong>You Keep Control:</strong> You lead sales (your network, your relationships). We handle delivery.",
-          "• <strong>Proven Results:</strong> Active clients seeing traffic + visibility growth across traditional and AI search."
+          "• **AI search is exploding** — clients find lawyers via ChatGPT daily",
+          "• **Competitors are asleep** — be first in your market",
+          "• **Low-risk test** — 10k pilot + **80% revenue share** protects your upside"
         ]
       },
       {
-        title: "Next Steps",
+        title: "What's Next",
         content: [
-          "<strong>1. Review Proposal</strong> — Read this, discuss internally if needed",
-          "<strong>2. Sign MoU</strong> — Free 72-hour exploration period (non-binding)",
-          "<strong>3. Kickoff Call</strong> — Align on goals, research plan, and timeline",
-          "<strong>4. Execute Pilot</strong> — 1 month of testing and validation",
-          "<strong>5. Evaluate & Decide</strong> — Kill, Pivot, or Scale based on results",
+          "**1. Sign MoU** — Free 72-hour exploration (non-binding)",
+          "**2. Kickoff** — Align on research plan + timeline",
+          "**3. Execute** — 1-month pilot to validate demand",
+          "**4. Decide** — Kill, Pivot, or Scale",
           "",
-          "Ready to explore? Let's start with the MoU."
+          "Ready? Let's start with the MoU."
         ]
       }
     ],
