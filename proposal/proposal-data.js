@@ -4,90 +4,87 @@ window.NORDSYM_PROPOSAL_DATA = {
     customerRep: "Fadi Al-Aieshy",
     customerEmail: "fadi@kontralaw.com",
     customerPhone: "+46735215266",
-    vertical: "AEO/GEO Revenue-Share Partnership",
-    problem: "Manual document assembly, client intake bottlenecks, repetitive case management tasks eating billable hours.",
-    solution: "AI-powered automation that handles document generation, client onboarding, case tracking, and communication workflows — freeing your team to focus on high-value legal work.",
+    vertical: "AEO/GEO Revenue-Share Partnership (Swedish Law Firms)",
+    problem: "Law firms in Sweden struggle with online visibility — both traditional Google search and new AI search (ChatGPT, Perplexity, Claude). Many have outdated websites and zero AI search presence.",
+    solution: "Partner with NordSym to identify and improve law firm services, then sell AEO/GEO optimization to Swedish law firms. Test what works, then scale together.",
     sections: [
       {
-        title: "The Challenge",
+        title: "The Opportunity",
         content: [
-          "Law firms face mounting pressure:",
-          "• Document assembly takes hours per case",
-          "• Client intake is manual and error-prone",
-          "• Case management requires constant attention",
-          "• Email triage consumes partner time",
-          "• Scaling requires hiring more staff"
+          "Swedish law firms are behind on digital visibility:",
+          "• Many have outdated websites with zero SEO",
+          "• Almost none are optimized for AI search (ChatGPT, Perplexity, Claude)",
+          "• Clients increasingly search for lawyers using AI tools",
+          "• Traditional Google SEO alone isn't enough anymore",
+          "• Firms with good online presence win more high-value cases"
         ]
       },
       {
-        title: "Our Solution",
-        items: [
-          {
-            label: "Document Automation",
-            value: "AI-powered contract generation, template management, and intelligent document assembly. Generate client-ready documents in seconds, not hours."
-          },
-          {
-            label: "Client Intake Automation",
-            value: "Intelligent form processing, case qualification, and automated onboarding workflows. Qualify leads and onboard clients without manual data entry."
-          },
-          {
-            label: "Case Management AI",
-            value: "Automated task routing, deadline tracking, and case status updates. Never miss a deadline, always know case status."
-          },
-          {
-            label: "Communication Automation",
-            value: "Email triage, response templates, and client communication workflows. Handle routine inquiries automatically."
-          },
-          {
-            label: "Integration & Training",
-            value: "Seamless integration with your existing tools. Full team training and ongoing support included."
-          }
-        ]
-      },
-      {
-        title: "Partnership Model",
+        title: "The Partnership Model",
         content: [
-          "<strong>Phase 1: MoU (72 hours)</strong>",
-          "• Free exploration period",
-          "• Define target market (Stockholm law firms)",
-          "• Map revenue opportunities",
-          "• Decide: Continue or walk away",
+          "We don't just sell you a service — we partner to build a business together.",
           "",
-          "<strong>Phase 2: SoW (1 month pilot)</strong>",
+          "<strong>Phase 1: Test & Research</strong>",
+          "• Identify law firm services that could be improved",
+          "• Research Swedish law firm market (Stockholm focus)",
+          "• Test messaging and positioning",
+          "• Validate demand for AEO/GEO services",
+          "",
+          "<strong>Phase 2: Launch & Scale</strong>",
+          "• Sell AEO/GEO optimization to Swedish law firms",
+          "• Kontra Law leads sales (you have the relationships)",
+          "• NordSym delivers the service (we have the tech)",
+          "• Revenue split: NordSym 20% / Kontra Law 80%"
+        ]
+      },
+      {
+        title: "Investment & Process",
+        content: [
+          "<strong>Step 1: MoU (Free, 72 hours)</strong>",
+          "• Sign Memorandum of Understanding (non-binding)",
+          "• Clarify partnership goals and expectations",
+          "• Decide if we're a good fit",
+          "• No cost, no commitment",
+          "",
+          "<strong>Step 2: SoW (1 Month Pilot)</strong>",
           "• <strong>Investment:</strong> 10,000 SEK upfront",
+          "• <strong>Scope:</strong>",
+          "  1. Research & test law firm services that could be improved",
+          "  2. Build AEO/GEO service offering for Swedish law firms",
+          "  3. Test sales messaging and demand validation",
           "• <strong>Revenue Share:</strong> NordSym 20% / Kontra Law 80%",
-          "• Build AEO/GEO infrastructure for Stockholm law firm market",
-          "• Test campaigns, measure results",
-          "• Month-end evaluation",
+          "• <strong>Duration:</strong> 1 month pilot",
           "",
-          "<strong>Phase 3: Evaluate</strong>",
-          "• Kill (no results → end partnership)",
-          "• Pivot (adjust strategy → continue)",
-          "• Scale (strong results → expand)",
+          "<strong>Step 3: Evaluate & Decide</strong>",
+          "After 1 month, we evaluate results:",
+          "• <strong>Kill:</strong> No traction → end partnership (no hard feelings)",
+          "• <strong>Pivot:</strong> Adjust strategy → continue testing",
+          "• <strong>Scale:</strong> Strong results → expand to more law firms",
           "",
-          "<strong>Revenue Share Applies To:</strong>",
-          "Total revenue generated by AEO/GEO services sold to Stockholm law firms through this partnership."
+          "<strong>What Revenue Share Covers:</strong>",
+          "All AEO/GEO services sold to Swedish law firms through this partnership. You sell (leveraging your network), we deliver (tech + execution), we both win."
         ]
       },
       {
-        title: "Why NordSym?",
+        title: "Why Partner With NordSym?",
         content: [
-          "• <strong>AI-Native:</strong> We don't just implement AI — we are AI. Our entire operation runs on agent orchestration.",
-          "• <strong>Legal-Focused:</strong> Experience automating legal workflows for Swedish law firms.",
-          "• <strong>Fast Deployment:</strong> 2-4 weeks from kickoff to live automation (vs 3-6 months for traditional consultants).",
-          "• <strong>No Lock-In:</strong> You own your automations. No proprietary platforms, no vendor lock-in.",
-          "• <strong>Proven Track Record:</strong> Active clients across legal, e-commerce, and B2B services."
+          "• <strong>AEO/GEO Pioneers:</strong> We're not just doing SEO — we're at the forefront of AI search optimization (AEO/GEO).",
+          "• <strong>Low Risk:</strong> 10k SEK pilot + 80% of revenue to you. We only win if you win.",
+          "• <strong>Fast Execution:</strong> 1 month pilot to validate demand, then scale quickly if it works.",
+          "• <strong>You Keep Control:</strong> You lead sales (your network, your relationships). We handle delivery.",
+          "• <strong>Proven Results:</strong> Active clients seeing traffic + visibility growth across traditional and AI search."
         ]
       },
       {
         title: "Next Steps",
         content: [
-          "<strong>1. Discovery Call</strong> — 30-minute session to understand your workflows and pain points (free, no obligation)",
-          "<strong>2. Scope & Quote</strong> — Detailed proposal with exact scope and pricing",
-          "<strong>3. MoU Signature</strong> — Formalize intent to work together",
-          "<strong>4. Kickoff & Delivery</strong> — Start building your automation infrastructure",
+          "<strong>1. Review Proposal</strong> — Read this, discuss internally if needed",
+          "<strong>2. Sign MoU</strong> — Free 72-hour exploration period (non-binding)",
+          "<strong>3. Kickoff Call</strong> — Align on goals, research plan, and timeline",
+          "<strong>4. Execute Pilot</strong> — 1 month of testing and validation",
+          "<strong>5. Evaluate & Decide</strong> — Kill, Pivot, or Scale based on results",
           "",
-          "Ready to explore? Let's schedule a discovery call."
+          "Ready to explore? Let's start with the MoU."
         ]
       }
     ],
