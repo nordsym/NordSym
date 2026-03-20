@@ -89,6 +89,12 @@
 
   const today = fmtDate(new Date());
 
+  // Convert markdown bold (**text**) to HTML <strong>text</strong>
+  function parseBold(text) {
+    if (!text) return text;
+    return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  }
+
   // Build proposal HTML
   let html = [
     '<div class="sow-card"><div class="sow-card-inner">',
@@ -108,7 +114,7 @@
   if (data.problem) {
     html.push(
       '<section class="sow-section">',
-      '<p style="font-size:18px;line-height:1.6;color:var(--text);">' + data.problem + '</p>',
+      '<p style="font-size:18px;line-height:1.6;color:var(--text);">' + parseBold(data.problem) + '</p>',
       '</section>'
     );
   }
@@ -118,7 +124,7 @@
     html.push(
       '<section class="sow-section" style="background:var(--accent-bg);padding:30px;border-radius:12px;border-left:4px solid var(--cyan);">',
       '<h2 style="margin-top:0;">Our Solution</h2>',
-      '<p style="font-size:16px;line-height:1.7;">' + data.solution + '</p>',
+      '<p style="font-size:16px;line-height:1.7;">' + parseBold(data.solution) + '</p>',
       '</section>'
     );
   }
@@ -152,7 +158,7 @@
       }).slice(0, 5);
       
       bullets.forEach(function (line) {
-        html.push('<p style="font-size:15px;line-height:1.7;">' + line + '</p>');
+        html.push('<p style="font-size:15px;line-height:1.7;">' + parseBold(line) + '</p>');
       });
     }
 
@@ -161,8 +167,8 @@
         html.push(
           '<div class="sow-item" style="padding-left:44px;position:relative;">',
           '<i class="ph ph-check-circle" style="position:absolute;left:12px;top:12px;font-size:20px;color:var(--cyan);"></i>',
-          '<strong style="color:var(--cyan);">' + item.label + '</strong>',
-          '<p style="margin:6px 0 0;font-size:14px;line-height:1.6;">' + item.value + '</p>',
+          '<strong style="color:var(--cyan);">' + parseBold(item.label) + '</strong>',
+          '<p style="margin:6px 0 0;font-size:14px;line-height:1.6;">' + parseBold(item.value) + '</p>',
           '</div>'
         );
       });
