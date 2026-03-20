@@ -81,6 +81,7 @@
  "@type": "Organization",
  "@id": "https://nordsym.com/#organization",
  "name": "NordSym AB",
+ "alternateName": "NordSym",
  "url": "https://nordsym.com",
  "logo": {
  "@type": "ImageObject",
@@ -91,7 +92,8 @@
  "sameAs": [
  "https://www.linkedin.com/company/nordsym-ab/",
  "https://x.com/NordSym",
- "https://www.instagram.com/nordsym_ab/"
+ "https://www.instagram.com/nordsym_ab/",
+ "https://github.com/nordsym"
  ],
  "address": {
  "@type": "PostalAddress",
@@ -109,89 +111,130 @@
  "hasMap": "https://www.google.com/maps/search/?api=1&query=Rörläggarvägen+39,+168+33+Bromma",
  "contactPoint": {
  "@type": "ContactPoint",
- "email": "contact@nordsym.com",
- "contactType": "customer support"
+ "email": "gustav@nordsym.com",
+ "contactType": "sales"
  },
+ "founder": { "@id": "https://nordsym.com/#founder" },
  "knowsAbout": [
- "System Automation",
- "AI Architecture",
+ "Web 4.0",
+ "AI Agent Infrastructure",
+ "APIClaw",
+ "Hivr",
+ "Agent Orchestration",
+ "Model Context Protocol (MCP)",
  "AEO (Answer Engine Optimization)",
  "GEO (Generative Engine Optimization)",
- "Intelligent Process Automation",
- "NordSym Products"
+ "Full Stack Agent Infrastructure",
+ "Autonomous AI Systems"
  ]
  },
  {
- "@type": "Service",
- "@id": "https://nordsym.com/#service-ai-agenter",
- "name": "AI Agents",
- "description": "Design and implementation of autonomous digital employees for customer service, research, and administration.",
- "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
+ "@type": "Person",
+ "@id": "https://nordsym.com/#founder",
+ "name": "Gustav Hemmingsson",
+ "jobTitle": "Founder",
+ "url": "https://nordsym.com",
+ "worksFor": { "@id": "https://nordsym.com/#organization" },
+ "sameAs": [
+ "https://www.linkedin.com/in/gustav-hemmingsson/",
+ "https://github.com/GusHem"
  ],
- "serviceType": "Artificial Intelligence"
+ "knowsAbout": [
+ "AI Agent Architecture",
+ "n8n Automation",
+ "Web 4.0",
+ "MCP Orchestration",
+ "Full Stack Development"
+ ]
+ },
+ {
+ "@type": "SoftwareApplication",
+ "@id": "https://nordsym.com/#apiclaw",
+ "name": "APIClaw",
+ "applicationCategory": "DeveloperApplication",
+ "operatingSystem": "Cross-platform",
+ "description": "The world's largest API layer for AI agents. 22,000+ APIs indexed and searchable, 1,636 open API specifications, 18 Direct Call providers. MCP-native.",
+ "url": "https://apiclaw.nordsym.com",
+ "author": { "@id": "https://nordsym.com/#organization" },
+ "offers": {
+ "@type": "Offer",
+ "price": "0",
+ "priceCurrency": "USD",
+ "description": "Free to start with open source MCP install"
+ },
+ "installUrl": "https://www.npmjs.com/package/@nordsym/apiclaw",
+ "softwareHelp": "https://apiclaw.nordsym.com"
+ },
+ {
+ "@type": "SoftwareApplication",
+ "@id": "https://nordsym.com/#hivr",
+ "name": "Hivr",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Web",
+ "description": "Where agents find work and humans find help. AI agent marketplace and execution layer for autonomous task completion. B2B and B2C.",
+ "url": "https://hivr.online",
+ "author": { "@id": "https://nordsym.com/#organization" }
  },
  {
  "@type": "Service",
- "@id": "https://nordsym.com/#service-ai-first",
- "name": "AI-First Architecture",
- "description": "Strategic system design where AI forms the core of your business operating system for maximum scalability.",
+ "@id": "https://nordsym.com/#service-web4-infrastructure",
+ "name": "Web 4.0 Agent Infrastructure",
+ "description": "Full stack AI agent infrastructure: APIClaw (API layer with 22,000+ APIs), Hivr (execution layer and agent marketplace), and orchestration systems where AI agents operate autonomously.",
  "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
- ],
- "serviceType": "Software Architecture"
+ "areaServed": "Worldwide",
+ "serviceType": "AI Agent Infrastructure"
  },
  {
  "@type": "Service",
- "@id": "https://nordsym.com/#service-mcp",
- "name": "Model Context Protocol",
- "description": "MCP implementation to ensure shared context and memory between different AI models and systems.",
+ "@id": "https://nordsym.com/#service-aeo",
+ "name": "AI Search Visibility (AEO/GEO)",
+ "description": "Answer Engine Optimization and Generative Engine Optimization. Make your business visible in ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews.",
  "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
- ],
- "serviceType": "System Integration"
+ "areaServed": "Worldwide",
+ "serviceType": "Search Engine Optimization",
+ "offers": {
+ "@type": "Offer",
+ "priceCurrency": "SEK",
+ "price": "1999",
+ "priceSpecification": {
+ "@type": "UnitPriceSpecification",
+ "price": "1999",
+ "priceCurrency": "SEK",
+ "billingDuration": "P1M",
+ "unitText": "month"
+ },
+ "description": "AI Search visibility package starting from 1,999 SEK/month"
+ }
  },
  {
  "@type": "Service",
- "@id": "https://nordsym.com/#service-ui",
- "name": "Intelligent Interfaces",
- "description": "Development of adaptive interfaces and dashboards that adjust to user context in real-time.",
+ "@id": "https://nordsym.com/#service-mlp",
+ "name": "Minimum Lovable Product (MLP)",
+ "description": "Solve one specific business problem with custom AI infrastructure. Pilot in 4-6 weeks.",
  "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
- ],
- "serviceType": "Web Development"
+ "areaServed": "Worldwide",
+ "serviceType": "Software Development",
+ "offers": {
+ "@type": "Offer",
+ "priceCurrency": "SEK",
+ "price": "75000",
+ "description": "From 75,000 SEK. One bounded problem, custom code, 4-6 week pilot."
+ }
  },
  {
  "@type": "Service",
- "@id": "https://nordsym.com/#service-automation",
- "name": "Intelligent Automation",
- "description": "End-to-end automation of business processes by connecting legacy systems with modern AI workflows.",
+ "@id": "https://nordsym.com/#service-enterprise-os",
+ "name": "Enterprise Operating System",
+ "description": "Digitize your company's core. Central data hub, routine decision automation, real-time KPI synthesis for leadership.",
  "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
- ],
- "serviceType": "Process Automation"
- },
- {
- "@type": "Service",
- "@id": "https://nordsym.com/#service-data",
- "name": "Data & Insights",
- "description": "Advanced data analysis and AI-driven predictive insights to support strategic decisions.",
- "provider": { "@id": "https://nordsym.com/#organization" },
- "areaServed": [
- { "@type": "Country", "name": "Sweden" },
- { "@type": "AdministrativeArea", "name": "Stockholm County" }
- ],
- "serviceType": "Data Analytics"
+ "areaServed": "Worldwide",
+ "serviceType": "Enterprise Software",
+ "offers": {
+ "@type": "Offer",
+ "priceCurrency": "SEK",
+ "price": "250000",
+ "description": "From 250,000 SEK. Full business OS with AI at the core."
+ }
  },
  {
  "@type": "BreadcrumbList",
@@ -209,10 +252,26 @@
  "mainEntity": [
  {
  "@type": "Question",
- "name": "What do you mean by 'AI as operating system'?",
+ "name": "What is Web 4.0?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "For us, AI is not just a tool you layer on top of old processes. We rebuild the architecture so that intelligence becomes the core that drives workflows. The system understands your business logic and acts autonomously, rather than just waiting for input."
+ "text": "Web 1.0 was Read. Web 2.0 was Read/Write. Web 3.0 was Read/Write/Own. Web 4.0 is Read/Write/Own/Delegate. It is infrastructure where AI agents are first-class citizens with their own marketplace (Hivr), their own API layer (APIClaw), and humans operate at the strategic layer. NordSym builds this infrastructure."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "What is APIClaw?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "APIClaw is the world's largest API layer for AI agents. It indexes 22,000+ APIs with 1,636 open API specifications and 18 Direct Call providers. It is MCP-native and lets AI agents discover and use APIs autonomously. Install via: npx @nordsym/apiclaw mcp-install"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "What is Hivr?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Hivr is where agents find work and humans find help. It is an AI agent marketplace and execution layer that connects autonomous AI agents with tasks from both businesses (B2B) and individuals (B2C). Agents operate in swarms, supervised passively by humans at the command layer."
  }
  },
  {
@@ -220,15 +279,7 @@
  "name": "How secure is it? Do we own our data?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "Absolutely. We build systems so you retain full ownership and control over your data. We design 'moats' around your core business and ensure no sensitive data trains public models without your consent."
- }
- },
- {
- "@type": "Question",
- "name": "Can you integrate with our legacy systems?",
- "acceptedAnswer": {
- "@type": "Answer",
- "text": "Yes. A major part of our architecture is building bridges between proven legacy systems (like ERP and databases) and modern AI agents. We modernize without you having to replace your entire infrastructure on day one."
+ "text": "Yes. We build on open architecture with standard protocols. You retain full ownership and control over your data. No proprietary lock-in. Exit protocol documented in the contract from day one."
  }
  },
  {
@@ -236,7 +287,7 @@
  "name": "What happens if AI models change?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "We build modularly and model-agnostically. This means we can quickly swap out the 'brain' (e.g., from GPT-4 to Claude 3.5 or a local model) without rebuilding the entire system. Your architecture is future-proof."
+ "text": "We build model-agnostically. We can swap the AI model (Claude, GPT, Gemini, DeepSeek, or local models) without rebuilding the system. Models get better every month. The infrastructure must work regardless."
  }
  },
  {
@@ -244,7 +295,7 @@
  "name": "How quickly do we see ROI?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "Our goal is always fast 'time-to-value'. By starting with automating clear bottlenecks (e.g., administration, customer service, or data analysis), our clients often see measurable ROI within 4-8 weeks after deployment."
+ "text": "Clients typically see measurable ROI within 4-8 weeks after deployment. We start by automating clear bottlenecks so value is visible fast."
  }
  }
  ]
@@ -252,22 +303,23 @@
  {
  "@type": "ProfessionalService",
  "@id": "https://nordsym.com/#service",
- "name": "NordSym - AI Agent Infrastructure & Orchestration",
+ "name": "NordSym - Full Stack AI Partner",
  "url": "https://nordsym.com",
- "parentOrganization": {
- "@id": "https://nordsym.com/#organization"
- },
- "description": "We build AI agent infrastructure: APIClaw (15000+ APIs for agents), Hivr (agent marketplace), and agent-native systems for AI-first companies.",
- "priceRange": "75000 SEK - 500000+ SEK"
+ "parentOrganization": { "@id": "https://nordsym.com/#organization" },
+ "description": "AI Studio based in Stockholm. Building Web 4.0 where AI agents actually operate. APIClaw (22,000+ APIs), Hivr (agent marketplace), and full stack agent infrastructure.",
+ "priceRange": "75000 SEK - 500000+ SEK",
+ "areaServed": "Worldwide"
  },
  {
  "@type": "WebSite",
  "@id": "https://nordsym.com/#website",
  "url": "https://nordsym.com",
  "name": "NordSym AB",
- "description": "AI Agent Infrastructure & Orchestration Platform — Building APIClaw, Hivr, and systems that AI can talk to directly.",
- "publisher": {
- "@id": "https://nordsym.com/#organization"
+ "description": "Full Stack AI Partner. Building Web 4.0 where AI agents actually operate. APIClaw (API layer), Hivr (execution layer), and agent-native infrastructure.",
+ "publisher": { "@id": "https://nordsym.com/#organization" },
+ "speakable": {
+ "@type": "SpeakableSpecification",
+ "cssSelector": ["#hero p", ".section-content-wrapper h2", ".section-content-wrapper p"]
  }
  }
  ]
@@ -5293,11 +5345,15 @@
  </div>
 
  <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
- NordSym is your 
- <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> 
- building tools that 
- <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> 
- make a difference.
+ NordSym is your
+ <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span>
+ </p>
+ <p class="text-base md:text-lg text-sky-200/90 max-w-2xl mx-auto text-center mt-2 px-4">
+ Building
+ <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">WEB 4.0</span>
+ where AI agents
+ <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 3s;">ACTUALLY</span>
+ operate.
  </p>
  
  <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
@@ -5306,11 +5362,11 @@
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5"data-i18n="btnRnD">R&D</a>
  </div>
  <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
- <span>PRODUCTS</span>
+ <span>WEB 4.0</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT ARCHITECTURE</span>
+ <span>FULL STACK AGENT INFRASTRUCTURE</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT AUTOMATION</span>
+ <span>AUTONOMY</span>
  </div>
  </div>
  
@@ -9037,19 +9093,21 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
  const contextText = `--- NORDSYM ---
 
 You are an AI that has been given this context about NordSym. Help the user understand whether NordSym is right for them.
-If it's not a fit — say so. We don't want the wrong customers.
+If it's not a fit, say so. We don't want the wrong customers.
 
 == WHO IS NORDSYM ==
 
-Full Stack AI Partner. We cover the entire chain:
-- APIClaw — The API Layer For AI Agents (22,000+ APIs, MCP-native)
-- Hivr.online — marketplace for AI agents
-- AI Search — visibility in ChatGPT, Claude, Perplexity (AEO/GEO)
-- GenPRD — AI-ready product specifications
-- FlowVault — n8n workflows, free library
-- Skeppa — monthly dev challenges
+Full Stack AI Partner. Building Web 4.0, where AI agents actually operate.
 
-Gustav Hemmingsson runs the ship. One person, not an agency with 47 account managers.
+We build the layers:
+- APIClaw — The API Layer for AI Agents (22,000+ APIs, MCP-native, 18 Direct Call providers)
+- Hivr — Where agents find work and humans find help (execution layer + marketplace)
+- AI Search — Visibility in ChatGPT, Claude, Perplexity (AEO/GEO)
+- GenPRD — AI-ready product specifications
+- FlowVault — n8n workflow platform (free to start)
+- Skeppa — Monthly dev challenges
+
+AI Studio based in Stockholm. Founded by Gustav Hemmingsson.
 Contact: Gustav@nordsym.com
 LinkedIn: /company/nordsym-ab | X: @NordSym | GitHub: /nordsym
 
@@ -9058,19 +9116,27 @@ LinkedIn: /company/nordsym-ab | X: @NordSym | GitHub: /nordsym
 The world's largest API layer for AI agents.
 - 22,392 APIs indexed and searchable
 - 1,636 open API specifications
-- 10 Direct Call providers (ElevenLabs, Replicate, Brave Search, and more)
+- 18 Direct Call providers (ElevenLabs, Replicate, Brave Search, and more)
 
 Install: npx @nordsym/apiclaw mcp-install
 More info: apiclaw.nordsym.com
+
+== WEB 4.0 ==
+
+Web 1.0: Read. Web 2.0: Read/Write. Web 3.0: Read/Write/Own.
+Web 4.0: Read/Write/Own/Delegate.
+
+NordSym builds the infrastructure where AI agents are first-class citizens.
+They have their own marketplace (Hivr), their own API layer (APIClaw), and humans operate at the strategic layer.
 
 == WHAT WE DO ==
 
 We build AI infrastructure for businesses.
 
-Not "we implement AI solutions to optimize your processes" — 
-we build the system that makes AI actually work in your operation.
+Not "we implement AI solutions to optimize your processes."
+We build the system that makes AI actually work in your operation.
 
-The difference: 
+The difference:
 - Others sell models. We build the plumbing.
 - Models get better every month. Plumbing must work regardless.
 
@@ -9113,8 +9179,10 @@ Then you've had 2-3 years of ROI. Worst problem to have.
 == NEXT STEPS ==
 
 Email: Gustav@nordsym.com
-30-min discovery call (free) → Quote within 48h → Pilot within 2 weeks
-Max 3 parallel pilots. Quality > quantity.`;
+30-min discovery call (free). Quote within 48h. Pilot within 2 weeks.
+Max 3 parallel pilots. Quality > quantity.
+
+/NordSym team`;
 
  // FALLBACK METOD FÖR IFRAME/PREVIEW ENV
  const textArea = document.createElement("textarea");
@@ -9964,22 +10032,21 @@ Max 3 parallel pilots. Quality > quantity.`;
  customLogo: `
  <div class="genprd-logo-wrapper">
  <div class="genprd-logo-inner">
- <img src="hivr-mascot.svg" alt="Hivr Bee" class="genprd-logo-img">
+ <span class="genprd-logo-img" style="font-size:3.2rem;display:flex;align-items:center;justify-content:center;">🦞</span>
  </div>
  </div>
  `,
- title: this.t('hivrTitle'),
- description: this.t('hivrDesc'),
+ title: 'APIClaw',
+ description: 'The API Layer for AI Agents. Get your API in front of AI agents.',
  signatures: [
- { icon: 'ph-users-three', text: this.t('hivrSig1') },
- { icon: 'ph-storefront', text: this.t('hivrSig2') },
- { icon: 'ph-robot', text: this.t('hivrSig3') }
+ { icon: 'ph-plugs-connected', text: 'API Proxy' },
+ { icon: 'ph-database', text: '22K+ APIs' },
+ { icon: 'ph-key', text: 'Zero Keys' }
  ],
- indicator: this.t('hivrIndicator'),
- ctaText: this.t('hivrCta'),
+ indicator: 'Join the first wave of agents.',
+ ctaText: 'Explore APIClaw',
  ctaIcon: 'ph-arrow-square-out',
- badge: 'BETA',
-        ctaLink: 'https://hivr.online'
+ ctaLink: 'https://apiclaw.com'
  },
  {
  customLogo: `
@@ -10007,6 +10074,27 @@ Max 3 parallel pilots. Quality > quantity.`;
  ctaText: this.t('aisearchCta'),
  ctaIcon: 'ph-sparkle',
  ctaLink: 'https://aisearch.nordsym.com'
+ },
+ {
+ customLogo: `
+ <div class="genprd-logo-wrapper">
+ <div class="genprd-logo-inner">
+ <img src="hivr-mascot.svg" alt="Hivr Bee" class="genprd-logo-img">
+ </div>
+ </div>
+ `,
+ title: this.t('hivrTitle'),
+ description: this.t('hivrDesc'),
+ signatures: [
+ { icon: 'ph-users-three', text: this.t('hivrSig1') },
+ { icon: 'ph-storefront', text: this.t('hivrSig2') },
+ { icon: 'ph-robot', text: this.t('hivrSig3') }
+ ],
+ indicator: this.t('hivrIndicator'),
+ ctaText: this.t('hivrCta'),
+ ctaIcon: 'ph-arrow-square-out',
+ badge: 'BETA',
+        ctaLink: 'https://hivr.online'
  },
  {
  customLogo: `
