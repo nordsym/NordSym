@@ -77,118 +77,132 @@ window.NORDSYM_PROPOSAL_DATA = {
     customerName: "AIX Commerce AB (Svenskmaskin.se)",
     customerRep: "Charlie Ejerholm",
     customerEmail: "support@svenskmaskin.se",
-    vertical: "SEO/AEO/GEO for Svenskmaskin.se",
-    problem: "E-commerce visibility in both traditional search (Google) and AI search (ChatGPT, Perplexity, Claude) — need to dominate both.",
-    solution: "Complete SEO + AEO/GEO optimization for svenskmaskin.se — from technical foundation to AI search visibility, ensuring you show up wherever customers are searching.",
+    vertical: "SEO/AEO/GEO Optimization Services",
+    problem: "Following our phone conversation, this proposal outlines the SEO + AEO/GEO optimization services for svenskmaskin.se.",
+    solution: "Complete visibility optimization for both traditional search (Google) and AI search (ChatGPT, Perplexity, Claude) — ensuring svenskmaskin.se dominates wherever Swedish workshops are searching for tools.",
     sections: [
       {
-        title: "Your Current Visibility",
+        title: "Site Analysis Summary",
         content: [
-          "<strong>We analyzed svenskmaskin.se. Here's what we found:</strong>",
+          "<strong>We've completed a comprehensive analysis of svenskmaskin.se:</strong>",
           "",
-          "🚨 <strong>AI Search Visibility: 3/10</strong>",
-          "• When Swedish workshops search \"bästa verktygslåda\" in ChatGPT → <strong>you don't show up</strong>",
-          "• Zero contextual content (buying guides, comparisons, FAQs)",
-          "• Thin product descriptions (~50 words vs competitors' 300+)",
-          "• Missing review schema markup (even though you have testimonials!)",
+          "<strong>Current State:</strong>",
+          "• AI Search Visibility: 3/10 (minimal presence in ChatGPT/Perplexity)",
+          "• Traditional SEO: 6/10 (solid Shopify foundation, optimization gaps)",
           "",
-          "🔍 <strong>Traditional SEO: 6/10</strong>",
-          "• Solid Shopify foundation ✓",
-          "• Generic homepage title (\"Svenskmaskin.se\" instead of keywords)",
-          "• No category descriptions (missed keyword opportunities)",
-          "• Zero blog/content section (can't rank for \"bästa verktygslåda 2026\")",
+          "<strong>Key Opportunities:</strong>",
+          "• Product descriptions need expansion (currently ~50 words, recommend 300-500)",
+          "• Missing contextual content (buying guides, FAQs, comparisons)",
+          "• Schema markup needs enhancement (review aggregates, FAQ schema)",
+          "• Category pages lack optimized descriptions",
+          "• No blog/content section for long-tail traffic",
           "",
-          "<strong>Result:</strong> You're losing traffic to competitors who show up in both Google AND AI search."
+          "<strong>Competitive Advantage:</strong>",
+          "Most tool retailers only optimize for Google. By optimizing for both traditional and AI search, svenskmaskin.se gains significant edge in modern search landscape."
         ]
       },
       {
-        title: "The Opportunity",
-        content: [
-          "Swedish workshops are searching for tools in two places:",
-          "• <strong>Google:</strong> \"weber verktygslåda 106 delar\"",
-          "• <strong>ChatGPT/Perplexity:</strong> \"vilken verktygslåda passar motorcykelverkstad?\"",
-          "",
-          "Most competitors only optimize for Google. Fix both = <strong>massive competitive advantage.</strong>",
-          "",
-          "<strong>Potential Impact:</strong>",
-          "• 3-5x organic traffic within 6 months",
-          "• 60-80% citation chance in AI search for \"verktygslåda weber\"",
-          "• Even 50 extra orders/month = <strong>150,000 SEK/month revenue increase</strong>",
-          "• ROI: 6x return on 30k investment by month 6"
-        ]
-      },
-      {
-        title: "What We'll Fix",
+        title: "Scope of Work",
         items: [
           {
-            label: "Phase 1: Quick Wins (Week 1-2)",
-            value: "• Expand 20 product descriptions to 300-500 words (currently ~50)<br>• Add 30-question FAQ section<br>• Implement review schema for testimonials<br>• Add keyword-optimized category descriptions<br><strong>Result: AI visibility 3/10 → 5/10</strong>"
+            label: "1. Technical SEO Foundation",
+            value: "• Site structure audit + optimization<br>• Schema markup enhancement (Product, Review, FAQ, Organization)<br>• Page speed optimization<br>• Mobile performance verification<br>• XML sitemap optimization"
           },
           {
-            label: "Phase 2: Content Depth (Week 3-4)",
-            value: "• Create comprehensive buying guide (\"Svenskmaskin.se Köpguide 2026\")<br>• Build comparison pages (106 vs 154 vs 300-piece tool sets)<br>• Add industry-specific use cases (motorcycle/automotive workshops)<br>• Optimize homepage title + meta for keywords<br><strong>Result: SEO 6/10 → 7.5/10, AI visibility 5/10 → 7/10</strong>"
+            label: "2. Content Optimization",
+            value: "• Expand 20 product descriptions to 300-500 words<br>• Add keyword-optimized category descriptions (4 main categories)<br>• Create comprehensive FAQ section (30 questions)<br>• Optimize title tags + meta descriptions site-wide<br>• Internal linking strategy implementation"
           },
           {
-            label: "Phase 3: AI Search Optimization",
-            value: "• Enhanced structured data (Product, Review, FAQ schemas)<br>• Contextual content that AI engines cite<br>• Long-form product guides<br>• Internal linking strategy<br><strong>Result: Show up when workshops ask ChatGPT for tool recommendations</strong>"
+            label: "3. AEO/GEO Implementation",
+            value: "• Buying guide: \"Svenskmaskin.se Köpguide 2026\"<br>• Comparison content (tool set sizes, use cases)<br>• Industry-specific guides (motorcycle/automotive workshops)<br>• Contextual content that AI engines cite<br>• Answer-engine optimization"
           },
           {
-            label: "Phase 4: Authority Building",
-            value: "• Swedish industry backlinks (10 high-quality links)<br>• Workshop organization content<br>• Tool maintenance guides<br>• Professional use case documentation<br><strong>Result: Establish svenskmaskin.se as THE Swedish tool resource</strong>"
+            label: "4. Authority Building",
+            value: "• Strategic backlink acquisition (10 high-quality Swedish industry links)<br>• Directory submissions (relevant Swedish business directories)<br>• Professional use case documentation<br>• Workshop organization content"
+          },
+          {
+            label: "5. Performance Tracking & Reporting",
+            value: "• Google Search Console setup/verification<br>• Analytics configuration<br>• Monthly performance report (rankings, traffic, conversions)<br>• AI search visibility monitoring<br>• Ongoing optimization recommendations"
           }
         ]
       },
       {
-        title: "Investment",
+        title: "Investment & Timeline",
         content: [
-          "<strong>Fixed Price:</strong> 30,000 SEK",
+          "<strong>Total Investment:</strong> 30,000 SEK (fixed price)",
+          "",
+          "<strong>Payment Terms:</strong>",
           "• 50% (15,000 SEK) at project start",
-          "• 50% (15,000 SEK) at delivery",
+          "• 50% (15,000 SEK) at final delivery",
           "",
-          "<strong>Timeline:</strong> 4-6 weeks",
+          "<strong>Project Timeline:</strong> 4-6 weeks from kickoff",
           "",
-          "<strong>Deliverables:</strong>",
-          "• Complete SEO audit + fixes",
-          "• AEO/GEO implementation",
-          "• Content optimization (20 pages)",
-          "• Link building (10 high-quality backlinks)",
-          "• Performance report + ongoing recommendations",
+          "<strong>Core Deliverables:</strong>",
+          "• Complete site audit report (technical SEO + AEO/GEO analysis)",
+          "• 20 product pages optimized (300-500 word descriptions)",
+          "• 4 category descriptions (200-300 words each)",
+          "• Comprehensive FAQ section (30 questions)",
+          "• Buying guide + comparison content",
+          "• Enhanced schema markup implementation",
+          "• 10 high-quality Swedish backlinks",
+          "• Performance tracking setup (Analytics + Search Console)",
+          "• Final report with ongoing recommendations",
           "",
-          "<strong>Optional Upsell:</strong>",
-          "• <strong>Blog Management:</strong> 3,000 SEK/month",
+          "<strong>Optional Add-On:</strong>",
+          "• <strong>Ongoing Blog Management:</strong> 3,000 SEK/month",
           "• 4 SEO-optimized blog posts per month",
-          "• Drives long-tail traffic + builds authority",
+          "• Long-tail traffic generation + authority building",
           "• Month-to-month, cancel anytime"
         ]
       },
       {
-        title: "Why NordSym?",
+        title: "Expected Results",
         content: [
-          "• <strong>Dual Expertise:</strong> We don't just do SEO — we're pioneers in AEO/GEO (AI search optimization).",
-          "• <strong>E-commerce Focus:</strong> We understand product pages, category optimization, conversion.",
-          "• <strong>Swedish Market:</strong> All optimization tailored for Swedish audience + search behavior.",
-          "• <strong>AI-Native:</strong> We use AI to build faster, optimize smarter, deliver better results.",
-          "• <strong>Proven Results:</strong> Active clients seeing traffic growth + AI search visibility."
+          "<strong>Phase 1 (Weeks 1-2):</strong>",
+          "• AI visibility: 3/10 → 5/10",
+          "• Technical SEO issues resolved",
+          "• Product content optimized",
+          "",
+          "<strong>Phase 2 (Weeks 3-4):</strong>",
+          "• Traditional SEO: 6/10 → 7.5/10",
+          "• AI visibility: 5/10 → 7/10",
+          "• Contextual content in place",
+          "",
+          "<strong>3-6 Months Post-Launch:</strong>",
+          "• 3-5x organic traffic increase (estimated)",
+          "• 60-80% citation rate in AI search for \"verktygslåda weber\"",
+          "• Improved rankings for \"bästa verktygslåda\" and related terms",
+          "• Enhanced conversion through better product content",
+          "",
+          "<strong>Revenue Impact Estimate:</strong>",
+          "50 additional orders/month × 3,000 SEK average = 150,000 SEK/month additional revenue",
+          "",
+          "<em>Note: Results are estimates based on industry benchmarks and svenskmaskin.se's current baseline. Actual results may vary based on market conditions and competition.</em>"
         ]
       },
       {
         title: "Next Steps",
         content: [
-          "<strong>1. Accept Proposal</strong> — Reply 'Yes' to this proposal",
-          "<strong>2. Invoice</strong> — We send invoice for 50% (15,000 SEK)",
-          "<strong>3. Kickoff</strong> — Audit + strategy session (1 hour)",
-          "<strong>4. Execution</strong> — 4-6 weeks of optimization work",
-          "<strong>5. Delivery</strong> — Final 50% invoice + full report + handover",
+          "<strong>To proceed:</strong>",
           "",
-          "Ready to dominate both Google AND AI search?"
+          "1. <strong>Accept Proposal</strong> — Confirm via email or phone",
+          "2. <strong>Receive Invoice</strong> — 50% deposit (15,000 SEK)",
+          "3. <strong>Kickoff Meeting</strong> — 1-hour strategy session (virtual)",
+          "4. <strong>Execution</strong> — 4-6 weeks of optimization work",
+          "5. <strong>Final Delivery</strong> — Complete report + handover + final invoice (15,000 SEK)",
+          "",
+          "<strong>Questions?</strong> Contact Molle:",
+          "• Email: molle@nordsym.com",
+          "• Phone: +46 70 786 66 65"
         ]
       }
     ],
     cta: {
       primary: "Accept Proposal",
-      secondary: "Schedule Call with Molle"
+      secondary: "Contact Molle"
     },
     validUntil: "April 20, 2026",
-    flow: "Proposal → Accept → Invoice → Delivery"
+    proposalDate: "March 20, 2026",
+    flow: "Proposal → Accept → Invoice (50%) → Execution (4-6 weeks) → Delivery + Invoice (50%)"
   }
 };
