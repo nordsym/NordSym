@@ -94,6 +94,13 @@
     '<div class="sow-card"><div class="sow-card-inner">',
     '<h1 class="sow-title">NordSym × ' + data.customerName + '</h1>',
     '<p class="sow-sub">' + data.vertical + '</p>',
+    '<div style="background:linear-gradient(135deg,var(--cyan),var(--purple));padding:20px;border-radius:12px;text-align:center;margin:25px 0;box-shadow:0 4px 20px rgba(0,212,255,0.2);">',
+    '<h3 style="margin:0;font-size:24px;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;">',
+    '<i class="ph ph-lightning" style="font-size:28px;"></i>',
+    'Time is Energy',
+    '</h3>',
+    '<p style="margin:8px 0 0;color:rgba(255,255,255,0.9);font-size:14px;">Fast execution. Clear deliverables. Real results.</p>',
+    '</div>',
     '<div class="sow-bar"></div>',
   ];
 
@@ -116,21 +123,46 @@
     );
   }
 
+  // Icon mapping for sections
+  function getSectionIcon(title) {
+    const lower = title.toLowerCase();
+    if (lower.includes('opportunity') || lower.includes('challenge')) return 'ph-target';
+    if (lower.includes('partnership') || lower.includes('solution')) return 'ph-handshake';
+    if (lower.includes('investment') || lower.includes('process')) return 'ph-currency-dollar';
+    if (lower.includes('why')) return 'ph-star';
+    if (lower.includes('next')) return 'ph-rocket';
+    return 'ph-circle';
+  }
+
   // Sections
   data.sections.forEach(function (section) {
-    html.push('<section class="sow-section"><h2>' + section.title + '</h2>');
+    const icon = getSectionIcon(section.title);
+    html.push(
+      '<section class="sow-section">',
+      '<h2 style="display:flex;align-items:center;gap:12px;">',
+      '<i class="ph ' + icon + '" style="font-size:32px;color:var(--cyan);"></i>',
+      '<span>' + section.title + '</span>',
+      '</h2>'
+    );
     
     if (section.content) {
-      section.content.forEach(function (line) {
-        html.push('<p>' + line + '</p>');
+      // Limit to max 5 bullets for cleaner display
+      const bullets = section.content.filter(function(line) { 
+        return line.trim() && !line.startsWith('<strong>');
+      }).slice(0, 5);
+      
+      bullets.forEach(function (line) {
+        html.push('<p style="font-size:15px;line-height:1.7;">' + line + '</p>');
       });
     }
 
     if (section.items) {
       section.items.forEach(function (item) {
         html.push(
-          '<div class="sow-item">',
-          '<strong>' + item.label + ':</strong> ' + item.value,
+          '<div class="sow-item" style="padding-left:44px;position:relative;">',
+          '<i class="ph ph-check-circle" style="position:absolute;left:12px;top:12px;font-size:20px;color:var(--cyan);"></i>',
+          '<strong style="color:var(--cyan);">' + item.label + '</strong>',
+          '<p style="margin:6px 0 0;font-size:14px;line-height:1.6;">' + item.value + '</p>',
           '</div>'
         );
       });
@@ -158,16 +190,32 @@
     html.push('</section>');
   });
 
+  // Next Step Section
+  html.push(
+    '<div class="sow-section">',
+    '<h2 class="sow-section-title"><i class="ph ph-arrow-right"></i> Next Step</h2>',
+    '<p>After expressing interest, you\'ll receive an MoU (Memorandum of Understanding) for 72-hour exploration period.</p>',
+    '<p><strong>⚡ Fast decisions win.</strong> Sign MoU → Pilot SoW → Launch together.</p>',
+    '<p><a href="/mou/' + customerId + '" class="sow-link">Preview MoU →</a></p>',
+    '</div>'
+  );
+
   // CTA Section
   if (data.cta) {
     html.push(
-      '<section class="sow-section" style="text-align:center;background:var(--accent-bg);padding:40px;border-radius:12px;">',
-      '<h2>Ready to Get Started?</h2>',
-      '<p style="font-size:16px;margin-bottom:30px;">Let\'s discuss how we can automate your operations.</p>',
+      '<section class="sow-section" style="text-align:center;background:var(--accent-bg);padding:40px;border-radius:12px;border:2px solid var(--cyan);">',
+      '<h2 style="display:flex;align-items:center;justify-content:center;gap:12px;">',
+      '<i class="ph ph-lightning-fill" style="font-size:32px;color:var(--cyan);"></i>',
+      'Ready to Get Started?',
+      '</h2>',
+      '<p style="font-size:16px;margin-bottom:30px;">Fast execution. Clear results. Let\'s move.</p>',
       '<div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">',
-      '<a href="mailto:gustav@nordsym.com?subject=Discovery Call Request - ' + data.customerName + '" class="sow-btn" style="text-decoration:none;display:inline-block;">' + data.cta.primary + '</a>',
+      '<a href="mailto:gustav@nordsym.com?subject=Discovery Call Request - ' + data.customerName + '" class="sow-btn" style="text-decoration:none;display:inline-block;display:flex;align-items:center;gap:8px;">',
+      '<i class="ph ph-rocket-launch"></i>',
+      data.cta.primary,
+      '</a>',
       '</div>',
-      '<p style="margin-top:20px;font-size:14px;color:var(--muted);">Proposal valid until ' + data.validUntil + '</p>',
+      '<p style="margin-top:20px;font-size:14px;color:var(--muted);">⚡ Proposal valid until ' + data.validUntil + '</p>',
       '</section>'
     );
   }

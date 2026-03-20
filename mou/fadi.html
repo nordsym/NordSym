@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/nordsym-logo-transparent.png" type="image/png">
+  <title>NordSym X Kontra Law Firm - MoU</title>
+  <link rel="stylesheet" href="/sow/sow.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* MoU-specific countdown styles */
+    .mou-countdown {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 12px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .mou-countdown.expired {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .mou-countdown-label {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    .mou-countdown-timer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 36px;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+    }
+    .mou-time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .mou-time-unit small {
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+    .mou-time-sep {
+      opacity: 0.6;
+    }
+    @media (max-width: 640px) {
+      .mou-countdown-timer {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body class="light-theme" data-customer-id="fadi">
+  <div class="sow-wrap">
+    <div class="sow-header">
+      <a class="sow-home" href="/">← nordsym.com</a>
+      <div class="sow-brand"><img class="sow-logo" src="/nordsym-logo-transparent.png" alt="NordSym logo">Memorandum of Understanding</div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="ph-fill ph-moon"></i></button>
+    </div>
+    <div id="mou-root"></div>
+  </div>
+  <script src="/mou/mou-data.js"></script>
+  <script src="/mou/mou.js"></script>
+</body>
+</html>
