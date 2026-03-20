@@ -12,6 +12,8 @@
     { "source": "/sow/upwork", "destination": "/sow/lazy-genius.html" },
     { "source": "/sow/lazy-genius", "destination": "/sow/lazy-genius.html" },
     { "source": "/sow/success", "destination": "/sow/success.html" },
+    { "source": "/proposal/fadi", "destination": "/proposal/fadi.html" },
+    { "source": "/proposal/charlie", "destination": "/proposal/charlie.html" },
     { "source": "/agent-info", "destination": "/api/agent-info" },
     { "source": "/contact", "destination": "/api/contact" },
     { "source": "/audit", "destination": "/api/audit" },
