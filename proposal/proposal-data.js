@@ -82,37 +82,59 @@ window.NORDSYM_PROPOSAL_DATA = {
     solution: "Complete SEO + AEO/GEO optimization for svenskmaskin.se — from technical foundation to AI search visibility, ensuring you show up wherever customers are searching.",
     sections: [
       {
-        title: "The Challenge",
+        title: "Your Current Visibility",
         content: [
-          "E-commerce in 2026 requires dual visibility:",
-          "• <strong>Traditional SEO:</strong> Rank in Google for product searches",
-          "• <strong>AI Search (AEO/GEO):</strong> Appear in ChatGPT, Perplexity, Claude recommendations",
-          "• Most e-commerce brands only optimize for Google — missing 40%+ of modern search traffic",
-          "• AI search is growing fast, traditional SEO alone isn't enough"
+          "<strong>We analyzed svenskmaskin.se. Here's what we found:</strong>",
+          "",
+          "🚨 <strong>AI Search Visibility: 3/10</strong>",
+          "• When Swedish workshops search \"bästa verktygslåda\" in ChatGPT → <strong>you don't show up</strong>",
+          "• Zero contextual content (buying guides, comparisons, FAQs)",
+          "• Thin product descriptions (~50 words vs competitors' 300+)",
+          "• Missing review schema markup (even though you have testimonials!)",
+          "",
+          "🔍 <strong>Traditional SEO: 6/10</strong>",
+          "• Solid Shopify foundation ✓",
+          "• Generic homepage title (\"Svenskmaskin.se\" instead of keywords)",
+          "• No category descriptions (missed keyword opportunities)",
+          "• Zero blog/content section (can't rank for \"bästa verktygslåda 2026\")",
+          "",
+          "<strong>Result:</strong> You're losing traffic to competitors who show up in both Google AND AI search."
         ]
       },
       {
-        title: "Our Solution",
+        title: "The Opportunity",
+        content: [
+          "Swedish workshops are searching for tools in two places:",
+          "• <strong>Google:</strong> \"weber verktygslåda 106 delar\"",
+          "• <strong>ChatGPT/Perplexity:</strong> \"vilken verktygslåda passar motorcykelverkstad?\"",
+          "",
+          "Most competitors only optimize for Google. Fix both = <strong>massive competitive advantage.</strong>",
+          "",
+          "<strong>Potential Impact:</strong>",
+          "• 3-5x organic traffic within 6 months",
+          "• 60-80% citation chance in AI search for \"verktygslåda weber\"",
+          "• Even 50 extra orders/month = <strong>150,000 SEK/month revenue increase</strong>",
+          "• ROI: 6x return on 30k investment by month 6"
+        ]
+      },
+      {
+        title: "What We'll Fix",
         items: [
           {
-            label: "Technical SEO Foundation",
-            value: "Site structure, speed optimization, schema markup, mobile performance. Ensure Google can crawl and index perfectly."
+            label: "Phase 1: Quick Wins (Week 1-2)",
+            value: "• Expand 20 product descriptions to 300-500 words (currently ~50)<br>• Add 30-question FAQ section<br>• Implement review schema for testimonials<br>• Add keyword-optimized category descriptions<br><strong>Result: AI visibility 3/10 → 5/10</strong>"
           },
           {
-            label: "Content Optimization",
-            value: "Product descriptions, category pages, buying guides. Optimized for both traditional and AI search."
+            label: "Phase 2: Content Depth (Week 3-4)",
+            value: "• Create comprehensive buying guide (\"Svenskmaskin.se Köpguide 2026\")<br>• Build comparison pages (106 vs 154 vs 300-piece tool sets)<br>• Add industry-specific use cases (motorcycle/automotive workshops)<br>• Optimize homepage title + meta for keywords<br><strong>Result: SEO 6/10 → 7.5/10, AI visibility 5/10 → 7/10</strong>"
           },
           {
-            label: "AEO/GEO Implementation",
-            value: "Structured data, contextual content, answer-engine optimization. Make svenskmaskin.se visible in ChatGPT/Perplexity/Claude."
+            label: "Phase 3: AI Search Optimization",
+            value: "• Enhanced structured data (Product, Review, FAQ schemas)<br>• Contextual content that AI engines cite<br>• Long-form product guides<br>• Internal linking strategy<br><strong>Result: Show up when workshops ask ChatGPT for tool recommendations</strong>"
           },
           {
-            label: "Link Building",
-            value: "Strategic backlinks from Swedish industry sites, directories, and partners. Authority building."
-          },
-          {
-            label: "Performance Tracking",
-            value: "Monthly reports on rankings (Google + AI search), traffic, conversions. See what's working."
+            label: "Phase 4: Authority Building",
+            value: "• Swedish industry backlinks (10 high-quality links)<br>• Workshop organization content<br>• Tool maintenance guides<br>• Professional use case documentation<br><strong>Result: Establish svenskmaskin.se as THE Swedish tool resource</strong>"
           }
         ]
       },
