@@ -208,7 +208,7 @@ const NordSymLang = {
       galleryStackContext: 'Utforska stacken',
       
       // System description  
-      gallerySystemDesc: 'Färdiga produkter och produktlösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
+      gallerySystemDesc: 'Vi bygger mjukvarulagret mellan AI-agenter och verkligheten.',
       gallerySystemContext: 'Utforska systemen',
       galleryContextText: 'Utforska produkterna',
 
@@ -573,7 +573,7 @@ const NordSymLang = {
       galleryStackContext: 'Explore the stack',
       
       // System description  
-      gallerySystemDesc: 'Ready-made products and product solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
+      gallerySystemDesc: 'We build the software layer between AI agents and the real world.',
       gallerySystemContext: 'Explore systems',
       galleryContextText: 'Explore products',
 
