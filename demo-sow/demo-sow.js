@@ -193,7 +193,7 @@
         '<div class="success-banner">',
         '<i class="ph-fill ph-check-circle"></i>',
         '<h2 style="margin:0 0 12px 0;">All Documents Signed!</h2>',
-        '<p style="margin:0;font-size:16px;">Your 30-day active period begins now. Check Telegram for next steps from Symbot.</p>',
+        '<p style="margin:0;font-size:16px;">Your 30-day active period begins now. Check Telegram for next steps from the NordSym execution layer.</p>',
         '</div>'
       );
     }
@@ -246,7 +246,7 @@
         '<span class="mou-time-sep">:</span>',
         '<span class="mou-time-unit"><strong>' + String(time.seconds).padStart(2, '0') + '</strong><small>sec</small></span>',
         '</div>',
-        '<p style="margin-top:12px;font-size:13px;color:#1a1a1a;opacity:0.85;">Working with Symbot in Telegram. SoW unlocks after demo period.</p>',
+        '<p style="margin-top:12px;font-size:13px;color:#1a1a1a;opacity:0.85;">NordSym execution layer access via Telegram. SoW unlocks after demo period.</p>',
         '</div>'
       );
     }

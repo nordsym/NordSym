@@ -9,9 +9,9 @@ window.NORDSYM_DEMO_SOW_DATA = {
     // Demo section
     demo: {
       title: "72-Hour Demo Period",
-      description: "Experience NordSym AI automation in action. Work with Symbot in Telegram for 72 hours — no commitment, just exploration.",
+      description: "Experience NordSym AI automation in action. Access the NordSym execution layer via Telegram for 72 hours — no commitment, just exploration.",
       terms: [
-        "72-hour access to Symbot in Telegram",
+        "72-hour access to NordSym execution layer via Telegram",
         "Test AI automation workflows",
         "Experience rapid execution",
         "Zero financial commitment",

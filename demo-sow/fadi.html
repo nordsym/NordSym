@@ -93,6 +93,34 @@
       background: var(--ok);
       color: #fff;
     }
+    
+    /* Stage-specific colors (NordSym brand palette) */
+    .stage:nth-child(1).active {
+      border-color: #00D4FF;
+      background: rgba(0,212,255,0.08);
+    }
+    .stage:nth-child(1).active .stage-number {
+      background: #00D4FF;
+      color: #050608;
+    }
+    
+    .stage:nth-child(2).active {
+      border-color: #9370DB;
+      background: rgba(147,112,219,0.08);
+    }
+    .stage:nth-child(2).active .stage-number {
+      background: #9370DB;
+      color: #fff;
+    }
+    
+    .stage:nth-child(3).active {
+      border-color: #FF8C00;
+      background: rgba(255,140,0,0.08);
+    }
+    .stage:nth-child(3).active .stage-number {
+      background: #FF8C00;
+      color: #fff;
+    }
     .stage-title {
       font-weight: 600;
       font-size: 14px;
