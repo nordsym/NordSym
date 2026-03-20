@@ -95,6 +95,58 @@
     return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   }
 
+  // 5-day urgency timer - tracks from first visit
+  function renderUrgencyTimer() {
+    const firstVisitKey = 'proposal_first_visit_' + customerId;
+    let firstVisitStr = localStorage.getItem(firstVisitKey);
+    
+    // Set first visit timestamp if not exists
+    if (!firstVisitStr) {
+      firstVisitStr = new Date().toISOString();
+      localStorage.setItem(firstVisitKey, firstVisitStr);
+    }
+
+    const firstVisit = new Date(firstVisitStr);
+    const validityDays = 5;
+    const expiresAt = new Date(firstVisit.getTime() + validityDays * 24 * 60 * 60 * 1000);
+    const now = new Date();
+    const remaining = expiresAt - now;
+
+    // Expired state
+    if (remaining <= 0) {
+      return [
+        '<div class="mou-countdown expired" style="background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%);">',
+        '<div class="mou-countdown-label"><i class="ph-fill ph-warning"></i> Offer Expired</div>',
+        '<p style="margin-top:12px;font-size:14px;">This proposal offer has expired. Please contact us to renew your interest.</p>',
+        '<div style="margin-top:20px;">',
+        '<a href="mailto:gustav@nordsym.com?subject=Renew Proposal - ' + data.customerName + '" class="sow-btn" style="background:#fff;color:#C92A2A;text-decoration:none;display:inline-block;padding:12px 24px;border-radius:8px;font-weight:600;">',
+        '<i class="ph ph-envelope"></i> Contact to Renew',
+        '</a>',
+        '</div>',
+        '</div>'
+      ].join('');
+    }
+
+    // Active countdown
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+    return [
+      '<div class="mou-countdown" style="background: linear-gradient(135deg, #00D4FF 0%, #9370DB 100%);">',
+      '<div class="mou-countdown-label"><i class="ph-fill ph-clock"></i> This offer valid for:</div>',
+      '<div class="mou-countdown-timer">',
+      '<span class="mou-time-unit"><strong>' + days + '</strong><small>days</small></span>',
+      '<span class="mou-time-sep">:</span>',
+      '<span class="mou-time-unit"><strong>' + String(hours).padStart(2, '0') + '</strong><small>hours</small></span>',
+      '<span class="mou-time-sep">:</span>',
+      '<span class="mou-time-unit"><strong>' + String(minutes).padStart(2, '0') + '</strong><small>min</small></span>',
+      '</div>',
+      '<p style="margin-top:12px;font-size:13px;opacity:0.85;">Fast decisions win. Move to MoU within ' + validityDays + ' days.</p>',
+      '</div>'
+    ].join('');
+  }
+
   // Build proposal HTML
   let html = [
     '<div class="sow-card"><div class="sow-card-inner">',
@@ -108,6 +160,7 @@
     '<p style="margin:8px 0 0;color:#1a1a1a;font-size:14px;font-weight:500;">Fast execution. Clear deliverables. Real results.</p>',
     '</div>',
     '<div class="sow-bar"></div>',
+    '<div id="urgency-timer-container" style="margin:25px 0;">' + renderUrgencyTimer() + '</div>',
   ];
 
   // Problem statement
@@ -236,4 +289,12 @@
   );
 
   root.innerHTML = html.join('');
+
+  // Update urgency timer every second
+  setInterval(function () {
+    const container = document.getElementById('urgency-timer-container');
+    if (container) {
+      container.innerHTML = renderUrgencyTimer();
+    }
+  }, 1000);
 })();
