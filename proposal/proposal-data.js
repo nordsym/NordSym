@@ -89,8 +89,8 @@ window.NORDSYM_PROPOSAL_DATA = {
       }
     ],
     cta: {
-      primary: "Sign MoU (Free 72h Exploration)",
-      secondary: "Schedule Call with Molle"
+      primary: "Schedule Call with Molle",
+      secondary: "Express Interest via Email"
     },
     validUntil: "April 20, 2026",
     flow: "Proposal → MoU (72h) → SoW (1 month) → Evaluate"
