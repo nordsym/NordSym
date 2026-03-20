@@ -1,81 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!--
-    NordSym Sitemap
-    Uppdaterad: 2026-01-21
-    Struktur: SPA med hash-baserade routes
-  -->
+  <!-- NordSym Sitemap — Updated: 2026-03-19 -->
 
-  <!-- Huvudsida -->
+  <!-- Main page -->
   <url>
     <loc>https://nordsym.com/</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Huvudsektioner -->
+  <!-- Main sections -->
   <url>
     <loc>https://nordsym.com/#om-oss</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/#system</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/#ritbordet</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/#boka-samtal-skraddarsydd</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Juridiska sidor -->
+  <!-- Legal pages -->
   <url>
     <loc>https://nordsym.com/#privacy-policy-en</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/#terms-of-service-en</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- Produkter (externa subdomäner) -->
+  <!-- AI context file -->
+  <url>
+    <loc>https://nordsym.com/llms.txt</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Products (external subdomains) -->
+  <url>
+    <loc>https://apiclaw.nordsym.com/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://hivr.online/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://aisearch.nordsym.com/</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://flowvault.se/</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://genprd.se/</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

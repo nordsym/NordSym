@@ -92,31 +92,47 @@
 
   const today = fmtDate(new Date());
 
-  // Countdown timer
+  // Countdown timer - shows validity period AFTER signing
   function renderCountdown() {
-    const createdAt = new Date(data.createdAt);
-    const expiresAt = new Date(createdAt.getTime() + data.validHours * 60 * 60 * 1000);
+    const signedAtKey = 'mou_signed_' + customerId;
+    const signedAtStr = localStorage.getItem(signedAtKey);
+    
+    // Before signing: show activation message
+    if (!signedAtStr) {
+      return [
+        '<div class="mou-countdown" style="background: linear-gradient(135deg, #00D4FF 0%, #9370DB 100%);">',
+        '<div class="mou-countdown-label"><i class="ph-fill ph-hourglass"></i> Sign to activate 30-day validity window</div>',
+        '<p style="margin-top:8px;font-size:14px;opacity:0.9;">After signing, you have 30 days to progress to the next stage.</p>',
+        '</div>'
+      ].join('');
+    }
+
+    // After signing: calculate remaining validity period
+    const signedAt = new Date(signedAtStr);
+    const validityDays = 30;
+    const expiresAt = new Date(signedAt.getTime() + validityDays * 24 * 60 * 60 * 1000);
     const now = new Date();
     const remaining = expiresAt - now;
 
     if (remaining <= 0) {
-      return '<div class="mou-countdown expired"><i class="ph-fill ph-clock"></i> MoU Expired</div>';
+      return '<div class="mou-countdown expired"><i class="ph-fill ph-clock"></i> MoU Validity Expired</div>';
     }
 
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
     return [
       '<div class="mou-countdown">',
-      '<div class="mou-countdown-label"><i class="ph-fill ph-clock"></i> Valid for ' + data.validHours + ' hours</div>',
+      '<div class="mou-countdown-label"><i class="ph-fill ph-clock"></i> MoU valid for:</div>',
       '<div class="mou-countdown-timer">',
-      '<span class="mou-time-unit"><strong>' + hours + '</strong><small>hours</small></span>',
+      '<span class="mou-time-unit"><strong>' + days + '</strong><small>days</small></span>',
+      '<span class="mou-time-sep">:</span>',
+      '<span class="mou-time-unit"><strong>' + String(hours).padStart(2, '0') + '</strong><small>hours</small></span>',
       '<span class="mou-time-sep">:</span>',
       '<span class="mou-time-unit"><strong>' + String(minutes).padStart(2, '0') + '</strong><small>min</small></span>',
-      '<span class="mou-time-sep">:</span>',
-      '<span class="mou-time-unit"><strong>' + String(seconds).padStart(2, '0') + '</strong><small>sec</small></span>',
       '</div>',
+      '<p style="margin-top:12px;font-size:13px;opacity:0.85;">Signed: ' + signedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '</p>',
       '</div>'
     ].join('');
   }
@@ -250,6 +266,11 @@
       .then(async function (r) {
         var payload = await r.json().catch(function () { return {}; });
         if (!r.ok) throw new Error(payload.error || 'Signing failed');
+        
+        // Store signature timestamp to start validity countdown
+        const signedAtKey = 'mou_signed_' + customerId;
+        localStorage.setItem(signedAtKey, new Date().toISOString());
+        
         msg.className = 'sow-msg ok';
         msg.textContent = 'MoU signed successfully. Thank you for your interest in partnership!';
         setTimeout(function () {

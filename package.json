@@ -4,5 +4,8 @@
   "private": true,
   "engines": {
     "node": "22.x"
+  },
+  "dependencies": {
+    "convex": "^1.34.0"
   }
 }
