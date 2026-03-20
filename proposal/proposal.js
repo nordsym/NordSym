@@ -103,16 +103,21 @@
     // Before signing: show activation message
     if (!pilotSignedStr) {
       return [
-        '<div class="mou-countdown" style="background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);">',
-        '<div class="mou-countdown-label" style="color:#1a1a1a;"><i class="ph-fill ph-rocket-launch" style="color:#1a1a1a;"></i> Sign to activate 5-day pilot period</div>',
-        '<p style="margin-top:12px;font-size:14px;color:#1a1a1a;opacity:0.95;line-height:1.6;">',
-        '<strong>What happens during the pilot:</strong><br>',
-        '• Connect with Symbot in Telegram<br>',
-        '• Test AI automation workflows<br>',
-        '• Experience rapid execution<br>',
-        '• Decide: Kill, Pivot, or Scale',
+        '<div class="mou-countdown" style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.3);border-radius:12px;padding:28px;">',
+        '<div class="mou-countdown-label" style="color:var(--cyan);font-size:16px;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:16px;">',
+        '<i class="ph-fill ph-rocket-launch" style="font-size:20px;"></i>',
+        '<span>Sign to activate 5-day pilot period</span>',
+        '</div>',
+        '<p style="margin:0 0 12px 0;font-size:15px;color:var(--text);line-height:1.7;">',
+        '<strong style="color:var(--cyan);">What happens during the pilot:</strong>',
         '</p>',
-        '<p style="margin-top:12px;font-size:13px;color:#1a1a1a;opacity:0.8;">No commitment yet — sign below to explore</p>',
+        '<ul style="margin:0;padding-left:20px;font-size:14px;color:var(--text);line-height:1.8;list-style:none;">',
+        '<li style="margin-bottom:8px;display:flex;align-items:start;gap:8px;"><span style="color:var(--cyan);">•</span> Connect with Symbot in Telegram</li>',
+        '<li style="margin-bottom:8px;display:flex;align-items:start;gap:8px;"><span style="color:var(--cyan);">•</span> Test AI automation workflows</li>',
+        '<li style="margin-bottom:8px;display:flex;align-items:start;gap:8px;"><span style="color:var(--cyan);">•</span> Experience rapid execution</li>',
+        '<li style="margin-bottom:8px;display:flex;align-items:start;gap:8px;"><span style="color:var(--cyan);">•</span> Decide: Kill, Pivot, or Scale</li>',
+        '</ul>',
+        '<p style="margin-top:16px;margin-bottom:0;font-size:13px;color:var(--muted);">No commitment yet — sign below to explore</p>',
         '</div>'
       ].join('');
     }
@@ -159,58 +164,6 @@
     ].join('');
   }
 
-  // 5-day urgency timer - tracks from first visit
-  function renderUrgencyTimer() {
-    const firstVisitKey = 'proposal_first_visit_' + customerId;
-    let firstVisitStr = localStorage.getItem(firstVisitKey);
-    
-    // Set first visit timestamp if not exists
-    if (!firstVisitStr) {
-      firstVisitStr = new Date().toISOString();
-      localStorage.setItem(firstVisitKey, firstVisitStr);
-    }
-
-    const firstVisit = new Date(firstVisitStr);
-    const validityDays = 5;
-    const expiresAt = new Date(firstVisit.getTime() + validityDays * 24 * 60 * 60 * 1000);
-    const now = new Date();
-    const remaining = expiresAt - now;
-
-    // Expired state
-    if (remaining <= 0) {
-      return [
-        '<div class="mou-countdown expired" style="background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%);">',
-        '<div class="mou-countdown-label"><i class="ph-fill ph-warning"></i> Offer Expired</div>',
-        '<p style="margin-top:12px;font-size:14px;">This proposal offer has expired. Please contact us to renew your interest.</p>',
-        '<div style="margin-top:20px;">',
-        '<a href="mailto:gustav@nordsym.com?subject=Renew Proposal - ' + data.customerName + '" class="sow-btn" style="background:#fff;color:#C92A2A;text-decoration:none;display:inline-block;padding:12px 24px;border-radius:8px;font-weight:600;">',
-        '<i class="ph ph-envelope"></i> Contact to Renew',
-        '</a>',
-        '</div>',
-        '</div>'
-      ].join('');
-    }
-
-    // Active countdown
-    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-
-    return [
-      '<div class="mou-countdown" style="background: linear-gradient(135deg, #00D4FF 0%, #9370DB 100%);">',
-      '<div class="mou-countdown-label"><i class="ph-fill ph-clock"></i> This offer valid for:</div>',
-      '<div class="mou-countdown-timer">',
-      '<span class="mou-time-unit"><strong>' + days + '</strong><small>days</small></span>',
-      '<span class="mou-time-sep">:</span>',
-      '<span class="mou-time-unit"><strong>' + String(hours).padStart(2, '0') + '</strong><small>hours</small></span>',
-      '<span class="mou-time-sep">:</span>',
-      '<span class="mou-time-unit"><strong>' + String(minutes).padStart(2, '0') + '</strong><small>min</small></span>',
-      '</div>',
-      '<p style="margin-top:12px;font-size:13px;opacity:0.85;">Fast decisions win. Move to MoU within ' + validityDays + ' days.</p>',
-      '</div>'
-    ].join('');
-  }
-
   // Build proposal HTML
   let html = [
     '<div class="sow-card"><div class="sow-card-inner">',
@@ -225,7 +178,6 @@
     '</div>',
     '<div class="sow-bar"></div>',
     '<div id="pilot-timer-container" style="margin:25px 0;">' + renderPilotTimer() + '</div>',
-    '<div id="urgency-timer-container" style="margin:25px 0;">' + renderUrgencyTimer() + '</div>',
   ];
 
   // Problem statement
@@ -380,15 +332,11 @@
 
   root.innerHTML = html.join('');
 
-  // Update timers every second
+  // Update pilot timer every second
   setInterval(function () {
     const pilotContainer = document.getElementById('pilot-timer-container');
     if (pilotContainer) {
       pilotContainer.innerHTML = renderPilotTimer();
-    }
-    const urgencyContainer = document.getElementById('urgency-timer-container');
-    if (urgencyContainer) {
-      urgencyContainer.innerHTML = renderUrgencyTimer();
     }
   }, 1000);
 
