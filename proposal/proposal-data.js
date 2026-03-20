@@ -13,9 +13,9 @@ window.NORDSYM_PROPOSAL_DATA = {
         content: [
           "Swedish law firms are losing cases to competitors with better online visibility:",
           "",
-          "• **Zero AI search presence** — invisible in ChatGPT, Perplexity, Claude",
-          "• **Outdated websites** — poor Google rankings, weak lead generation",
-          "• **High-value clients search online** — firms that show up win more business"
+          "• Zero AI search presence — invisible in ChatGPT, Perplexity, Claude",
+          "• Outdated websites — poor Google rankings, weak lead generation",
+          "• High-value clients search online — firms that show up win more business"
         ]
       },
       {
@@ -23,15 +23,15 @@ window.NORDSYM_PROPOSAL_DATA = {
         content: [
           "We don't sell you a service. We build a business together.",
           "",
-          "**Phase 1: Test (1 Month)**",
+          "Phase 1: Test (1 Month)",
           "• Research Swedish law firm market + validate demand",
           "• Build AEO/GEO service offering",
           "• Test messaging with real prospects",
           "",
-          "**Phase 2: Scale**",
+          "Phase 2: Scale",
           "• You sell to law firms (your network, your credibility)",
           "• We deliver optimization (our tech, our execution)",
-          "• **Revenue split: 80% you / 20% us**"
+          "• Revenue split: **80% you / 20% us**"
         ]
       },
       {
@@ -40,26 +40,26 @@ window.NORDSYM_PROPOSAL_DATA = {
           "**10,000 SEK** — 1-month pilot to prove demand.",
           "",
           "After 1 month, we choose:",
-          "• **Kill** — No traction, end partnership (no hard feelings)",
-          "• **Pivot** — Adjust strategy, keep testing",
-          "• **Scale** — Strong results, expand to more firms"
+          "• Kill — No traction, end partnership (no hard feelings)",
+          "• Pivot — Adjust strategy, keep testing",
+          "• Scale — Strong results, expand to more firms"
         ]
       },
       {
         title: "Why Now",
         content: [
-          "• **AI search is exploding** — clients find lawyers via ChatGPT daily",
-          "• **Competitors are asleep** — be first in your market",
-          "• **Low-risk test** — 10k pilot + **80% revenue share** protects your upside"
+          "• AI search is exploding — clients find lawyers via ChatGPT daily",
+          "• Competitors are asleep — be first in your market",
+          "• Low-risk test — 10k pilot + **80% revenue share** protects your upside"
         ]
       },
       {
         title: "What's Next",
         content: [
-          "**1. Sign MoU** — Free 72-hour exploration (non-binding)",
-          "**2. Kickoff** — Align on research plan + timeline",
-          "**3. Execute** — 1-month pilot to validate demand",
-          "**4. Decide** — Kill, Pivot, or Scale",
+          "1. Sign MoU — Free 72-hour exploration (non-binding)",
+          "2. Kickoff — Align on research plan + timeline",
+          "3. Execute — 1-month pilot to validate demand",
+          "4. Decide — Kill, Pivot, or Scale",
           "",
           "Ready? Let's start with the MoU."
         ]
