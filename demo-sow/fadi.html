@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/nordsym-logo-transparent.png" type="image/png">
+  <title>NordSym × Kontra Law Firm - Demo + SoW</title>
+  <link rel="stylesheet" href="/sow/sow.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* RTL support for Arabic */
+    [dir="rtl"] {
+      direction: rtl;
+      text-align: right;
+    }
+    [dir="rtl"] .sow-header {
+      flex-direction: row-reverse;
+    }
+    
+    /* Locked section styling */
+    .locked-section {
+      opacity: 0.5;
+      pointer-events: none;
+      position: relative;
+    }
+    .locked-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 100%);
+      border-radius: 12px;
+      z-index: 1;
+    }
+    .locked-overlay {
+      background: rgba(0,212,255,0.08);
+      border: 2px dashed rgba(0,212,255,0.3);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .locked-overlay i {
+      font-size: 48px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    /* Stage indicator */
+    .stage-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+      padding: 20px;
+      background: var(--surface-2);
+      border-radius: 12px;
+      gap: 20px;
+    }
+    .stage {
+      flex: 1;
+      text-align: center;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid var(--line);
+      transition: all 0.3s ease;
+    }
+    .stage.active {
+      border-color: var(--cyan);
+      background: rgba(0,212,255,0.08);
+    }
+    .stage.complete {
+      border-color: var(--ok);
+      background: rgba(22,163,74,0.08);
+    }
+    .stage-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--line);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .stage.active .stage-number {
+      background: var(--cyan);
+      color: var(--bg);
+    }
+    .stage.complete .stage-number {
+      background: var(--ok);
+      color: #fff;
+    }
+    .stage-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .stage-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    /* Success state */
+    .success-banner {
+      background: linear-gradient(135deg, #00FF87 0%, #60EFFF 100%);
+      color: #1a1a1a;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      margin: 30px 0;
+    }
+    .success-banner i {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .stage-indicator {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body class="light-theme" data-customer-id="fadi" data-doc-type="demo-sow">
+  <div class="sow-wrap">
+    <div class="sow-header">
+      <a class="sow-home" href="/">← nordsym.com</a>
+      <div class="sow-brand">
+        <img class="sow-logo" src="/nordsym-logo-transparent.png" alt="NordSym logo">
+        Demo + SoW
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+        <i class="ph-fill ph-moon"></i>
+      </button>
+    </div>
+    <div id="demo-sow-root"></div>
+  </div>
+  <script src="/demo-sow/demo-sow-data.js"></script>
+  <script src="/demo-sow/demo-sow.js"></script>
+</body>
+</html>
