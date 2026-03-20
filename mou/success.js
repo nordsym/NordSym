@@ -93,7 +93,7 @@
     '<h2>Questions?</h2>',
     '<p>Reach out to Gustav directly:</p>',
     '<p style="margin-top:8px">',
-    '<i class="ph ph-envelope" style="margin-right:6px"></i> <a href="mailto:gustav@nordsym.com">gustav@nordsym.com</a><br>',
+    '<i class="ph ph-envelope" style="margin-right:6px"></i> <a href="mailto:symbot@nordsym.com">symbot@nordsym.com</a><br>',
     '<i class="ph ph-phone" style="margin-right:6px"></i> <a href="tel:+46705292583">+46 70 529 25 83</a>',
     '</p>',
     '</section>',
