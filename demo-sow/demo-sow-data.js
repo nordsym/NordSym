@@ -99,7 +99,8 @@ window.NORDSYM_DEMO_SOW_DATA = {
         "Strategic recommendation (Kill/Pivot/Scale)"
       ],
       
-      unlockWindowHours: 24
+      unlockWindowHours: 24,
+      manualUnlock: true
     }
   }
 };

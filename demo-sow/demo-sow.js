@@ -130,6 +130,11 @@
       };
     }
     
+    // Manual unlock bypasses expired window (admin override)
+    if (data.sow && data.sow.manualUnlock) {
+      return { stage: 'sow-unlocked', message: 'SoW signature window open', remaining: null };
+    }
+    
     return { stage: 'expired', message: 'SoW signature window expired' };
   }
 
@@ -310,7 +315,7 @@
       html.push('<p style="font-size:16px;line-height:1.7;">' + data.sow.description + '</p>');
 
       // SoW timer (if unlocked but not signed)
-      if (state.stage === 'sow-unlocked' && !sowSignedStr) {
+      if (state.stage === 'sow-unlocked' && !sowSignedStr && state.remaining) {
         const time = formatTime(state.remaining);
         html.push(
           '<div id="sow-timer" class="mou-countdown" style="background:linear-gradient(135deg,#FFB800,#FF6B00);">',
