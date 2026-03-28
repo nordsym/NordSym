@@ -97,6 +97,14 @@
   // Calculate states
   function getState() {
     const now = new Date();
+
+    // Admin override: bypass all timer logic and show SoW directly
+    if (data.sow && data.sow.manualUnlock) {
+      if (sowSignedStr) {
+        return { stage: 'complete', message: 'Both documents signed - ready to start!' };
+      }
+      return { stage: 'sow-unlocked', message: 'SoW signature window open', remaining: null };
+    }
     
     if (!demoSignedStr) {
       return { stage: 'pre-demo', message: 'Sign demo agreement to start' };
@@ -128,11 +136,6 @@
         remaining: windowRemaining,
         demoEnd: demoEnd
       };
-    }
-    
-    // Manual unlock bypasses expired window (admin override)
-    if (data.sow && data.sow.manualUnlock) {
-      return { stage: 'sow-unlocked', message: 'SoW signature window open', remaining: null };
     }
     
     return { stage: 'expired', message: 'SoW signature window expired' };
