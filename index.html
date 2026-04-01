@@ -5423,22 +5423,9 @@
  <!-- TEMPORARILY DISABLED - remove style="display:none !important" to enable chat -->
  <div id="hero-chat-mount" class="w-full relative z-20 min-h-[60px] flex flex-col items-center mt-4" style="display:none !important">
  
- <!-- Initial State: Clean Input Bar -->
- <div id="hero-input-wrapper">
- <div class="relative">
- <input type="text" id="hero-chat-input-field" placeholder="Ask NordSym..." data-i18n-placeholder="placeholderAsk" autocomplete="off">
- <button id="hero-input-send" aria-label="Send">
- <i class="ph-paper-plane-right-fill text-lg"></i>
- </button>
- </div>
- </div>
- 
- <!-- RESUME BUTTON (Visas när historik finns) -->
- <button id="chat-resume-btn" onclick="window.nord.resumeChat()">
- <span class="resume-pulse"></span>
- <span>Aktiv session</span>
- <i class="ph-caret-up ml-1 text-xs opacity-70"></i>
- </button>
+ <!-- REMOVED: Chat widget hidden - broken, restore when fixed -->
+ <div id="hero-input-wrapper" style="display:none !important"></div>
+ <button id="chat-resume-btn" style="display:none !important"></button>
 
  </div>
 
@@ -7147,58 +7134,7 @@
  </div>
 
  <!-- NORDGPT FULLSCREEN INTERFACE (Ligger utanför allt annat) -->
- <!-- TEMPORARILY DISABLED - remove style="display:none !important" to enable chat -->
- <div id="fullscreen-chat-interface" style="display:none !important">
- <!-- Sidebar (Historik) -->
- <div class="chat-sidebar">
- <div class="flex items-center gap-2 mb-6 opacity-70">
- <i class="ph-clock-counter-clockwise text-lg"></i>
- <span class="text-xs font-bold uppercase tracking-widest">Tidigare Sessioner</span>
- </div>
- <div id="chat-history-list" class="flex flex-col overflow-y-auto flex-grow">
- <!-- Dynamisk lista -->
- </div>
- <div class="mt-auto pt-4 border-t border-white/10">
- <button onclick="window.nord.clearChatHistory()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 transition-colors">
- <i class="ph-trash"></i> Rensa historik
- </button>
- </div>
- </div>
-
- <!-- Main Area -->
- <div class="chat-main-area">
- <!-- Top Bar -->
- <div class="chat-top-bar">
- <!-- Tema-växlare inne i chatten -->
- <button class="theme-toggle-btn mr-4" aria-label="Toggle light/dark theme">
- <i class="ph ph-sun"></i>
- </button>
-
- <!-- Tydligare Stäng-knapp med text -->
- <button class="chat-close-btn flex items-center gap-2 px-4 w-auto rounded-full border border-white/10 hover:bg-white/10 transition-colors" onclick="window.nord.closeFullscreenChat()" aria-label="Close chat">
- <span class="text-sm font-medium">Close</span>
- <i class="ph-x text-lg"></i>
- </button>
- </div>
-
- <!-- Scroll Container -->
- <div class="chat-scroll-container" id="chat-scroll-container">
- <div class="chat-content-width" id="fullscreen-chat-messages">
- <!-- Messages rendered here -->
- </div>
- </div>
-
- <!-- Sticky Input -->
- <div class="chat-input-wrapper">
- <div class="chat-main-input-container">
- <textarea id="chat-main-textarea" rows="1" placeholder="Type a message..." oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
- <button id="chat-main-send-btn">
- <i class="ph-paper-plane-right-fill text-lg"></i>
- </button>
- </div>
- </div>
- </div>
- </div>
+ <!-- REMOVED: Chat widget - broken, hiding until fixed -->
 
  <!-- === UI OVERLAYS & FIXED CONTROLS (ARKITEKTONISK SEPARATION) === -->
  
