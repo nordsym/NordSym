@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/nordsym-logo-transparent.png" type="image/png">
+  <title>Statement of Work — NordSym</title>
+  <link rel="stylesheet" href="/sow/sow.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="light-theme" id="deal-sow-page">
+  <div class="sow-wrap">
+    <div class="sow-header">
+      <a class="sow-home" id="deal-back-link" href="/">← Deal Room</a>
+      <div class="sow-brand"><img class="sow-logo" src="/nordsym-logo-transparent.png" alt="NordSym logo">Statement of Work</div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="ph-fill ph-moon"></i></button>
+    </div>
+    <div id="sow-root"></div>
+  </div>
+
+  <!-- Load deal data from env (not from sow-data.js) then init sow.js -->
+  <script>
+    (function() {
+      // Extract customerId from path: /deal/[customerId]/sow
+      var parts = window.location.pathname.replace(/\/$/, '').split('/');
+      var sowIdx = parts.indexOf('sow');
+      var customerId = sowIdx > 0 ? parts[sowIdx - 1] : null;
+
+      if (!customerId) {
+        document.getElementById('sow-root').innerHTML = '<p style="padding:40px;color:#dc2626;">Invalid deal URL.</p>';
+        return;
+      }
+
+      // Set back link
+      document.getElementById('deal-back-link').href = '/deal/' + customerId;
+      document.getElementById('deal-back-link').textContent = '← Deal Room';
+
+      // Expose customerId for sow.js
+      document.getElementById('deal-sow-page').setAttribute('data-customer-id', customerId);
+
+      // Fetch deal config from env-backed API, set window.NORDSYM_SOW_DATA, then load sow.js
+      fetch('/api/deal/config')
+        .then(function(r) { return r.ok ? r.json() : Promise.reject('config error'); })
+        .then(function(data) {
+          // sow.js expects window.NORDSYM_SOW_DATA in the old format
+          // deal config IS the same format — just set it
+          window.NORDSYM_SOW_DATA = data;
+
+          // Override sign endpoint to use new deal API
+          window.NORDSYM_SIGN_ENDPOINT = '/api/deal/sign';
+          window.NORDSYM_STATUS_ENDPOINT = '/api/deal/status';
+          window.NORDSYM_DEAL_TYPE = 'sow';
+
+          // Dynamically load sow.js now that data is ready
+          var s = document.createElement('script');
+          s.src = '/sow/sow.js';
+          document.body.appendChild(s);
+        })
+        .catch(function() {
+          document.getElementById('sow-root').innerHTML = '<p style="padding:40px;color:#dc2626;">Failed to load deal configuration.</p>';
+        });
+    })();
+  </script>
+</body>
+</html>

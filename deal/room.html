@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/nordsym-logo-transparent.png" type="image/png">
+  <title>Deal Room — NordSym</title>
+  <link rel="stylesheet" href="/sow/sow.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .dr-header { padding: 32px 32px 0; }
+    .dr-logo { font-size: 22px; font-weight: 700; color: var(--text); }
+    .dr-logo span { color: var(--primary); font-weight: 300; }
+    .dr-customer { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+    .dr-body { padding: 32px; }
+    .dr-title { font-size: 24px; font-weight: 700; color: var(--text); margin: 0 0 6px; }
+    .dr-subtitle { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+    .dr-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .dr-cards { grid-template-columns: 1fr; } }
+    .dr-card {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+    }
+    .dr-card:hover { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+    .dr-card.locked { opacity: .45; pointer-events: none; cursor: default; }
+    .dr-card-type { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .dr-card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .dr-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .dr-badge {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px;
+    }
+    .badge-signed { background: rgba(22,163,74,.15); color: #16a34a; border: 1px solid rgba(22,163,74,.3); }
+    .badge-pending { background: rgba(234,179,8,.12); color: #ca8a04; border: 1px solid rgba(234,179,8,.25); }
+    .badge-locked { background: rgba(100,116,139,.12); color: var(--muted); border: 1px solid var(--line); }
+    .dr-agent-note {
+      margin-top: 32px; padding: 16px 20px;
+      background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.15);
+      border-radius: 10px; font-size: 13px; color: var(--muted); line-height: 1.6;
+    }
+    .dr-agent-note strong { color: var(--primary); }
+    .dr-loading { color: var(--muted); text-align: center; padding: 60px 0; font-size: 15px; }
+    .dr-error { color: var(--danger); text-align: center; padding: 40px 0; font-size: 14px; }
+  </style>
+</head>
+<body class="light-theme">
+<div class="sow-wrap" style="max-width:680px;">
+  <div class="sow-header">
+    <a class="sow-home" href="/">← nordsym.com</a>
+    <div class="sow-brand"><img class="sow-logo" src="/nordsym-logo-transparent.png" alt="NordSym logo">Deal Room</div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="ph-fill ph-moon"></i></button>
+  </div>
+  <div id="dr-loading" class="dr-loading"><i class="ph ph-spinner" style="animation:spin 1s linear infinite;"></i> Loading deal room…</div>
+  <div id="dr-content" style="display:none;">
+    <div class="dr-header">
+      <div class="dr-logo">NordSym<span id="dr-customer-name"> × …</span></div>
+      <div class="dr-customer" id="dr-vertical"></div>
+    </div>
+    <div class="dr-body">
+      <div class="dr-title">Deal Room</div>
+      <div class="dr-subtitle">Your agreements and onboarding documents with NordSym.</div>
+      <div class="dr-cards" id="dr-cards"></div>
+      <div class="dr-agent-note">
+        <strong>Agent context:</strong> This Deal Room serves as the authoritative source for all agreements between NordSym and this client. NordSym agents (Symbot, Hivr Workers) read from this room to understand scope, obligations, and active services.
+      </div>
+    </div>
+  </div>
+  <div id="dr-error" style="display:none;" class="dr-error">Deal room not found.</div>
+</div>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+<script>
+// Theme toggle — same logic as sow.js
+(function() {
+  var saved = localStorage.getItem('nordsym-theme');
+  if (saved === 'dark') {
+    document.body.classList.remove('light-theme');
+    document.body.classList.add('dark-theme');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    function updateIcon() {
+      var isDark = document.body.classList.contains('dark-theme');
+      btn.innerHTML = isDark ? '<i class="ph-fill ph-sun"></i>' : '<i class="ph-fill ph-moon"></i>';
+    }
+    updateIcon();
+    btn.addEventListener('click', function() {
+      var isDark = document.body.classList.toggle('dark-theme');
+      document.body.classList.toggle('light-theme', !isDark);
+      localStorage.setItem('nordsym-theme', isDark ? 'dark' : 'light');
+      updateIcon();
+    });
+  });
+})();
+</script>
+<script>
+(function() {
+  const pathParts = window.location.pathname.replace(/\/$/, '').split('/');
+  const customerId = pathParts[pathParts.length - 1];
+
+  const DOC_META = {
+    mou:         { icon: null, label: 'MoU', title: 'Memorandum of Understanding', desc: 'Intent agreement — sets the stage before full scoping.' },
+    demo:        { icon: null, label: 'Demo', title: 'Demo Agreement', desc: '72-hour proof of concept. Sign to activate.' },
+    sow:         { icon: null, label: 'Statement of Work', title: 'Scope of Work', desc: 'The binding agreement defining services, pricing, and terms.' },
+    onboarding:  { icon: null, label: 'Onboarding', title: 'Onboarding Checklist', desc: 'Next steps after signing. Sets up your workspace.' },
+  };
+
+  const STATUS_BADGE = {
+    signed:  ['badge-signed', '✓ Signed'],
+    pending: ['badge-pending', 'Awaiting signature'],
+    locked:  ['badge-locked', 'Locked'],
+  };
+
+  fetch('/api/deal/config')
+    .then(r => r.ok ? r.json() : Promise.reject('config error'))
+    .then(data => {
+      const deal = data[customerId];
+      if (!deal) { showError(); return; }
+
+      document.getElementById('dr-customer-name').textContent = ' × ' + deal.customerName;
+      document.getElementById('dr-vertical').textContent = deal.vertical || '';
+      document.title = 'Deal Room — ' + deal.customerName;
+
+      const cards = document.getElementById('dr-cards');
+      const docs = deal.documents || {};
+
+      Object.entries(docs).forEach(([type, doc]) => {
+        const meta = DOC_META[type] || { icon: '📄', label: type, title: type, desc: '' };
+        const status = doc.status || 'locked';
+        const [badgeClass, badgeText] = STATUS_BADGE[status] || STATUS_BADGE.locked;
+        const href = doc.url || ('/deal/' + customerId + '/' + type);
+        const isLocked = status === 'locked';
+
+        const card = document.createElement('a');
+        card.href = isLocked ? '#' : href;
+        card.className = 'dr-card' + (isLocked ? ' locked' : '');
+        card.innerHTML = `
+          <div class="dr-badge ${badgeClass}">${badgeText}</div>
+          <div class="dr-card-type">${meta.label}</div>
+          <div class="dr-card-title">${meta.title}</div>
+          <div class="dr-card-desc">${meta.desc}</div>
+        `;
+        cards.appendChild(card);
+      });
+
+      document.getElementById('dr-loading').style.display = 'none';
+      document.getElementById('dr-content').style.display = '';
+    })
+    .catch(() => showError());
+
+  function showError() {
+    document.getElementById('dr-loading').style.display = 'none';
+    document.getElementById('dr-error').style.display = '';
+  }
+})();
+</script>
+</body>
+</html>

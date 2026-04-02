@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIClaw x APILayer — Partnership Agreement</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --bg: #050b1a;
+      --surface: #0a1020;
+      --surface-2: #0f1a30;
+      --text: #e5edf8;
+      --muted: #8fa0b8;
+      --line: #1a2d4a;
+      --primary: #ef4444;
+      --primary-2: #f87171;
+      --ok: #16a34a;
+      --danger: #ef4444;
+    }
+    body.light-theme {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-2: #f8f9fc;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --primary: #dc2626;
+      --primary-2: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      position: relative;
+    }
+    body.light-theme::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(148,163,184,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; position: relative; z-index: 1; }
+    /* Header */
+    .hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .hdr-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.3px; }
+    .hdr-brand .claw { color: var(--primary); }
+    .hdr-back { text-decoration: none; border: 1px solid var(--line); padding: 8px 12px; border-radius: 10px; background: var(--surface); color: var(--text); font-size: 13px; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+    /* Card */
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+    .card-hero {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #b91c1c 100%);
+      padding: 40px 40px 36px;
+    }
+    .card-hero .logos { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .logo-pill { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 8px 18px; font-weight: 700; font-size: 16px; color: #fff; }
+    .logo-x { color: rgba(255,255,255,0.5); font-size: 20px; }
+    .card-hero h1 { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .card-hero p { color: rgba(255,255,255,0.7); font-size: 15px; }
+    .card-inner { padding: 36px 40px; }
+    /* Sections */
+    .bar { height: 4px; width: 80px; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--primary-2)); margin: 0 0 28px; }
+    .section { margin-bottom: 28px; }
+    .section h2 { font-size: 16px; font-weight: 700; color: var(--primary); border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 12px; }
+    .section p { color: var(--muted); font-size: 14px; margin-bottom: 8px; line-height: 1.7; }
+    .section p strong { color: var(--text); }
+    .item { background: var(--surface-2); border-left: 3px solid var(--primary); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 10px; }
+    .item strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .item span { font-size: 13px; color: var(--muted); }
+    .status-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .status-row:last-child { border-bottom: none; }
+    .dot-green { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+    .status-row span { font-size: 14px; color: var(--text); }
+    .status-row .count { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(239,68,68,0.1); padding: 2px 8px; border-radius: 4px; }
+    .divider { border: none; border-top: 1px solid var(--line); margin: 28px 0; }
+    /* Signature section */
+    .sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media (max-width: 680px) { .sign-grid { grid-template-columns: 1fr; } .card-inner { padding: 24px 20px; } }
+    .sign-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .sign-line { border-bottom: 1px solid var(--line); min-height: 56px; display: flex; align-items: flex-end; padding-bottom: 6px; margin-bottom: 8px; }
+    .sign-cursive { font-family: 'Brush Script MT', cursive; font-size: 26px; color: var(--text); }
+    .sign-input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--text); font-size: 14px; margin-bottom: 10px; }
+    .sign-input:focus { outline: none; border-color: var(--primary); }
+    .sign-canvas { width: 100%; height: 110px; display: block; border: 1px solid var(--line); border-radius: 10px; background: #fff; touch-action: none; }
+    .sign-clear { background: none; border: none; color: var(--primary); font-size: 12px; cursor: pointer; padding: 0; margin-top: 4px; }
+    .sign-date { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .sign-details { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .sign-details strong { color: var(--text); display: block; }
+    .actions { margin-top: 24px; display: flex; justify-content: center; }
+    .btn { border: none; border-radius: 10px; padding: 14px 32px; font-weight: 700; font-size: 15px; background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #fff; cursor: pointer; letter-spacing: -0.2px; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .msg { margin-top: 14px; padding: 10px 14px; border-radius: 10px; font-size: 14px; text-align: center; }
+    .msg.ok { border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); color: #86efac; }
+    .msg.err { border: 1px solid rgba(239,68,68,0.3); background: rgba(239,68,68,0.08); color: #fca5a5; }
+    .demo-note { margin-top: 10px; font-size: 12px; color: var(--muted); text-align: center; }
+    /* Footer */
+    .footer { padding: 20px 40px; background: var(--surface-2); border-top: 1px solid var(--line); text-align: center; }
+    .footer p { font-size: 12px; color: var(--muted); }
+    .footer a { color: var(--primary); text-decoration: none; }
+    /* Starfall */
+    .starfall { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .3s; }
+    body.dark-theme .starfall { opacity: .15; }
+  </style>
+</head>
+<body class="dark-theme">
+<canvas class="starfall" id="starfall"></canvas>
+
+<div class="wrap">
+  <div class="hdr">
+    <a class="hdr-back" href="https://apiclaw.nordsym.com">← apiclaw.nordsym.com</a>
+    <div class="hdr-brand">APIClaw<span class="claw">.</span></div>
+    <button class="theme-toggle" id="theme-toggle" type="button"><i class="ph-fill ph-sun"></i></button>
+  </div>
+
+  <div class="card">
+    <div class="card-hero">
+      <div class="logos">
+        <div class="logo-pill">🦞 APIClaw</div>
+        <span class="logo-x">×</span>
+        <div class="logo-pill">APILayer</div>
+      </div>
+      <h1>Partnership Agreement</h1>
+      <p>API Infrastructure × Distribution — Joint Growth Framework</p>
+    </div>
+
+    <div class="card-inner">
+      <div class="bar"></div>
+
+      <div class="section">
+        <h2>1. Parties</h2>
+        <p><strong>APIClaw by NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO</p>
+        <p><strong>APILayer / Zyla Labs Inc.</strong>, represented by Pratham Shah</p>
+      </div>
+
+      <div class="section">
+        <h2>2. Effective Date</h2>
+        <p>This Partnership Agreement becomes effective upon digital signature by both parties. Execution begins immediately upon signing.</p>
+      </div>
+
+      <div class="section">
+        <h2>3. Integration Status</h2>
+        <div class="status-row"><div class="dot-green"></div><span>14 unified APILayer APIs</span><span class="count">Live</span></div>
+        <div class="status-row"><div class="dot-green"></div><span>Finance (Fixer, Currencylayer, Coinlayer, Exchangerate.host)</span><span class="count">Live</span></div>
+        <div class="status-row"><div class="dot-green"></div><span>Geolocation (Weatherstack, IPstack, IPapi, Positionstack, Languagelayer)</span><span class="count">Live</span></div>
+        <div class="status-row"><div class="dot-green"></div><span>Scraping (Scrapestack, Serpstack)</span><span class="count">Live</span></div>
+        <div class="status-row"><div class="dot-green"></div><span>News (Mediastack) + DevTools (Userstack)</span><span class="count">Live</span></div>
+        <p style="margin-top:14px;font-size:13px;">Total: <strong style="color:var(--text)">27 APILayer APIs</strong> live in APIClaw Direct Call tier. Zero key management required for end users.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Partnership Scope</h2>
+        <div class="item">
+          <strong>Customer announcement</strong>
+          <span>APILayer communicates the APIClaw integration to its customer base. Customers gain zero-friction access to all 27 APIs through a single endpoint.</span>
+        </div>
+        <div class="item">
+          <strong>Joint content</strong>
+          <span>One blog post or case study published on apilayer.com showing how APIClaw makes APILayer APIs agent-ready for the AI era.</span>
+        </div>
+        <div class="item">
+          <strong>Documentation feature</strong>
+          <span>APIClaw referenced in APILayer documentation for all 27 APIs, giving developers a keyless access option.</span>
+        </div>
+        <div class="item">
+          <strong>Volume incentives</strong>
+          <span>Tiered discount or revenue share model tied to APIClaw-driven call volume. Structure to be agreed within 14 days of signing. Starting point: current discount offer from APILayer.</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>5. Partner Dashboard</h2>
+        <p>APILayer will receive access to the APIClaw Partner Dashboard upon signing. Dashboard includes: real-time usage stats, discovery data, and call performance across all 27 APIs.</p>
+      </div>
+
+      <div class="section">
+        <h2>6. Duration & Review</h2>
+        <p><strong>Initial term:</strong> 12 months from effective date.</p>
+        <p><strong>Week 1 checkpoint:</strong> Both parties review integration performance, usage data, and distribution execution.</p>
+        <p><strong>Renewal:</strong> Automatic month-to-month after initial term. 30 days written notice to terminate.</p>
+      </div>
+
+      <div class="section">
+        <h2>7. Confidentiality</h2>
+        <p>Both parties agree to keep commercial terms, usage data, and technical integration details confidential. Public announcements require mutual approval.</p>
+      </div>
+
+      <div class="section">
+        <h2>8. Standard Terms</h2>
+        <p><strong>IP:</strong> APIClaw infrastructure and APILayer APIs remain respective party IP. Joint content is co-owned.</p>
+        <p><strong>Liability:</strong> Neither party liable for indirect or consequential damages arising from API availability or performance.</p>
+        <p><strong>Governing Law:</strong> Swedish law. Disputes resolved through negotiation before arbitration.</p>
+      </div>
+
+      <hr class="divider">
+
+      <section>
+        <h2 class="sign-label" style="font-size:16px;text-transform:none;letter-spacing:0;color:var(--text);margin-bottom:20px;">Signatures</h2>
+        <div class="sign-grid">
+          <!-- NordSym signed -->
+          <div>
+            <div class="sign-label">APIClaw / NordSym AB</div>
+            <div class="sign-line"><span class="sign-cursive">Gustav Hemmingsson</span></div>
+            <div class="sign-details"><strong>Gustav Hemmingsson</strong>CEO, NordSym AB<br><span id="today-date"></span></div>
+          </div>
+          <!-- Pratham signs -->
+          <div>
+            <div class="sign-label">APILayer / Zyla Labs Inc.</div>
+            <input id="signer-name" class="sign-input" placeholder="Full name" value="Pratham Shah">
+            <input id="signer-title" class="sign-input" placeholder="Title" value="Co-founder, APILayer">
+            <canvas id="sig-canvas" class="sign-canvas" width="360" height="110"></canvas>
+            <button id="clear-sig" class="sign-clear" type="button">Clear signature</button>
+            <p class="sign-date" id="sign-date-label"></p>
+          </div>
+        </div>
+        <div id="msg"></div>
+        <div class="actions">
+          <button id="sign-btn" class="btn" disabled>Sign Partnership Agreement</button>
+        </div>
+        <p class="demo-note" id="demo-note"></p>
+      </section>
+    </div>
+
+    <div class="footer">
+      <p><strong>APIClaw</strong> by <a href="https://nordsym.com">NordSym AB</a> &nbsp;·&nbsp; 27 APILayer APIs in Direct Call &nbsp;·&nbsp; <a href="https://apiclaw.nordsym.com">apiclaw.nordsym.com</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Theme
+  const body = document.body;
+  const themeBtn = document.getElementById('theme-toggle');
+  const params = new URLSearchParams(window.location.search);
+  const demo = params.get('demo') === '1';
+  const savedTheme = localStorage.getItem('apiclaw-theme') || 'dark';
+
+  function setTheme(t) {
+    body.classList.remove('light-theme', 'dark-theme');
+    body.classList.add(t + '-theme');
+    localStorage.setItem('apiclaw-theme', t);
+    const icon = themeBtn.querySelector('i');
+    if (icon) icon.className = t === 'dark' ? 'ph-fill ph-sun' : 'ph-fill ph-moon';
+    initStarfall(t);
+  }
+  themeBtn.onclick = () => setTheme(body.classList.contains('dark-theme') ? 'light' : 'dark');
+  setTheme(savedTheme);
+
+  // Starfall
+  function initStarfall(t) {
+    const canvas = document.getElementById('starfall');
+    if (!canvas) return;
+    if (t !== 'dark') return;
+    const ctx = canvas.getContext('2d');
+    let stars = [], raf;
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({ length: Math.floor(window.innerWidth / 100) }, () => ({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.4, vy: Math.random() * 0.12 + 0.04, a: Math.random() * 0.4 + 0.15
+      }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.y += s.vy;
+        if (s.y > canvas.height + 2) { s.y = -2; s.x = Math.random() * canvas.width; }
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(239,68,68,${s.a})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    if (raf) cancelAnimationFrame(raf);
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  }
+
+  // Dates
+  const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  document.getElementById('today-date').textContent = 'Date: ' + today;
+  document.getElementById('sign-date-label').textContent = 'Date: ' + today;
+
+  // Demo note
+  if (demo) {
+    const dn = document.getElementById('demo-note');
+    dn.textContent = 'Demo mode: signing will skip to onboarding without backend call.';
+  }
+
+  // Signature canvas
+  const canvas = document.getElementById('sig-canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#111';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  let drawing = false, hasSig = false;
+  const nameInput = document.getElementById('signer-name');
+  const titleInput = document.getElementById('signer-title');
+  const btn = document.getElementById('sign-btn');
+  const clearBtn = document.getElementById('clear-sig');
+  const msg = document.getElementById('msg');
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const t = e.touches && e.touches[0];
+    return {
+      x: ((t ? t.clientX : e.clientX) - rect.left) * (canvas.width / rect.width),
+      y: ((t ? t.clientY : e.clientY) - rect.top) * (canvas.height / rect.height)
+    };
+  }
+  function refresh() {
+    btn.disabled = !(hasSig && nameInput.value.trim() && titleInput.value.trim());
+  }
+
+  canvas.addEventListener('mousedown', e => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+  canvas.addEventListener('mousemove', e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; refresh(); });
+  canvas.addEventListener('mouseup', () => drawing = false);
+  canvas.addEventListener('mouseleave', () => drawing = false);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; refresh(); }, { passive: false });
+  canvas.addEventListener('touchend', () => drawing = false);
+
+  clearBtn.onclick = () => {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    hasSig = false; refresh();
+  };
+
+  nameInput.addEventListener('input', refresh);
+  titleInput.addEventListener('input', refresh);
+
+  const successUrl = () => 'apiclaw-apilayer-welcome.html?signerName=' +
+    encodeURIComponent(nameInput.value.trim()) +
+    '&signerTitle=' + encodeURIComponent(titleInput.value.trim()) +
+    (demo ? '&demo=1' : '');
+
+  btn.onclick = async () => {
+    btn.disabled = true;
+    if (demo) {
+      msg.className = 'msg ok';
+      msg.textContent = 'Demo: signing complete. Redirecting to onboarding...';
+      setTimeout(() => window.location.href = successUrl(), 600);
+      return;
+    }
+    msg.textContent = 'Signing...';
+    try {
+      const r = await fetch('/api/sow/sign', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerId: 'apilayer',
+          signatureDataUrl: canvas.toDataURL('image/png'),
+          signerName: nameInput.value.trim(),
+          signerTitle: titleInput.value.trim()
+        })
+      });
+      const payload = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(payload.error || 'Signing failed');
+      msg.className = 'msg ok';
+      msg.textContent = 'Signed. Redirecting to onboarding...';
+      setTimeout(() => window.location.href = successUrl(), 600);
+    } catch (err) {
+      msg.className = 'msg err';
+      msg.textContent = err.message;
+      btn.disabled = false;
+    }
+  };
+})();
+</script>
+</body>
+</html>

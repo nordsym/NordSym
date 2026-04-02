@@ -5,6 +5,14 @@
   "framework": null,
   "installCommand": null,
   "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+
+    { "source": "/deal/:customerId/sow", "destination": "/deal/sow.html" },
+    { "source": "/deal/:customerId/mou", "destination": "/deal/mou.html" },
+    { "source": "/deal/:customerId/demo", "destination": "/deal/demo.html" },
+    { "source": "/deal/:customerId/onboarding", "destination": "/deal/onboarding.html" },
+    { "source": "/deal/:customerId", "destination": "/deal/room.html" },
+
     { "source": "/sow/excom", "destination": "/sow/excom.html" },
     { "source": "/sow/nakama", "destination": "/sow/nakama.html" },
     { "source": "/sow/hotclean", "destination": "/sow/hotclen.html" },
@@ -18,7 +26,6 @@
     { "source": "/agent-info", "destination": "/api/agent-info" },
     { "source": "/contact", "destination": "/api/contact" },
     { "source": "/audit", "destination": "/api/audit" },
-    { "source": "/demo-factory", "destination": "/api/demo-factory" },
-    { "source": "/api/:path*", "destination": "/api/:path*" }
+    { "source": "/demo-factory", "destination": "/api/demo-factory" }
   ]
 }

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIClaw — Partnership Onboarding</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --bg: #050b1a;
+      --surface: #0a1020;
+      --surface-2: #0f1a30;
+      --text: #e5edf8;
+      --muted: #8fa0b8;
+      --line: #1a2d4a;
+      --primary: #ef4444;
+      --primary-2: #f87171;
+      --ok: #22c55e;
+    }
+    body.light-theme {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-2: #f8f9fc;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --primary: #dc2626;
+      --primary-2: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body.light-theme::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(148,163,184,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; position: relative; z-index: 1; }
+    .hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .hdr-brand { font-weight: 700; font-size: 18px; }
+    .hdr-brand .claw { color: var(--primary); }
+    .hdr-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+    .card-inner { padding: 36px 40px; }
+    @media (max-width: 680px) { .card-inner { padding: 24px 20px; } }
+    .card-title { font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .card-sub { color: var(--muted); font-size: 14px; }
+    .bar { height: 4px; width: 80px; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--primary-2)); margin: 16px 0 24px; }
+    /* Stepper */
+    .stepper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px; }
+    @media (max-width: 560px) { .stepper { grid-template-columns: 1fr 1fr; } }
+    .step { border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; text-align: center; font-size: 12px; color: var(--muted); background: var(--surface); }
+    .step.active { border-color: var(--primary); color: var(--primary); font-weight: 700; }
+    .step.done { border-color: var(--ok); color: var(--ok); }
+    /* Panel */
+    .panel { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: var(--surface); }
+    .panel h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-1 { display: grid; gap: 12px; }
+    @media (max-width: 560px) { .grid-2 { grid-template-columns: 1fr; } }
+    .inp { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); color: var(--text); font-size: 14px; font-family: inherit; }
+    .inp:focus { outline: none; border-color: var(--primary); }
+    textarea.inp { resize: vertical; }
+    .inp-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; display: block; }
+    .actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
+    .btn { border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); color: var(--text); padding: 10px 16px; cursor: pointer; font-size: 14px; font-family: inherit; }
+    .btn.primary { border: none; background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #fff; font-weight: 700; }
+    .btn:hover:not(:disabled) { opacity: 0.85; }
+    /* Calendar */
+    .book-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px; margin-top: 4px; }
+    @media (max-width: 580px) { .book-layout { grid-template-columns: 1fr; } }
+    .mini-cal { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cal-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+    .cal-title { font-weight: 700; font-size: 14px; }
+    .cal-nav { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); width: 28px; height: 28px; cursor: pointer; font-size: 15px; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); padding: 8px; gap: 3px; }
+    .cal-dow { text-align: center; font-size: 10px; color: var(--muted); padding: 4px 0; font-weight: 600; }
+    .cal-day { text-align: center; font-size: 13px; padding: 5px 3px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; background: none; color: var(--text); width: 100%; }
+    .cal-day:hover:not(:disabled) { border-color: var(--primary); }
+    .cal-day.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .cal-day.muted { color: var(--muted); cursor: default; }
+    /* Time slots */
+    .time-wrap { border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .time-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 10px; }
+    .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .time-slot { border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; text-align: center; background: var(--surface); color: var(--text); }
+    .time-slot:hover:not(:disabled) { border-color: var(--primary); }
+    .time-slot.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .time-slot.taken { opacity: 0.35; cursor: not-allowed; }
+    .time-note { font-size: 11px; color: var(--muted); margin-top: 8px; }
+    /* Status */
+    .status { margin-top: 12px; font-size: 14px; padding: 10px 14px; border-radius: 10px; }
+    .status.ok { border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); color: #86efac; }
+    .status.err { border: 1px solid rgba(239,68,68,0.3); background: rgba(239,68,68,0.08); color: #fca5a5; }
+    /* Success */
+    .success-wrap { text-align: center; padding: 40px 20px; }
+    .success-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(34,197,94,0.1); border: 2px solid rgba(34,197,94,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px; }
+    .success-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .success-sub { color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+    /* Footer */
+    .footer { padding: 18px 40px; border-top: 1px solid var(--line); background: var(--surface-2); text-align: center; }
+    .footer p { font-size: 12px; color: var(--muted); }
+    .footer a { color: var(--primary); text-decoration: none; }
+    /* Starfall */
+    .starfall { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .3s; }
+    body.dark-theme .starfall { opacity: .12; }
+  </style>
+</head>
+<body class="dark-theme">
+<canvas class="starfall" id="starfall"></canvas>
+
+<div class="wrap">
+  <div class="hdr">
+    <div>
+      <div class="hdr-brand">APIClaw<span class="claw">.</span></div>
+      <div class="hdr-sub">Partnership Onboarding</div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" type="button"><i class="ph-fill ph-sun"></i></button>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-title">Welcome, Pratham.</div>
+      <p class="card-sub">Let's set up your partnership and book a kickoff.</p>
+      <div class="bar"></div>
+      <div class="stepper" id="stepper"></div>
+      <div class="panel" id="panel"></div>
+    </div>
+    <div class="footer">
+      <p><strong>APIClaw</strong> by <a href="https://nordsym.com">NordSym AB</a> &nbsp;·&nbsp; <a href="https://apiclaw.nordsym.com">apiclaw.nordsym.com</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Theme
+  const body = document.body;
+  const themeBtn = document.getElementById('theme-toggle');
+  function setTheme(t) {
+    body.classList.remove('light-theme', 'dark-theme');
+    body.classList.add(t + '-theme');
+    localStorage.setItem('apiclaw-theme', t);
+    const icon = themeBtn.querySelector('i');
+    if (icon) icon.className = t === 'dark' ? 'ph-fill ph-sun' : 'ph-fill ph-moon';
+    initStarfall(t);
+  }
+  themeBtn.onclick = () => setTheme(body.classList.contains('dark-theme') ? 'light' : 'dark');
+  setTheme(localStorage.getItem('apiclaw-theme') || 'dark');
+
+  function initStarfall(t) {
+    const canvas = document.getElementById('starfall');
+    if (!canvas || t !== 'dark') return;
+    const ctx = canvas.getContext('2d');
+    let stars = [], raf;
+    function resize() {
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      stars = Array.from({ length: Math.floor(window.innerWidth / 120) }, () => ({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.3, vy: Math.random() * 0.1 + 0.03, a: Math.random() * 0.35 + 0.1
+      }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.y += s.vy;
+        if (s.y > canvas.height + 2) { s.y = -2; s.x = Math.random() * canvas.width; }
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(239,68,68,${s.a})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    if (raf) cancelAnimationFrame(raf);
+    resize(); window.addEventListener('resize', resize); draw();
+  }
+
+  // Params
+  const params = new URLSearchParams(window.location.search);
+  const demo = params.get('demo') === '1';
+
+  const state = {
+    step: 1,
+    name: params.get('signerName') || 'Pratham Shah',
+    email: 'pratham@apilayer.com',
+    title: params.get('signerTitle') || 'Co-founder, APILayer',
+    company: 'APILayer',
+    primaryGoal: '',
+    integrationPriority: '',
+    channels: '',
+    agenda: '',
+    selectedDate: null,
+    calMonth: null,
+    calYear: null,
+    selectedTime: null
+  };
+
+  const STEPS = ['Contact', 'Goals', 'Agenda', 'Book'];
+
+  function esc(str) {
+    return String(str || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+  }
+
+  function renderStepper() {
+    document.getElementById('stepper').innerHTML = STEPS.map((name, i) => {
+      const n = i + 1;
+      const cls = state.step === n ? 'step active' : state.step > n ? 'step done' : 'step';
+      return `<div class="${cls}">${n}. ${name}</div>`;
+    }).join('');
+  }
+
+  function autoAgenda() {
+    const lines = [
+      '1. Partnership overview — confirm integration status and scope',
+      '2. Distribution plan — timeline and ownership for email announcement, blog post, and docs update',
+      '3. Volume incentive model — agree on discount tiers or revenue share structure',
+      '4. Partner dashboard walkthrough — real-time usage stats for all 27 APIs',
+      '5. Next actions, owners, and 30-day milestones'
+    ];
+    if (state.primaryGoal) lines.unshift('Context: ' + state.primaryGoal);
+    if (state.integrationPriority) lines.push('Priority APIs: ' + state.integrationPriority);
+    return lines.join('\n');
+  }
+
+  function next() { state.step = Math.min(4, state.step + 1); render(); }
+  function prev() { state.step = Math.max(1, state.step - 1); render(); }
+
+  function render() {
+    renderStepper();
+    const panel = document.getElementById('panel');
+
+    if (state.step === 1) {
+      panel.innerHTML = `
+        <h2>Contact Details</h2>
+        <div class="grid-2">
+          <div><label class="inp-label">Full name</label><input id="f-name" class="inp" value="${esc(state.name)}"></div>
+          <div><label class="inp-label">Work email</label><input id="f-email" class="inp" value="${esc(state.email)}"></div>
+          <div><label class="inp-label">Title</label><input id="f-title" class="inp" value="${esc(state.title)}"></div>
+          <div><label class="inp-label">Company</label><input id="f-company" class="inp" value="${esc(state.company)}"></div>
+        </div>
+        <div class="actions"><span></span><button class="btn primary" id="next-btn">Next</button></div>`;
+      document.getElementById('next-btn').onclick = () => {
+        state.name = document.getElementById('f-name').value.trim();
+        state.email = document.getElementById('f-email').value.trim();
+        state.title = document.getElementById('f-title').value.trim();
+        state.company = document.getElementById('f-company').value.trim() || 'APILayer';
+        if (!state.name || !state.email) return alert('Please complete name and email.');
+        next();
+      };
+    }
+
+    else if (state.step === 2) {
+      panel.innerHTML = `
+        <h2>Partnership Goals</h2>
+        <div class="grid-1">
+          <div><label class="inp-label">Primary goal for this partnership</label><textarea id="f-goal" class="inp" rows="3" placeholder="e.g. Increase API adoption among AI developers, reduce churn through better tooling...">${esc(state.primaryGoal)}</textarea></div>
+          <div><label class="inp-label">Which APILayer APIs are highest priority?</label><textarea id="f-priority" class="inp" rows="2" placeholder="e.g. Fixer, Mediastack, IPstack...">${esc(state.integrationPriority)}</textarea></div>
+          <div><label class="inp-label">Distribution channels available (email list, blog, social)</label><textarea id="f-channels" class="inp" rows="2" placeholder="e.g. 50k developer email list, apilayer.com blog, Twitter...">${esc(state.channels)}</textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="prev-btn">Back</button>
+          <button class="btn primary" id="next-btn">Next</button>
+        </div>`;
+      document.getElementById('prev-btn').onclick = prev;
+      document.getElementById('next-btn').onclick = () => {
+        state.primaryGoal = document.getElementById('f-goal').value.trim();
+        state.integrationPriority = document.getElementById('f-priority').value.trim();
+        state.channels = document.getElementById('f-channels').value.trim();
+        state.agenda = autoAgenda();
+        next();
+      };
+    }
+
+    else if (state.step === 3) {
+      if (!state.agenda) state.agenda = autoAgenda();
+      panel.innerHTML = `
+        <h2>Kickoff Meeting Agenda</h2>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">We've pre-filled an agenda based on your input. Edit as needed.</p>
+        <textarea id="f-agenda" class="inp" rows="10">${esc(state.agenda)}</textarea>
+        <div class="actions">
+          <button class="btn" id="prev-btn">Back</button>
+          <button class="btn primary" id="next-btn">Book Meeting</button>
+        </div>`;
+      document.getElementById('prev-btn').onclick = prev;
+      document.getElementById('next-btn').onclick = () => {
+        state.agenda = document.getElementById('f-agenda').value.trim();
+        if (!state.agenda) return alert('Please keep an agenda.');
+        next();
+      };
+    }
+
+    else {
+      panel.innerHTML = `
+        <h2>Book Kickoff Meeting</h2>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Google Meet invite will be sent to ${esc(state.email)} after confirmation.</p>
+        <div class="book-layout">
+          <div class="mini-cal">
+            <div class="cal-head">
+              <button class="cal-nav" id="cal-prev" type="button">‹</button>
+              <div class="cal-title" id="cal-title"></div>
+              <button class="cal-nav" id="cal-next" type="button">›</button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+          <div class="time-wrap">
+            <div class="time-title">Available Times <span id="tz-label" style="font-weight:400;opacity:.6;font-size:10px;"></span></div>
+            <div class="time-grid" id="time-grid"></div>
+            <div class="time-note" id="time-note"></div>
+          </div>
+        </div>
+        <div id="status"></div>
+        <div class="actions">
+          <button class="btn" id="prev-btn">Back</button>
+          <button class="btn primary" id="book-btn">Book Kickoff</button>
+        </div>`;
+
+      document.getElementById('prev-btn').onclick = prev;
+      initCalendar();
+      renderTimeSlots();
+
+      document.getElementById('book-btn').onclick = async () => {
+        const date = state.selectedDate
+          ? state.selectedDate.getFullYear() + '-' +
+            String(state.selectedDate.getMonth() + 1).padStart(2, '0') + '-' +
+            String(state.selectedDate.getDate()).padStart(2, '0')
+          : '';
+        if (!date) return alert('Please select a date.');
+        if (!state.selectedTime) return alert('Please select a time.');
+
+        const statusEl = document.getElementById('status');
+
+        if (demo) {
+          statusEl.className = 'status ok';
+          statusEl.innerHTML = 'Demo: Google Meet booking + welcome email simulated. In production, Pratham would receive a calendar invite and welcome email from Gustav.';
+          return;
+        }
+
+        statusEl.textContent = 'Booking...';
+        try {
+          const r = await fetch('https://nordsym.app.n8n.cloud/webhook/hivr-booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerId: 'apilayer',
+              customerName: 'APILayer',
+              signerName: state.name,
+              signerEmail: state.email,
+              signerTitle: state.title,
+              company: state.company,
+              requestedDate: date,
+              requestedTime: state.selectedTime,
+              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Stockholm',
+              agenda: state.agenda,
+              partnershipGoal: state.primaryGoal,
+              integrationPriority: state.integrationPriority,
+              source: 'apiclaw-partnership-onboarding'
+            })
+          });
+          if (!r.ok) throw new Error('Booking failed');
+          statusEl.className = 'status ok';
+          statusEl.innerHTML = 'Meeting request sent. Check <strong>' + esc(state.email) + '</strong> for confirmation and Google Meet invite.';
+        } catch (err) {
+          statusEl.className = 'status err';
+          statusEl.textContent = err.message;
+        }
+      };
+    }
+  }
+
+  // Calendar
+  const ALL_SLOTS = ['08:00','09:00','10:00','11:00','13:00','14:00','15:00','16:00'];
+
+  function getTaken(dateStr) {
+    let seed = 0;
+    for (let i = 0; i < dateStr.length; i++) seed += dateStr.charCodeAt(i);
+    const shuffled = ALL_SLOTS.slice();
+    let rng = seed;
+    for (let j = shuffled.length - 1; j > 0; j--) {
+      rng = (rng * 1664525 + 1013904223) & 0xffffffff;
+      const k = Math.abs(rng) % (j + 1);
+      [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
+    }
+    return shuffled.slice(0, 3);
+  }
+
+  function renderTimeSlots() {
+    const grid = document.getElementById('time-grid');
+    const note = document.getElementById('time-note');
+    if (!grid) return;
+    if (!state.selectedDate) {
+      grid.innerHTML = '<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:16px 0;text-align:center;">Select a date first</div>';
+      return;
+    }
+    const dateStr = state.selectedDate.getFullYear() + '-' +
+      String(state.selectedDate.getMonth() + 1).padStart(2, '0') + '-' +
+      String(state.selectedDate.getDate()).padStart(2, '0');
+    const taken = getTaken(dateStr);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Stockholm';
+    const tzShort = tz.split('/').pop().replace('_', ' ');
+    const tzLabel = document.getElementById('tz-label');
+    if (tzLabel) tzLabel.textContent = '(' + tzShort + ')';
+
+    grid.innerHTML = ALL_SLOTS.map(slot => {
+      const isTaken = taken.includes(slot);
+      const isSel = state.selectedTime === slot;
+      return `<button class="time-slot${isTaken ? ' taken' : ''}${isSel ? ' selected' : ''}" type="button" data-slot="${slot}"${isTaken ? ' disabled' : ''}>${slot}</button>`;
+    }).join('');
+    if (note) note.textContent = tzShort + ' time';
+
+    grid.querySelectorAll('.time-slot:not(.taken)').forEach(btn => {
+      btn.onclick = () => { state.selectedTime = btn.getAttribute('data-slot'); renderTimeSlots(); };
+    });
+  }
+
+  function initCalendar() {
+    const now = new Date();
+    if (!state.selectedDate) state.selectedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+    if (state.calMonth === null) { state.calMonth = state.selectedDate.getMonth(); state.calYear = state.selectedDate.getFullYear(); }
+    renderCal();
+    document.getElementById('cal-prev').onclick = () => {
+      state.calMonth--; if (state.calMonth < 0) { state.calMonth = 11; state.calYear--; } renderCal();
+    };
+    document.getElementById('cal-next').onclick = () => {
+      state.calMonth++; if (state.calMonth > 11) { state.calMonth = 0; state.calYear++; } renderCal();
+    };
+  }
+
+  function renderCal() {
+    const title = document.getElementById('cal-title');
+    const grid = document.getElementById('cal-grid');
+    if (!title || !grid) return;
+    const monthName = new Date(state.calYear, state.calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    title.textContent = monthName;
+    const firstDow = (new Date(state.calYear, state.calMonth, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(state.calYear, state.calMonth + 1, 0).getDate();
+    const prevDays = new Date(state.calYear, state.calMonth, 0).getDate();
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const dows = ['M','T','W','T','F','S','S'];
+    const cells = dows.map(d => `<div class="cal-dow">${d}</div>`);
+    for (let i = 0; i < firstDow; i++) cells.push(`<button class="cal-day muted" disabled>${prevDays - firstDow + i + 1}</button>`);
+    for (let day = 1; day <= daysInMonth; day++) {
+      const d = new Date(state.calYear, state.calMonth, day);
+      const isPast = d < today;
+      const isSel = state.selectedDate && d.toDateString() === state.selectedDate.toDateString();
+      cells.push(`<button class="cal-day${isSel ? ' selected' : ''}${isPast ? ' muted' : ''}" type="button" data-day="${day}"${isPast ? ' disabled' : ''}>${day}</button>`);
+    }
+    const trailing = (7 - ((firstDow + daysInMonth) % 7)) % 7;
+    for (let i = 1; i <= trailing; i++) cells.push(`<button class="cal-day muted" disabled>${i}</button>`);
+    grid.innerHTML = cells.join('');
+    grid.querySelectorAll('.cal-day[data-day]').forEach(el => {
+      el.onclick = () => {
+        state.selectedDate = new Date(state.calYear, state.calMonth, Number(el.getAttribute('data-day')));
+        state.selectedTime = null;
+        renderCal(); renderTimeSlots();
+      };
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -5269,6 +5269,65 @@
  body.light-theme .symbot-chat-success p {
    color: var(--nord-sym-blueprint-text-secondary);
  }
+
+ /* ========================================
+    SYMBOT CHAT - BOT MESSAGE & THINKING
+    ======================================== */
+ .symbot-chat-message-bot {
+   align-self: flex-start;
+ }
+
+ .symbot-chat-message-bot p {
+   background: rgba(255, 255, 255, 0.06);
+   border: 1px solid rgba(0, 212, 255, 0.15);
+   color: rgba(255, 255, 255, 0.9);
+   border-bottom-left-radius: 0.25rem;
+ }
+
+ .symbot-thinking {
+   align-self: flex-start;
+   display: flex;
+   align-items: center;
+   padding: 0.75rem 1rem;
+   background: rgba(255, 255, 255, 0.06);
+   border: 1px solid rgba(0, 212, 255, 0.15);
+   border-radius: 1rem;
+   border-bottom-left-radius: 0.25rem;
+   gap: 5px;
+ }
+
+ .symbot-thinking span {
+   width: 7px;
+   height: 7px;
+   border-radius: 50%;
+   background: var(--nord-sym-cyan);
+   animation: symbot-think 1.2s infinite ease-in-out;
+   opacity: 0.7;
+ }
+ .symbot-thinking span:nth-child(2) { animation-delay: 0.2s; background: #60a5fa; }
+ .symbot-thinking span:nth-child(3) { animation-delay: 0.4s; background: #9370DB; }
+
+ @keyframes symbot-think {
+   0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+   30% { transform: translateY(-5px); opacity: 1; }
+ }
+
+ body.light-theme .symbot-chat-message-bot p {
+   background: rgba(248, 250, 252, 0.95);
+   border-color: var(--nord-sym-blueprint-lines);
+   color: var(--nord-sym-blueprint-ink);
+ }
+
+ body.light-theme .symbot-thinking {
+   background: rgba(248, 250, 252, 0.95);
+   border-color: var(--nord-sym-blueprint-lines);
+ }
+
+ body.light-theme .symbot-thinking span {
+   background: var(--nord-sym-blueprint-cyan);
+ }
+ body.light-theme .symbot-thinking span:nth-child(2) { background: #0ea5e9; }
+ body.light-theme .symbot-thinking span:nth-child(3) { background: #7c3aed; }
  
  </style>
 
@@ -6443,8 +6502,8 @@
  <!-- ÅTERSTÄLLD: Paginering och stängningstaggar som saknades -->
  <div id="galleryPagination" class="flex justify-center mt-6 gap-3"></div>
 
- <!-- SYMBOT CHAT COMPONENT - HIDDEN: broken, restore when fixed -->
- <div class="symbot-chat-container" style="display:none !important">
+ <!-- SYMBOT CHAT COMPONENT -->
+ <div class="symbot-chat-container">
    <div class="symbot-chat-card">
      <div class="symbot-chat-header">
        <div class="symbot-chat-avatar">
@@ -6486,63 +6545,88 @@
 
  <script>
  (function() {
+   const WEBHOOK = 'https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat';
    const form = document.getElementById('symbot-chat-form');
    const input = document.getElementById('symbot-chat-input');
-   const messagesContainer = document.getElementById('symbot-chat-messages');
-   const successEl = document.getElementById('symbot-chat-success');
-   
+   const msgs = document.getElementById('symbot-chat-messages');
+   const sendBtn = form.querySelector('.symbot-chat-send');
+   let busy = false;
+   const sessionId = 'ns-' + Math.random().toString(36).slice(2, 10);
+
+   function escHtml(s) {
+     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+   }
+
+   function appendMsg(role, html) {
+     const el = document.createElement('div');
+     el.className = 'symbot-chat-message symbot-chat-message-' + role;
+     el.innerHTML = '<p>' + html + '</p>';
+     msgs.appendChild(el);
+     msgs.scrollTop = msgs.scrollHeight;
+     return el;
+   }
+
+   function showThinking() {
+     const el = document.createElement('div');
+     el.className = 'symbot-thinking';
+     el.id = 'symbot-thinking-indicator';
+     el.innerHTML = '<span></span><span></span><span></span>';
+     msgs.appendChild(el);
+     msgs.scrollTop = msgs.scrollHeight;
+   }
+
+   function removeThinking() {
+     const el = document.getElementById('symbot-thinking-indicator');
+     if (el) el.remove();
+   }
+
    // Auto-resize textarea
    input.addEventListener('input', function() {
      this.style.height = 'auto';
      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
    });
-   
-   // Handle Enter key (submit on Enter, new line on Shift+Enter)
+
    input.addEventListener('keydown', function(e) {
      if (e.key === 'Enter' && !e.shiftKey) {
        e.preventDefault();
        form.dispatchEvent(new Event('submit'));
      }
    });
-   
+
    form.addEventListener('submit', async function(e) {
      e.preventDefault();
-     
+     if (busy) return;
      const message = input.value.trim();
      if (!message) return;
-     
-     // Add user message to chat
-     const userMsgEl = document.createElement('div');
-     userMsgEl.className = 'symbot-chat-message symbot-chat-message-user';
-     userMsgEl.innerHTML = '<p>' + message.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>';
-     messagesContainer.appendChild(userMsgEl);
-     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-     
-     // Clear input
+
+     busy = true;
+     sendBtn.disabled = true;
+
+     appendMsg('user', escHtml(message));
      input.value = '';
      input.style.height = 'auto';
-     
-     // Send to webhook
+     showThinking();
+
      try {
-       await fetch('https://nordsym.app.n8n.cloud/webhook/symbot-website-chat', {
+       const res = await fetch(WEBHOOK, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({
-           message: message,
-           timestamp: new Date().toISOString(),
-           source: 'nordsym.com'
-         })
+         body: JSON.stringify({ chatInput: message, sessionId: sessionId, action: 'sendMessage' })
        });
-       
-       // Show success message
-       successEl.style.display = 'flex';
-       setTimeout(() => {
-         successEl.style.display = 'none';
-       }, 5000);
-       
+       removeThinking();
+       if (!res.ok) throw new Error('HTTP ' + res.status);
+       const data = await res.json();
+       const reply = data.output || data.response || data.text || data.message || '...';
+       appendMsg('bot', escHtml(reply));
      } catch (err) {
-       console.error('Symbot chat error:', err);
+       removeThinking();
+       appendMsg('bot', 'Something went wrong — try again.');
+       console.error('[Symbot]', err);
      }
+
+     busy = false;
+     sendBtn.disabled = false;
+     input.focus();
    });
  })();
  </script>

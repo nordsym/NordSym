@@ -1,2 +1,3 @@
 .vercel
 .env*.local
+deal/DEAL_DATA_TEMPLATE.json
