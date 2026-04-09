@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Strategy Call – NordSym</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: ['class', '[data-theme="dark"]'],
+  theme: {
+    extend: {
+      colors: {
+        bg: '#050608',
+        surface: '#0d0f12',
+        surface2: '#161a1f',
+        border: '#1e2329',
+        cyan: '#00D4FF',
+        purple: '#9370DB',
+        muted: '#6b7280',
+        text: '#e5e7eb'
+      },
+      fontFamily: {
+        display: ['Comfortaa', 'cursive'],
+        body: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  :root { --bg:#050608;--surface:#0d0f12;--surface2:#161a1f;--border:#1e2329;--text:#e5e7eb;--muted:#6b7280; }
+  [data-theme="light"] { --bg:#f9fafb;--surface:#ffffff;--surface2:#f3f4f6;--border:#e5e7eb;--text:#111827;--muted:#6b7280; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; margin: 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); }
+  .day-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); transition: all .15s; cursor: pointer; border-radius: 8px; padding: 10px 6px; text-align: center; font-family: 'Inter', sans-serif; }
+  .day-btn:hover:not(:disabled) { border-color: #00D4FF; color: #00D4FF; }
+  .day-btn.selected { background: rgba(0,212,255,.12); border-color: #00D4FF; color: #00D4FF; }
+  .day-btn:disabled { opacity: .35; cursor: not-allowed; }
+  .time-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); transition: all .15s; cursor: pointer; border-radius: 8px; padding: 10px 18px; font-family: 'Inter', sans-serif; font-size: 14px; }
+  .time-btn:hover { border-color: #00D4FF; color: #00D4FF; }
+  .time-btn.selected { background: rgba(0,212,255,.12); border-color: #00D4FF; color: #00D4FF; }
+  .input-field { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 14px; width: 100%; outline: none; transition: border-color .15s; }
+  .input-field:focus { border-color: #00D4FF; }
+  .input-field::placeholder { color: var(--muted); }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: all .2s; }
+  .step-dot.active { background: #00D4FF; box-shadow: 0 0 8px rgba(0,212,255,.5); }
+  .step-dot.done { background: #00D4FF; opacity: .5; }
+  .section-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+  textarea { resize: vertical; min-height: 80px; }
+</style>
+</head>
+<body>
+<div class="min-h-screen flex items-center justify-center p-4">
+  <!-- Theme toggle -->
+  <button onclick="toggleTheme()" class="fixed top-4 right-4 p-2 rounded-full" style="background:var(--surface2);border:1px solid var(--border);">
+    <i id="theme-icon" class="ph-sun" style="color:var(--muted);font-size:18px;"></i>
+  </button>
+
+  <div class="w-full max-w-4xl card rounded-2xl overflow-hidden flex flex-col md:flex-row" style="min-height:520px;">
+    <!-- LEFT PANEL -->
+    <div class="md:w-80 p-8 flex flex-col" style="background:var(--surface2);border-right:1px solid var(--border);">
+      <div class="mb-6">
+        <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym" class="h-10 w-10 mb-6">
+        <h1 class="text-2xl font-bold mb-1" style="font-family:'Comfortaa',cursive;color:#00D4FF;">Strategy Call</h1>
+        <p class="text-sm mb-4" style="color:var(--muted);">
+          <i class="ph-clock mr-1"></i>30 min &nbsp;•&nbsp; <i class="ph-video-camera mr-1"></i>Video call
+        </p>
+        <p class="text-sm leading-relaxed" style="color:var(--muted);">Book a free discovery call. We'll review your digital presence and find how NordSym can help you grow.</p>
+      </div>
+      <!-- Host card -->
+      <div class="mt-auto flex items-center gap-3 p-3 rounded-xl" style="background:var(--surface);border:1px solid var(--border);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center font-semibold text-sm flex-shrink-0" style="background:rgba(0,212,255,.15);color:#00D4FF;font-family:'Comfortaa',cursive;">M</div>
+        <div>
+          <div class="font-medium text-sm" style="color:var(--text);">Molle</div>
+          <div class="text-xs" style="color:var(--muted);">NordSym</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="flex-1 p-8 flex flex-col">
+      <!-- Step dots -->
+      <div class="flex gap-2 items-center mb-8">
+        <div id="dot-1" class="step-dot active"></div>
+        <div id="dot-2" class="step-dot"></div>
+        <div id="dot-3" class="step-dot"></div>
+        <span id="step-label" class="ml-2 text-xs" style="color:var(--muted);">Select a date</span>
+      </div>
+
+      <!-- STEP 1: Calendar -->
+      <div id="step-1">
+        <div class="section-label">Current week</div>
+        <div id="week-1" class="grid grid-cols-5 gap-2 mb-6"></div>
+        <div class="section-label">Next week</div>
+        <div id="week-2" class="grid grid-cols-5 gap-2"></div>
+      </div>
+
+      <!-- STEP 2: Time slots -->
+      <div id="step-2" style="display:none;">
+        <button onclick="goStep(1)" class="flex items-center gap-1 text-sm mb-6" style="color:var(--muted);background:none;border:none;cursor:pointer;padding:0;">
+          <i class="ph-arrow-left"></i> Back
+        </button>
+        <div id="selected-date-label" class="font-medium mb-4" style="color:var(--text);font-family:'Comfortaa',cursive;"></div>
+        <div id="time-slots" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- STEP 3: Form -->
+      <div id="step-3" style="display:none;">
+        <button onclick="goStep(2)" class="flex items-center gap-1 text-sm mb-6" style="color:var(--muted);background:none;border:none;cursor:pointer;padding:0;">
+          <i class="ph-arrow-left"></i> Back
+        </button>
+        <div id="booking-summary" class="text-sm mb-6 p-3 rounded-lg" style="background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);color:#00D4FF;"></div>
+        <div class="flex flex-col gap-4">
+          <div>
+            <label class="section-label">Name *</label>
+            <input id="f-name" type="text" class="input-field" placeholder="Your name">
+          </div>
+          <div>
+            <label class="section-label">Email *</label>
+            <input id="f-email" type="email" class="input-field" placeholder="you@example.com">
+          </div>
+          <div>
+            <label class="section-label">Notes / Message</label>
+            <textarea id="f-notes" class="input-field" placeholder="Anything you'd like us to know beforehand..."></textarea>
+          </div>
+          <div id="form-error" class="text-sm" style="color:#f87171;display:none;"></div>
+          <button id="submit-btn" onclick="submitForm()" class="mt-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all" style="background:#00D4FF;color:#050608;font-family:'Comfortaa',cursive;border:none;cursor:pointer;">
+            Book Strategy Call
+          </button>
+        </div>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div id="step-confirm" style="display:none;" class="flex flex-col items-center justify-center flex-1 text-center">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:rgba(0,212,255,.12);">
+          <i class="ph-check-circle" style="color:#00D4FF;font-size:32px;"></i>
+        </div>
+        <h2 class="text-xl font-bold mb-2" style="font-family:'Comfortaa',cursive;color:#00D4FF;">You're booked!</h2>
+        <div id="confirm-details" class="text-sm mb-3" style="color:var(--muted);"></div>
+        <p class="text-sm" style="color:var(--muted);">A calendar invitation has been sent to your email.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const FRIDAY_SLOTS = ['09:00','10:00','14:00','15:00'];
+  const DEFAULT_SLOTS = ['09:00','10:00','11:00','14:00','15:00','16:00'];
+  let selectedDate = null, selectedTime = null;
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-icon').className = isDark ? 'ph-moon' : 'ph-sun';
+  }
+
+  function getWeekDays(offsetWeek) {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const day = today.getDay();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1) + offsetWeek * 7);
+    const days = [];
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      days.push(d);
+    }
+    return days;
+  }
+
+  function formatDate(d) {
+    return d.toISOString().split('T')[0];
+  }
+
+  function renderCalendar() {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    ['week-1','week-2'].forEach((id, wi) => {
+      const el = document.getElementById(id);
+      el.innerHTML = '';
+      getWeekDays(wi).forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = 'day-btn';
+        const isPast = d < today;
+        btn.disabled = isPast;
+        const ds = formatDate(d);
+        if (selectedDate === ds) btn.classList.add('selected');
+        btn.innerHTML = `<div style="font-size:11px;opacity:.7;">${d.toLocaleDateString('en',{weekday:'short'})}</div><div style="font-size:15px;font-weight:600;">${d.getDate()}</div><div style="font-size:10px;opacity:.6;">${d.toLocaleDateString('en',{month:'short'})}</div>`;
+        btn.onclick = () => selectDate(ds, d);
+        el.appendChild(btn);
+      });
+    });
+  }
+
+  function selectDate(ds, d) {
+    selectedDate = ds;
+    selectedTime = null;
+    renderCalendar();
+    const dayName = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
+    document.getElementById('selected-date-label').textContent = dayName;
+    renderTimeSlots(d.getDay() === 5);
+    goStep(2);
+  }
+
+  function renderTimeSlots(isFriday) {
+    const slots = isFriday ? FRIDAY_SLOTS : DEFAULT_SLOTS;
+    const el = document.getElementById('time-slots');
+    el.innerHTML = '';
+    slots.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'time-btn' + (selectedTime === t ? ' selected' : '');
+      btn.textContent = t;
+      btn.onclick = () => selectTime(t);
+      el.appendChild(btn);
+    });
+  }
+
+  function selectTime(t) {
+    selectedTime = t;
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.toggle('selected', b.textContent === t));
+    const d = new Date(selectedDate + 'T12:00:00');
+    const label = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}) + ' at ' + t;
+    document.getElementById('booking-summary').innerHTML = `<i class="ph-calendar-check mr-2"></i>${label}`;
+    setTimeout(() => goStep(3), 200);
+  }
+
+  function goStep(n) {
+    [1,2,3,'confirm'].forEach(s => {
+      const el = document.getElementById('step-' + s);
+      if (el) el.style.display = 'none';
+    });
+    document.getElementById('step-' + n).style.display = '';
+    [1,2,3].forEach(i => {
+      const dot = document.getElementById('dot-' + i);
+      dot.className = 'step-dot' + (i === n ? ' active' : i < n ? ' done' : '');
+    });
+    const labels = {1:'Select a date', 2:'Pick a time', 3:'Your details'};
+    document.getElementById('step-label').textContent = labels[n] || '';
+  }
+
+  async function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const notes = document.getElementById('f-notes').value.trim();
+    const errEl = document.getElementById('form-error');
+    errEl.style.display = 'none';
+    if (!name) { errEl.textContent = 'Name is required.'; errEl.style.display = ''; return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'A valid email is required.'; errEl.style.display = ''; return; }
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Booking...'; btn.disabled = true; btn.style.opacity = '.7';
+    try {
+      const res = await fetch('https://nordsym.app.n8n.cloud/webhook/aeo-booking', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          name, email, notes,
+          date: selectedDate,
+          time: selectedTime,
+          source: 'nordsym.com/book',
+          meetingTitle: 'Strategy Call - NordSym',
+          hostName: 'Molle',
+          hostEmail: 'molle@nordsym.com',
+          timestamp: new Date().toISOString()
+        })
+      });
+      if (!res.ok) throw new Error('Server error: ' + res.status);
+      const d = new Date(selectedDate + 'T12:00:00');
+      const label = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}) + ' at ' + selectedTime;
+      document.getElementById('confirm-details').textContent = label;
+      [1,2,3].forEach(i => document.getElementById('dot-' + i).className = 'step-dot done');
+      document.getElementById('step-label').textContent = 'Confirmed';
+      document.getElementById('step-3').style.display = 'none';
+      document.getElementById('step-confirm').style.display = '';
+    } catch(e) {
+      errEl.textContent = 'Something went wrong. Please try again or email molle@nordsym.com.';
+      errEl.style.display = '';
+      btn.textContent = 'Book Strategy Call'; btn.disabled = false; btn.style.opacity = '1';
+    }
+  }
+
+  renderCalendar();
+</script>
+</body>
+</html>
