@@ -293,7 +293,7 @@ const NordSymLang = {
       genprdCta: 'Try GenPRD',
       
       // Skeppa
-      skeppaTitle: 'Skeppa',
+      skeppaTitle: 'Skeppa.nu',
       skeppaDesc: 'Build, ship, win. Monthly challenges for AI developers. Compete against others, get community feedback and build your portfolio. New themes every month.',
       skeppaSig1: 'Monthly Themes',
       skeppaSig2: 'Community',
