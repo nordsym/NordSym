@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a Call - NordSym</title>
+  <meta name="description" content="Book a 30-minute strategy call with NordSym. Discuss your needs and get exact architecture defined together.">
+  <link rel="icon" href="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --nord-sym-cyan: #00D4FF;
+      --nord-sym-cyan-rgb: 0, 212, 255;
+      --nord-sym-deep-space-blue: #050608;
+      --nord-sym-text-primary: #FFFFFF;
+      --nord-sym-text-secondary: #E2E8F0;
+      --nord-sym-blueprint-bg: #F0F4F8;
+      --nord-sym-blueprint-ink: #0F172A;
+      --nord-sym-blueprint-text-primary: #1E293B;
+      --nord-sym-blueprint-text-secondary: #475569;
+      --nord-sym-blueprint-lines: #94A3B8;
+      --nord-sym-blueprint-lines-faint: #CBD5E1;
+      --nord-sym-blueprint-cyan: #0284C7;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--nord-sym-text-primary);
+      background-color: var(--nord-sym-deep-space-blue);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.light-theme {
+      background-color: var(--nord-sym-blueprint-bg);
+      color: var(--nord-sym-blueprint-text-primary);
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(148, 163, 184, 0.15) 28px), repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(148, 163, 184, 0.1) 28px);
+    }
+    h1, h2, h3 { font-family: 'Comfortaa', sans-serif; }
+    .book-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    body.light-theme .book-header { border-bottom-color: var(--nord-sym-blueprint-lines-faint); }
+    .book-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit; }
+    .book-logo img { height: 28px; width: auto; }
+    .book-logo span { font-family: 'Comfortaa', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--nord-sym-text-primary); }
+    body.light-theme .book-logo span { color: var(--nord-sym-blueprint-ink); }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .back-link { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
+    .back-link:hover { color: var(--nord-sym-cyan); }
+    body.light-theme .back-link { color: var(--nord-sym-blueprint-text-secondary); }
+    body.light-theme .back-link:hover { color: var(--nord-sym-blueprint-cyan); }
+    .theme-toggle { background: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 0.5rem; color: rgba(255,255,255,0.6); cursor: pointer; padding: 0.4rem 0.6rem; font-size: 1rem; transition: all 0.2s; display: flex; align-items: center; }
+    .theme-toggle:hover { border-color: var(--nord-sym-cyan); color: var(--nord-sym-cyan); }
+    body.light-theme .theme-toggle { border-color: var(--nord-sym-blueprint-lines); color: var(--nord-sym-blueprint-text-secondary); }
+    main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3rem 1.5rem 4rem; }
+    .book-heading { text-align: center; margin-bottom: 0.75rem; font-size: 2.25rem; font-weight: 800; color: var(--nord-sym-text-primary); }
+    body.light-theme .book-heading { color: var(--nord-sym-blueprint-ink); }
+    .book-subheading { text-align: center; color: rgba(255,255,255,0.55); font-size: 1rem; margin-bottom: 2.5rem; max-width: 420px; }
+    body.light-theme .book-subheading { color: var(--nord-sym-blueprint-text-secondary); }
+    .book-meta { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .book-meta-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    body.light-theme .book-meta-item { color: var(--nord-sym-blueprint-text-secondary); }
+    .book-meta-item i { color: var(--nord-sym-cyan); font-size: 1rem; }
+    body.light-theme .book-meta-item i { color: var(--nord-sym-blueprint-cyan); }
+    .scheduler-card { width: 100%; max-width: 420px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1rem; padding: 2rem; backdrop-filter: blur(10px); }
+    body.light-theme .scheduler-card { background: #fff; border-color: var(--nord-sym-blueprint-lines-faint); box-shadow: 0 4px 24px rgba(15,23,42,0.07); }
+    .scheduler-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; transition: all 0.2s; font-size: 0.875rem; color: rgba(255,255,255,0.8); }
+    .scheduler-day:hover:not(.disabled) { background: rgba(0, 212, 255, 0.2); }
+    .scheduler-day.selected { background: var(--nord-sym-cyan); color: var(--nord-sym-deep-space-blue); font-weight: 700; }
+    .scheduler-day.disabled { opacity: 0.25; cursor: not-allowed; }
+    .scheduler-day.today { border: 1px solid var(--nord-sym-cyan); }
+    body.light-theme .scheduler-day { color: var(--nord-sym-blueprint-ink); }
+    body.light-theme .scheduler-day:hover:not(.disabled) { background: rgba(2,132,199,0.1); }
+    body.light-theme .scheduler-day.selected { background: var(--nord-sym-blueprint-cyan); color: #fff; }
+    body.light-theme .scheduler-day.today { border-color: var(--nord-sym-blueprint-cyan); }
+    .scheduler-time { padding: 0.6rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.9); }
+    .scheduler-time:hover { border-color: var(--nord-sym-cyan); background: rgba(0,212,255,0.08); }
+    .scheduler-time.selected { border-color: var(--nord-sym-cyan); background: rgba(0,212,255,0.15); }
+    body.light-theme .scheduler-time { border-color: var(--nord-sym-blueprint-lines-faint); color: var(--nord-sym-blueprint-ink); }
+    body.light-theme .scheduler-time:hover { border-color: var(--nord-sym-blueprint-cyan); background: rgba(2,132,199,0.08); }
+    .month-nav-btn { background: none; border: none; cursor: pointer; padding: 0.5rem; color: #38bdf8; font-size: 1.25rem; transition: color 0.2s; display: flex; align-items: center; }
+    .month-nav-btn:hover { color: #fff; }
+    body.light-theme .month-nav-btn { color: var(--nord-sym-blueprint-cyan); }
+    #schedulerMonth { font-size: 1rem; font-weight: 600; color: #fff; }
+    body.light-theme #schedulerMonth { color: var(--nord-sym-blueprint-ink); }
+    .day-labels { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px; }
+    .day-label { text-align: center; font-size: 0.7rem; color: #38bdf8; font-weight: 500; }
+    body.light-theme .day-label { color: var(--nord-sym-blueprint-cyan); }
+    .day-label.weekend { color: rgba(255,255,255,0.25); }
+    body.light-theme .day-label.weekend { color: var(--nord-sym-blueprint-lines); }
+    #schedulerDateLabel { font-size: 0.85rem; color: #38bdf8; }
+    body.light-theme #schedulerDateLabel { color: var(--nord-sym-blueprint-cyan); }
+    #schedulerSummary { font-size: 0.85rem; color: #38bdf8; }
+    body.light-theme #schedulerSummary { color: var(--nord-sym-blueprint-cyan); }
+    .text-cyan { color: var(--nord-sym-cyan); font-weight: 700; }
+    body.light-theme .text-cyan { color: var(--nord-sym-blueprint-cyan); }
+    .small-btn { background: none; border: none; cursor: pointer; font-size: 0.75rem; color: #38bdf8; display: flex; align-items: center; gap: 0.25rem; transition: color 0.2s; padding: 0; }
+    .small-btn:hover { color: #fff; }
+    body.light-theme .small-btn { color: var(--nord-sym-blueprint-cyan); }
+    .divider { border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0; }
+    body.light-theme .divider { border-top-color: var(--nord-sym-blueprint-lines-faint); }
+    .form-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 0.5rem; padding: 0.75rem 1rem; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus { border-color: var(--nord-sym-cyan); box-shadow: 0 0 0 3px rgba(0,212,255,0.1); }
+    body.light-theme .form-input { background: #F8FAFC; border-color: var(--nord-sym-blueprint-lines-faint); color: var(--nord-sym-blueprint-ink); }
+    body.light-theme .form-input::placeholder { color: var(--nord-sym-blueprint-lines); }
+    body.light-theme .form-input:focus { border-color: var(--nord-sym-blueprint-cyan); box-shadow: 0 0 0 3px rgba(2,132,199,0.1); }
+    .btn-book { width: 100%; padding: 0.9rem 1.5rem; background: var(--nord-sym-cyan); color: var(--nord-sym-deep-space-blue); border: none; border-radius: 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; margin-top: 1rem; }
+    .btn-book:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-book:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    body.light-theme .btn-book { background: var(--nord-sym-blueprint-cyan); color: #fff; }
+    #schedulerSuccess i { font-size: 3rem; color: var(--nord-sym-cyan); display: block; margin-bottom: 1rem; }
+    body.light-theme #schedulerSuccess i { color: var(--nord-sym-blueprint-cyan); }
+    #schedulerSuccess h3 { color: #fff; }
+    body.light-theme #schedulerSuccess h3 { color: var(--nord-sym-blueprint-ink); }
+    #schedulerSuccess p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    body.light-theme #schedulerSuccess p { color: var(--nord-sym-blueprint-text-secondary); }
+    .hidden { display: none !important; }
+    .spinner { display: inline-block; width: 1rem; height: 1rem; border: 2px solid transparent; border-top-color: currentColor; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <header class="book-header">
+    <a href="/" class="book-logo">
+      <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym">
+      <span>NordSym</span>
+    </a>
+    <div class="header-actions">
+      <a href="/" class="back-link"><i class="ph-arrow-left"></i> Back to site</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="ph-moon"></i></button>
+    </div>
+  </header>
+  <main>
+    <h1 class="book-heading">Book a Strategy Call</h1>
+    <p class="book-subheading">30 minutes to discuss your needs. Exact architecture defined together with you.</p>
+    <div class="book-meta">
+      <span class="book-meta-item"><i class="ph-clock"></i> 30 minutes</span>
+      <span class="book-meta-item"><i class="ph-video-camera"></i> Google Meet</span>
+      <span class="book-meta-item"><i class="ph-user"></i> Molle, NordSym</span>
+    </div>
+    <div class="scheduler-card">
+      <div id="schedulerCalendar">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+          <button class="month-nav-btn" onclick="Scheduler.changeMonth(-1)"><i class="ph-caret-left"></i></button>
+          <h3 id="schedulerMonth" style="margin:0;"></h3>
+          <button class="month-nav-btn" onclick="Scheduler.changeMonth(1)"><i class="ph-caret-right"></i></button>
+        </div>
+        <div class="day-labels">
+          <div class="day-label">Mon</div><div class="day-label">Tue</div><div class="day-label">Wed</div><div class="day-label">Thu</div><div class="day-label">Fri</div><div class="day-label weekend">Sat</div><div class="day-label weekend">Sun</div>
+        </div>
+        <div id="schedulerDays" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:1.5rem;"></div>
+        <div id="schedulerTimes" class="hidden">
+          <div class="divider" style="margin-top:0;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+            <span id="schedulerDateLabel"></span>
+            <button class="small-btn" onclick="Scheduler.resetDate()"><i class="ph-x"></i> Change</button>
+          </div>
+          <div id="schedulerTimeGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;"></div>
+        </div>
+      </div>
+      <div id="schedulerForm" class="hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+          <span id="schedulerSummary"></span>
+          <button class="small-btn" onclick="Scheduler.backToCalendar()"><i class="ph-arrow-left"></i> Back</button>
+        </div>
+        <form id="schedulerBookingForm">
+          <div style="margin-bottom:0.75rem;"><input class="form-input" type="text" name="name" required placeholder="Your name"></div>
+          <div style="margin-bottom:0.75rem;"><input class="form-input" type="email" name="email" required placeholder="Email"></div>
+          <button class="btn-book" type="submit">Confirm booking</button>
+        </form>
+      </div>
+      <div id="schedulerSuccess" class="hidden" style="text-align:center;padding:2rem 0;">
+        <i class="ph-check-circle"></i>
+        <h3 style="margin:0 0 0.5rem;font-size:1.25rem;">Booking confirmed</h3>
+        <p>Calendar invitation sent to your email.</p>
+      </div>
+    </div>
+  </main>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      icon.className = document.body.classList.contains('light-theme') ? 'ph-sun' : 'ph-moon';
+    });
+    const Scheduler = {
+      currentDate: new Date(), selectedDate: null, selectedTime: null,
+      monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      availability: { 1:['09:00','10:00','11:00','14:00','15:00','16:00'], 2:['09:00','10:00','11:00','14:00','15:00','16:00'], 3:['09:00','10:00','11:00','14:00','15:00','16:00'], 4:['09:00','10:00','11:00','14:00','15:00','16:00'], 5:['09:00','10:00','14:00','15:00'] },
+      init() { this.renderCalendar(); document.getElementById('schedulerBookingForm').addEventListener('submit', (e) => this.submit(e)); },
+      renderCalendar() {
+        const year = this.currentDate.getFullYear(), month = this.currentDate.getMonth();
+        document.getElementById('schedulerMonth').textContent = `${this.monthNames[month]} ${year}`;
+        const firstDay = new Date(year, month, 1).getDay(), startOffset = firstDay === 0 ? 6 : firstDay - 1, daysInMonth = new Date(year, month + 1, 0).getDate();
+        const grid = document.getElementById('schedulerDays'); grid.innerHTML = '';
+        for (let i = 0; i < startOffset; i++) grid.appendChild(document.createElement('div'));
+        const today = new Date(); today.setHours(0,0,0,0);
+        for (let d = 1; d <= daysInMonth; d++) {
+          const date = new Date(year, month, d), dow = date.getDay(), isWeekend = dow === 0 || dow === 6, isPast = date < today, isToday = date.getTime() === today.getTime();
+          const el = document.createElement('div');
+          el.className = `scheduler-day${isPast || isWeekend ? ' disabled' : ''}${isToday ? ' today' : ''}`;
+          el.textContent = d;
+          if (!isPast && !isWeekend) el.onclick = () => this.selectDate(d, el);
+          grid.appendChild(el);
+        }
+      },
+      changeMonth(delta) { this.currentDate.setMonth(this.currentDate.getMonth() + delta); this.renderCalendar(); document.getElementById('schedulerTimes').classList.add('hidden'); },
+      selectDate(day, el) {
+        document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected')); el.classList.add('selected');
+        this.selectedDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+        const slots = this.availability[this.selectedDate.getDay()] || [];
+        document.getElementById('schedulerDateLabel').textContent = `${day} ${this.monthNames[this.currentDate.getMonth()]}`;
+        const grid = document.getElementById('schedulerTimeGrid'); grid.innerHTML = '';
+        slots.forEach(t => { const btn = document.createElement('div'); btn.className = 'scheduler-time'; btn.textContent = t; btn.onclick = () => this.selectTime(t, btn); grid.appendChild(btn); });
+        document.getElementById('schedulerTimes').classList.remove('hidden');
+      },
+      selectTime(time, el) {
+        document.querySelectorAll('.scheduler-time').forEach(t => t.classList.remove('selected')); el.classList.add('selected');
+        this.selectedTime = time;
+        const d = this.selectedDate;
+        document.getElementById('schedulerSummary').innerHTML = `<span class="text-cyan">${d.getDate()} ${this.monthNames[d.getMonth()]}</span> at <span class="text-cyan">${time}</span>`;
+        document.getElementById('schedulerCalendar').classList.add('hidden'); document.getElementById('schedulerForm').classList.remove('hidden');
+      },
+      resetDate() { this.selectedDate = null; this.selectedTime = null; document.getElementById('schedulerTimes').classList.add('hidden'); document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected')); },
+      backToCalendar() { document.getElementById('schedulerForm').classList.add('hidden'); document.getElementById('schedulerCalendar').classList.remove('hidden'); },
+      async submit(e) {
+        e.preventDefault(); const form = e.target, btn = form.querySelector('button[type=submit]');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+        try {
+          const res = await fetch('https://nordsym.app.n8n.cloud/webhook/aeo-booking', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.name.value, email: form.email.value, date: this.selectedDate.toLocaleDateString('sv-SE'), time: this.selectedTime, meetingType: 'strategisamtal', meetingTitle: 'Strategy Call - NordSym', timestamp: new Date().toISOString(), source: 'nordsym.com/book' }) });
+          if (!res.ok) throw new Error();
+          document.getElementById('schedulerForm').classList.add('hidden'); document.getElementById('schedulerSuccess').classList.remove('hidden');
+        } catch { btn.innerHTML = 'Error — try again'; btn.disabled = false; }
+      }
+    };
+    document.addEventListener('DOMContentLoaded', () => Scheduler.init());
+  </script>
+</body>
+</html>
