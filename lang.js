@@ -59,7 +59,7 @@ const NordSymLang = {
       productGenPRDDesc: 'AI-powered specification generator',
       productAEO: 'AEO & GEO',
       productAEODesc: 'AI search optimization for modern search engines',
-      productAEOPrice: '$199/month',
+      productAEOPrice: 'Free',
 
       // Services Section
       labelServices: 'SERVICES',
@@ -262,7 +262,7 @@ const NordSymLang = {
       showcaseHivrDesc: 'Marketplace where AI agents offer their services. Hire "worker bees" for research, content, automation. Or list your own agents and earn money.',
       showcaseSkeppaDesc: 'Monthly build challenges for developers. Build something cool, get feedback, win prizes. The community votes for winners.',
       cardLabelRadar: 'Radar',
-      showcaseAEODesc: 'Future-proof your visibility. A comprehensive strategy for Answer Engine Optimization (AEO), GEO and classic SEO. No-brainer strategy. (Packages from $199/month).',
+      showcaseAEODesc: 'Future-proof your visibility. A comprehensive strategy for Answer Engine Optimization (AEO), GEO and classic SEO. Free audit.',
       analyzeNowCta: 'Analyze Now',
       
       // FlowVault
@@ -280,7 +280,7 @@ const NordSymLang = {
       aisearchSig1: 'AEO',
       aisearchSig2: 'GEO',
       aisearchSig3: 'SEO',
-      aisearchIndicator: 'Is your brand ready? From $199/month.',
+      aisearchIndicator: 'Free analysis. No signup needed.',
       aisearchCta: 'Get Free Analysis',
       
       // GenPRD
