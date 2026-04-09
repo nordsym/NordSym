@@ -67,7 +67,7 @@ const NordSymLang = {
       servicesTitle: 'Intelligent mjukvara anpassad efter er verksamhet',
 
       // Pricing - MLP
-      pricingMLPTitle: 'MINIMUM LOVABLE PRODUCT',
+      pricingMLPTitle: 'SIGNAL',
       pricingMLPPrice: '75k',
       pricingMLPCurrency: 'SEK',
       pricingMLPDesc: 'Slipp standardlösningar som inte passar. Skräddarsydda verktyg som löser era specifika problem exakt så som ni vill ha det. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">se exempel</a>)',
@@ -89,7 +89,7 @@ const NordSymLang = {
       pricingOSBtn: 'Diskutera Behov',
 
       // Pricing - Enterprise
-      pricingEnterpriseTitle: 'STÖRRE PROJEKT',
+      pricingEnterpriseTitle: 'APEX',
       pricingEnterprisePrice: '500k+',
       pricingEnterpriseCurrency: 'SEK',
       pricingEnterpriseDesc: 'För komplexa behov där standardlösningar inte räcker. Vi går in som teknisk partner och definierar leverans och omfattning helt baserat på ert unika scope och era affärsmål.',
@@ -431,7 +431,7 @@ const NordSymLang = {
       servicesTitle: 'Intelligent software tailored to your business',
 
       // Pricing - MLP
-      pricingMLPTitle: 'MINIMUM LOVABLE PRODUCT',
+      pricingMLPTitle: 'SIGNAL',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
       pricingMLPDesc: 'Cut the noise. One precision build, designed around your exact problem. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
@@ -453,7 +453,7 @@ const NordSymLang = {
       pricingOSBtn: 'Discuss Needs',
 
       // Pricing - Enterprise
-      pricingEnterpriseTitle: 'LARGER PROJECTS',
+      pricingEnterpriseTitle: 'APEX',
       pricingEnterprisePrice: '$50k+',
       pricingEnterpriseCurrency: 'USD',
       pricingEnterpriseDesc: 'For complex needs where standard solutions fall short. We act as your technical partner and define delivery and scope entirely based on your unique requirements and business goals.',
