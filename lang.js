@@ -434,10 +434,10 @@ const NordSymLang = {
       pricingMLPTitle: 'MINIMUM LOVABLE PRODUCT',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
-      pricingMLPDesc: 'Skip one-size-fits-all solutions. Custom-built tools that solve your specific problems exactly the way you want them. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
+      pricingMLPDesc: 'Cut the noise. One precision build, designed around your exact problem. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
       pricingMLPDescLink: 'see example',
       pricingMLPFeature1: 'Custom Code',
-      pricingMLPFeature2: 'Exact Solution',
+      pricingMLPFeature2: 'One Problem',
       pricingMLPBtn: 'Start Pilot',
       pricingMLPNote: 'Exact architecture is defined together with the client',
 
