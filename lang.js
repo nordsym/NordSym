@@ -68,7 +68,7 @@ const NordSymLang = {
 
       // Pricing - MLP
       pricingMLPTitle: 'SIGNAL',
-      pricingMLPPrice: '$7.5k',
+      pricingMLPPrice: '$7.5k – $10k',
       pricingMLPCurrency: 'USD',
       pricingMLPDesc: 'Cut the noise. One precision build, designed around your exact problem. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
       pricingMLPDescLink: 'see example',
@@ -79,7 +79,7 @@ const NordSymLang = {
 
       // Pricing - Operating System
       pricingOSTitle: 'OPERATING SYSTEM',
-      pricingOSPrice: '$25k',
+      pricingOSPrice: '$15k – $25k',
       pricingOSCurrency: 'USD',
       pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
       pricingOSFeature1: 'Data Hub',
@@ -90,7 +90,7 @@ const NordSymLang = {
 
       // Pricing - Enterprise
       pricingEnterpriseTitle: 'APEX',
-      pricingEnterprisePrice: '$50k+',
+      pricingEnterprisePrice: '$30k – $50k',
       pricingEnterpriseCurrency: 'USD',
       pricingEnterpriseDesc: 'For complex needs where standard solutions fall short. We act as your technical partner and define delivery and scope entirely based on your unique requirements and business goals.',
       pricingEnterpriseFeature1: 'Strategy',
@@ -99,7 +99,7 @@ const NordSymLang = {
       pricingEnterpriseBtn: 'Discuss Needs',
 
       // Support
-      supportTitle: '<strong>Operations & Maintenance:</strong> $1.5k/month',
+      supportTitle: '<strong>Compute & Maintenance:</strong> $1.5k/month',
       supportDesc: 'This is where the partnership begins. NordSym guarantees operations, develops new features, and grows with your business.',
 
       // Founder
