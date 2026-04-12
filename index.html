@@ -1112,8 +1112,8 @@
  border-color: var(--nord-sym-blueprint-cyan);
  background: rgba(2, 132, 199, 0.1);
  }
- body.light-theme #boka-samtal-skraddarsydd h2.text-white,
- body.light-theme #boka-samtal-skraddarsydd .text-white {
+ body.light-theme #book h2.text-white,
+ body.light-theme #book .text-white {
  color: var(--nord-sym-blueprint-ink) !important;
  }
  body.light-theme #schedulerMonth {
@@ -5363,7 +5363,7 @@
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium"data-i18n="btnRnD">R&D</a>
  </nav>
  <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised text-sm">Book Strategy Call</a>
  
  <!-- NY TEMAKNAPP (SWITCH) -->
  <label class="theme-switch">
@@ -5411,7 +5411,7 @@
  
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Book Strategy Call</a>
  </div>
  </div>
  </header>
@@ -5459,7 +5459,7 @@
  
  <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
  <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Book Strategy Call</a>
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5"data-i18n="btnRnD">R&D</a>
  </div>
  <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
@@ -6690,7 +6690,7 @@
  </div>
  <div class="flex flex-col gap-3">
  <a href="#" onclick="window.nord.showPage('system'); return false;" class="btn-base btn-secondary-on-dark text-center">See Services</a>
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-center">Book Architecture Call</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised text-center">Book Architecture Call</a>
  </div>
  </div>
  </div>
@@ -6739,7 +6739,7 @@
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Start Pilot</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-secondary-on-dark w-full">Start Pilot</a>
  <span class="text-[10px] text-sky-300/50 italic text-center">Exact architecture defined together with the client</span>
  </div>
  </div>
@@ -6782,7 +6782,7 @@
 
  <div class="mt-auto flex flex-col items-center gap-4">
  
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Discuss Needs</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised w-full">Discuss Needs</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exact architecture defined together with the client</span>
  </div>
@@ -6818,7 +6818,7 @@
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Discuss Needs</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-secondary-on-dark w-full">Discuss Needs</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exact architecture defined together with the client</span>
  </div>
@@ -6941,7 +6941,7 @@
  </div>
  </section>
 
- <section id="boka-samtal-skraddarsydd" class="space-background-section page-content-padding" style="display: none;">
+ <section id="book" class="space-background-section page-content-padding" style="display: none;">
  <div class="section-content-wrapper text-center">
  
  <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Book Strategy Call</h2>
@@ -7087,7 +7087,7 @@
  </p>
  
  <!-- Direktlänk till Scheduler -->
- <a href="#" onclick="window.nord.closeFounderModal(); window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full mb-6 flex items-center justify-center gap-2">
+ <a href="#" onclick="window.nord.closeFounderModal(); window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised w-full mb-6 flex items-center justify-center gap-2">
  <span>Book Strategy Call</span>
  <i class="ph-calendar-check text-lg"></i>
  </a>
@@ -7131,7 +7131,7 @@
  <p class="text-sm font-bold text-white mb-1">Ready to scale up?</p>
  <!-- Skarpare copy. Från "AI-First" till konkret infrastruktur/tillväxt. -->
  <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym builds the infrastructure for scalable, agent-driven growth.</p>
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Book Strategy Call</a>
 
  </div>
  <div class="text-center md:text-left">
@@ -7432,7 +7432,7 @@
  'om-oss': { display: 'flex', hasFooter: true, navAlias: 'om-oss' },
  'system': { display: 'flex', hasFooter: true, navAlias: 'system' },
  'ritbordet': { display: 'flex', hasFooter: true, navAlias: 'ritbordet' },
- 'boka-samtal-skraddarsydd': { display: 'flex', hasFooter: true, navAlias: 'system' },
+ 'book': { display: 'flex', hasFooter: true, navAlias: 'system' },
  'privacy-policy-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
  'terms-of-service-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
  };
@@ -11321,7 +11321,7 @@ Max 3 parallel pilots. Quality > quantity.
  date: this.selectedDate.toLocaleDateString('sv-SE'),
  time: this.selectedTime,
  meetingType: 'strategisamtal',
- meetingTitle: 'Strategimöte - NordSym',
+ meetingTitle: '',
  timestamp: new Date().toISOString(),
  source: 'nordsym.com'
  };
