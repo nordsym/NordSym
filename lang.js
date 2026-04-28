@@ -67,10 +67,10 @@ const NordSymLang = {
       servicesTitle: 'Custom AI systems built around your business',
 
       // Pricing - MLP
-      pricingMLPTitle: 'MINIMUM LOVABLE PRODUCT',
-      pricingMLPPrice: '$75k',
+      pricingMLPTitle: 'PILOT',
+      pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
-      pricingMLPDesc: 'Skip one-size-fits-all solutions. Custom-built systems that solve your specific problems exactly the way you want them. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
+      pricingMLPDesc: 'A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
       pricingMLPDescLink: 'see example',
       pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
@@ -79,7 +79,7 @@ const NordSymLang = {
 
       // Pricing - Operating System
       pricingOSTitle: 'OPERATING SYSTEM',
-      pricingOSPrice: '$250k',
+      pricingOSPrice: '$25k',
       pricingOSCurrency: 'USD',
       pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
       pricingOSFeature1: 'Data Hub',
@@ -90,9 +90,9 @@ const NordSymLang = {
 
       // Pricing - Enterprise
       pricingEnterpriseTitle: 'APEX',
-      pricingEnterprisePrice: '$500k+',
+      pricingEnterprisePrice: '$50k',
       pricingEnterpriseCurrency: 'USD',
-      pricingEnterpriseDesc: 'For complex needs where standard solutions fall short. We act as your technical partner and define delivery and scope entirely based on your unique requirements and business goals.',
+      pricingEnterpriseDesc: 'For larger initiatives that need dedicated architecture, execution, and long-term ownership.',
       pricingEnterpriseFeature1: 'Strategy',
       pricingEnterpriseFeature2: 'Architecture',
       pricingEnterpriseFeature3: 'AI Orchestration',

@@ -60,16 +60,16 @@ Not a fit:
 
 ## Pricing
 
-Minimum Lovable Product - from $75k
+Pilot - from $7.5k
 - One bounded problem
 - Scope and architecture are defined together.
 
-Operating System - from $250k
+Operating System - from $25k
 - Core digitization
 - Data hub, automation, decision support
 - For companies that are serious about operational change
 
-APEX - from $500k+
+APEX - from $50k
 - Strategy
 - Architecture
 - AI orchestration
