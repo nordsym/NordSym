@@ -6576,7 +6576,7 @@ margin-right: 0.4rem;
  
  <!-- PITCH: Fokuserad start på ett problem -->
  <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
- A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)
+ A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it.
  </p>
 
  <!-- VISUELLA FEATURES (Signaturer) -->
@@ -9998,9 +9998,12 @@ Max 3 parallel pilots. Quality over quantity.`;
  { icon: 'ph-wrench', text: this.t('apiclawSig3') }
  ],
 indicator: this.t('apiclawIndicator'),
-ctaText: this.t('apiclawCta'),
- ctaIcon: 'ph-download-simple',
- ctaLink: 'https://apiclaw.cloud/apiclaw.mcpb'
+ctaText: this.t('apiclawSiteCta'),
+ ctaIcon: 'ph-arrow-square-out',
+ ctaLink: 'https://apiclaw.nordsym.com',
+ secondaryCtaText: this.t('apiclawCta'),
+ secondaryCtaIcon: 'ph-download-simple',
+ secondaryCtaLink: 'https://apiclaw.cloud/apiclaw.mcpb'
 },
  {
  customLogo: `
@@ -10197,23 +10200,30 @@ ctaText: this.t('apiclawCta'),
  const cardClasses = `archetype-card card-base ${isTeaser ? 'teaser' : ''}`;
 
  let ctaButton = '';
- if (data.ctaText) {
- const isExternal = data.ctaLink && data.ctaLink.startsWith('http');
- const pageId = data.ctaLink && data.ctaLink.startsWith('#') ? data.ctaLink.substring(1) : data.ctaLink;
- const action = data.ctaAction;
-
- const iconHTML = `<i class="ph ${data.ctaIcon || 'ph-arrow-square-out'}"></i>`;
- const textHTML = `<span>${data.ctaText}</span>`;
- 
- if (action) {
- // DYNAMIC ACTION HANDLER: Support for parameters
- const param = data.ctaActionParam ? `'${data.ctaActionParam}'` : '';
- ctaButton = `<a href="#" onclick="event.preventDefault(); window.nord['${action}'](${param});" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
- } else if (isExternal) {
- ctaButton = `<a href="${data.ctaLink}" target="_blank" rel="noopener noreferrer" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
- } else if (pageId) {
- ctaButton = `<a href="${data.ctaLink}" onclick="event.preventDefault(); window.nord.showPage('${pageId}');" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
- }
+ if (data.ctaText || data.secondaryCtaText) {
+ const buildButton = (text, link, icon, action, actionParam) => {
+   if (!text || (!link && !action)) return '';
+   const iconHTML = `<i class="ph ${icon || 'ph-arrow-square-out'}"></i>`;
+   const textHTML = `<span>${text}</span>`;
+   if (action) {
+     const param = actionParam ? `'${actionParam}'` : '';
+     return `<a href="#" onclick="event.preventDefault(); window.nord['${action}'](${param});" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
+   }
+   const isExternal = link && link.startsWith('http');
+   const pageId = link && link.startsWith('#') ? link.substring(1) : link;
+   if (isExternal) {
+     return `<a href="${link}" target="_blank" rel="noopener noreferrer" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
+   }
+   if (pageId) {
+     return `<a href="${link}" onclick="event.preventDefault(); window.nord.showPage('${pageId}');" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
+   }
+   return '';
+ };
+ const primaryButton = buildButton(data.ctaText, data.ctaLink, data.ctaIcon, data.ctaAction, data.ctaActionParam);
+ const secondaryButton = buildButton(data.secondaryCtaText, data.secondaryCtaLink, data.secondaryCtaIcon, data.secondaryCtaAction, data.secondaryCtaActionParam);
+ ctaButton = secondaryButton
+   ? `<div class="flex flex-col sm:flex-row gap-3">${primaryButton}${secondaryButton}</div>`
+   : primaryButton;
  }
  
  const signaturesHTML = data.signatures ? `

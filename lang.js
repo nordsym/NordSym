@@ -70,8 +70,7 @@ const NordSymLang = {
       pricingMLPTitle: 'FOUNDATION',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
-      pricingMLPDesc: 'A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
-      pricingMLPDescLink: 'see example',
+      pricingMLPDesc: 'A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it.',
       pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
       pricingMLPBtn: 'Start Foundation',
@@ -271,6 +270,7 @@ const NordSymLang = {
       apiclawSig2: '1,679 callable',
       apiclawSig3: '13,552 installs',
       apiclawIndicator: 'Three doors. One gateway. One billing pipeline. One logging pipeline.',
+      apiclawSiteCta: 'Visit Site',
       apiclawCta: 'Download .mcpb',
       
       // FlowVault
