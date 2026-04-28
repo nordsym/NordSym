@@ -102,7 +102,7 @@ export default async function handler(req, res) {
       },
       {
         name: "FlowVault",
-        description: "n8n Workflow Marketplace",
+        description: "n8n workflow library with a reliability layer",
         url: "https://flowvault.se",
         status: "live"
       },

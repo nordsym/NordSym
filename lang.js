@@ -54,7 +54,7 @@ const NordSymLang = {
 
       // Products
       productFlowVault: 'FlowVault',
-      productFlowVaultDesc: "World's largest n8n Flow library",
+      productFlowVaultDesc: 'Reusable n8n workflows with a reliability layer',
       productGenPRD: 'GenPRD',
       productGenPRDDesc: 'AI-powered specification generator',
       productAEO: 'AI Search',
@@ -257,7 +257,7 @@ const NordSymLang = {
       
       // Showcase descriptions
       showcaseGenPRDDesc: 'GenPRD takes your idea and generates a complete technical specification. Get database schemas, user flows and architecture optimized for AI agents to build your product directly.',
-      showcaseFlowVaultDesc: 'A massive library for all scenarios. From complex agent swarms to simple CRM sync. Ready-made solutions for every real situation.',
+      showcaseFlowVaultDesc: 'Reusable n8n workflows for real operations, with a reliability wedge that helps you trust what ships.',
       showcaseHivrDesc: 'Client dealrooms where scoped AI systems execute real work. Approved capabilities run through APIClaw, tasks are tracked, and clients see progress as it happens.',
       cardLabelRadar: 'Radar',
       showcaseAEODesc: 'Future-proof your visibility. AI search visibility analysis for modern discovery. Free analysis available.',
@@ -275,12 +275,12 @@ const NordSymLang = {
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
-      flowvaultDesc: 'A curated library of production-ready n8n flows. From complex Swedish integrations (e.g. Fortnox) to advanced AI swarms. Get verified blueprints and build from a stronger starting point.',
-      flowvaultSig1: 'Swedish APIs',
-      flowvaultSig2: 'AI Swarms',
-      flowvaultSig3: 'Open Source',
-      flowvaultIndicator: 'Automate faster. Start free.',
-      flowvaultCta: 'Open Vault',
+      flowvaultDesc: 'A curated n8n workflow library that is evolving into a reliability layer around the FlowVault Audit MCP wedge.',
+      flowvaultSig1: 'Workflow Library',
+      flowvaultSig2: 'Reliability Layer',
+      flowvaultSig3: 'Audit MCP',
+      flowvaultIndicator: 'Reuse with confidence.',
+      flowvaultCta: 'Open FlowVault',
       
       // AI-Sök (AEO)
       aisearchTitle: 'Are you visible in AI Search?',
@@ -325,8 +325,8 @@ const NordSymLang = {
       showcaseGenPRDDesc: 'GenPRD takes your idea and generates a complete technical specification. Get database schemas, user flows and architecture optimized for AI agents to build your product directly.',
       
       showcaseFlowVaultTitle: 'FlowVault',
-      showcaseFlowVaultDesc: 'Every flow in the library is battle-tested and ready to run. Find blueprints for Fortnox, CRM syncs and AI pipelines when you need them.',
-      showcaseFlowVaultCta: 'Open Vault',
+      showcaseFlowVaultDesc: 'A reusable n8n workflow library, with a reliability layer forming around the Audit MCP wedge.',
+      showcaseFlowVaultCta: 'Open FlowVault',
 
       // ============================================
       // SYMBOT CHAT

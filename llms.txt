@@ -24,7 +24,7 @@ Core surfaces:
 - Hivr.online - execution layer for scoped AI work
 - AI Search - visibility in ChatGPT, Claude, and Perplexity
 - GenPRD - AI-ready product specifications
-- FlowVault - n8n workflow library
+- FlowVault - n8n workflow library with a reliability layer
 
 We are not a generic agency and not a model reseller.
 
