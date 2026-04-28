@@ -495,7 +495,38 @@
  box-shadow: 0 0 0 2px var(--nord-sym-blueprint-cyan);
  }
 
- /* Behåller .theme-toggle-btn class för mobil-knappen tills vidare, men desktop får ny */
+ /* Theme toggle button */
+ .theme-toggle-btn {
+ width: 2.5rem;
+ height: 2.5rem;
+ border-radius: 9999px;
+ border: 1px solid rgba(255, 255, 255, 0.12);
+ background: rgba(255, 255, 255, 0.06);
+ color: rgba(255, 255, 255, 0.72);
+ cursor: pointer;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1rem;
+ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+ transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+ }
+ .theme-toggle-btn:hover {
+ transform: translateY(-1px);
+ border-color: rgba(255, 255, 255, 0.24);
+ color: #ffffff;
+ }
+ body.light-theme .theme-toggle-btn {
+ background: #ffffff;
+ border-color: var(--nord-sym-blueprint-lines);
+ color: var(--nord-sym-blueprint-ink);
+ box-shadow: 0 1px 2px rgba(148, 163, 184, 0.2);
+ }
+ body.light-theme .theme-toggle-btn:hover {
+ background: rgba(255, 255, 255, 0.88);
+ border-color: var(--nord-sym-blueprint-cyan);
+ color: var(--nord-sym-blueprint-cyan);
+ }
 
  body.light-theme {
  background-color: var(--nord-sym-blueprint-bg);
@@ -578,55 +609,6 @@
  transform: translate(-2px, -2px);
  box-shadow: 6px 6px 0px rgba(148, 163, 184, 0.6);
  }
-
- .theme-switch {
- --toggle-size: 10px; 
- --container-width: 5.625em;
- --container-height: 2.5em;
- --container-radius: 6.25em;
- --container-light-bg: #3D7EAE;
- --container-night-bg: #0f172a; /* Matchar deep space */
- --circle-container-diameter: 3.375em;
- --sun-moon-diameter: 2.125em;
- --sun-bg: #ECCA2F;
- --moon-bg: #C4C9D1;
- --spot-color: #959DB1;
- --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
- --stars-color: #fff;
- --clouds-color: #F3FDFF;
- --back-clouds-color: #AACADF;
- --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
- --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
- }
-
- .theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
- -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; font-size: var(--toggle-size);
- }
-
- .theme-switch__container {
- width: var(--container-width); height: var(--container-height);
- background-color: var(--container-light-bg); border-radius: var(--container-radius);
- overflow: hidden; cursor: pointer;
- box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
- transition: var(--transition); position: relative; border: 1px solid rgba(255,255,255,0.2); 
- }
- /* ... (Resten av Theme Switch CSS är identisk med Varvet, inbäddad för att spara plats i chatten men fullt implementerad i filen) ... */
- .theme-switch__checkbox { display: none; }
- .theme-switch__circle-container { width: var(--circle-container-diameter); height: var(--circle-container-diameter); background-color: rgba(255, 255, 255, 0.1); position: absolute; left: var(--circle-container-offset); top: var(--circle-container-offset); border-radius: var(--container-radius); box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1); display: flex; transition: var(--circle-transition); pointer-events: none; }
- .theme-switch__sun-moon-container { pointer-events: auto; position: relative; z-index: 2; width: var(--sun-moon-diameter); height: var(--sun-moon-diameter); margin: auto; border-radius: var(--container-radius); background-color: var(--sun-bg); box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset; filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25)); overflow: hidden; transition: var(--transition); }
- .theme-switch__moon { transform: translateX(100%); width: 100%; height: 100%; background-color: var(--moon-bg); border-radius: inherit; box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset; transition: var(--transition); position: relative; }
- .theme-switch__spot { position: absolute; top: 0.75em; left: 0.312em; width: 0.75em; height: 0.75em; border-radius: var(--container-radius); background-color: var(--spot-color); box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset; }
- .theme-switch__spot:nth-of-type(2) { width: 0.375em; height: 0.375em; top: 0.937em; left: 1.375em; }
- .theme-switch__spot:nth-last-of-type(3) { width: 0.25em; height: 0.25em; top: 0.312em; left: 0.812em; }
- .theme-switch__clouds { width: 1.25em; height: 1.25em; background-color: var(--clouds-color); border-radius: var(--container-radius); position: absolute; bottom: -0.625em; left: 0.312em; box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color); transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25); }
- .theme-switch__stars-container { position: absolute; color: var(--stars-color); top: -100%; left: 0.312em; width: 2.75em; height: auto; transition: var(--transition); }
- .theme-switch__checkbox:checked + .theme-switch__container { background-color: var(--container-night-bg); border-color: rgba(255,255,255,0.1); }
- .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container { left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter)); }
- .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container:hover { left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em) }
- .theme-switch__circle-container:hover { left: calc(var(--circle-container-offset) + 0.187em); }
- .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__moon { transform: translate(0); }
- .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__clouds { bottom: -4.062em; }
- .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__stars-container { top: 50%; transform: translateY(-50%); }
 
  /* Mobilmeny-bakgrund */
  body.light-theme #mobile-menu {
@@ -5225,29 +5207,10 @@ margin-right: 0.4rem;
  <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
  <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Book Strategy Call</a>
  
- <!-- NY TEMAKNAPP (SWITCH) -->
- <label class="theme-switch">
- 
- <input type="checkbox" class="theme-switch__checkbox" id="theme-switch-input">
- <div class="theme-switch__container">
- <div class="theme-switch__clouds"></div>
- <div class="theme-switch__stars-container">
- <!-- SVG STAR ICON -->
- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
- <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
- </svg>
- </div>
- <div class="theme-switch__circle-container">
- <div class="theme-switch__sun-moon-container">
- <div class="theme-switch__moon">
- <div class="theme-switch__spot"></div>
- <div class="theme-switch__spot"></div>
- <div class="theme-switch__spot"></div>
- </div>
- </div>
- </div>
- </div>
- </label>
+ <!-- NY TEMAKNAPP -->
+ <button class="theme-toggle-btn mr-4" aria-label="Toggle light/dark theme">
+ <i class="ph ph-moon"></i>
+ </button>
  </div>
  
  <!-- HAMBURGER MENY (MOBIL) -->
@@ -9401,12 +9364,11 @@ Max 3 parallel pilots. Quality over quantity.`;
  // Vi rensar bort all "cool" kod för terminaler och karuseller.
  // Bondförnuft kräver ingen JavaScript-loop.
 
- class ThemeManager {
- constructor() {
- // Lyssna på Checkboxen (Desktop) och ALLA toggle-knappar (Mobil + Chat)
- this.themeCheckbox = document.getElementById('theme-switch-input');
- this.toggleBtns = document.querySelectorAll('.theme-toggle-btn');
- this.body = document.body;
+class ThemeManager {
+constructor() {
+// Lyssna på alla tema-knappar (desktop, mobil och chat)
+this.toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+this.body = document.body;
  
  // Standard: Light Mode (Om inget sparats)
  this.currentTheme = localStorage.getItem('theme') || 'light';
@@ -9414,19 +9376,11 @@ Max 3 parallel pilots. Quality over quantity.`;
  this.init();
  }
 
- init() {
- this.setTheme(this.currentTheme);
+init() {
+this.setTheme(this.currentTheme);
 
- // Desktop Switch Handler
- if (this.themeCheckbox) {
- this.themeCheckbox.addEventListener('change', () => {
- const newTheme = this.themeCheckbox.checked ? 'dark' : 'light';
- this.setTheme(newTheme);
- });
- }
-
- // General Button Handlers (Mobile Header + Chat Interface)
- this.toggleBtns.forEach(btn => {
+// General Button Handlers (Desktop, Mobile Header + Chat Interface)
+this.toggleBtns.forEach(btn => {
  btn.addEventListener('click', () => {
  const newTheme = this.body.classList.contains('light-theme') ? 'dark' : 'light';
  this.setTheme(newTheme);
@@ -9442,17 +9396,11 @@ Max 3 parallel pilots. Quality over quantity.`;
  this.body.classList.remove('light-theme', 'dark-theme');
  this.body.classList.add(`${theme}-theme`);
  
- localStorage.setItem('theme', theme);
- this.currentTheme = theme;
-
- // Synka UI (Checkbox)
- if (this.themeCheckbox) {
- // Dark = Checked, Light = Unchecked
- this.themeCheckbox.checked = (theme === 'dark');
- }
+localStorage.setItem('theme', theme);
+this.currentTheme = theme;
  
- // Synka UI (Alla knappar: Mobil + Chat)
- this.toggleBtns.forEach(btn => {
+// Synka UI (Alla knappar: Mobil + Chat)
+this.toggleBtns.forEach(btn => {
  btn.innerHTML = theme === 'light' ? '<i class="ph ph-moon"></i>' : '<i class="ph ph-sun"></i>';
  });
 
