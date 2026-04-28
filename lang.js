@@ -266,11 +266,11 @@ const NordSymLang = {
 
       // APIClaw
       apiclawTitle: 'APIClaw',
-      apiclawDesc: 'The API layer for AI agents. Discover and run external capabilities through one gateway so Hivr can act without integration spaghetti.',
+      apiclawDesc: 'The API layer for AI agents. One key for everything. Discover, route, and call 26,700+ APIs through one MCP-native gateway.',
       apiclawSig1: '26k+ APIs',
       apiclawSig2: 'MCP-native',
-      apiclawSig3: 'Tool Gateway',
-      apiclawIndicator: 'Infrastructure for real capability use.',
+      apiclawSig3: 'Intelligent routing',
+      apiclawIndicator: 'One gateway. One billing pipeline. One logging pipeline.',
       apiclawCta: 'Open APIClaw',
       
       // FlowVault
