@@ -266,10 +266,10 @@ const NordSymLang = {
 
       // APIClaw
       apiclawTitle: 'APIClaw',
-      apiclawDesc: 'The API layer for AI agents. One key for everything. Discover, route, and call 26,700+ APIs through one MCP-native gateway.',
-      apiclawSig1: '26k+ APIs',
-      apiclawSig2: 'MCP-native',
-      apiclawSig3: 'Intelligent routing',
+      apiclawDesc: 'The API layer for AI agents. Discover, route, and call external capabilities through one MCP-native gateway.',
+      apiclawSig1: '26,740+ APIs',
+      apiclawSig2: '1,679 callable',
+      apiclawSig3: '13,552 installs',
       apiclawIndicator: 'One gateway. One billing pipeline. One logging pipeline.',
       apiclawCta: 'Open APIClaw',
       
