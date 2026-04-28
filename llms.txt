@@ -60,7 +60,7 @@ Not a fit:
 
 ## Pricing
 
-Pilot - from $7.5k
+Foundation - from $7.5k
 - One bounded problem
 - Scope and architecture are defined together.
 

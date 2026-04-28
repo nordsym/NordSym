@@ -67,14 +67,14 @@ const NordSymLang = {
       servicesTitle: 'Custom AI systems built around your business',
 
       // Pricing - MLP
-      pricingMLPTitle: 'PILOT',
+      pricingMLPTitle: 'FOUNDATION',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
       pricingMLPDesc: 'A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
       pricingMLPDescLink: 'see example',
       pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
-      pricingMLPBtn: 'Start Pilot',
+      pricingMLPBtn: 'Start Foundation',
       pricingMLPNote: 'Scope and architecture are defined together.',
 
       // Pricing - Operating System
