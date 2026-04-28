@@ -4784,11 +4784,6 @@ margin-right: 0.4rem;
  box-shadow: none !important;
  color: var(--nord-sym-blueprint-cyan) !important;
  }
- /* Mörkare grön för LIVE-texten så den syns mot vit bakgrund */
- body.light-theme #ai-context-hub-pill .text-green-400 {
- color: #16a34a !important; /* Green-600 */
- }
-
  .nordsym-toast {
  position: fixed;
  bottom: 2rem;
@@ -5403,11 +5398,12 @@ margin-right: 0.4rem;
  </div>
  </div>
 
- <!-- Right: Status -->
+ <!-- Right: Copy cue -->
  <div class="hidden md:flex items-center gap-2 z-10 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity pl-4 border-l border-white/10 light-theme:border-gray-300">
- <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
- <!-- LIVE + Blinkande cursor (_) för terminal-känsla -->
- <span class="text-[10px] text-green-400 font-bold tracking-widest light-theme:text-green-600 font-mono">LIVE<span class="animate-pulse">_</span></span>
+ <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-sky-100 transition-colors group-hover:border-nord-sym-cyan/60 group-hover:bg-nord-sym-cyan/15 group-hover:text-white light-theme:border-nord-sym-blueprint-lines light-theme:bg-white light-theme:text-nord-sym-blueprint-ink light-theme:group-hover:border-nord-sym-blueprint-cyan light-theme:group-hover:bg-sky-100">
+ <i class="ph-copy text-sm"></i>
+ <span>Copy</span>
+ </div>
  </div>
 
  </div>
