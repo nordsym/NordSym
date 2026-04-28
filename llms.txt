@@ -1,4 +1,4 @@
-# NordSym - Where Intelligence Converges
+# NordSym - AI infrastructure for agents
 
 > NordSym is a Full Stack AI Partner. We build production-ready AI infrastructure, agent-ready software, and AI visibility systems.
 
@@ -63,7 +63,7 @@ Not a fit:
 
 Foundation - from $7.5k
 - One bounded problem
-- Scope and architecture are defined together.
+- Scope and architecture are defined together
 
 Operating System - from $25k
 - Core digitization
@@ -102,9 +102,13 @@ We swap them in.
 
 ---
 
-## Next Step
+## Discovery Assets
 
-Email Support@nordsym.com for a discovery conversation and scope review. Gustav@nordsym.com is the alternate direct contact.
+- `https://nordsym.com/robots.txt`
+- `https://nordsym.com/sitemap.xml`
+- `https://nordsym.com/llms.txt`
+- `https://nordsym.com/agent-info`
+- `https://api.nordsym.com/agent-info`
 
 ---
 
@@ -116,4 +120,5 @@ Email Support@nordsym.com for a discovery conversation and scope review. Gustav@
 
 ---
 
-Welcome to NordSym.
+Email Support@nordsym.com for a discovery conversation and scope review. Gustav@nordsym.com is the alternate direct contact.
+

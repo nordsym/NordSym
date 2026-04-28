@@ -1,4 +1,4 @@
-NordSym AB - AEO & GEO Optimized Configuration
+NordSym AB - AI Discovery Configuration
 
 https://nordsym.com
 
@@ -8,51 +8,41 @@ Sitemap: https://nordsym.com/sitemap.xml
 User-agent: *
 Allow: /
 
-# AI & LLM Crawlers (Explicitly Welcome)
-
-# OpenAI (ChatGPT)
+# AI & LLM Crawlers
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-# Google (Gemini/SGE)
 User-agent: Google-Extended
 Allow: /
 
-# Anthropic (Claude)
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
-# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 
-# Apple Intelligence
 User-agent: Applebot
 Allow: /
 
-# Common Crawl (Training data for many LLMs)
 User-agent: CCBot
 Allow: /
 
-# ByteDance (TikTok/Doubao)
 User-agent: Bytespider
 Allow: /
 
-# Meta AI
 User-agent: FacebookBot
 Allow: /
 
-# Cohere
 User-agent: cohere-ai
 Allow: /
 
-# Standard Search Engines
+# Standard search engines
 User-agent: Googlebot
 Allow: /
 

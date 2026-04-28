@@ -1,4 +1,4 @@
-// Vercel Serverless Function: Request AEO/GEO Audit
+// Vercel Serverless Function: Request AI Search Visibility Audit
 // Allows agents/humans to request an AI-visibility audit
 
 const TELEGRAM_CHAT_ID = '7107586654';
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ 
       error: 'Method not allowed',
-      hint: 'Use POST to request an AEO audit',
+      hint: 'Use POST to request an AI search visibility audit',
       example: {
         url: "https://example.com",
         email: "results@example.com",
@@ -78,17 +78,17 @@ export default async function handler(req, res) {
                     callback_url;
 
     // Build Telegram notification
-    let telegramMessage = `🔍 AEO AUDIT REQUEST\n\n`;
+    let telegramMessage = `🔍 AI SEARCH VISIBILITY AUDIT REQUEST\n\n`;
     telegramMessage += `URL: ${validatedUrl.href}\n`;
     telegramMessage += `Email: ${email}\n`;
-    if (company) telegramMessage += `Företag: ${company}\n`;
-    if (requested_by) telegramMessage += `Begärd av: ${requested_by}\n`;
+    if (company) telegramMessage += `Company: ${company}\n`;
+    if (requested_by) telegramMessage += `Requested by: ${requested_by}\n`;
     if (callback_url) telegramMessage += `Callback: ${callback_url}\n`;
     if (notes) telegramMessage += `\n📝 Notes:\n${notes}\n`;
     telegramMessage += `\n⏰ ${timestamp}`;
     
     if (isAgent) {
-      telegramMessage += `\n\n🤖 Agent request - prioritera callback om tillgängligt`;
+      telegramMessage += `\n\n🤖 Agent request - prioritize callback if available`;
     }
 
     // Send to Telegram
@@ -116,7 +116,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ 
       success: true,
-      message: 'AEO audit request received',
+      message: 'AI search visibility audit request received',
       audit_id: auditId,
       url_analyzed: validatedUrl.href,
       results_delivery: {
@@ -133,7 +133,7 @@ export default async function handler(req, res) {
         'Schema.org markup quality',
         'Content structure for AI consumption',
         'Knowledge graph presence',
-        'Competitor AI-visibility comparison'
+        'Competitor AI visibility comparison'
       ]
     });
 

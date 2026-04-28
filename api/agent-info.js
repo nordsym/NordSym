@@ -90,7 +90,7 @@ export default async function handler(req, res) {
       },
       {
         name: "Hivr",
-        description: "Execution layer for scoped AI work - dealrooms, Swarm Commander, approved capabilities, visible task trail",
+        description: "Execution layer for scoped AI work - dealrooms, visible approvals, and task trail",
         url: "https://hivr.online",
         status: "live"
       },
