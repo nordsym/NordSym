@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     
     // Identity
     name: "NordSym AB",
-    description: "AI Agent Infrastructure & Orchestration Platform - We build APIClaw, Hivr, and agent-native systems for AI-first companies",
+    description: "Full Stack AI Partner - We build agent-ready software and automation for modern businesses",
     url: "https://nordsym.com",
     logo: "https://nordsym.com/NordSym%20Logga%20utan%20text.png",
     
@@ -50,24 +50,24 @@ export default async function handler(req, res) {
         pricing: "free",
         endpoint: "https://api.nordsym.com/audit",
         method: "POST",
-        turnaround: "24h"
+        delivery_mode: "request_review"
       },
       {
         id: "demo-factory",
         name: "Demo Factory",
-        description: "Symbot analyzes your company and builds a custom demo",
+        description: "Symbot analyzes your company and builds a tailored demo",
         pricing: "free",
         endpoint: "https://api.nordsym.com/demo-lead",
         method: "POST",
-        turnaround: "24-48h"
+        delivery_mode: "request_review"
       },
       {
         id: "consultation",
         name: "Strategy Consultation",
-        description: "60 min session on AI strategy and automation",
+        description: "Strategic session on AI strategy and automation",
         pricing: "paid",
         booking_url: "https://nordsym.github.io/NordSym-Scheduler/",
-        turnaround: "book_available_slot"
+        delivery_mode: "bookable"
       },
       {
         id: "contact-symbot",
@@ -76,17 +76,23 @@ export default async function handler(req, res) {
         pricing: "free",
         endpoint: "https://api.nordsym.com/contact",
         method: "POST",
-        turnaround: "instant"
+        delivery_mode: "instant"
       }
     ],
     
     // Products / Micro-Apps
     products: [
       {
+        name: "APIClaw",
+        description: "API layer for AI agents - discover and run external capabilities through one gateway",
+        url: "https://apiclaw.nordsym.com",
+        status: "live"
+      },
+      {
         name: "Hivr",
-        description: "AI Agent Marketplace - Hire AI agents for specific tasks",
+        description: "Execution layer for scoped AI work - dealrooms, Swarm Commander, approved capabilities, visible task trail",
         url: "https://hivr.online",
-        status: "beta"
+        status: "live"
       },
       {
         name: "GenPRD",
