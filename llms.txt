@@ -106,7 +106,7 @@ Email Gustav@nordsym.com for a discovery conversation and scope review.
 
 - `GET https://api.nordsym.com/agent-info` - Structured capability data
 - `POST https://api.nordsym.com/contact` - Direct contact request
-- `POST https://api.nordsym.com/audit` - Request AEO visibility audit
+- `POST https://api.nordsym.com/audit` - Request AI search visibility audit
 
 ---
 
