@@ -198,46 +198,46 @@ const NordSymLang = {
       testimonial4Role: 'CEO, Bluecollar',
 
       // ============================================
-      // GALLERY TABS (STACK / SYSTEM)
+      // GALLERY TABS (STACK / PRODUCTS)
       // ============================================
       galleryTabStack: 'STACK',
-      galleryTabSystem: 'SYSTEM',
+      galleryTabSystem: 'PRODUCTS',
       
       // Stack description
-      galleryStackDesc: 'Three principles that multiply your capacity. Velocity that accelerates over time. Architecture designed for AI from day one. Autonomous systems that never stop.',
+      galleryStackDesc: 'Three principles that compound your capacity: reusable foundations, open interfaces, and autonomous execution.',
       galleryStackContext: 'Explore the stack',
       
-      // System description  
-      gallerySystemDesc: 'Products are standalone building blocks. AI Systems is custom partner work around your business, with or without NordSym products.',
-      gallerySystemContext: 'Explore systems',
+      // Product description  
+      gallerySystemDesc: 'Standalone products you can use on their own or as building blocks inside larger AI systems.',
+      gallerySystemContext: 'Explore products',
       galleryContextText: 'Explore products',
 
       // ============================================
       // STACK CARDS (3 value-prop cards)
       // ============================================
-      // Card 1: Compounding Velocity
-      stackCard1Title: 'Compounding Velocity',
-      stackCard1Desc: 'Every implementation becomes faster than the last. Your solutions get reused, improved, and become building blocks for the next project. Velocity that accelerates over time.',
-      stackCard1Sig1: 'Iteration Speed',
-      stackCard1Sig2: 'Reusable Modules',
-      stackCard1Sig3: 'Accelerating Returns',
-      stackCard1Indicator: 'Faster with every iteration.',
+      // Card 1: Reusable Foundations
+      stackCard1Title: 'Reusable Foundations',
+      stackCard1Desc: 'Every project leaves behind parts worth keeping. Reuse the useful bits, move faster on the next build, and compound the value of each delivery.',
+      stackCard1Sig1: 'Reusable Parts',
+      stackCard1Sig2: 'Faster Starts',
+      stackCard1Sig3: 'Compounding Value',
+      stackCard1Indicator: 'Each build makes the next one stronger.',
       
-      // Card 2: API-Native Architecture
-      stackCard2Title: 'API-Native Architecture',
-      stackCard2Desc: 'Your data becomes accessible via API from day one. Not as an afterthought. As a core principle. Every AI capability and automation can plug in directly.',
-      stackCard2Sig1: 'API-First',
-      stackCard2Sig2: 'Real-time Access',
-      stackCard2Sig3: 'Future-proof',
-      stackCard2Indicator: 'Real integrations. Not glue.',
+      // Card 2: Open Interfaces
+      stackCard2Title: 'Open Interfaces',
+      stackCard2Desc: 'Systems should connect cleanly. APIs, standard protocols, and clear boundaries keep automation flexible and the architecture portable.',
+      stackCard2Sig1: 'APIClaw Ready',
+      stackCard2Sig2: 'Standard Protocols',
+      stackCard2Sig3: 'Portable by Design',
+      stackCard2Indicator: 'Connect cleanly. Stay portable.',
       
-      // Card 3: Autonomous Ops
-      stackCard3Title: 'Autonomous Ops',
-      stackCard3Desc: 'Agents that work while you sleep. Intelligent orchestration that handles edge cases and improves with every run. Human-in-the-loop when needed.',
-      stackCard3Sig1: 'Intelligent Agents',
-      stackCard3Sig2: '24/7 Operations',
-      stackCard3Sig3: 'Human Override',
-      stackCard3Indicator: 'You steer. They execute.',
+      // Card 3: Autonomous Execution
+      stackCard3Title: 'Autonomous Execution',
+      stackCard3Desc: 'Agents should carry the repetitive load while humans stay in control of the important decisions. Reliable operations, not theatrical automation.',
+      stackCard3Sig1: 'Agent Workflows',
+      stackCard3Sig2: '24/7 Coverage',
+      stackCard3Sig3: 'Human Control',
+      stackCard3Indicator: 'Automate the repeatable. Keep control.',
 
       // ============================================
       // PRODUCT CARDS
