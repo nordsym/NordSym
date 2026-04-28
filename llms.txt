@@ -60,20 +60,25 @@ Not a fit:
 
 ## Pricing
 
-MLP - from 75k SEK
+Minimum Lovable Product - from $75k
 - One bounded problem
-- Scope and delivery sequence defined together
+- Scope and architecture are defined together.
 
-Enterprise OS - from 250k SEK
+Operating System - from $250k
 - Core digitization
 - Data hub, automation, decision support
 - For companies that are serious about operational change
+
+APEX - from $500k+
+- Strategy
+- Architecture
+- AI orchestration
 
 AI Search
 - Visibility in AI search engines
 - Free analysis at aisearch.nordsym.com
 
-Maintenance - 15k SEK/month
+Maintenance - $1.5k/month
 - Monitoring
 - Improvements
 - Model updates when better options appear

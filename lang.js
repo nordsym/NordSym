@@ -68,18 +68,18 @@ const NordSymLang = {
 
       // Pricing - MLP
       pricingMLPTitle: 'MINIMUM LOVABLE PRODUCT',
-      pricingMLPPrice: '$7.5k',
+      pricingMLPPrice: '$75k',
       pricingMLPCurrency: 'USD',
       pricingMLPDesc: 'Skip one-size-fits-all solutions. Custom-built systems that solve your specific problems exactly the way you want them. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">see example</a>)',
       pricingMLPDescLink: 'see example',
-      pricingMLPFeature1: 'Custom Code',
+      pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
       pricingMLPBtn: 'Start Pilot',
-      pricingMLPNote: 'Exact architecture is defined together with the client',
+      pricingMLPNote: 'Scope and architecture are defined together.',
 
       // Pricing - Operating System
       pricingOSTitle: 'OPERATING SYSTEM',
-      pricingOSPrice: '$25k',
+      pricingOSPrice: '$250k',
       pricingOSCurrency: 'USD',
       pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
       pricingOSFeature1: 'Data Hub',
@@ -89,8 +89,8 @@ const NordSymLang = {
       pricingOSBtn: 'Discuss Needs',
 
       // Pricing - Enterprise
-      pricingEnterpriseTitle: 'LARGER PROJECTS',
-      pricingEnterprisePrice: '$50k+',
+      pricingEnterpriseTitle: 'APEX',
+      pricingEnterprisePrice: '$500k+',
       pricingEnterpriseCurrency: 'USD',
       pricingEnterpriseDesc: 'For complex needs where standard solutions fall short. We act as your technical partner and define delivery and scope entirely based on your unique requirements and business goals.',
       pricingEnterpriseFeature1: 'Strategy',
