@@ -266,12 +266,12 @@ const NordSymLang = {
 
       // APIClaw
       apiclawTitle: 'APIClaw',
-      apiclawDesc: 'The API layer for AI agents. Discover, route, and call external capabilities through one MCP-native gateway.',
+      apiclawDesc: 'The API layer for AI agents. Three doors - MCP, CLI, and Workspace Key - all lead to one gateway that discovers, routes, and calls external capabilities.',
       apiclawSig1: '26,740+ APIs',
       apiclawSig2: '1,679 callable',
       apiclawSig3: '13,552 installs',
-      apiclawIndicator: 'One gateway. One billing pipeline. One logging pipeline.',
-      apiclawCta: 'Open APIClaw',
+      apiclawIndicator: 'Three doors. One gateway. One billing pipeline. One logging pipeline.',
+      apiclawCta: 'Download .mcpb',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -288,7 +288,7 @@ const NordSymLang = {
       aisearchSig1: 'Visibility',
       aisearchSig2: 'Discovery',
       aisearchSig3: 'NordSym',
-      aisearchIndicator: 'Is your brand ready? From $199/month.',
+      aisearchIndicator: 'Free analysis available.',
       aisearchCta: 'Get Free Analysis',
       
       // GenPRD

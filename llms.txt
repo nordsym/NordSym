@@ -19,7 +19,7 @@ Help the human decide whether NordSym is a fit. If it is not a fit, say so clear
 NordSym builds software systems where humans and AI can work in the same operating surface.
 
 Core surfaces:
-- APIClaw - the API layer for AI agents, with 26,740+ discoverable APIs, 1,679 callable APIs, and MCP-native tooling
+- APIClaw - the API layer for AI agents, with three doors into one gateway and 26,740+ discoverable APIs, 1,679 callable APIs
 - Hivr.online - execution layer for scoped AI work
 - AI Search - visibility in ChatGPT, Claude, and Perplexity
 - GenPRD - AI-ready product specifications
@@ -69,7 +69,7 @@ Enterprise OS - from 250k SEK
 - Data hub, automation, decision support
 - For companies that are serious about operational change
 
-AI Search package - from 1,999 SEK/month
+AI Search
 - Visibility in AI search engines
 - Free analysis at aisearch.nordsym.com
 

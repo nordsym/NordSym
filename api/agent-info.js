@@ -84,7 +84,7 @@ export default async function handler(req, res) {
     products: [
       {
         name: "APIClaw",
-        description: "API layer for AI agents - discover, route, and call external capabilities through one MCP-native gateway",
+        description: "API layer for AI agents - three doors into one gateway for discovering, routing, and calling external capabilities",
         url: "https://apiclaw.nordsym.com",
         status: "live"
       },
