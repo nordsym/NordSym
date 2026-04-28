@@ -5,7 +5,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
  <meta name="description" content="NordSym is a Full Stack AI Partner. We build production-ready AI infrastructure, agent-ready software, and AI visibility systems.">
- <meta name="keywords" content="System automation, intelligent systems, AEO, GEO, AI architecture, digital transformation, NordSym">
+ <meta name="keywords" content="System automation, intelligent systems, AI search visibility, AI architecture, digital transformation, NordSym">
  <meta name="author" content="NordSym AB">
  <link rel="canonical" href="https://nordsym.com">
  
@@ -1860,15 +1860,21 @@
  align-items: center;
  gap: 0.3rem;
  }
- .tech-signature-item i {
- font-size: 1.6rem;
- color: #ffffff; 
- }
- .tech-signature-item span {
- font-size: 0.75rem;
- color: #ffffff; 
- font-weight: 500;
- }
+.tech-signature-item i {
+font-size: 1.6rem;
+color: #ffffff; 
+}
+.tech-signature-item img {
+width: 1.6rem;
+height: 1.6rem;
+object-fit: contain;
+display: block;
+}
+.tech-signature-item span {
+font-size: 0.75rem;
+color: #ffffff; 
+font-weight: 500;
+}
  .archetype-cta {
  margin-bottom: 1.5rem;
  padding: 0.6rem 1.5rem;
@@ -2079,8 +2085,16 @@
  @media (min-width: 768px) { .footer-quicklinks { align-items: flex-start; } }
  
  /* Vita footer-länkar */
- .footer-link { color: rgba(255, 255, 255, 0.6); transition: all 0.3s ease; padding: 0.1rem 0; }
- .footer-link:hover { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.footer-link { color: rgba(255, 255, 255, 0.6); transition: all 0.3s ease; padding: 0.1rem 0; }
+.footer-link:hover { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.footer-product-icon {
+width: 1rem;
+height: 1rem;
+object-fit: contain;
+display: inline-block;
+vertical-align: -0.125rem;
+margin-right: 0.4rem;
+}
  
  .nordsym-logo-star {
  color: #ffffff; /* Vit stjärna */
@@ -6326,7 +6340,7 @@
  
  <!-- Copy som täcker både verktyg (analys/flöden) och system -->
  <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8">
- Ready-made products and product solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.
+ Products are standalone building blocks. AI Systems is custom partner work around your business, with or without NordSym products.
  </p>
  </div>
  
@@ -6502,7 +6516,7 @@
  <a href="https://aisearch.nordsym.com/" target="_blank" rel="noopener noreferrer" class="block rounded-3xl border border-sky-400/35 bg-slate-950/70 p-6 hover:border-nord-sym-cyan hover:-translate-y-1 transition-all duration-300">
  <p class="text-xs uppercase tracking-widest text-sky-300 mb-3">Visibility Layer</p>
  <h3 class="text-2xl font-bold text-white mb-2">AI Search</h3>
- <p class="text-sky-100/80 leading-relaxed">AEO/GEO visibility analysis for modern AI discovery.</p>
+ <p class="text-sky-100/80 leading-relaxed">AI visibility analysis for modern discovery.</p>
  </a>
  </div>
 
@@ -6972,10 +6986,10 @@
  <div class="text-center md:text-left">
  <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Products</p>
  <div class="footer-quicklinks">
- <a href="https://hivr.online" target="_blank" rel="noopener noreferrer" class="footer-link">🐝 Hivr</a>
+ <a href="https://hivr.online" target="_blank" rel="noopener noreferrer" class="footer-link"><img src="hivr-mascot.svg" alt="" aria-hidden="true" class="footer-product-icon"> Hivr</a>
  <a href="https://apiclaw.nordsym.com" target="_blank" rel="noopener noreferrer" class="footer-link">🦞 APIClaw</a>
- <a href="https://aisearch.nordsym.com" target="_blank" rel="noopener noreferrer" class="footer-link">🔍 AEO Audit</a>
- <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="footer-link">📄 GenPRD</a>
+ <a href="https://aisearch.nordsym.com" target="_blank" rel="noopener noreferrer" class="footer-link"><img src="nordsym-logo-transparent.png" alt="" aria-hidden="true" class="footer-product-icon"> AI Search</a>
+ <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="footer-link"><img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/foxPRDthink.svg?alt=media&token=f22ea0fe-8edd-41de-84e0-b87e706ea07d" alt="" aria-hidden="true" class="footer-product-icon"> GenPRD</a>
  </div>
  </div>
  <div class="md:col-span-1 text-center md:text-left">
@@ -9040,7 +9054,7 @@ NordSym is a Full Stack AI Partner. We build production-ready AI infrastructure,
 Core surfaces:
 - APIClaw - the API layer for AI agents, with 22k+ APIs indexed, MCP-native
 - Hivr.online - execution layer for scoped AI work
-- AI Search - visibility in ChatGPT, Claude, and Perplexity through AEO and GEO
+- AI Search - visibility in ChatGPT, Claude, and Perplexity
 - GenPRD - AI-ready product specifications
 - FlowVault - n8n workflow library
 
@@ -9079,7 +9093,7 @@ Enterprise OS - from 250k SEK
 - Data hub, automation, decision support
 - For companies that are serious about operational change
 
-AEO package - from 1,999 SEK/month
+AI Search package - from 1,999 SEK/month
 - Visibility in AI search engines
 - Free analysis at aisearch.nordsym.com
 
@@ -10010,7 +10024,7 @@ Max 3 parallel pilots. Quality over quantity.`;
  signatures: [
  { icon: 'ph-brain', text: this.t('aisearchSig1') },
  { icon: 'ph-sparkle', text: this.t('aisearchSig2') },
- { icon: 'ph-magnifying-glass', text: this.t('aisearchSig3') }
+ { image: 'nordsym-logo-transparent.png', imageAlt: 'NordSym', imageClass: 'footer-product-icon', text: this.t('aisearchSig3') }
  ],
  indicator: this.t('aisearchIndicator'),
  ctaText: this.t('aisearchCta'),
@@ -10188,7 +10202,7 @@ Max 3 parallel pilots. Quality over quantity.`;
  <div class="tech-signature-container">
  ${data.signatures.map(sig => `
  <div class="tech-signature-item">
- <i class="ph ${sig.icon}"></i>
+ ${sig.image ? `<img src="${sig.image}" alt="${sig.imageAlt || ''}" class="${sig.imageClass || ''}">` : `<i class="ph ${sig.icon}"></i>`}
  <span>${sig.text}</span>
  </div>
  `).join('')}

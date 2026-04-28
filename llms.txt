@@ -21,7 +21,7 @@ NordSym builds software systems where humans and AI can work in the same operati
 Core surfaces:
 - APIClaw - the API layer for AI agents, with 22k+ APIs indexed and MCP-native tooling
 - Hivr.online - execution layer for scoped AI work
-- AI Search - visibility in ChatGPT, Claude, and Perplexity through AEO and GEO
+- AI Search - visibility in ChatGPT, Claude, and Perplexity
 - GenPRD - AI-ready product specifications
 - FlowVault - n8n workflow library
 
@@ -69,7 +69,7 @@ Enterprise OS - from 250k SEK
 - Data hub, automation, decision support
 - For companies that are serious about operational change
 
-AEO package - from 1,999 SEK/month
+AI Search package - from 1,999 SEK/month
 - Visibility in AI search engines
 - Free analysis at aisearch.nordsym.com
 

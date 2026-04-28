@@ -13,8 +13,8 @@ const NordSymLang = {
     en: {
       // Meta & Title
       metaTitle: 'NordSym AB - Full Stack AI Partner',
-      metaDescription: 'NordSym AB is a full stack AI partner for system automation and AI architecture. We optimize your operations for AEO (Answer Engine Optimization) and build intelligent ecosystems.',
-      metaKeywords: 'System automation, intelligent systems, AEO, GEO, AI architecture, digital transformation, NordSym',
+      metaDescription: 'NordSym AB is a full stack AI partner for system automation, AI search visibility, and AI architecture. We optimize your operations and build intelligent ecosystems.',
+      metaKeywords: 'System automation, intelligent systems, AI search visibility, AI architecture, digital transformation, NordSym',
 
       // APIClaw Banner
       bannerTagline: 'The API Layer For AI Agents',
@@ -57,8 +57,8 @@ const NordSymLang = {
       productFlowVaultDesc: "World's largest n8n Flow library",
       productGenPRD: 'GenPRD',
       productGenPRDDesc: 'AI-powered specification generator',
-      productAEO: 'AEO & GEO',
-      productAEODesc: 'AI search optimization for modern search engines',
+      productAEO: 'AI Search',
+      productAEODesc: 'AI visibility analysis for modern discovery',
       productAEOPrice: '$199/month',
 
       // AI Systems Section
@@ -209,7 +209,7 @@ const NordSymLang = {
       galleryStackContext: 'Explore the stack',
       
       // System description  
-      gallerySystemDesc: 'Ready-made products and product solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
+      gallerySystemDesc: 'Products are standalone building blocks. AI Systems is custom partner work around your business, with or without NordSym products.',
       gallerySystemContext: 'Explore systems',
       galleryContextText: 'Explore products',
 
@@ -246,7 +246,7 @@ const NordSymLang = {
       microAppsBadge: 'Products',
       microAppsDesc: '<strong class="text-white">Products</strong> are focused software for specific problems.',
       microAppsIntro: '<strong>APIClaw</strong>, <strong>Hivr</strong>, <strong>GenPRD</strong> and <strong>FlowVault</strong> are our public products. You can start using them right away.',
-      aeoIntro: '<strong>AEO & GEO</strong> is a free analysis we built for your company website. Test your visibility in AI search directly via the button.',
+      aeoIntro: '<strong>AI Search</strong> is a free analysis we built for your company website. Test your visibility in AI search directly via the button.',
       
       // Showcase labels & CTAs
       cardLabelBlueprint: 'Blueprint',
@@ -261,7 +261,7 @@ const NordSymLang = {
       showcaseFlowVaultDesc: 'A massive library for all scenarios. From complex agent swarms to simple CRM sync. Ready-made solutions for every real situation.',
       showcaseHivrDesc: 'Client dealrooms where scoped AI systems execute real work. Approved capabilities run through APIClaw, tasks are tracked, and clients see progress as it happens.',
       cardLabelRadar: 'Radar',
-      showcaseAEODesc: 'Future-proof your visibility. A comprehensive strategy for Answer Engine Optimization (AEO), GEO and classic SEO. No-brainer strategy. (Packages from $199/month).',
+      showcaseAEODesc: 'Future-proof your visibility. AI search visibility analysis for modern discovery. Free analysis available.',
       analyzeNowCta: 'Analyze Now',
 
       // APIClaw
@@ -284,10 +284,10 @@ const NordSymLang = {
       
       // AI-Sök (AEO)
       aisearchTitle: 'Are you visible in AI Search?',
-      aisearchDesc: 'From traditional search to GEO and AEO. Optimize your digital presence for AI search engines like ChatGPT, Claude and Perplexity. We transform your website from a static page to a source that AI engines trust and cite.',
-      aisearchSig1: 'AEO',
-      aisearchSig2: 'GEO',
-      aisearchSig3: 'SEO',
+      aisearchDesc: 'Optimize your digital presence for AI search engines like ChatGPT, Claude and Perplexity. We transform your website from a static page to a source that AI engines trust and cite.',
+      aisearchSig1: 'Visibility',
+      aisearchSig2: 'Discovery',
+      aisearchSig3: 'NordSym',
       aisearchIndicator: 'Is your brand ready? From $199/month.',
       aisearchCta: 'Get Free Analysis',
       

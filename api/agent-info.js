@@ -45,8 +45,8 @@ export default async function handler(req, res) {
     services: [
       {
         id: "aeo-audit",
-        name: "AEO/GEO Audit",
-        description: "AI visibility analysis - how well does your company show up for AI assistants?",
+        name: "AI Search Visibility Audit",
+        description: "AI visibility analysis - how well does your company show up in AI search?",
         pricing: "free",
         endpoint: "https://api.nordsym.com/audit",
         method: "POST",
@@ -108,7 +108,7 @@ export default async function handler(req, res) {
       },
       {
         name: "AI Search",
-        description: "AEO/GEO Audit Platform",
+        description: "AI Search Visibility Platform",
         url: "https://aisearch.nordsym.com",
         status: "live"
       }
