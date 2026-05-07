@@ -6655,7 +6655,7 @@ margin-right: 0.4rem;
  <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/T2ZJ4JKR_400x400.jpg?alt=media&token=b0449d0a-bedc-462d-98f9-1258890f2391" alt="Gustav Hemmingsson" class="w-10 h-10 rounded-full object-cover shadow-sm group-hover:shadow-md transition-shadow">
  <div class="text-left">
  <div class="text-white text-sm font-bold leading-none light-theme:text-gray-900">Gustav Hemmingsson</div>
- <div class="text-white/80 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-white light-theme:group-hover:text-sky-700 transition-colors"data-i18n="founderTitle">Grundare</div>
+ <div class="text-white/80 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-white light-theme:group-hover:text-sky-700 transition-colors"data-i18n="founderTitle">Founder</div>
  </div>
  <i class="ph-info text-white/70 group-hover:text-white ml-1 text-lg light-theme:text-gray-400 light-theme:group-hover:text-sky-500 transition-colors"></i>
  </button>
@@ -6897,7 +6897,7 @@ margin-right: 0.4rem;
  </div>
  
  <h3 class="text-3xl font-bold text-white mb-1 light-theme:text-gray-900" style="font-family: 'Comfortaa', sans-serif;">Gustav Hemmingsson</h3>
- <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600"data-i18n="founderTitle">Grundare</p>
+ <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600"data-i18n="founderTitle">Founder</p>
  
  <!-- Om mig - Grundare -->
  <p class="text-sky-200 leading-relaxed mb-4 light-theme:text-gray-600 text-sm md:text-base">
@@ -11176,7 +11176,7 @@ ctaText: this.t('apiclawSiteCta'),
  
  } catch (error) {
  console.error('Booking error:', error);
- btn.innerHTML = 'Fel - försök igen';
+ btn.innerHTML = 'Error - try again';
  btn.disabled = false;
  }
  }
@@ -11250,9 +11250,9 @@ ctaText: this.t('apiclawSiteCta'),
       
       // Show toast error
       if (window.nord && window.nord.showToast) {
-        window.nord.showToast('Något gick fel. Försök igen.', 'error');
+        window.nord.showToast('Something went wrong. Try again.', 'error');
       } else {
-        alert('Något gick fel. Vänligen försök igen eller kontakta oss direkt.');
+        alert('Something went wrong. Please try again or contact us directly.');
       }
     }
   });
