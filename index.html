@@ -11176,7 +11176,8 @@ ctaText: this.t('apiclawSiteCta'),
  
  } catch (error) {
  console.error('Booking error:', error);
- btn.innerHTML = 'Error - try again';
+ const errMsg = (error && error.message) ? error.message : 'unknown';
+ btn.innerHTML = `Error (${errMsg.slice(0, 30)}) - retry`;
  btn.disabled = false;
  }
  }
