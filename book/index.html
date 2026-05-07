@@ -177,7 +177,26 @@ tailwind.config = {
   }
 
   function formatDate(d) {
-    return d.toISOString().split('T')[0];
+    // Local-date formatter. Avoid toISOString() — slips back one day in Stockholm tz at local midnight.
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function isSameDay(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function filterPastSlotsForToday(slots, dayDate) {
+    const now = new Date();
+    if (!isSameDay(dayDate, now)) return slots;
+    // Keep slots that start at least 30 min from now (Stockholm local time on the page).
+    const cutoff = now.getHours() * 60 + now.getMinutes() + 30;
+    return slots.filter(t => {
+      const [h, m] = t.split(':').map(Number);
+      return (h * 60 + m) >= cutoff;
+    });
   }
 
   function renderCalendar() {
@@ -206,14 +225,19 @@ tailwind.config = {
     renderCalendar();
     const dayName = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
     document.getElementById('selected-date-label').textContent = dayName;
-    renderTimeSlots(d.getDay() === 5);
+    renderTimeSlots(d.getDay() === 5, d);
     goStep(2);
   }
 
-  function renderTimeSlots(isFriday) {
-    const slots = isFriday ? FRIDAY_SLOTS : DEFAULT_SLOTS;
+  function renderTimeSlots(isFriday, dayDate) {
+    const baseSlots = isFriday ? FRIDAY_SLOTS : DEFAULT_SLOTS;
+    const slots = filterPastSlotsForToday(baseSlots, dayDate);
     const el = document.getElementById('time-slots');
     el.innerHTML = '';
+    if (!slots.length) {
+      el.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">No more slots today. Pick another day.</div>';
+      return;
+    }
     slots.forEach(t => {
       const btn = document.createElement('button');
       btn.className = 'time-btn' + (selectedTime === t ? ' selected' : '');
