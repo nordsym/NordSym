@@ -4,9 +4,11 @@
   "outputDirectory": ".",
   "framework": null,
   "installCommand": null,
+  "redirects": [
+    { "source": "/book", "destination": "/#book", "statusCode": 302 }
+  ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/book", "destination": "/book.html" },
 
     { "source": "/deal/:customerId/sow", "destination": "/deal/sow.html" },
     { "source": "/deal/:customerId/mou", "destination": "/deal/mou.html" },
@@ -26,7 +28,6 @@
     { "source": "/demo-sow/fadi", "destination": "/demo-sow/fadi.html" },
     { "source": "/agent-info", "destination": "/api/agent-info" },
     { "source": "/contact", "destination": "/api/contact" },
-    { "source": "/audit", "destination": "/api/audit" },
-    { "source": "/demo-factory", "destination": "/api/demo-factory" }
+    { "source": "/audit", "destination": "/api/audit" }
   ]
 }

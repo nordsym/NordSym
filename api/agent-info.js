@@ -53,15 +53,6 @@ export default async function handler(req, res) {
         delivery_mode: "request_review"
       },
       {
-        id: "demo-factory",
-        name: "Demo Factory",
-        description: "Symbot analyzes your company and builds a tailored demo",
-        pricing: "free",
-        endpoint: "https://api.nordsym.com/demo-lead",
-        method: "POST",
-        delivery_mode: "request_review"
-      },
-      {
         id: "consultation",
         name: "Strategy Consultation",
         description: "Strategic session on AI strategy and automation",

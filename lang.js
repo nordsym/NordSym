@@ -337,19 +337,6 @@ const NordSymLang = {
       symbotChatSuccess: 'Symbot is ready to help.',
 
       // ============================================
-      // DEMO FACTORY (Legacy - keeping for reference)
-      // ============================================
-      demoFactoryBadge: 'Demo Factory',
-      demoFactoryTitle: 'Get a demo built for you',
-      demoFactorySubtitle: "See what's possible. Submit. Symbot analyzes and builds a custom demo based on what you actually need.",
-      demoFactoryCompany: 'Company name *',
-      demoFactoryEmail: 'Your email *',
-      demoFactoryChallenge: 'What do you want to solve? (optional)',
-      demoFactoryCTA: 'Request Demo',
-      demoFactorySuccessTitle: 'Symbot is on it!',
-      demoFactorySuccessText: 'Symbot is analyzing your company and building a custom demo. Keep an eye on your inbox!',
-
-      // ============================================
       // COOKIE BANNER
       // ============================================
       cookieTitle: 'Digital Privacy',
