@@ -11165,20 +11165,43 @@ ctaText: this.t('apiclawSiteCta'),
  headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify(payload)
  });
- 
- if (!response.ok) throw new Error('Network error');
- 
+
+ const data = await response.json().catch(() => ({}));
+
+ if (!response.ok) {
+   const err = new Error(data.message || `Booking failed (HTTP ${response.status})`);
+   err.code = data.error || `HTTP_${response.status}`;
+   throw err;
+ }
+
  document.getElementById('schedulerForm').classList.add('hidden');
  document.getElementById('schedulerSuccess').classList.remove('hidden');
- 
+
  // Nudge geometry on successful booking
  if (window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry();
- 
+
  } catch (error) {
  console.error('Booking error:', error);
- const errMsg = (error && error.message) ? error.message : 'unknown';
- btn.innerHTML = `Error (${errMsg.slice(0, 30)}) - retry`;
+ btn.innerHTML = originalText;
  btn.disabled = false;
+
+ // Show the server's actual message instead of a generic one.
+ const msg = (error && error.message) ? error.message : 'Something went wrong. Please try again.';
+ let errEl = document.getElementById('schedulerErrorMsg');
+ if (!errEl) {
+   errEl = document.createElement('div');
+   errEl.id = 'schedulerErrorMsg';
+   errEl.className = 'text-sm mt-3 text-center';
+   errEl.style.color = '#f87171';
+   form.parentNode.insertBefore(errEl, form.nextSibling);
+ }
+ errEl.textContent = msg;
+
+ // On slot conflict, send the user back to the time grid so they can pick another time.
+ if (error && error.code === 'TIME_SLOT_TAKEN') {
+   document.getElementById('schedulerForm').classList.add('hidden');
+   document.getElementById('schedulerCalendar').classList.remove('hidden');
+ }
  }
  }
  };
