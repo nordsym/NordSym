@@ -6806,8 +6806,8 @@ margin-right: 0.4rem;
  <!-- Success State -->
  <div id="schedulerSuccess" class="hidden text-center py-8">
  <i class="ph-check-circle text-5xl text-nord-sym-cyan mb-4"></i>
- <h3 class="text-xl font-bold text-white mb-2">Bokning mottagen!</h3>
- <p class="text-sky-300 text-sm">Kalenderinbjudan skickas till din e-post.</p>
+ <h3 class="text-xl font-bold text-white mb-2">Booking received</h3>
+ <p class="text-sky-300 text-sm">A calendar invite has been sent to your email.</p>
  </div>
  
  </div>
@@ -11026,7 +11026,7 @@ ctaText: this.t('apiclawSiteCta'),
  currentDate: new Date(),
  selectedDate: null,
  selectedTime: null,
- monthNames: ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'],
+ monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
  availability: {
  1: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Måndag
  2: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Tisdag
@@ -11106,7 +11106,7 @@ ctaText: this.t('apiclawSiteCta'),
  document.getElementById('schedulerDateLabel').textContent = `${day} ${this.monthNames[this.currentDate.getMonth()]}`;
 
  const timeGrid = document.getElementById('schedulerTimeGrid');
- const emptyMsg = isToday ? 'Inga fler tider idag' : 'Inga tider denna dag';
+ const emptyMsg = isToday ? 'No more slots today' : 'No slots this day';
  timeGrid.innerHTML = slots.length ? '' : `<div class="col-span-3 text-center text-xs text-sky-400 py-4">${emptyMsg}</div>`;
  
  slots.forEach(time => {
@@ -11128,7 +11128,7 @@ ctaText: this.t('apiclawSiteCta'),
  selectTime(time) {
  this.selectedTime = time;
  const dateStr = `${this.selectedDate.getDate()} ${this.monthNames[this.selectedDate.getMonth()]}`;
- document.getElementById('schedulerSummary').innerHTML = `<span class="text-nord-sym-cyan font-bold">${dateStr}</span> kl <span class="text-nord-sym-cyan font-bold">${time}</span>`;
+ document.getElementById('schedulerSummary').innerHTML = `<span class="text-nord-sym-cyan font-bold">${dateStr}</span> at <span class="text-nord-sym-cyan font-bold">${time}</span>`;
  
  document.getElementById('schedulerCalendar').classList.add('hidden');
  document.getElementById('schedulerForm').classList.remove('hidden');
