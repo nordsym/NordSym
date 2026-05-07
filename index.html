@@ -11085,15 +11085,29 @@ ctaText: this.t('apiclawSiteCta'),
  selectDate(day, el) {
  document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected'));
  el.classList.add('selected');
- 
+
  this.selectedDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
  const dayOfWeek = this.selectedDate.getDay();
- const slots = this.availability[dayOfWeek] || [];
- 
+ let slots = this.availability[dayOfWeek] || [];
+
+ // Filter past slots if today is selected (30 min lead time, Stockholm local).
+ const now = new Date();
+ const isToday = this.selectedDate.getFullYear() === now.getFullYear()
+   && this.selectedDate.getMonth() === now.getMonth()
+   && this.selectedDate.getDate() === now.getDate();
+ if (isToday) {
+   const cutoff = now.getHours() * 60 + now.getMinutes() + 30;
+   slots = slots.filter(t => {
+     const [h, m] = t.split(':').map(Number);
+     return (h * 60 + m) >= cutoff;
+   });
+ }
+
  document.getElementById('schedulerDateLabel').textContent = `${day} ${this.monthNames[this.currentDate.getMonth()]}`;
- 
+
  const timeGrid = document.getElementById('schedulerTimeGrid');
- timeGrid.innerHTML = slots.length ? '' : '<div class="col-span-3 text-center text-xs text-sky-400 py-4">Inga tider denna dag</div>';
+ const emptyMsg = isToday ? 'Inga fler tider idag' : 'Inga tider denna dag';
+ timeGrid.innerHTML = slots.length ? '' : `<div class="col-span-3 text-center text-xs text-sky-400 py-4">${emptyMsg}</div>`;
  
  slots.forEach(time => {
  const btn = document.createElement('div');
