@@ -11082,7 +11082,7 @@ ctaText: this.t('apiclawSiteCta'),
  document.getElementById('schedulerTimes').classList.add('hidden');
  },
  
- selectDate(day, el) {
+ async selectDate(day, el) {
  document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected'));
  el.classList.add('selected');
 
@@ -11106,18 +11106,51 @@ ctaText: this.t('apiclawSiteCta'),
  document.getElementById('schedulerDateLabel').textContent = `${day} ${this.monthNames[this.currentDate.getMonth()]}`;
 
  const timeGrid = document.getElementById('schedulerTimeGrid');
+ document.getElementById('schedulerTimes').classList.remove('hidden');
+
+ if (!slots.length) {
  const emptyMsg = isToday ? 'No more slots today' : 'No slots this day';
- timeGrid.innerHTML = slots.length ? '' : `<div class="col-span-3 text-center text-xs text-sky-400 py-4">${emptyMsg}</div>`;
- 
+ timeGrid.innerHTML = `<div class="col-span-3 text-center text-xs text-sky-400 py-4">${emptyMsg}</div>`;
+ return;
+ }
+
+ // Show loading placeholder while we ask the calendar for busy slots.
+ timeGrid.innerHTML = '<div class="col-span-3 text-center text-xs text-sky-400 py-4">Checking availability...</div>';
+
+ // Fetch busy slots from the availability endpoint. Degrade gracefully on failure;
+ // the booking engine itself will reject any conflicts on submit.
+ let busy = [];
+ try {
+ const dateStr = this.selectedDate.toLocaleDateString('sv-SE');
+ const res = await fetch(`https://nordsym.app.n8n.cloud/webhook/availability?date=${encodeURIComponent(dateStr)}`);
+ if (res.ok) {
+ const data = await res.json().catch(() => ({}));
+ if (Array.isArray(data.busy)) busy = data.busy;
+ }
+ } catch (e) {
+ console.warn('Availability check failed:', e);
+ }
+
+ timeGrid.innerHTML = '';
+ if (slots.every(s => busy.includes(s))) {
+ timeGrid.innerHTML = '<div class="col-span-3 text-center text-xs text-sky-400 py-4">All slots taken. Pick another date.</div>';
+ return;
+ }
+
  slots.forEach(time => {
  const btn = document.createElement('div');
- btn.className = 'scheduler-time';
+ const isBusy = busy.includes(time);
+ btn.className = 'scheduler-time' + (isBusy ? ' busy' : '');
  btn.textContent = time;
+ if (isBusy) {
+ btn.style.opacity = '0.35';
+ btn.style.cursor = 'not-allowed';
+ btn.title = 'Taken';
+ } else {
  btn.onclick = () => this.selectTime(time);
+ }
  timeGrid.appendChild(btn);
  });
- 
- document.getElementById('schedulerTimes').classList.remove('hidden');
  },
  
  resetDate() {
