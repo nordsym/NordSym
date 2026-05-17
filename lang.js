@@ -24,7 +24,7 @@ const NordSymLang = {
 
       // Hero Section
       heroTitle: 'Build, automate, <br class="md:hidden"> and scale with AI',
-      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building AI Systems that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> make a difference.',
+      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building the <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">AI OS</span> that runs your business.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
       labelMicroApps: 'PRODUCTS',
@@ -40,7 +40,7 @@ const NordSymLang = {
       // Home Diagram Section
       homeDiagramTitle: 'Unlock your potential',
       homeDiagramDesc: 'Manual processes cap your growth. NordSym removes that ceiling by developing agent-ready software and systems that both humans and AI can use.',
-      homeDiagramLink: 'Explore AI Systems →',
+      homeDiagramLink: 'Explore AI OS →',
       vennFlows: 'Unique<br>Workflows',
       vennSoftware: 'Agent-Ready<br>Software',
       vennCenter: 'Hours<br>Saved',
@@ -158,7 +158,7 @@ const NordSymLang = {
       // Navigation
       navHome: 'Home',
       navMicroApps: 'Products',
-      navServices: 'AI Systems',
+      navServices: 'AI OS',
       navRnD: 'R&D',
 
       // Footer
