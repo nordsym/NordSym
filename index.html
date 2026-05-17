@@ -202,9 +202,9 @@
  "@id": "https://nordsym.com/#breadcrumb",
  "itemListElement": [
  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nordsym.com" },
- { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://nordsym.com/#om-oss" },
- { "@type": "ListItem", "position": 3, "name": "AI OS", "item": "https://nordsym.com/#system" },
- { "@type": "ListItem", "position": 4, "name": "R&D", "item": "https://nordsym.com/#ritbordet" }
+ { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://nordsym.com/#products" },
+ { "@type": "ListItem", "position": 3, "name": "AI OS", "item": "https://nordsym.com/#ai-os" },
+ { "@type": "ListItem", "position": 4, "name": "R&D", "item": "https://nordsym.com/#rnd" }
  ]
  },
  {
@@ -2156,7 +2156,7 @@ margin-right: 0.4rem;
  filter: drop-shadow(0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.5));
  }
 
- #ritbordet {
+ #rnd {
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -2166,19 +2166,19 @@ margin-right: 0.4rem;
  padding-bottom: 4rem;
  }
 
- #ritbordet-lobby {
+ #rnd-lobby {
  transition: opacity 0.4s ease, transform 0.4s ease;
  transform: scale(1);
  }
- body.labb-active #ritbordet-lobby {
+ body.labb-active #rnd-lobby {
  opacity: 0;
  pointer-events: none;
  transform: scale(0.95);
  }
 
- #ritbordet-lobby .desktop-layout { display: none; }
+ #rnd-lobby .desktop-layout { display: none; }
  @media (min-width: 1024px) {
- #ritbordet-lobby .desktop-layout {
+ #rnd-lobby .desktop-layout {
  display: flex;
  flex-direction: column;
  align-items: center;
@@ -2187,8 +2187,8 @@ margin-right: 0.4rem;
  width: 100%;
  }
  }
- #ritbordet-lobby .mobile-layout { display: block; }
- @media (min-width: 1024px) { #ritbordet-lobby .mobile-layout { display: none; } }
+ #rnd-lobby .mobile-layout { display: block; }
+ @media (min-width: 1024px) { #rnd-lobby .mobile-layout { display: none; } }
 
  .ritbordet-grid {
  display: grid;
@@ -2712,24 +2712,24 @@ margin-right: 0.4rem;
  }
 
  /* NEW STYLES FOR ARKITEKTUR PAGE */
- #om-oss .arkitektur-grid {
+ #products .arkitektur-grid {
  display: grid;
  gap: 2rem;
  margin-top: 4rem;
  }
  @media (min-width: 1024px) {
- #om-oss .arkitektur-grid {
+ #products .arkitektur-grid {
  grid-template-columns: 1fr 1fr;
  gap: 4rem;
  align-items: start;
  }
  }
- #om-oss .arkitektur-list {
+ #products .arkitektur-list {
  list-style: none;
  padding: 0;
  margin-top: 1.5rem;
  }
- #om-oss .arkitektur-list li {
+ #products .arkitektur-list li {
  display: flex;
  align-items: flex-start;
  gap: 1rem;
@@ -2737,7 +2737,7 @@ margin-right: 0.4rem;
  font-size: 1.125rem;
  color: var(--nord-sym-text-medium);
  }
- #om-oss .arkitektur-list i {
+ #products .arkitektur-list i {
  color: var(--nord-sym-cyan);
  font-size: 1.5rem;
  margin-top: 0.2rem;
@@ -2884,11 +2884,11 @@ margin-right: 0.4rem;
  transform: scale(1);
  }
 
- body.light-theme #system h3.text-white {
+ body.light-theme #ai-os h3.text-white {
  color: var(--nord-sym-blueprint-ink) !important;
  font-weight: 700;
  }
- body.light-theme #system span.border-white {
+ body.light-theme #ai-os span.border-white {
  border-color: var(--nord-sym-blueprint-ink) !important;
  color: var(--nord-sym-blueprint-ink) !important;
  background: rgba(255, 255, 255, 0.8) !important;
@@ -2907,16 +2907,16 @@ margin-right: 0.4rem;
  }
 
  /* FIX: "Gaming + AI + Three.js" Rubrik i R&D */
- body.light-theme #ritbordet-lobby h2 {
+ body.light-theme #rnd-lobby h2 {
  color: var(--nord-sym-blueprint-ink) !important;
  }
- body.light-theme #ritbordet-lobby p.text-sky-100\/80 {
+ body.light-theme #rnd-lobby p.text-sky-100\/80 {
  color: var(--nord-sym-blueprint-text-secondary) !important;
  opacity: 1 !important;
  }
 
  /* FIX: Products badge - Ink Style (matchar TJÄNSTER/R&D) */
- body.light-theme #om-oss .text-center > span.inline-block {
+ body.light-theme #products .text-center > span.inline-block {
  color: var(--nord-sym-blueprint-ink) !important;
  border-color: var(--nord-sym-blueprint-ink) !important;
  background-color: rgba(255, 255, 255, 0.8) !important;
@@ -2924,57 +2924,66 @@ margin-right: 0.4rem;
  }
 
  /* Products page — light mode: glasskort (blueprint-style, matchar R&D) */
- body.light-theme #om-oss a[class*="rounded-3xl"],
- body.light-theme #om-oss div[class*="rounded-3xl"] {
+ body.light-theme #products a[class*="rounded-3xl"],
+ body.light-theme #products div[class*="rounded-3xl"] {
    background: #ffffff !important;
    border: 2px solid var(--nord-sym-blueprint-lines) !important;
    backdrop-filter: none !important;
    -webkit-backdrop-filter: none !important;
    box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2) !important;
  }
- body.light-theme #om-oss a[class*="rounded-3xl"]:hover {
+ body.light-theme #products a[class*="rounded-3xl"]:hover {
    border-color: var(--nord-sym-blueprint-cyan) !important;
    box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2) !important;
    transform: translate(-2px, -2px) !important;
  }
- body.light-theme #om-oss a[class*="rounded-3xl"] p,
- body.light-theme #om-oss div[class*="rounded-3xl"] p {
+ body.light-theme #products a[class*="rounded-3xl"] p,
+ body.light-theme #products div[class*="rounded-3xl"] p {
    color: var(--nord-sym-blueprint-text-secondary) !important;
    opacity: 1 !important;
  }
- body.light-theme #om-oss a[class*="rounded-3xl"] h3,
- body.light-theme #om-oss div[class*="rounded-3xl"] h3 {
+ body.light-theme #products a[class*="rounded-3xl"] h3,
+ body.light-theme #products div[class*="rounded-3xl"] h3 {
    color: var(--nord-sym-blueprint-ink) !important;
  }
- body.light-theme #om-oss a[class*="rounded-3xl"] p[class*="text-xs"],
- body.light-theme #om-oss div[class*="rounded-3xl"] p[class*="text-xs"] {
+ body.light-theme #products a[class*="rounded-3xl"] p[class*="text-xs"],
+ body.light-theme #products div[class*="rounded-3xl"] p[class*="text-xs"] {
    color: var(--nord-sym-blueprint-cyan) !important;
  }
- body.light-theme #om-oss div[class*="rounded-2xl"] {
+ /* APIClaw stats — numbers + labels must read on white card */
+ body.light-theme #products a[class*="rounded-3xl"] div.text-white,
+ body.light-theme #products div[class*="rounded-3xl"] div.text-white {
+   color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #products a[class*="rounded-3xl"] div[class*="text-sky-300"],
+ body.light-theme #products div[class*="rounded-3xl"] div[class*="text-sky-300"] {
+   color: var(--nord-sym-blueprint-text-muted) !important;
+ }
+ body.light-theme #products div[class*="rounded-2xl"] {
    background: #f0f6ff !important;
    border-color: var(--nord-sym-blueprint-lines) !important;
    color: var(--nord-sym-blueprint-ink) !important;
  }
- body.light-theme #om-oss h2 {
+ body.light-theme #products h2 {
    color: var(--nord-sym-blueprint-ink) !important;
  }
- body.light-theme #om-oss > div > div > div.text-center p {
+ body.light-theme #products > div > div > div.text-center p {
    color: var(--nord-sym-blueprint-text-secondary) !important;
  }
 
  /* Products page — dark mode: frosted glass (backdrop-blur, matchar R&D) */
- #om-oss a[class*="rounded-3xl"],
- #om-oss div[class*="rounded-3xl"] {
+ #products a[class*="rounded-3xl"],
+ #products div[class*="rounded-3xl"] {
    backdrop-filter: blur(20px);
    -webkit-backdrop-filter: blur(20px);
  }
- #om-oss div[class*="rounded-2xl"] {
+ #products div[class*="rounded-2xl"] {
    backdrop-filter: blur(10px);
    -webkit-backdrop-filter: blur(10px);
  }
 
  /* FIX: "R&D" Tagg - Uppdaterad till Ink Style */
- body.light-theme #ritbordet-lobby .text-center > span.inline-block {
+ body.light-theme #rnd-lobby .text-center > span.inline-block {
  color: var(--nord-sym-blueprint-ink) !important;
  border-color: var(--nord-sym-blueprint-ink) !important;
  background-color: rgba(255, 255, 255, 0.8) !important;
@@ -2995,26 +3004,26 @@ margin-right: 0.4rem;
  }
 
  /* Target the founder button specifically */
- body.light-theme #om-oss button.border-white, 
- body.light-theme #system button.border-white {
+ body.light-theme #products button.border-white, 
+ body.light-theme #ai-os button.border-white {
  border-color: var(--nord-sym-blueprint-lines) !important;
  background: #ffffff !important;
  box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
  }
- body.light-theme #om-oss button .text-white,
- body.light-theme #system button .text-white {
+ body.light-theme #products button .text-white,
+ body.light-theme #ai-os button .text-white {
  color: var(--nord-sym-blueprint-ink) !important;
  }
- body.light-theme #om-oss button .text-white\/80,
- body.light-theme #system button .text-white\/80 {
+ body.light-theme #products button .text-white\/80,
+ body.light-theme #ai-os button .text-white\/80 {
  color: var(--nord-sym-blueprint-text-secondary) !important;
  }
- body.light-theme #om-oss button .text-white\/70,
- body.light-theme #system button .text-white\/70 {
+ body.light-theme #products button .text-white\/70,
+ body.light-theme #ai-os button .text-white\/70 {
  color: var(--nord-sym-blueprint-lines) !important;
  }
- body.light-theme #om-oss button:hover,
- body.light-theme #system button:hover {
+ body.light-theme #products button:hover,
+ body.light-theme #ai-os button:hover {
  border-color: var(--nord-sym-blueprint-cyan) !important;
  box-shadow: 0 4px 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.15) !important;
  }
@@ -5180,9 +5189,9 @@ margin-right: 0.4rem;
  <nav id="crawler-nav" class="sr-only" aria-label="Sitemap for search robots">
  <ul>
  <li><a href="#hero">Start</a></li>
- <li><a href="#om-oss">Our Architecture and Philosophy</a></li>
- <li><a href="#system">System Packages and Pricing</a></li>
- <li><a href="#ritbordet">The Drawing Board and Process</a></li>
+ <li><a href="#products">Our Architecture and Philosophy</a></li>
+ <li><a href="#ai-os">System Packages and Pricing</a></li>
+ <li><a href="#rnd">The Drawing Board and Process</a></li>
  <li><a href="#atom-gallery-section">AI Building Blocks and Products</a></li>
  </ul>
  </nav>
@@ -5198,11 +5207,11 @@ margin-right: 0.4rem;
  </a>
  <nav aria-label="Main navigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Home</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Products</a>
+ <a href="#" onclick="window.nord.showPage('products'); return false;" data-nav="products" class="nav-link transition-colors font-medium">Products</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium">AI OS</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" data-nav="ai-os" class="nav-link transition-colors font-medium">AI OS</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium"data-i18n="btnRnD">R&D</a>
+ <a href="#" onclick="window.nord.showPage('rnd'); return false;" data-nav="rnd" class="nav-link transition-colors font-medium"data-i18n="btnRnD">R&D</a>
  </nav>
  <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
  <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised text-sm">Book Strategy Call</a>
@@ -5228,11 +5237,11 @@ margin-right: 0.4rem;
  </div>
  <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0 text-center">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Home</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Products</a>
+ <a href="#" onclick="window.nord.showPage('products'); return false;" data-nav="products" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Products</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">AI OS</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" data-nav="ai-os" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">AI OS</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
+ <a href="#" onclick="window.nord.showPage('rnd'); return false;" data-nav="rnd" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
  <a href="#" onclick="window.nord.showPage('book'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Book Strategy Call</a>
  </div>
@@ -5243,7 +5252,7 @@ margin-right: 0.4rem;
  <section id="hero" class="space-background-section">
  <div class="section-content-wrapper">
  <div class="flex flex-col items-center gap-y-6 md:gap-y-8"> <!-- Minskat gap på mobil -->
- <div id="hero-logo-wrapper" style="display:none;" onclick="window.nord.showPage('om-oss');">
+ <div id="hero-logo-wrapper" style="display:none;" onclick="window.nord.showPage('products');">
  <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" width="200" height="57">
  </div>
  
@@ -5279,7 +5288,7 @@ margin-right: 0.4rem;
  <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
  <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto">
  <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Book Strategy Call</a>
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5">AI OS</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5">AI OS</a>
  </div>
  <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
  <span>AGENTIC ENGINEERING</span>
@@ -5431,7 +5440,7 @@ margin-right: 0.4rem;
  <!-- Fas 2.5 Copy - Jordnära, skräddarsydd mjukvara + länk -->
  <!-- Rensat bort "Vi" och "Våra" för att passa Solo Founder -->
  <span>Manual processes limit your growth. NordSym removes that limitation by developing agent-ready software - systems both humans and AI can use, 24/7.</span> 
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1 light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink">Explore services →</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1 light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink">Explore services →</a>
  </p>
  </div>
  <div class="venn-diagram-container">
@@ -5445,7 +5454,7 @@ margin-right: 0.4rem;
  <span class="venn-circle-text">Agent-Ready<br>Software</span>
  </div>
  <!-- Symbol för oändlighet + Hours Saved -->
- <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
+ <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('ai-os'); return false;">
  <i class="ph ph-infinity text-4xl mb-1 text-nord-sym-light-accent"></i>
  <span class="text-sm md:text-base leading-tight">Hours<br>Saved</span>
  </div>
@@ -6436,7 +6445,7 @@ margin-right: 0.4rem;
  </section>
 
  <!-- OMDESIGNAD: ARKITEKTUR (VISUAL SHOWCASE) -->
-<section id="om-oss" class="space-background-section page-content-padding" style="display: none;">
+<section id="products" class="space-background-section page-content-padding" style="display: none;">
 <div class="section-content-wrapper">
 <div class="max-w-6xl mx-auto">
  <div class="text-center mb-14">
@@ -6513,7 +6522,7 @@ margin-right: 0.4rem;
  <h3 class="text-3xl text-white font-bold mb-3">Need a custom build?</h3>
  </div>
  <div class="flex flex-col gap-3">
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="btn-base btn-secondary-on-dark text-center">See AI OS</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="btn-base btn-secondary-on-dark text-center">See AI OS</a>
  <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised text-center">Book Architecture Call</a>
  </div>
  </div>
@@ -6524,7 +6533,7 @@ margin-right: 0.4rem;
 
 
 <!-- REPARERAD SEKTION: SYSTEM (Nu korrekt stängd ovanför) -->
- <section id="system" class="space-background-section page-content-padding" style="display: none;">
+ <section id="ai-os" class="space-background-section page-content-padding" style="display: none;">
  <div class="section-content-wrapper flex-grow">
  <div class="text-center mb-20">
  <!-- Designkoncept "Vit Krita" & Textändring till Tjänster -->
@@ -6718,7 +6727,7 @@ margin-right: 0.4rem;
  </section>
 
  <!-- UPPSTÄDAD: RITBORDET LOBBY (Enklare, mindre rörig) -->
- <section id="ritbordet" class="space-background-section" style="display: none;">
+ <section id="rnd" class="space-background-section" style="display: none;">
  <div id="ritbordet-lobby" class="section-content-wrapper">
  <div class="text-center mb-16">
  <!-- Designkoncept "Vit Krita" -->
@@ -6961,10 +6970,10 @@ margin-right: 0.4rem;
  <div class="text-center md:text-left">
  <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Quick Links</p>
  <div class="footer-quicklinks">
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Products</a>
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link">AI OS</a>
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link">R&D</a>
- <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Frequently Asked Questions</a>
+ <a href="#" onclick="window.nord.showPage('products'); return false;" class="footer-link">Products</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="footer-link">AI OS</a>
+ <a href="#" onclick="window.nord.showPage('rnd'); return false;" class="footer-link">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ai-os'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Frequently Asked Questions</a>
  </div>
  </div>
  <div class="text-center md:text-left">
@@ -7299,10 +7308,10 @@ margin-right: 0.4rem;
  // --- PAGE CONFIGURATION (moved outside DOMContentLoaded for immediate availability) ---
  const pageConfig = {
  'hero': { isMultiPart: true, parts: ['hero', 'home-diagram-section', 'testimonials-section', 'atom-gallery-section', 'home-contact-section'], display: 'flex', hasFooter: true, navAlias: 'hero' },
- 'om-oss': { display: 'flex', hasFooter: true, navAlias: 'om-oss' },
- 'system': { display: 'flex', hasFooter: true, navAlias: 'system' },
- 'ritbordet': { display: 'flex', hasFooter: true, navAlias: 'ritbordet' },
- 'book': { display: 'flex', hasFooter: true, navAlias: 'system' },
+ 'products': { display: 'flex', hasFooter: true, navAlias: 'products' },
+ 'ai-os': { display: 'flex', hasFooter: true, navAlias: 'ai-os' },
+ 'rnd': { display: 'flex', hasFooter: true, navAlias: 'rnd' },
+ 'book': { display: 'flex', hasFooter: true, navAlias: 'ai-os' },
  'privacy-policy-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
  'terms-of-service-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
  };
@@ -7334,8 +7343,8 @@ margin-right: 0.4rem;
  window.nord.showPage = function(pageId, isPoppingState = false) {
  // --- NYTT: Steg 3 (Återställning) ---
  // Logik för att återställa "Arkitektur-Invasion" om vi lämnar den sidan
- if (window.nord.currentPage === 'om-oss' && 
- pageId !== 'om-oss' && 
+ if (window.nord.currentPage === 'products' && 
+ pageId !== 'products' && 
  window.aiFirstGameManager && 
  window.aiFirstGameManager.isActive) 
  {
@@ -7365,20 +7374,20 @@ margin-right: 0.4rem;
  if (!config) return;
  
  // Harmoni-fix: Säkerställ att verkstaden och dess kontroller stängs när man navigerar bort.
- if (pageId !== 'ritbordet' && document.body.classList.contains('labb-active')) {
+ if (pageId !== 'rnd' && document.body.classList.contains('labb-active')) {
  if (window.UnifiedGeometryManager) {
  window.UnifiedGeometryManager.exitBuilderMode();
  }
- } else if (pageId === 'ritbordet') {
+ } else if (pageId === 'rnd') {
  // Harmoni-fix: Tvinga systemet att återställa till lobbyn om den redan är i verkstadsläge.
  if (document.body.classList.contains('labb-active') && window.UnifiedGeometryManager) {
  window.UnifiedGeometryManager.exitBuilderMode();
  }
  }
 
- document.body.classList.toggle('ritbordet-visible', pageId === 'ritbordet');
+ document.body.classList.toggle('ritbordet-visible', pageId === 'rnd');
 
- const targetState = pageId === 'ritbordet' ? 'WORKSHOP' : (pageId === 'hero' ? 'HERO' : 'PAGE');
+ const targetState = pageId === 'rnd' ? 'WORKSHOP' : (pageId === 'hero' ? 'HERO' : 'PAGE');
  
  const main = document.querySelector('main');
  gsap.to(main, { opacity: 0, duration: 0.4, ease: 'power2.in', onComplete: () => {
@@ -9654,8 +9663,8 @@ this.toggleBtns.forEach(btn => {
  ];
  this.valueCardsData = [
  { type: 'default', icon: 'ph-graph', title: 'TRANSFORMATION', description: 'Intelligenta system som växer med er verksamhet och möjliggör obegränsad skalning.', buttonText: 'Läs Caset →', externalLink: 'https://gushem.github.io/Landningsida-Nordsym-Klara-agent/' },
- { type: 'default', icon: 'ph-atom', title: 'CORE COMPONENTS', description: 'Distributed intelligence built on your business rules - system som förstår er branschlogik och utvecklas med den.', buttonText: 'Utforska Arkitekturen', page: 'system', tooltip: 'Vår motor för sömlös synkronisering av intelligens.' },
- { type: 'pricing-preview', title: 'INVESTERING', price: '75k - 500k+', description: 'Från investering till intelligent evolution. Er framtidsförsäkring börjar här.', buttonText: 'Se Paket →', page: 'system' }
+ { type: 'default', icon: 'ph-atom', title: 'CORE COMPONENTS', description: 'Distributed intelligence built on your business rules - system som förstår er branschlogik och utvecklas med den.', buttonText: 'Utforska Arkitekturen', page: 'ai-os', tooltip: 'Vår motor för sömlös synkronisering av intelligens.' },
+ { type: 'pricing-preview', title: 'INVESTERING', price: '75k - 500k+', description: 'Från investering till intelligent evolution. Er framtidsförsäkring börjar här.', buttonText: 'Se Paket →', page: 'ai-os' }
  ];
  }
 
