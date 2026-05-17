@@ -208,7 +208,7 @@ const NordSymLang = {
       galleryStackContext: 'Explore the stack',
       
       // Product description  
-      gallerySystemDesc: 'Standalone products you can use on their own or as building blocks inside larger AI systems.',
+      gallerySystemDesc: 'Standalone products you can use on their own, or combine to solve bigger problems.',
       gallerySystemContext: 'Explore products',
       galleryContextText: 'Explore products',
 
