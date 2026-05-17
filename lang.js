@@ -64,7 +64,7 @@ const NordSymLang = {
       // AI Systems Section
       labelServices: 'AI OS',
       servicesHeadline: 'AI Agent OS',
-      servicesTitle: 'Custom AI systems built around your business',
+      servicesTitle: 'Custom AI Operating Systems built around your business',
 
       // Pricing - MLP
       pricingMLPTitle: 'FOUNDATION',
@@ -77,7 +77,7 @@ const NordSymLang = {
       pricingMLPNote: 'Scope and architecture are defined together.',
 
       // Pricing - Operating System
-      pricingOSTitle: 'OPERATING SYSTEM',
+      pricingOSTitle: 'KERNEL',
       pricingOSPrice: '$25k',
       pricingOSCurrency: 'USD',
       pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
