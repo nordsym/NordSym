@@ -62,7 +62,7 @@ const NordSymLang = {
       productAEOPrice: '$199/month',
 
       // AI Systems Section
-      labelServices: 'AI SYSTEMS',
+      labelServices: 'AI OS',
       servicesHeadline: 'AI Agent OS',
       servicesTitle: 'Custom AI systems built around your business',
 
