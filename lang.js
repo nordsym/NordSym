@@ -266,7 +266,7 @@ const NordSymLang = {
       apiclawTitle: 'APIClaw',
       apiclawDesc: 'The API layer for AI agents. Three doors - MCP, CLI, and Workspace Key - all lead to one gateway that discovers, routes, and calls external capabilities.',
       apiclawSig1: '26,704+ APIs',
-      apiclawSig2: '2,895 callable',
+      apiclawSig2: '2,872+ callable',
       apiclawSig3: '13,552 installs',
       apiclawIndicator: 'Three doors. One gateway. One billing pipeline. One logging pipeline.',
       apiclawSiteCta: 'Visit Site',
