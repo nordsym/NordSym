@@ -64,13 +64,13 @@ const NordSymLang = {
       // AI Systems Section
       labelServices: 'AI OS',
       servicesHeadline: 'AI Agent OS',
-      servicesTitle: 'Custom AI Operating Systems built around your business',
+      servicesTitle: 'Custom AI operating systems for companies who mean business.',
 
       // Pricing - MLP
       pricingMLPTitle: 'FOUNDATION',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
-      pricingMLPDesc: 'A focused first build for one specific problem. Custom-built systems that solve your exact use case the way you need it.',
+      pricingMLPDesc: 'A focused first build that solves one operational problem end-to-end. Same engineering standard as the larger tiers, narrowed to where you need leverage first.',
       pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
       pricingMLPBtn: 'Start Foundation',
@@ -80,7 +80,7 @@ const NordSymLang = {
       pricingOSTitle: 'KERNEL',
       pricingOSPrice: '$25k',
       pricingOSCurrency: 'USD',
-      pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
+      pricingOSDesc: "A custom AI system that becomes the operational core of your business. It centralizes your data, connects your systems, codifies how your team actually works, and lets AI act autonomously while keeping human judgment where it belongs.",
       pricingOSFeature1: 'Data Hub',
       pricingOSFeature2: 'AI Decisions',
       pricingOSFeature3: 'Control',
@@ -91,7 +91,7 @@ const NordSymLang = {
       pricingEnterpriseTitle: 'APEX',
       pricingEnterprisePrice: '$50k',
       pricingEnterpriseCurrency: 'USD',
-      pricingEnterpriseDesc: 'For larger initiatives that need dedicated architecture, execution, and long-term ownership.',
+      pricingEnterpriseDesc: 'For strategic initiatives that span multiple departments or require deep integration with enterprise-grade infrastructure. Dedicated architecture and execution.',
       pricingEnterpriseFeature1: 'Strategy',
       pricingEnterpriseFeature2: 'Architecture',
       pricingEnterpriseFeature3: 'AI Orchestration',
