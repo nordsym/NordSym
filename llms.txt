@@ -107,7 +107,7 @@ Not a fit:
 
 ## Pricing And Scope Guidance
 
-NordSym prices based on delivered value, not hours.
+NordSym prices around delivered value, operating leverage, and the compute required to produce reliable outcomes.
 
 Public guidance:
 
