@@ -1,0 +1,29 @@
+{
+  "name": "NordSym AB",
+  "domain": "nordsym.com",
+  "mcp_available": false,
+  "status": "no_direct_public_mcp_for_nordsym_com",
+  "description": "NordSym.com is the public company and intake surface. It does not expose a direct public MCP server. For API and MCP control-plane work, use APIClaw.",
+  "related_mcp_surfaces": [
+    {
+      "name": "APIClaw",
+      "url": "https://apiclaw.cloud",
+      "well_known": "https://apiclaw.cloud/.well-known/mcp",
+      "llms_txt": "https://apiclaw.cloud/llms.txt",
+      "agents_md": "https://apiclaw.cloud/agents.md",
+      "role": "The Control Plane for AI Agents"
+    }
+  ],
+  "agent_readiness": {
+    "category": "MEO: Machine Experience Optimization",
+    "offer": "Agent Readiness Audit",
+    "llms_txt": "https://nordsym.com/llms.txt",
+    "agents_md": "https://nordsym.com/agents.md",
+    "agent_info": "https://nordsym.com/agent-info"
+  },
+  "contact": {
+    "founder": "gustav@nordsym.com",
+    "support": "support@nordsym.com",
+    "contact_endpoint": "https://api.nordsym.com/contact"
+  }
+}
