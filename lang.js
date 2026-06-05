@@ -16,12 +16,6 @@ const NordSymLang = {
       metaDescription: 'NordSym AB is a full stack AI partner for system automation, AI search visibility, and AI architecture. We optimize your operations and build intelligent ecosystems.',
       metaKeywords: 'System automation, intelligent systems, AI search visibility, AI architecture, digital transformation, NordSym',
 
-      // APIClaw Banner
-      bannerTagline: 'The API Layer For AI Agents',
-      bannerImBot: "I'm a 🤖",
-      bannerImHuman: "I'm a 👤",
-      bannerVisitSite: 'Visit site →',
-
       // Hero Section
       heroTitle: 'Build, automate, <br class="md:hidden"> and scale with AI',
       heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building the <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">AI OS</span> that runs your business.',
