@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Agent Readiness Audit by NordSym AB. Make your business readable, comparable, callable, and recommendable by AI agents.">
+ <link rel="canonical" href="https://nordsym.com/audit">
+ <title>Agent Readiness Audit | NordSym AB</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+ <style>
+  :root {
+   --bg: #050608;
+   --surface: rgba(12, 14, 18, 0.78);
+   --text: #ffffff;
+   --muted: #cbd5e1;
+   --line: rgba(255, 255, 255, 0.16);
+   --cyan: #00D4FF;
+   --purple: #9370DB;
+   --orange: #FF8C00;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; }
+  body {
+   margin: 0;
+   min-height: 100vh;
+   background:
+    radial-gradient(circle at 20% 0%, rgba(0, 212, 255, 0.13), transparent 28rem),
+    radial-gradient(circle at 82% 22%, rgba(255, 140, 0, 0.12), transparent 24rem),
+    #050608;
+  }
+  a { color: inherit; }
+  .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+  header {
+   min-height: 76px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-bottom: 1px solid var(--line);
+  }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 700; }
+  .brand img { width: 42px; height: 42px; object-fit: contain; }
+  nav { display: flex; gap: 22px; align-items: center; color: var(--muted); font-size: 0.95rem; }
+  nav a { text-decoration: none; }
+  nav a:hover { color: var(--text); }
+  main { padding: 84px 0 72px; }
+  .hero { max-width: 880px; }
+  h1, h2 { font-family: Comfortaa, Inter, sans-serif; letter-spacing: 0; }
+  h1 { margin: 0; font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 0.96; }
+  .sub { margin: 26px 0 0; max-width: 760px; color: var(--muted); font-size: clamp(1.12rem, 2vw, 1.45rem); line-height: 1.55; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 48px;
+   padding: 0 22px;
+   border: 1px solid #ffffff;
+   border-radius: 999px;
+   text-decoration: none;
+   font-weight: 700;
+  }
+  .btn.primary { background: #ffffff; color: #050608; }
+  .btn.secondary { background: transparent; color: #ffffff; }
+  .btn:hover { transform: translateY(-1px); }
+  .section-grid {
+   display: grid;
+   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+   gap: 48px;
+   align-items: start;
+   margin-top: 84px;
+  }
+  .section-label { color: var(--cyan); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px; }
+  h2 { margin: 0; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.1; }
+  .deliverables {
+   display: grid;
+   gap: 12px;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+  }
+  .deliverables li {
+   background: var(--surface);
+   border: 1px solid var(--line);
+   border-radius: 8px;
+   padding: 18px 20px;
+   color: var(--muted);
+   line-height: 1.45;
+   backdrop-filter: blur(16px);
+  }
+  .note { margin-top: 44px; color: rgba(255,255,255,0.58); font-size: 0.95rem; }
+  .note a { color: var(--text); text-underline-offset: 4px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: rgba(255,255,255,0.56); font-size: 0.9rem; }
+  @media (max-width: 760px) {
+   header { align-items: flex-start; flex-direction: column; gap: 16px; padding: 18px 0; }
+   nav { flex-wrap: wrap; gap: 14px; }
+   main { padding-top: 56px; }
+   .section-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 64px; }
+   .actions { flex-direction: column; align-items: stretch; }
+  }
+ </style>
+</head>
+<body>
+ <header class="shell">
+  <a class="brand" href="/">
+   <img src="/assets/logo.svg" alt="NordSym Logo">
+   <span>NordSym AB</span>
+  </a>
+  <nav aria-label="Audit navigation">
+   <a href="/">Home</a>
+   <a href="/llms.txt">/llms.txt</a>
+   <a href="/agents.md">/agents.md</a>
+  </nav>
+ </header>
+
+ <main class="shell">
+  <section class="hero">
+   <h1>Agent Readiness Audit</h1>
+   <p class="sub">Make your business readable, comparable, callable, and recommendable by AI agents.</p>
+   <div class="actions">
+    <a class="btn primary" href="/book">Book Strategy Call</a>
+    <a class="btn secondary" href="mailto:gustav@nordsym.com">Contact</a>
+   </div>
+  </section>
+
+  <section class="section-grid" aria-labelledby="what-you-get">
+   <div>
+    <div class="section-label">What you get</div>
+    <h2 id="what-you-get">A practical map from machine-readable surface to implementation backlog.</h2>
+   </div>
+   <ul class="deliverables">
+    <li>Agent-readiness scorecard</li>
+    <li>Stale surface and canon drift report</li>
+    <li>Drafts for /llms.txt and /agents.md</li>
+    <li>Suggestions for .well-known, MCP posture, APIs, and structured metadata</li>
+    <li>Pricing, security, and docs rewrite notes</li>
+    <li>First implementation backlog</li>
+   </ul>
+  </section>
+
+  <p class="note">Public guidance and fit rules available in <a href="/llms.txt">/llms.txt</a>.</p>
+ </main>
+
+ <footer class="shell">
+  NordSym AB - Full Stack AI Partner
+ </footer>
+</body>
+</html>
