@@ -18,7 +18,7 @@ const NordSymLang = {
 
       // Hero Section
       heroTitle: 'Build, automate, <br class="md:hidden"> and scale with AI',
-      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building the <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">AI OS</span> that runs your business.',
+      heroSubtitle: 'We build the operating surface where humans and AI work together.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
       labelMicroApps: 'PRODUCTS',
@@ -64,7 +64,7 @@ const NordSymLang = {
       pricingMLPTitle: 'FOUNDATION',
       pricingMLPPrice: '$7.5k',
       pricingMLPCurrency: 'USD',
-      pricingMLPDesc: 'A focused first build that solves one operational problem end-to-end. Same engineering standard as the larger tiers, narrowed to where you need leverage first.',
+      pricingMLPDesc: 'A focused build for one operational problem, with scope and architecture defined together.',
       pricingMLPFeature1: 'Custom Logic',
       pricingMLPFeature2: 'Exact Solution',
       pricingMLPBtn: 'Start Foundation',
@@ -74,7 +74,7 @@ const NordSymLang = {
       pricingOSTitle: 'KERNEL',
       pricingOSPrice: '$25k',
       pricingOSCurrency: 'USD',
-      pricingOSDesc: "A custom AI system that becomes the operational core of your business. It centralizes your data, connects your systems, codifies how your team actually works, and lets AI act autonomously while keeping human judgment where it belongs.",
+      pricingOSDesc: "A custom AI core that connects data, systems, team logic, and AI action under human control.",
       pricingOSFeature1: 'Data Hub',
       pricingOSFeature2: 'AI Decisions',
       pricingOSFeature3: 'Control',
@@ -84,7 +84,7 @@ const NordSymLang = {
       pricingEnterpriseTitle: 'APEX',
       pricingEnterprisePrice: '$50k',
       pricingEnterpriseCurrency: 'USD',
-      pricingEnterpriseDesc: 'For strategic initiatives that span multiple departments or require deep integration with enterprise-grade infrastructure. Dedicated architecture and execution.',
+      pricingEnterpriseDesc: 'Strategic architecture and execution for cross-department or enterprise-grade AI integration.',
       pricingEnterpriseFeature1: 'Strategy',
       pricingEnterpriseFeature2: 'Architecture',
       pricingEnterpriseFeature3: 'AI Orchestration',
@@ -92,7 +92,7 @@ const NordSymLang = {
 
       // Support
       supportTitle: '<strong>Operations & Maintenance:</strong> $1.5k/month',
-      supportDesc: 'This is where the partnership begins. NordSym guarantees operations, develops new features, and grows with your business.',
+      supportDesc: 'Continuous operations, new features, and model updates as the system grows with your business.',
 
       // Founder
       founderName: 'Gustav Hemmingsson',
