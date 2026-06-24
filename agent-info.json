@@ -1,11 +1,11 @@
 {
-  "@context": "Schema.org - Schema.org",
+  "@context": "https://schema.org",
   "@type": "Organization",
   "name": "NordSym AB",
   "legalName": "NordSym AB",
   "description": "Full Stack AI Partner for MEO, agent-ready business surfaces, AI operating systems, and agent infrastructure.",
-  "url": "NordSym AB - Full Stack AI Partner",
-  "logo": "404: NOT_FOUND",
+  "url": "https://nordsym.com",
+  "logo": "https://nordsym.com/nordsym-logo-transparent.png",
   "founder": {
     "name": "Gustav Hemmingsson",
     "email": "gustav@nordsym.com"
@@ -15,16 +15,56 @@
     "type": "AI Assistant",
     "status": "online",
     "capabilities": [
-      "consultation",
+      "intake",
+      "triage",
       "research",
-      "demo-building",
-      "automation"
+      "drafting",
+      "workflow support",
+      "operator assistance"
     ],
-    "contact_endpoint": "mailto:symbot@nordsym.com"
+    "contact_endpoint": "https://api.nordsym.com/contact",
+    "boundaries": [
+      "No contracts without human approval",
+      "No external communications without human approval",
+      "No client data crossing boundaries",
+      "No production changes without explicit operator approval"
+    ]
   },
   "category_frame": {
     "name": "MEO",
     "expanded": "Machine Experience Optimization",
-    "definition": "Optimizing a business surface for machine actors: AI assistants, agents, crawlers, orchestration systems, and workflow runtimes."
-  }
+    "definition": "Optimizing a business surface for machine actors: AI assistants, agents, crawlers, orchestration systems, procurement helpers, and workflow runtimes."
+  },
+  "services": [
+    {
+      "id": "ai-search",
+      "name": "AI Search",
+      "description": "Free visibility check for how AI systems find and cite a company.",
+      "url": "https://aisearch.nordsym.com"
+    },
+    {
+      "id": "agent-readiness-audit",
+      "name": "Agent Readiness Audit",
+      "description": "Paid implementation audit that turns AI Search visibility gaps into agent files, schema, docs, and an implementation backlog.",
+      "url": "https://nordsym.com/audit",
+      "intake": "https://api.nordsym.com/contact"
+    },
+    {
+      "id": "ai-os",
+      "name": "AI Operating System Build",
+      "description": "Operational AI system where data, tools, agents, workflows, approvals, and humans share one coherent surface.",
+      "url": "https://nordsym.com/#ai-os"
+    }
+  ],
+  "discovery_assets": {
+    "llms_txt": "https://nordsym.com/llms.txt",
+    "agents_md": "https://nordsym.com/agents.md",
+    "ai_plugin": "https://nordsym.com/.well-known/ai-plugin.json",
+    "mcp_posture": "https://nordsym.com/.well-known/mcp",
+    "sitemap": "https://nordsym.com/sitemap.xml",
+    "robots": "https://nordsym.com/robots.txt"
+  },
+  "agent_friendly": true,
+  "human_approval_required_for_external_actions": true,
+  "last_updated": "2026-06-24"
 }

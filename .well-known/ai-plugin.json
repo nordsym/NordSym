@@ -6,12 +6,12 @@
   "description_for_model": "NordSym builds AI operating systems, agent infrastructure, and agent-ready business surfaces. Current category frame: MEO, Machine Experience Optimization. Services include Agent Readiness Audit, AI operating system builds, APIClaw agent control-plane work, Hivr execution layers, Mission Control approval/state surfaces, AI Search visibility, and production automation. Humans remain in the approval loop for external actions, client communication, deal terms, and architecture changes.",
   "api": {
     "type": "openapi",
-    "url": "https://api.nordsym.com/agent-info"
+    "url": "https://nordsym.com/agent-info"
   },
   "auth": {
     "type": "none"
   },
-  "logo_url": "https://nordsym.com/NordSym%20Logga%20utan%20text.png",
+  "logo_url": "https://nordsym.com/nordsym-logo-transparent.png",
   "contact_email": "gustav@nordsym.com",
   "legal_info_url": "https://nordsym.com",
   "docs_url": "https://nordsym.com/agents.md",

@@ -64,6 +64,11 @@ NordSym fits best around AI infrastructure, agent-ready software, automation, vi
 
 **Agent Readiness Audit** is NordSym's offer for companies that need to become readable, comparable, callable, and recommendable by AI agents.
 
+Relationship to AI Search:
+
+- **AI Search** is the free first check: can AI systems find, cite, and understand the company?
+- **Agent Readiness Audit** is the paid next step: turn those gaps into agent files, schema, docs, safe action paths, and an implementation backlog.
+
 Audit areas:
 
 1. **Readability** - can an agent understand what the company does, who it is for, and when it is not a fit?
