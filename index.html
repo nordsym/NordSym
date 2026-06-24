@@ -845,6 +845,45 @@
  color: var(--nord-sym-blueprint-cyan);
  opacity: 1;
  }
+
+ /* Agent Readiness Audit */
+ #audit .audit-card,
+ #audit .audit-final-card {
+ border-radius: 12px;
+ }
+ #audit .audit-title {
+ color: #ffffff;
+ }
+ #audit .audit-copy {
+ color: rgba(224, 242, 254, 0.82);
+ }
+ body.light-theme #audit .audit-eyebrow {
+ background: rgba(224, 242, 254, 0.72) !important;
+ border-color: var(--nord-sym-blueprint-lines) !important;
+ color: var(--nord-sym-blueprint-cyan) !important;
+ box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.18);
+ }
+ body.light-theme #audit .section-title,
+ body.light-theme #audit .audit-title {
+ color: var(--nord-sym-blueprint-ink) !important;
+ text-shadow: none;
+ }
+ body.light-theme #audit .audit-copy {
+ color: var(--nord-sym-blueprint-text-primary) !important;
+ opacity: 0.9;
+ }
+ body.light-theme #audit .audit-card,
+ body.light-theme #audit .audit-final-card {
+ background: #ffffff !important;
+ border: 2px solid var(--nord-sym-blueprint-lines) !important;
+ box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2);
+ backdrop-filter: none;
+ }
+ body.light-theme #audit .audit-final-card {
+ border-color: var(--nord-sym-blueprint-cyan) !important;
+ box-shadow: 8px 8px 0px rgba(2, 132, 199, 0.16);
+ }
+
  /* Återställ knappar i light mode */
  body.light-theme .pricing-card .btn-base {
  border: 2px solid var(--nord-sym-blueprint-ink) !important;
@@ -5230,6 +5269,7 @@ margin-right: 0.4rem;
  <nav aria-label="Main navigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Home</a>
  <a href="#" onclick="window.nord.showPage('products'); return false;" data-nav="products" class="nav-link transition-colors font-medium">Products</a>
+ <a href="#" onclick="window.nord.showPage('audit'); return false;" data-nav="audit" class="nav-link transition-colors font-medium">Audit</a>
  
  <a href="#" onclick="window.nord.showPage('ai-os'); return false;" data-nav="ai-os" class="nav-link transition-colors font-medium">AI OS</a>
  
@@ -5260,6 +5300,7 @@ margin-right: 0.4rem;
  <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0 text-center">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Home</a>
  <a href="#" onclick="window.nord.showPage('products'); return false;" data-nav="products" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Products</a>
+ <a href="#" onclick="window.nord.showPage('audit'); return false;" data-nav="audit" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Audit</a>
  
  <a href="#" onclick="window.nord.showPage('ai-os'); return false;" data-nav="ai-os" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">AI OS</a>
  
@@ -6540,10 +6581,57 @@ margin-right: 0.4rem;
  <h3 class="text-3xl text-white font-bold mb-3">Need a custom build?</h3>
  </div>
  <div class="flex flex-col gap-3">
- <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="btn-base btn-secondary-on-dark text-center">See AI OS</a>
  <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised text-center">Book Architecture Call</a>
  </div>
  </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section id="audit" class="space-background-section page-content-padding" style="display: none;">
+ <div class="section-content-wrapper flex-grow">
+ <div class="max-w-6xl mx-auto">
+ <div class="text-center mb-16">
+ <span class="audit-eyebrow inline-block px-4 py-1.5 mb-5 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)]">Agent Readiness Audit</span>
+ <h2 class="section-title text-4xl md:text-6xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink">Make your business readable by AI agents.</h2>
+ <p class="audit-copy text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">A practical audit for making your company readable, comparable, callable, and recommendable by AI agents.</p>
+ <div class="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised">Book Strategy Call</a>
+ <a href="mailto:gustav@nordsym.com" class="btn-base btn-secondary-on-dark">Contact</a>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+ <div class="audit-card lg:col-span-1 border border-white/15 bg-slate-950/60 p-7 backdrop-blur-md">
+ <p class="text-xs uppercase tracking-widest text-nord-sym-cyan mb-4 light-theme:text-nord-sym-blueprint-cyan">What we check</p>
+ <h3 class="audit-title text-3xl font-bold mb-4">Machine-facing clarity.</h3>
+ <p class="audit-copy leading-relaxed">Can an AI assistant understand your offer, compare you fairly, find safe action paths, and recommend you for the right use case?</p>
+ </div>
+
+ <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+ <div class="audit-card border border-white/15 bg-slate-950/60 p-6 backdrop-blur-md">
+ <h4 class="audit-title text-xl font-bold mb-2">Agent-readiness scorecard</h4>
+ <p class="audit-copy leading-relaxed">Readable, comparable, callable, observable, and governable surfaces.</p>
+ </div>
+ <div class="audit-card border border-white/15 bg-slate-950/60 p-6 backdrop-blur-md">
+ <h4 class="audit-title text-xl font-bold mb-2">Canon drift report</h4>
+ <p class="audit-copy leading-relaxed">Stale pages, mismatched claims, unclear docs, and broken machine-readable paths.</p>
+ </div>
+ <div class="audit-card border border-white/15 bg-slate-950/60 p-6 backdrop-blur-md">
+ <h4 class="audit-title text-xl font-bold mb-2">Agent files</h4>
+ <p class="audit-copy leading-relaxed">Drafts for /llms.txt and /agents.md, written for real evaluation flows.</p>
+ </div>
+ <div class="audit-card border border-white/15 bg-slate-950/60 p-6 backdrop-blur-md">
+ <h4 class="audit-title text-xl font-bold mb-2">Implementation backlog</h4>
+ <p class="audit-copy leading-relaxed">Suggested .well-known, MCP posture, API, schema, pricing, security, and docs fixes.</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="audit-final-card border border-nord-sym-cyan/35 bg-slate-950/70 p-7 md:p-10 text-center backdrop-blur-md">
+ <p class="audit-copy text-sm mb-5">Public guidance and fit rules stay available in /llms.txt. The audit turns that posture into a concrete implementation pass.</p>
+ <a href="#" onclick="window.nord.showPage('book'); return false;" class="btn-base btn-cta-revised">Book Strategy Call</a>
  </div>
  </div>
  </div>
@@ -6987,9 +7075,9 @@ margin-right: 0.4rem;
  <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Quick Links</p>
  <div class="footer-quicklinks">
  <a href="#" onclick="window.nord.showPage('products'); return false;" class="footer-link">Products</a>
+ <a href="#" onclick="window.nord.showPage('audit'); return false;" class="footer-link">Audit</a>
  <a href="#" onclick="window.nord.showPage('ai-os'); return false;" class="footer-link">AI OS</a>
  <a href="#" onclick="window.nord.showPage('rnd'); return false;" class="footer-link">R&D</a>
- <a href="/audit" class="footer-link">Audit</a>
  <a href="#" onclick="window.nord.showPage('ai-os'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Frequently Asked Questions</a>
  </div>
  </div>
@@ -7326,6 +7414,7 @@ margin-right: 0.4rem;
  const pageConfig = {
  'hero': { isMultiPart: true, parts: ['hero', 'home-diagram-section', 'testimonials-section', 'atom-gallery-section', 'home-contact-section'], display: 'flex', hasFooter: true, navAlias: 'hero' },
  'products': { display: 'flex', hasFooter: true, navAlias: 'products' },
+ 'audit': { display: 'flex', hasFooter: true, navAlias: 'audit' },
  'ai-os': { display: 'flex', hasFooter: true, navAlias: 'ai-os' },
  'rnd': { display: 'flex', hasFooter: true, navAlias: 'rnd' },
  'book': { display: 'flex', hasFooter: true, navAlias: 'ai-os' },
@@ -9213,11 +9302,12 @@ Email Gustav@nordsym.com for a scope conversation.`;
  // Kör direkt
  forceTop();
 
+ const pathPage = window.location.pathname === '/audit' ? 'audit' : null;
  const hash = window.location.hash.substring(1); 
- const initialPage = pageConfig[hash] ? hash : 'hero';
+ const initialPage = pathPage || (pageConfig[hash] ? hash : 'hero');
 
  // Sätt initial historik-status korrekt
- history.replaceState({ page: initialPage }, '', '#' + initialPage);
+ history.replaceState({ page: initialPage }, '', pathPage ? '/audit' : '#' + initialPage);
 
  // Visa sidan utan att skapa en ny historik-post
  window.nord.showPage(initialPage, true);

@@ -28,6 +28,6 @@
     { "source": "/demo-sow/fadi", "destination": "/demo-sow/fadi.html" },
     { "source": "/agent-info", "destination": "/agent-info.json" },
     { "source": "/contact", "destination": "/api/contact" },
-    { "source": "/audit", "destination": "/audit/index.html" }
+    { "source": "/audit", "destination": "/index.html" }
   ]
 }
