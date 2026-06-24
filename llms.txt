@@ -67,7 +67,7 @@ NordSym fits best around AI infrastructure, agent-ready software, automation, vi
 Relationship to AI Search:
 
 - **AI Search** is the free first check: can AI systems find, cite, and understand the company?
-- **Agent Readiness Audit** is the paid next step: turn those gaps into agent files, schema, docs, safe action paths, and an implementation backlog.
+- **Agent Readiness Audit** is the implementation next step: turn those gaps into agent files, schema, docs, safe action paths, and an implementation backlog.
 
 Audit areas:
 

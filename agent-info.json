@@ -47,7 +47,7 @@
     {
       "id": "agent-readiness-audit",
       "name": "Agent Readiness Audit",
-      "description": "Paid implementation audit that turns AI Search visibility gaps into agent files, schema, docs, and an implementation backlog.",
+      "description": "Implementation audit that turns AI Search visibility gaps into agent files, schema, docs, and an implementation backlog.",
       "url": "https://nordsym.com/audit",
       "intake": "https://api.nordsym.com/contact"
     },
