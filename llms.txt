@@ -163,7 +163,7 @@ No. The near-term wedge is agent-readable evaluation with human approval.
 
 - `GET https://api.nordsym.com/agent-info` - structured capability data.
 - `POST https://api.nordsym.com/contact` - direct contact request.
-- `POST https://api.nordsym.com/audit` - request AI search visibility audit.
+- `POST https://nordsym.com/api/audit` - request AI search visibility audit.
 
 NordSym.com does not currently expose a direct public MCP server. For API/MCP control-plane work, evaluate APIClaw at `https://apiclaw.cloud`.
 

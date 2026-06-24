@@ -26,13 +26,6 @@ export default async function handler(req, res) {
     });
   }
 
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  
-  if (!botToken) {
-    console.error('TELEGRAM_BOT_TOKEN not configured');
-    return res.status(500).json({ error: 'Server configuration error' });
-  }
-
   try {
     const { url, email, company, notes, callback_url, requested_by } = req.body;
 
@@ -91,24 +84,48 @@ export default async function handler(req, res) {
       telegramMessage += `\n\n🤖 Agent request - prioritize callback if available`;
     }
 
-    // Send to Telegram
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
-    const telegramResponse = await fetch(telegramUrl, {
+    const n8nForm = new FormData();
+    n8nForm.append('url', validatedUrl.hostname + validatedUrl.pathname);
+    n8nForm.append('email', email);
+    if (company) n8nForm.append('company', company);
+    if (notes) n8nForm.append('notes', notes);
+    if (requested_by) n8nForm.append('requested_by', requested_by);
+
+    const n8nResponse = await fetch('https://nordsym.app.n8n.cloud/webhook/v1/aeo-geo-audit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: telegramMessage,
-        parse_mode: 'HTML'
-      })
+      headers: { 'Accept': 'application/json' },
+      body: n8nForm
     });
 
-    const telegramResult = await telegramResponse.json();
+    if (!n8nResponse.ok) {
+      const n8nError = await n8nResponse.text().catch(() => '');
+      console.error('n8n audit workflow error:', n8nResponse.status, n8nError);
+      return res.status(502).json({ error: 'Failed to start audit workflow' });
+    }
 
-    if (!telegramResult.ok) {
-      console.error('Telegram API error:', telegramResult);
-      return res.status(500).json({ error: 'Failed to submit audit request' });
+    let telegramDelivered = false;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+
+    if (botToken) {
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      const telegramResponse = await fetch(telegramUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: telegramMessage,
+          parse_mode: 'HTML'
+        })
+      });
+
+      const telegramResult = await telegramResponse.json().catch(() => ({ ok: false }));
+      telegramDelivered = Boolean(telegramResult.ok);
+
+      if (!telegramDelivered) {
+        console.error('Telegram API error:', telegramResult);
+      }
+    } else {
+      console.warn('TELEGRAM_BOT_TOKEN not configured; audit workflow still started');
     }
 
     // Generate audit ID
@@ -119,6 +136,13 @@ export default async function handler(req, res) {
       message: 'AI search visibility audit request received',
       audit_id: auditId,
       url_analyzed: validatedUrl.href,
+      workflow: {
+        provider: 'n8n',
+        status: 'started'
+      },
+      operator_notification: {
+        telegram: telegramDelivered ? 'sent' : 'not_configured_or_failed'
+      },
       results_delivery: {
         method: 'email',
         address: email,

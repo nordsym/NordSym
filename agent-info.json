@@ -40,7 +40,9 @@
       "id": "ai-search",
       "name": "AI Search",
       "description": "Free visibility check for how AI systems find and cite a company.",
-      "url": "https://aisearch.nordsym.com"
+      "url": "https://aisearch.nordsym.com",
+      "endpoint": "https://nordsym.com/api/audit",
+      "method": "POST"
     },
     {
       "id": "agent-readiness-audit",

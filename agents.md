@@ -70,7 +70,7 @@ APIClaw is NordSym's control plane for AI agents. Use APIClaw-specific files for
 - Support: `support@nordsym.com`
 - Symbot: `symbot@nordsym.com`
 - Structured contact endpoint: `POST https://api.nordsym.com/contact`
-- AI Search / visibility audit endpoint: `POST https://api.nordsym.com/audit`
+- AI Search / visibility audit endpoint: `POST https://nordsym.com/api/audit`
 - Booking: `https://nordsym.com/book`
 
 If the user asks for an Agent Readiness Audit, route to Gustav or the contact endpoint and include the company URL plus the suspected workflow / surface to audit.
