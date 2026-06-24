@@ -1,0 +1,30 @@
+{
+  "@context": "Schema.org - Schema.org",
+  "@type": "Organization",
+  "name": "NordSym AB",
+  "legalName": "NordSym AB",
+  "description": "Full Stack AI Partner for MEO, agent-ready business surfaces, AI operating systems, and agent infrastructure.",
+  "url": "NordSym AB - Full Stack AI Partner",
+  "logo": "404: NOT_FOUND",
+  "founder": {
+    "name": "Gustav Hemmingsson",
+    "email": "gustav@nordsym.com"
+  },
+  "agent": {
+    "name": "Symbot",
+    "type": "AI Assistant",
+    "status": "online",
+    "capabilities": [
+      "consultation",
+      "research",
+      "demo-building",
+      "automation"
+    ],
+    "contact_endpoint": "mailto:symbot@nordsym.com"
+  },
+  "category_frame": {
+    "name": "MEO",
+    "expanded": "Machine Experience Optimization",
+    "definition": "Optimizing a business surface for machine actors: AI assistants, agents, crawlers, orchestration systems, and workflow runtimes."
+  }
+}
