@@ -1,5 +1,8 @@
-.vercel
-node_modules/
-.env*.local
-deal/DEAL_DATA_TEMPLATE.json
 .claude/
+.env
+.env*.local
+.env.development
+.env.production
+.vercel
+deal/DEAL_DATA_TEMPLATE.json
+node_modules/
