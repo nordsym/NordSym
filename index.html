@@ -271,33 +271,99 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
   pointer-events: none;
 }
 #ns05 [style*="grid-template-columns"] > div:hover::after { opacity: .45; }
+.ns-operator-shell {
+  display: grid;
+  grid-template-columns: minmax(260px, .82fr) 1fr;
+  border: 1px solid var(--ns-ink);
+  background: rgba(246,242,234,.46);
+}
+.ns-operator-id {
+  border-right: 1px solid var(--ns-ink);
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+.ns-operator-head {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 14px;
+  align-items: center;
+}
 .ns-founder-frame {
   position: relative;
-  aspect-ratio: 4 / 5;
-  border-bottom: 1px solid var(--ns-ink);
-  background-image: repeating-linear-gradient(45deg, rgba(33,30,24,.09) 0 6px, transparent 6px 12px);
+  width: 86px;
+  aspect-ratio: 1;
+  border: 1px solid var(--ns-ink);
+  background-image: repeating-linear-gradient(45deg, rgba(33,30,24,.08) 0 5px, transparent 5px 10px);
   overflow: hidden;
 }
-.ns-founder-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9) contrast(.97); }
+.ns-founder-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.55) contrast(.95); opacity: .86; }
 .ns-founder-frame::before,
 .ns-founder-frame::after {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 7px;
   pointer-events: none;
-  opacity: 0;
+  opacity: .7;
   transition: opacity .2s var(--ns-ease);
   background:
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/34px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/1px 34px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right top/34px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right top/1px 34px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left bottom/34px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left bottom/1px 34px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/34px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/1px 34px no-repeat;
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/20px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/1px 20px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/20px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/1px 20px no-repeat;
 }
-.ns-founder-frame:hover::before { opacity: 1; }
+.ns-founder-frame:hover img { filter: saturate(.8) contrast(.98); opacity: 1; }
+.ns-operator-meta {
+  font: 600 10px/1.5 "IBM Plex Mono", monospace;
+  letter-spacing: .08em;
+  color: rgba(33,30,24,.58);
+  text-transform: uppercase;
+}
+.ns-operator-meta strong {
+  display: block;
+  color: var(--ns-ink);
+  font: 800 18px/1.05 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;
+  letter-spacing: -.015em;
+  text-transform: none;
+  margin-bottom: 5px;
+}
+.ns-operator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(33,30,24,.22);
+  border-right: 0;
+  border-bottom: 0;
+}
+.ns-operator-field {
+  padding: 12px;
+  border-right: 1px solid rgba(33,30,24,.22);
+  border-bottom: 1px solid rgba(33,30,24,.22);
+}
+.ns-operator-field span {
+  display: block;
+  font: 600 9.5px/1 "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(33,30,24,.48);
+  margin-bottom: 8px;
+}
+.ns-operator-field b {
+  font: 700 13px/1.18 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;
+}
+.ns-operator-content {
+  padding: 30px;
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+.ns-operator-schematic {
+  border: 1px solid rgba(33,30,24,.22);
+  background-image: linear-gradient(rgba(33,30,24,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(33,30,24,.035) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 16px;
+}
+.ns-operator-schematic svg { width: 100%; height: auto; display: block; }
 #ns08 .ns-faq-item button { transition: background .18s var(--ns-ease); }
 #ns08 .ns-faq-item button:hover { background: rgba(33,30,24,.035) !important; }
 #ns08 .ns-faq-item button span:nth-child(2) { transition: transform .2s var(--ns-ease), color .2s var(--ns-ease); }
@@ -411,17 +477,9 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
     line-height: 1.6;
   }
   .ns-mini-schematic { min-height: 108px; }
-  #ns06 > div:nth-child(2) > div:first-child {
-    width: min(100%, 280px);
-    justify-self: center;
-    border-right: 0 !important;
-    border-bottom: 1px solid rgb(33, 30, 24);
-  }
-  #ns06 > div:nth-child(2) > div:nth-child(2) { padding: 22px !important; }
-  .ns-founder-frame {
-    aspect-ratio: 5 / 4;
-    max-height: 220px;
-  }
+  .ns-operator-shell { grid-template-columns: 1fr; }
+  .ns-operator-id { border-right: 0; border-bottom: 1px solid var(--ns-ink); }
+  .ns-operator-content { padding: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
@@ -437,6 +495,10 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
   .ns-hero-actions { flex-direction: column; align-items: stretch; }
   .ns-hero-cta { width: 100%; text-align: center; }
   .ns-schematic-sheet { max-width: 100%; overflow: hidden; }
+  .ns-operator-head { grid-template-columns: 1fr; }
+  .ns-founder-frame { display: none; }
+  .ns-operator-grid { grid-template-columns: 1fr; }
+  .ns-operator-schematic { padding: 12px; }
   .ns-desktop-hero-schematic { display: none !important; }
   .ns-mobile-hero-schematic { display: block; }
   .ns-schematic-sheet figcaption { flex-direction: column; gap: 7px; }
@@ -1019,14 +1081,42 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
 <div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Operator</div>
 <div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-06</div>
 </div>
-<div style="display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; border: 1px solid rgb(33, 30, 24);">
-<div style="border-right: 1px solid rgb(33, 30, 24); padding: 0px;">
+<div class="ns-operator-shell">
+<div class="ns-operator-id">
+<div class="ns-operator-head">
 <div class="ns-founder-frame"><img alt="Gustav Hemmingsson, founder of NordSym" src="./assets/gustav-founder.jpg"/></div>
-<div style='padding: 14px 16px; font: 500 10px / 1.5 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.55); text-transform: uppercase;'>Founder-led<br/>Openly agent-operated<a class="ns-founder-contact" href="mailto:gustav@nordsym.com">gustav@nordsym.com</a></div>
+<div class="ns-operator-meta"><strong>Gustav Hemmingsson</strong>Founder<br/>NordSym AB<a class="ns-founder-contact" href="mailto:gustav@nordsym.com">gustav@nordsym.com</a></div>
 </div>
-<div style="padding: 26px 28px 26px 4px;">
-<h3 style="font: 700 26px / 1.12 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -0.015em; margin: 0px 0px 16px; max-width: 24ch;">A small, founder-led firm that runs its own agent layer before it runs yours.</h3>
-<p style="font: 400 15px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.72); margin: 0px 0px 14px; max-width: 58ch;">NordSym is deliberately hands-on. The people who design your operating layer are the people who operate it. We are openly agent-operated ourselves, which means our own operations run on the architecture we sell.</p>
+<div class="ns-operator-grid" aria-label="NordSym operator facts">
+<div class="ns-operator-field"><span>Mode</span><b>Founder-led</b></div>
+<div class="ns-operator-field"><span>Posture</span><b>Agent-operated</b></div>
+<div class="ns-operator-field"><span>Layer</span><b>Stack-native</b></div>
+<div class="ns-operator-field"><span>Record</span><b>Canon-first</b></div>
+</div>
+<div class="ns-operator-schematic" aria-hidden="true">
+<svg viewBox="0 0 330 118" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#211e18" stroke-width="1.2">
+<rect x="10" y="20" width="92" height="42"/>
+<rect x="128" y="10" width="74" height="98"/>
+<rect x="228" y="20" width="92" height="42"/>
+<path d="M102 41 H128"/>
+<path d="M202 41 H228"/>
+<path d="M165 108 V96"/>
+</g>
+<g fill="#211e18" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">
+<text x="27" y="45">CANON</text>
+<text x="148" y="39">AGENT</text>
+<text x="141" y="73">LAYER</text>
+<text x="246" y="45">CLIENT</text>
+</g>
+<rect x="158" y="72" width="14" height="22" fill="none" stroke="#b0492c" stroke-width="1.5"/>
+<circle cx="128" cy="41" r="3.5" fill="#b0492c"/>
+</svg>
+</div>
+</div>
+<div class="ns-operator-content">
+<h3 style="font: 700 26px / 1.12 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -0.015em; margin: 0px; max-width: 24ch;">A small, founder-led firm that runs its own agent layer before it runs yours.</h3>
+<p style="font: 400 15px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.72); margin: 0px; max-width: 58ch;">NordSym is deliberately hands-on. The people who design your operating layer are the people who operate it. We are openly agent-operated ourselves, which means our own operations run on the architecture we sell.</p>
 <p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px; max-width: 58ch;">Every engagement adds to a compounding body of operational memory: what your stack does, where the boundaries are, and how each operation should behave. As of 2026-07-07, CRON-MAP lists 41 active NordSym-owned scheduled jobs across local and cloud runtimes. That memory is the asset.</p>
 </div>
 </div>
