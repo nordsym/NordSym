@@ -1,316 +1,673 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Strategy Call – NordSym</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: ['class', '[data-theme="dark"]'],
-  theme: {
-    extend: {
-      colors: {
-        bg: '#050608',
-        surface: '#0d0f12',
-        surface2: '#161a1f',
-        border: '#1e2329',
-        cyan: '#00D4FF',
-        purple: '#9370DB',
-        muted: '#6b7280',
-        text: '#e5e7eb'
-      },
-      fontFamily: {
-        display: ['Comfortaa', 'cursive'],
-        body: ['Inter', 'sans-serif']
-      }
-    }
+
+<html lang="en"><head><title>Book a NordSym operating review</title><link rel="icon" href="../assets/brand/nordsym-favicon.svg" /><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.gstatic.com" rel="preconnect"/><style>/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* cyrillic-ext */
+
+/* cyrillic */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* cyrillic-ext */
+
+/* cyrillic */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* cyrillic-ext */
+
+/* cyrillic */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+</style><style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background-color:#efe9dd;
+    background-image:
+      linear-gradient(rgba(33,30,24,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(33,30,24,.035) 1px,transparent 1px);
+    background-size:28px 28px;
+    color:#211e18;
+    font-family:'Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
   }
+  a{color:#b0492c;text-decoration:none}
+  a:hover{color:#8f3a20}
+  ::selection{background:#b0492c;color:#f4efe4}
+  @keyframes nsdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  @keyframes nsfade{from{opacity:0}to{opacity:1}}
+  @keyframes nsblink{0%,100%{opacity:.35}50%{opacity:1}}
+</style><meta content="Book a working review of one business operation with NordSym." name="description"/><link href="https://nordsym.com/book/" rel="canonical"/><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style id="nordsym-polish-css">
+:root {
+  --ns-paper: #efe9dd;
+  --ns-paper-soft: #f6f2ea;
+  --ns-ink: #211e18;
+  --ns-ink-muted: rgba(33, 30, 24, .62);
+  --ns-line: rgba(33, 30, 24, .18);
+  --ns-oxide: #b0492c;
+  --ns-oxide-soft: rgba(176, 73, 44, .12);
+  --ns-ease: cubic-bezier(.4,0,.2,1);
 }
-</script>
-<style>
-  :root { --bg:#050608;--surface:#0d0f12;--surface2:#161a1f;--border:#1e2329;--text:#e5e7eb;--muted:#6b7280; }
-  [data-theme="light"] { --bg:#f9fafb;--surface:#ffffff;--surface2:#f3f4f6;--border:#e5e7eb;--text:#111827;--muted:#6b7280; }
-  * { box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; margin: 0; }
-  .card { background: var(--surface); border: 1px solid var(--border); }
-  .day-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); transition: all .15s; cursor: pointer; border-radius: 8px; padding: 10px 6px; text-align: center; font-family: 'Inter', sans-serif; }
-  .day-btn:hover:not(:disabled) { border-color: #00D4FF; color: #00D4FF; }
-  .day-btn.selected { background: rgba(0,212,255,.12); border-color: #00D4FF; color: #00D4FF; }
-  .day-btn:disabled { opacity: .35; cursor: not-allowed; }
-  .time-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); transition: all .15s; cursor: pointer; border-radius: 8px; padding: 10px 18px; font-family: 'Inter', sans-serif; font-size: 14px; }
-  .time-btn:hover { border-color: #00D4FF; color: #00D4FF; }
-  .time-btn.selected { background: rgba(0,212,255,.12); border-color: #00D4FF; color: #00D4FF; }
-  .input-field { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 14px; width: 100%; outline: none; transition: border-color .15s; }
-  .input-field:focus { border-color: #00D4FF; }
-  .input-field::placeholder { color: var(--muted); }
-  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: all .2s; }
-  .step-dot.active { background: #00D4FF; box-shadow: 0 0 8px rgba(0,212,255,.5); }
-  .step-dot.done { background: #00D4FF; opacity: .5; }
-  .section-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
-  textarea { resize: vertical; min-height: 80px; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif !important; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--ns-oxide);
+  outline-offset: 3px;
+}
+.ns-brand-lockup {
+  display: block;
+  width: 126px;
+  height: auto;
+}
+.ns-linkish,
+nav a,
+footer a,
+#ns09 a {
+  background-image: linear-gradient(var(--ns-oxide), var(--ns-oxide));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .2s var(--ns-ease), color .2s var(--ns-ease), transform .2s var(--ns-ease);
+}
+.ns-linkish:hover,
+nav a:hover,
+footer a:hover,
+#ns09 a:hover { background-size: 100% 1px; color: var(--ns-oxide) !important; }
+nav a { position: relative; }
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  bottom: -10px;
+  height: 2px;
+  background: var(--ns-oxide);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .16s var(--ns-ease);
+}
+nav a:hover::after { transform: scaleX(1); }
+header { transition: box-shadow .25s var(--ns-ease), border-color .25s var(--ns-ease); }
+html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
+.scp0, .ns-cta, #ns09 button, #ns07 a, .ns-book-button {
+  transition: transform .18s var(--ns-ease), background .18s var(--ns-ease), color .18s var(--ns-ease), border-color .18s var(--ns-ease) !important;
+}
+.scp0:hover, .ns-cta:hover, .ns-book-button:hover { transform: translateY(-1px); }
+.scp0:active, .ns-cta:active, .ns-book-button:active, #ns09 button:active { transform: translateY(1px) scale(.99); }
+.scp0:hover span:last-child, .ns-book-button:hover span:last-child { transform: translateX(3px); }
+.scp0 span:last-child, .ns-book-button span:last-child { display: inline-block; transition: transform .18s var(--ns-ease); }
+@keyframes nscorner { 0%, 100% { opacity: .5; } 50% { opacity: .34; } }
+.ns-reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ns-ease), transform .5s var(--ns-ease); }
+.ns-reveal.ns-in { opacity: 1; transform: none; }
+#ns02 .ns-detail-card svg * { transition: stroke-dashoffset .6s var(--ns-ease), opacity .25s var(--ns-ease); }
+#ns02 .ns-detail-card { position: relative; overflow: hidden; transition: background .22s var(--ns-ease); }
+#ns02 .ns-detail-card:hover { background: rgba(246,242,234,.82) !important; }
+#ns02 .ns-detail-card:hover::after {
+  content: "";
+  position: absolute;
+  top: 48px;
+  right: 42px;
+  width: 8px;
+  height: 8px;
+  background: var(--ns-oxide);
+}
+.ns-row {
+  position: relative;
+  cursor: pointer;
+  transition: background .18s var(--ns-ease), color .18s var(--ns-ease);
+}
+.ns-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ns-oxide);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .18s var(--ns-ease);
+}
+.ns-row:hover, .ns-row.ns-open { background: rgba(33,30,24,.045) !important; }
+.ns-row:hover::before, .ns-row.ns-open::before { transform: scaleY(1); }
+.ns-row:hover > div:first-child, .ns-row.ns-open > div:first-child { color: var(--ns-oxide) !important; }
+.ns-row .ns-plus {
+  margin-left: 8px;
+  color: var(--ns-oxide);
+  display: inline-block;
+  transition: transform .22s var(--ns-ease);
+}
+.ns-row.ns-open .ns-plus { transform: rotate(45deg); }
+.ns-cadence {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ns-cadence-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--ns-oxide);
+  display: inline-block;
+  animation: nsblink 3s ease-in-out infinite;
+}
+.ns-drawer {
+  display: grid;
+  grid-template-columns: minmax(220px, .85fr) 1fr;
+  gap: 20px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  border-top: 0 solid rgba(33,30,24,.18);
+  background: rgba(246,242,234,.72);
+  transition: max-height .34s var(--ns-ease), opacity .24s var(--ns-ease), padding .24s var(--ns-ease), border-width .24s var(--ns-ease);
+  padding: 0 18px;
+}
+.ns-drawer.ns-open {
+  max-height: 260px;
+  opacity: 1;
+  padding: 18px;
+  border-top-width: 1px;
+}
+.ns-mini-schematic {
+  border: 1px solid rgba(33,30,24,.22);
+  background-image: linear-gradient(rgba(33,30,24,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(33,30,24,.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  min-height: 128px;
+  display: grid;
+  place-items: center;
+}
+.ns-mini-schematic svg { width: min(100%, 360px); height: auto; }
+.ns-drawer-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  font: 500 11px/1.55 "IBM Plex Mono", monospace;
+  letter-spacing: .04em;
+  color: rgba(33,30,24,.62);
+  text-transform: uppercase;
+}
+.ns-drawer-copy b { color: var(--ns-ink); font-weight: 600; }
+#ns04 [style*="grid-template-columns"] > div,
+#ns05 [style*="grid-template-columns"] > div,
+#ns07 .ns-row { transition: opacity .22s var(--ns-ease), background .2s var(--ns-ease), transform .2s var(--ns-ease); }
+#ns04 [style*="grid-template-columns"]:hover > div { opacity: .58; }
+#ns04 [style*="grid-template-columns"] > div:hover { opacity: 1; transform: translateY(-2px); }
+#ns05 [style*="grid-template-columns"] > div { position: relative; overflow: hidden; }
+#ns05 [style*="grid-template-columns"] > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: repeating-linear-gradient(45deg, rgba(176,73,44,.12) 0 1px, transparent 1px 9px);
+  transition: opacity .2s var(--ns-ease);
+  pointer-events: none;
+}
+#ns05 [style*="grid-template-columns"] > div:hover::after { opacity: .45; }
+.ns-founder-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-bottom: 1px solid var(--ns-ink);
+  background-image: repeating-linear-gradient(45deg, rgba(33,30,24,.09) 0 6px, transparent 6px 12px);
+  overflow: hidden;
+}
+.ns-founder-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9) contrast(.97); }
+.ns-founder-frame::before,
+.ns-founder-frame::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s var(--ns-ease);
+  background:
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/34px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/1px 34px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right top/34px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right top/1px 34px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left bottom/34px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left bottom/1px 34px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/34px 1px no-repeat,
+    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/1px 34px no-repeat;
+}
+.ns-founder-frame:hover::before { opacity: 1; }
+#ns08 .ns-faq-item button { transition: background .18s var(--ns-ease); }
+#ns08 .ns-faq-item button:hover { background: rgba(33,30,24,.035) !important; }
+#ns08 .ns-faq-item button span:nth-child(2) { transition: transform .2s var(--ns-ease), color .2s var(--ns-ease); }
+#ns08 .ns-faq-item:not(.ns-open) button:hover span:nth-child(2) { transform: translateX(4px); }
+#ns08 .ns-faq-item button span:first-child { transition: color .2s var(--ns-ease); }
+#ns08 .ns-faq-item button:hover span:first-child { color: var(--ns-oxide) !important; }
+#ns08 .ns-faq-panel { transition: max-height .34s var(--ns-ease), opacity .22s var(--ns-ease); }
+#ns09 {
+  background: var(--ns-paper) !important;
+  color: var(--ns-ink) !important;
+  border-top: 1px solid var(--ns-ink) !important;
+  border-bottom: 1px solid var(--ns-ink) !important;
+}
+.ns-context-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.ns-context-rail {
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  font-family: "IBM Plex Mono", monospace;
+}
+.ns-context-kicker, .ns-context-handle, .ns-context-actions a, .ns-context-actions button {
+  font: 600 10px/1 "IBM Plex Mono", monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.ns-context-kicker { display: inline-flex; align-items: center; gap: 10px; color: rgba(33,30,24,.58); white-space: nowrap; }
+.ns-file-glyph { width: 18px; height: 22px; border: 1px solid var(--ns-ink); position: relative; display: inline-block; }
+.ns-file-glyph::after { content: ""; position: absolute; right: -1px; top: -1px; border-left: 7px solid transparent; border-bottom: 7px solid rgba(33,30,24,.22); }
+.ns-context-handle { border: 0; background: none; padding: 0; text-align: left; cursor: pointer; color: var(--ns-ink); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ns-context-handle span { color: rgba(33,30,24,.48); }
+.ns-context-actions { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.ns-context-actions button {
+  background: transparent;
+  border: 1px solid rgba(33,30,24,.34);
+  color: var(--ns-ink);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.ns-context-actions button.ns-copied { color: var(--ns-oxide); border-color: var(--ns-oxide); transform: scale(.96); }
+.ns-context-actions a { color: rgba(33,30,24,.68); text-decoration: none; }
+.ns-context-drawer {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height .34s var(--ns-ease), opacity .22s var(--ns-ease), padding .22s var(--ns-ease);
+}
+.ns-context-drawer.ns-open { max-height: 520px; opacity: 1; padding: 0 0 18px; }
+.ns-context-drawer pre {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(33,30,24,.22);
+  background: rgba(246,242,234,.72);
+  font: 400 11.5px/1.65 "IBM Plex Mono", monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  color: rgba(33,30,24,.72);
+}
+.ns-book-note { color: rgba(33,30,24,.5); }
+@media (max-width: 900px) {
+  header nav { display: none !important; }
+  #ns01 > div:nth-child(2), #ns06 > div:nth-child(2), #ns07 > div:nth-child(3), main > div { grid-template-columns: 1fr !important; }
+  #ns02 > div:nth-child(3), #ns04 [style*="grid-template-columns"], #ns05 [style*="grid-template-columns"], footer [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  #ns03 > div[style*="border: 1px"] > div:first-child,
+  #ns07 > div[style*="border: 1px"] > div:first-child { display: none !important; }
+  .ns-row { grid-template-columns: 62px 1fr !important; }
+  .ns-row > div:nth-child(3), .ns-row > div:nth-child(4) { grid-column: 2; border-right: 0 !important; padding-top: 0 !important; }
+  .ns-drawer { grid-template-columns: 1fr; }
+  .ns-context-rail { grid-template-columns: 1fr; gap: 10px; padding: 14px 0; }
+  .ns-context-actions { flex-wrap: wrap; }
+}
+@media (max-width: 560px) {
+  section, main, footer > div, header > div { padding-left: 18px !important; padding-right: 18px !important; }
+  .ns-context-wrap { padding: 0 18px; }
+  #ns08 button { gap: 10px !important; }
+  #ns08 p { padding-left: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+
+/* Local booking engine, drawn into the new NordSym sheet. */
+.ns-booking-shell { max-width: 1120px; margin: 0 auto 72px; padding: 0 32px; }
+.ns-booking-panel { border: 1px solid #211e18; background: rgba(246,242,234,.58); }
+.ns-booking-head { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(33,30,24,.35); padding: 11px 14px; font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgba(33,30,24,.62); }
+.ns-booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.ns-book-pane { padding: 26px; min-height: 330px; }
+.ns-book-pane + .ns-book-pane { border-left: 1px solid rgba(33,30,24,.28); }
+.ns-book-label { font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: rgba(33,30,24,.5); margin: 0 0 12px; }
+.ns-book-days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-bottom: 22px; }
+.ns-day-btn, .ns-time-btn { border: 1px solid rgba(33,30,24,.28); background: rgba(239,233,221,.58); color: #211e18; cursor: pointer; transition: transform .18s var(--ns-ease), background .18s var(--ns-ease), border-color .18s var(--ns-ease); font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; }
+.ns-day-btn { min-height: 72px; padding: 10px 6px; text-align: left; }
+.ns-day-btn strong { display:block; font-size: 22px; line-height: 1; margin: 4px 0; }
+.ns-day-btn span { display:block; font: 600 9px/1.2 'IBM Plex Mono', monospace; letter-spacing:.08em; text-transform:uppercase; opacity:.62; }
+.ns-day-btn:hover:not(:disabled), .ns-time-btn:hover { transform: translateY(-2px); border-color: #b0492c; background: rgba(176,73,44,.06); }
+.ns-day-btn.selected, .ns-time-btn.selected { border-color: #b0492c; background: rgba(176,73,44,.10); }
+.ns-day-btn:disabled { opacity:.28; cursor:not-allowed; }
+.ns-time-slots { display:flex; flex-wrap:wrap; gap:8px; }
+.ns-time-btn { min-width: 78px; padding: 11px 13px; font: 600 11px/1 'IBM Plex Mono', monospace; letter-spacing:.08em; }
+.ns-book-summary { margin: 16px 0; padding: 12px; border: 1px solid rgba(176,73,44,.35); color: #8e3d27; background: rgba(176,73,44,.07); font: 600 11px/1.35 'IBM Plex Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
+.ns-book-form { display:grid; gap: 12px; }
+.ns-book-form label { display:grid; gap: 7px; font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing:.1em; text-transform:uppercase; color: rgba(33,30,24,.55); }
+.ns-book-form input, .ns-book-form textarea { width:100%; border:1px solid rgba(33,30,24,.3); background:#f6f2ea; color:#211e18; padding:12px; font: 400 14px/1.3 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; border-radius:0; }
+.ns-book-form textarea { min-height: 94px; resize: vertical; }
+.ns-book-submit, .ns-book-scroll { border:1px solid #211e18; background:#211e18; color:#efe9dd; cursor:pointer; padding:15px 20px; font: 700 11px/1 'IBM Plex Mono', monospace; letter-spacing:.12em; text-transform:uppercase; transition: transform .18s var(--ns-ease), background .18s var(--ns-ease); }
+.ns-book-submit:hover, .ns-book-scroll:hover { transform: translateY(-2px); background:#b0492c; border-color:#b0492c; }
+.ns-book-error { display:none; color:#9c2d20; font: 600 12px/1.4 Archivo, sans-serif; }
+.ns-book-confirm { display:none; padding: 20px; border: 1px solid rgba(33,30,24,.26); background: rgba(176,73,44,.07); }
+.ns-book-confirm h2 { margin:0 0 8px; font: 700 24px/1.1 Archivo, sans-serif; }
+@media (max-width: 800px) { .ns-booking-grid { grid-template-columns: 1fr; } .ns-book-pane + .ns-book-pane { border-left:0; border-top:1px solid rgba(33,30,24,.28); } .ns-book-days { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
+
+<style id="nordsym-book-privacy-css">
+.ns-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.ns-book-privacy-note { margin-top:10px; color:rgba(33,30,24,.52); font:400 12px/1.45 Archivo,-apple-system,BlinkMacSystemFont,Inter,sans-serif; }
+.ns-book-tz { margin:8px 0 0; color:rgba(33,30,24,.52); font:500 10px/1.3 "IBM Plex Mono"; letter-spacing:.08em; text-transform:uppercase; }
+</style>
+<script id="nordsym-posthog">
+(function(){
+  if (window.__nordsymPosthogLoaded) return;
+  window.__nordsymPosthogLoaded = true;
+  window.posthog = window.posthog || [];
+  var ph = window.posthog;
+  ph._i = ph._i || [];
+  ph.init = ph.init || function(token, config, name){
+    var target = name ? ph[name] = [] : ph;
+    target.people = target.people || [];
+    target.toString = function(){ return 'posthog'; };
+    target.people.toString = function(){ return 'posthog.people'; };
+    var methods = 'capture register set_config'.split(' ');
+    methods.forEach(function(method){ target[method] = function(){ target.push([method].concat(Array.prototype.slice.call(arguments))); }; });
+    ph._i.push([token, config, name]);
+  };
+  ph.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+    api_host: 'https://eu.i.posthog.com',
+    ui_host: 'https://eu.posthog.com',
+    defaults: '2026-05-30',
+    cookieless_mode: 'always',
+    autocapture: false,
+    capture_pageview: false,
+    disable_session_recording: true,
+    loaded: function(posthog) {
+      posthog.register({ product: 'Nordsym-Com', surface: 'book' });
+      posthog.capture('$pageview', { path: location.pathname, cookieless: true });
+    }
+  });
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://eu-assets.i.posthog.com/static/array.js';
+  document.head.appendChild(script);
+})();
+</script>
 </head>
 <body>
-<div class="min-h-screen flex items-center justify-center p-4">
-  <!-- Theme toggle -->
-  <button onclick="toggleTheme()" class="fixed top-4 right-4 p-2 rounded-full" style="background:var(--surface2);border:1px solid var(--border);">
-    <i id="theme-icon" class="ph-sun" style="color:var(--muted);font-size:18px;"></i>
-  </button>
-
-  <div class="w-full max-w-4xl card rounded-2xl overflow-hidden flex flex-col md:flex-row" style="min-height:520px;">
-    <!-- LEFT PANEL -->
-    <div class="md:w-80 p-8 flex flex-col" style="background:var(--surface2);border-right:1px solid var(--border);">
-      <div class="mb-6">
-        <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym" class="h-10 w-10 mb-6">
-        <h1 class="text-2xl font-bold mb-1" style="font-family:'Comfortaa',cursive;color:#00D4FF;">Strategy Call</h1>
-        <p class="text-sm mb-4" style="color:var(--muted);">
-          <i class="ph-clock mr-1"></i>30 min &nbsp;•&nbsp; <i class="ph-video-camera mr-1"></i>Video call
-        </p>
-        <p class="text-sm leading-relaxed" style="color:var(--muted);">Book a free discovery call. We'll review your digital presence and find how NordSym can help you grow.</p>
-      </div>
-      <!-- Host card -->
-      <div class="mt-auto flex items-center gap-3 p-3 rounded-xl" style="background:var(--surface);border:1px solid var(--border);">
-        <div class="w-9 h-9 rounded-full flex items-center justify-center font-semibold text-sm flex-shrink-0" style="background:rgba(0,212,255,.15);color:#00D4FF;font-family:'Comfortaa',cursive;">M</div>
-        <div>
-          <div class="font-medium text-sm" style="color:var(--text);">Molle</div>
-          <div class="text-xs" style="color:var(--muted);">NordSym</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT PANEL -->
-    <div class="flex-1 p-8 flex flex-col">
-      <!-- Step dots -->
-      <div class="flex gap-2 items-center mb-8">
-        <div id="dot-1" class="step-dot active"></div>
-        <div id="dot-2" class="step-dot"></div>
-        <div id="dot-3" class="step-dot"></div>
-        <span id="step-label" class="ml-2 text-xs" style="color:var(--muted);">Select a date</span>
-      </div>
-
-      <!-- STEP 1: Calendar -->
-      <div id="step-1">
-        <div class="section-label">Current week</div>
-        <div id="week-1" class="grid grid-cols-5 gap-2 mb-6"></div>
-        <div class="section-label">Next week</div>
-        <div id="week-2" class="grid grid-cols-5 gap-2"></div>
-      </div>
-
-      <!-- STEP 2: Time slots -->
-      <div id="step-2" style="display:none;">
-        <button onclick="goStep(1)" class="flex items-center gap-1 text-sm mb-6" style="color:var(--muted);background:none;border:none;cursor:pointer;padding:0;">
-          <i class="ph-arrow-left"></i> Back
-        </button>
-        <div id="selected-date-label" class="font-medium mb-4" style="color:var(--text);font-family:'Comfortaa',cursive;"></div>
-        <div id="time-slots" class="flex flex-wrap gap-2"></div>
-      </div>
-
-      <!-- STEP 3: Form -->
-      <div id="step-3" style="display:none;">
-        <button onclick="goStep(2)" class="flex items-center gap-1 text-sm mb-6" style="color:var(--muted);background:none;border:none;cursor:pointer;padding:0;">
-          <i class="ph-arrow-left"></i> Back
-        </button>
-        <div id="booking-summary" class="text-sm mb-6 p-3 rounded-lg" style="background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);color:#00D4FF;"></div>
-        <div class="flex flex-col gap-4">
-          <div>
-            <label class="section-label">Name *</label>
-            <input id="f-name" type="text" class="input-field" placeholder="Your name">
-          </div>
-          <div>
-            <label class="section-label">Email *</label>
-            <input id="f-email" type="email" class="input-field" placeholder="you@example.com">
-          </div>
-          <div>
-            <label class="section-label">Notes / Message</label>
-            <textarea id="f-notes" class="input-field" placeholder="Anything you'd like us to know beforehand..."></textarea>
-          </div>
-          <div id="form-error" class="text-sm" style="color:#f87171;display:none;"></div>
-          <button id="submit-btn" onclick="submitForm()" class="mt-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all" style="background:#00D4FF;color:#050608;font-family:'Comfortaa',cursive;border:none;cursor:pointer;">
-            Book Strategy Call
-          </button>
-        </div>
-      </div>
-
-      <!-- CONFIRMATION -->
-      <div id="step-confirm" style="display:none;" class="flex flex-col items-center justify-center flex-1 text-center">
-        <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:rgba(0,212,255,.12);">
-          <i class="ph-check-circle" style="color:#00D4FF;font-size:32px;"></i>
-        </div>
-        <h2 class="text-xl font-bold mb-2" style="font-family:'Comfortaa',cursive;color:#00D4FF;">You're booked!</h2>
-        <div id="confirm-details" class="text-sm mb-3" style="color:var(--muted);"></div>
-        <p class="text-sm" style="color:var(--muted);">A calendar invitation has been sent to your email.</p>
-      </div>
-    </div>
-  </div>
+<div id="dc-root"><div class="sc-host"><div style="min-height: 100vh; position: relative; display: flex; flex-direction: column;">
+<header style="border-bottom: 1px solid rgb(33, 30, 24); background: rgba(239, 233, 221, 0.9);">
+<div style="max-width: 1120px; margin: 0px auto; padding: 0px 32px; display: flex; align-items: center; justify-content: space-between; height: 56px;">
+<a href="../" style="display: flex; align-items: center; gap: 12px; color: rgb(33, 30, 24);">
+<span style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.55);'>← BACK</span>
+<span style="border-left: 1px solid rgba(33, 30, 24, 0.2); padding-left: 12px; display: flex; align-items: center;"><img alt="NordSym" class="ns-brand-lockup" src="../assets/brand/nordsym-lockup.svg"/></span>
+</a>
+<span style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5);'>DWG. NS-BK · BOOKING SHEET</span>
 </div>
+</header>
+<main style="flex: 1 1 0%; max-width: 1120px; margin: 0px auto; padding: 52px 32px 64px; width: 100%;">
+<div style='display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 28px; font: 500 10.5px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5); text-transform: uppercase;'>
+<span>NS-BK-01  /  Book a Review</span>
 
-<script>
+</div>
+<div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 0px; border: 1px solid rgb(33, 30, 24);">
+<div style="padding: 44px 44px 40px; border-right: 1px solid rgb(33, 30, 24); display: flex; flex-direction: column;">
+<h1 style="font: 700 clamp(30px, 4.2vw, 46px) / 1.05 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -0.02em; margin: 0px 0px 20px; max-width: 16ch;">Book a working review of one operation.</h1>
+<p style="font: 400 16px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.72); margin: 0px 0px 14px; max-width: 50ch;">Thirty minutes. We take one real business operation in your stack and map what an agent would need to operate it: integrations, context, mandate, and where the boundary sits.</p>
+<p style='font: 500 11.5px / 1.6 "IBM Plex Mono"; letter-spacing: 0.03em; color: rgba(33, 30, 24, 0.55); margin: 0px 0px 32px; max-width: 50ch;'>No slides. No generic demo. You leave with a first-pass arrangement for that operation.</p>
+<button class="scp0 ns-book-scroll" id="open-booking-panel" style='align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; background: rgb(33, 30, 24); color: rgb(239, 233, 221); padding: 16px 26px; font: 600 12px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; text-transform: uppercase; transition: transform 0.15s;' type="button">Proceed to booking</button>
+<div style='margin-top: 16px; display: flex; align-items: center; gap: 9px; font: 500 10.5px / 1.5 "IBM Plex Mono"; letter-spacing: 0.04em; color: rgba(33, 30, 24, 0.5);'>
+<span style="width: 9px; height: 9px; background: rgb(176, 73, 44); border-radius: 50%; animation: 2.4s ease-in-out 0s infinite normal none running nsblink;"></span>
+          Scheduling runs through NordSym booking engine. Pick a slot below.
+        </div>
+<div style="margin-top: auto; padding-top: 34px;">
+<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.45); margin-bottom: 12px;'>Bring, if handy</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<span style='font: 500 11px / 1 "IBM Plex Mono"; border: 1px solid rgba(33, 30, 24, 0.25); padding: 7px 11px; color: rgba(33, 30, 24, 0.65);'>The operation that hurts most</span>
+<span style='font: 500 11px / 1 "IBM Plex Mono"; border: 1px solid rgba(33, 30, 24, 0.25); padding: 7px 11px; color: rgba(33, 30, 24, 0.65);'>The systems it touches</span>
+<span style='font: 500 11px / 1 "IBM Plex Mono"; border: 1px solid rgba(33, 30, 24, 0.25); padding: 7px 11px; color: rgba(33, 30, 24, 0.65);'>Where a human must decide</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column;">
+<div style="padding: 32px 34px 26px; border-bottom: 1px solid rgb(33, 30, 24);">
+<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.45); margin-bottom: 18px;'>What happens in the session</div>
+<div class="ns-reveal" style="display: flex; flex-direction: column; gap: 0px;">
+<div class="ns-reveal" style="display: flex; gap: 16px; padding: 14px 0px; border-top: 1px solid rgba(33, 30, 24, 0.15);">
+<span style='font: 600 11px / 1.3 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 26px;'><span class="sc-interp">01</span></span>
+<div>
+<div style="font: 600 14px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin-bottom: 3px;"><span class="sc-interp">Pick the operation</span></div>
+<div style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6);"><span class="sc-interp">One recurring operation that actually hurts today.</span></div>
+</div>
+</div>
+<div class="ns-reveal" style="display: flex; gap: 16px; padding: 14px 0px; border-top: 1px solid rgba(33, 30, 24, 0.15);">
+<span style='font: 600 11px / 1.3 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 26px;'><span class="sc-interp">02</span></span>
+<div>
+<div style="font: 600 14px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin-bottom: 3px;"><span class="sc-interp">Map the stack</span></div>
+<div style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6);"><span class="sc-interp">The systems it touches and how it moves through them.</span></div>
+</div>
+</div>
+<div class="ns-reveal" style="display: flex; gap: 16px; padding: 14px 0px; border-top: 1px solid rgba(33, 30, 24, 0.15);">
+<span style='font: 600 11px / 1.3 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 26px;'><span class="sc-interp">03</span></span>
+<div>
+<div style="font: 600 14px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin-bottom: 3px;"><span class="sc-interp">Draw the boundary</span></div>
+<div style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6);"><span class="sc-interp">What an agent may do, and where a human decides.</span></div>
+</div>
+</div>
+<div class="ns-reveal" style="display: flex; gap: 16px; padding: 14px 0px; border-top: 1px solid rgba(33, 30, 24, 0.15);">
+<span style='font: 600 11px / 1.3 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 26px;'><span class="sc-interp">04</span></span>
+<div>
+<div style="font: 600 14px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin-bottom: 3px;"><span class="sc-interp">First arrangement</span></div>
+<div style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6);"><span class="sc-interp">You leave with a first-pass operating layer for it.</span></div>
+</div>
+</div>
+</div>
+</div>
+<div style="padding: 26px 34px; flex: 1 1 0%; display: flex; align-items: center; justify-content: center; background: rgba(246, 242, 234, 0.5);">
+<svg fill="none" font-family="'IBM Plex Mono',monospace" stroke="#211e18" style="width: 100%; height: auto;" viewbox="0 0 300 150">
+<rect height="40" pathlength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="1.2" style="animation: 1.1s ease 0.2s 1 normal forwards running nsdraw;" width="60" x="8" y="55"></rect>
+<text fill="#211e18" font-size="9" stroke="none" style="opacity: 0; animation: 0.5s ease 0.8s 1 normal forwards running nsfade;" text-anchor="middle" x="38" y="79">STACK</text>
+<rect height="70" pathlength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="1.6" style="animation: 1.3s ease 0.4s 1 normal forwards running nsdraw;" width="64" x="118" y="40"></rect>
+<text fill="#211e18" font-size="8" stroke="none" style="opacity: 0; animation: 0.5s ease 0.9s 1 normal forwards running nsfade;" text-anchor="middle" x="150" y="70">LAYER</text>
+<rect height="58" stroke="#b0492c" stroke-width="1.2" style="opacity: 0; animation: 0.5s ease 1s 1 normal forwards running nsfade;" width="10" x="168" y="46"></rect>
+<rect height="40" pathlength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="1.2" style="animation: 1.1s ease 0.6s 1 normal forwards running nsdraw;" width="60" x="232" y="55"></rect>
+<text fill="#211e18" font-size="8" stroke="none" style="opacity: 0; animation: 0.5s ease 1s 1 normal forwards running nsfade;" text-anchor="middle" x="262" y="79">OPERATION</text>
+<path d="M68 75 H118" opacity=".55" pathlength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="1.1" style="animation: 1s ease 1.1s 1 normal forwards running nsdraw;"></path>
+<path d="M182 75 H232" opacity=".55" pathlength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="1.1" style="animation: 1s ease 1.2s 1 normal forwards running nsdraw;"></path>
+<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.6s" dur="2.6s" path="M68 75 H118" repeatcount="indefinite"></animatemotion></circle>
+<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.4s" dur="2.6s" path="M182 75 H232" repeatcount="indefinite"></animatemotion></circle>
+</svg>
+</div>
+</div>
+</div>
+</main>
+<section class="ns-booking-shell" id="booking-panel"><div class="ns-booking-panel"><div class="ns-booking-head"><span>NS-BK-02 / Select a slot</span><span>NordSym booking engine</span></div><div class="ns-booking-grid"><div class="ns-book-pane"><p class="ns-book-label">Current week</p><div class="ns-book-days" id="ns-week-1"></div><p class="ns-book-label">Next week</p><div class="ns-book-days" id="ns-week-2"></div><p class="ns-book-label">Available times</p><div class="ns-time-slots" id="ns-time-slots"></div><p class="ns-book-tz">Times in Central European Time</p></div><div class="ns-book-pane" id="ns-book-form-pane"><p class="ns-book-label">Booking details</p><h2 style="margin:0 0 8px;font:700 28px/1.1 Archivo,-apple-system,BlinkMacSystemFont,Inter,sans-serif;letter-spacing:-.015em;">Choose the operating review slot.</h2><p style="margin:0 0 14px;color:rgba(33,30,24,.65);font:400 14px/1.5 Archivo,-apple-system,BlinkMacSystemFont,Inter,sans-serif;">The call is for mapping one recurring business operation and deciding whether NordSym should operate it.</p><div class="ns-book-summary" id="ns-selected-date">Select a date and time.</div><form class="ns-book-form" id="ns-book-form"><label>Name<input autocomplete="name" id="ns-book-name" placeholder="Your name" required=""/></label><label>Email<input autocomplete="email" id="ns-book-email" placeholder="you@example.com" required="" type="email"/></label><label>Notes<textarea id="ns-book-notes" placeholder="What operation should we look at?"></textarea></label><label class="ns-hp" aria-hidden="true">Website<input autocomplete="off" id="ns-book-website" tabindex="-1" /></label><div class="ns-book-error" id="ns-book-error"></div><button class="ns-book-submit" id="ns-book-submit" type="submit">Book the review</button><p class="ns-book-privacy-note">Used only to book and hold the meeting. Details in the privacy notes.</p></form><div class="ns-book-confirm" id="ns-book-confirm"><h2>Booked.</h2><p data-confirm-details="" style="margin:0 0 8px;color:rgba(33,30,24,.72);"></p><p style="margin:0;color:rgba(33,30,24,.62);">A calendar invitation will arrive by email.</p></div></div></div></div></section><footer style="border-top: 1px solid rgba(33, 30, 24, 0.2); background: rgb(239, 233, 221);">
+<div style='max-width: 1120px; margin: 0px auto; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; font: 500 10px / 1.4 "IBM Plex Mono"; letter-spacing: 0.08em; color: rgba(33, 30, 24, 0.45); text-transform: uppercase;'>
+<span>© 2026 NordSym</span>
+<span>NordSym AB · 559535-5768</span>
+</div>
+</footer></div></div></div>
+<script id="nordsym-polish-js">
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const phCapture = (event, props = {}) => { if (window.posthog?.capture) window.posthog.capture(event, { surface: 'book', ...props }); };
+  const onScroll = () => document.documentElement.classList.toggle('ns-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ns-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .18 });
+    document.querySelectorAll('.ns-reveal, #ns02 .ns-detail-card, #ns04 [style*="grid-template-columns"] > div, #ns05 [style*="grid-template-columns"] > div, #ns07 .ns-row, #ns08 .ns-faq-item, #ns09').forEach((el) => {
+      el.classList.add('ns-reveal');
+      io.observe(el);
+    });
+  }
+
+  document.querySelectorAll('.ns-row').forEach((row) => {
+    row.addEventListener('click', () => {
+      const drawer = row.nextElementSibling?.classList?.contains('ns-drawer') ? row.nextElementSibling : null;
+      if (!drawer) return;
+      const container = row.parentElement;
+      container.querySelectorAll('.ns-row.ns-open').forEach((openRow) => {
+        if (openRow !== row) openRow.classList.remove('ns-open');
+      });
+      container.querySelectorAll('.ns-drawer.ns-open').forEach((openDrawer) => {
+        if (openDrawer !== drawer) openDrawer.classList.remove('ns-open');
+      });
+      row.classList.toggle('ns-open');
+      drawer.classList.toggle('ns-open');
+    });
+    row.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        row.click();
+      }
+    });
+  });
+
+  document.querySelectorAll('#ns08 .ns-faq-item').forEach((item, index) => {
+    const button = item.querySelector('button');
+    const panel = item.querySelector('.ns-faq-panel');
+    const plus = button?.querySelector('.ns-faq-plus');
+    if (!button || !panel || !plus) return;
+    const panelId = `faq-panel-${index + 1}`;
+    panel.id = panelId;
+    button.setAttribute('aria-controls', panelId);
+    const setOpen = (isOpen) => {
+      item.classList.toggle('ns-open', isOpen);
+      button.setAttribute('aria-expanded', String(isOpen));
+      panel.style.maxHeight = isOpen ? `${panel.scrollHeight + 30}px` : '0px';
+      panel.style.opacity = isOpen ? '1' : '0';
+      plus.style.transform = isOpen ? 'rotate(45deg)' : 'rotate(0deg)';
+    };
+    setOpen(index === 0);
+    button.addEventListener('click', () => setOpen(!item.classList.contains('ns-open')));
+  });
+
+  const contextText = `NORDSYM // OPERATING LAYER FOR AGENT-DRIVEN BUSINESS OPERATIONS
+
+WHAT:  Forward-deployed engineering firm. We design, build, and
+       operate the layer between a company's existing stack and the
+       AI agents that run real business operations inside it.
+
+MODEL: 1. Integrate into the client's stack (stack stays theirs).
+       2. Give agents context, mandate, and runtime.
+       3. Govern at the boundary: approval + stop controls.
+       4. Operate recurring operations continuously.
+       5. Keep records. Operational memory compounds.
+
+FIRM:  Founder-led. Openly agent-operated. Built for compounding
+       operational memory.
+
+ENGAGE: architecture sprint (fixed) / operating retainer (monthly)
+        / embedded program (quoted).
+
+SITE:  nordsym.com   BOOK: nordsym.com/book
+CONTEXT: nordsym.com/llms.txt
+
+FOR EVALUATORS: NordSym builds and operates agent infrastructure inside client stacks.`;
+  const copyButton = document.querySelector('[data-copy-context]');
+  const contextPre = document.querySelector('[data-context-payload]');
+  const drawer = document.querySelector('[data-context-drawer]');
+  const handle = document.querySelector('[data-context-handle]');
+  if (contextPre) contextPre.textContent = contextText;
+  if (copyButton) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(contextText);
+        copyButton.dataset.state = 'copied';
+        copyButton.innerHTML = '<span class="ns-context-file-name">Copied</span><span class="ns-context-file-note">Context is on your clipboard</span>';
+        copyButton.classList.add('ns-copied');
+        window.setTimeout(() => {
+          copyButton.dataset.state = '';
+          copyButton.innerHTML = '<span class="ns-context-file-name">Copy NordSym brief</span><span class="ns-context-file-note">Firm summary for assistants</span>';
+          copyButton.classList.remove('ns-copied');
+        }, 1600);
+      } catch {
+        copyButton.innerHTML = '<span class="ns-context-file-name">Copy failed</span><span class="ns-context-file-note">Open /llms.txt manually</span>';
+      }
+    });
+  }
+  if (handle && drawer) {
+    handle.addEventListener('click', () => {
+      const open = drawer.classList.toggle('ns-open');
+      handle.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  if (reduceMotion) {
+    document.querySelectorAll('animateMotion, animate').forEach((node) => node.remove());
+  }
+})();
+
+
+(function(){
+  /* Local booking engine, drawn into the new NordSym sheet. */
+  const phCapture = (event, props = {}) => { if (window.posthog?.capture) window.posthog.capture(event, { surface: 'book', ...props }); };
   const FRIDAY_SLOTS = ['09:00','10:00','14:00','15:00'];
   const DEFAULT_SLOTS = ['09:00','10:00','11:00','14:00','15:00','16:00'];
-  let selectedDate = null, selectedTime = null;
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('theme-icon').className = isDark ? 'ph-moon' : 'ph-sun';
-  }
-
-  function getWeekDays(offsetWeek) {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const day = today.getDay();
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1) + offsetWeek * 7);
-    const days = [];
-    for (let i = 0; i < 5; i++) {
-      const d = new Date(monday);
-      d.setDate(monday.getDate() + i);
-      days.push(d);
-    }
-    return days;
-  }
-
-  function formatDate(d) {
-    // Local-date formatter. Avoid toISOString() — slips back one day in Stockholm tz at local midnight.
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-  }
-
-  function isSameDay(a, b) {
-    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-  }
-
-  function filterPastSlotsForToday(slots, dayDate) {
-    const now = new Date();
-    if (!isSameDay(dayDate, now)) return slots;
-    // Keep slots that start at least 30 min from now (Stockholm local time on the page).
-    const cutoff = now.getHours() * 60 + now.getMinutes() + 30;
-    return slots.filter(t => {
-      const [h, m] = t.split(':').map(Number);
-      return (h * 60 + m) >= cutoff;
-    });
-  }
-
-  function renderCalendar() {
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    ['week-1','week-2'].forEach((id, wi) => {
-      const el = document.getElementById(id);
-      el.innerHTML = '';
-      getWeekDays(wi).forEach(d => {
-        const btn = document.createElement('button');
-        btn.className = 'day-btn';
-        const isPast = d < today;
-        btn.disabled = isPast;
-        const ds = formatDate(d);
-        if (selectedDate === ds) btn.classList.add('selected');
-        btn.innerHTML = `<div style="font-size:11px;opacity:.7;">${d.toLocaleDateString('en',{weekday:'short'})}</div><div style="font-size:15px;font-weight:600;">${d.getDate()}</div><div style="font-size:10px;opacity:.6;">${d.toLocaleDateString('en',{month:'short'})}</div>`;
-        btn.onclick = () => selectDate(ds, d);
-        el.appendChild(btn);
-      });
-    });
-  }
-
-  function selectDate(ds, d) {
-    selectedDate = ds;
-    selectedTime = null;
-    renderCalendar();
-    const dayName = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
-    document.getElementById('selected-date-label').textContent = dayName;
-    renderTimeSlots(d.getDay() === 5, d);
-    goStep(2);
-  }
-
-  function renderTimeSlots(isFriday, dayDate) {
-    const baseSlots = isFriday ? FRIDAY_SLOTS : DEFAULT_SLOTS;
-    const slots = filterPastSlotsForToday(baseSlots, dayDate);
-    const el = document.getElementById('time-slots');
-    el.innerHTML = '';
-    if (!slots.length) {
-      el.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">No more slots today. Pick another day.</div>';
-      return;
-    }
-    slots.forEach(t => {
-      const btn = document.createElement('button');
-      btn.className = 'time-btn' + (selectedTime === t ? ' selected' : '');
-      btn.textContent = t;
-      btn.onclick = () => selectTime(t);
-      el.appendChild(btn);
-    });
-  }
-
-  function selectTime(t) {
-    selectedTime = t;
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.toggle('selected', b.textContent === t));
-    const d = new Date(selectedDate + 'T12:00:00');
-    const label = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}) + ' at ' + t;
-    document.getElementById('booking-summary').innerHTML = `<i class="ph-calendar-check mr-2"></i>${label}`;
-    setTimeout(() => goStep(3), 200);
-  }
-
-  function goStep(n) {
-    [1,2,3,'confirm'].forEach(s => {
-      const el = document.getElementById('step-' + s);
-      if (el) el.style.display = 'none';
-    });
-    document.getElementById('step-' + n).style.display = '';
-    [1,2,3].forEach(i => {
-      const dot = document.getElementById('dot-' + i);
-      dot.className = 'step-dot' + (i === n ? ' active' : i < n ? ' done' : '');
-    });
-    const labels = {1:'Select a date', 2:'Pick a time', 3:'Your details'};
-    document.getElementById('step-label').textContent = labels[n] || '';
-  }
-
-  async function submitForm() {
-    const name = document.getElementById('f-name').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const notes = document.getElementById('f-notes').value.trim();
-    const errEl = document.getElementById('form-error');
-    errEl.style.display = 'none';
-    if (!name) { errEl.textContent = 'Name is required.'; errEl.style.display = ''; return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'A valid email is required.'; errEl.style.display = ''; return; }
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Booking...'; btn.disabled = true; btn.style.opacity = '.7';
-    try {
-      const res = await fetch('https://nordsym.app.n8n.cloud/webhook/aeo-booking', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-          name, email, notes,
-          date: selectedDate,
-          time: selectedTime,
-          source: 'nordsym.com/book',
-          meetingTitle: 'Strategy Call - NordSym',
-          hostName: 'Molle',
-          hostEmail: 'molle@nordsym.com',
-          timestamp: new Date().toISOString()
-        })
-      });
-      if (!res.ok) throw new Error('Server error: ' + res.status);
-      const d = new Date(selectedDate + 'T12:00:00');
-      const label = d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}) + ' at ' + selectedTime;
-      document.getElementById('confirm-details').textContent = label;
-      [1,2,3].forEach(i => document.getElementById('dot-' + i).className = 'step-dot done');
-      document.getElementById('step-label').textContent = 'Confirmed';
-      document.getElementById('step-3').style.display = 'none';
-      document.getElementById('step-confirm').style.display = '';
-    } catch(e) {
-      errEl.textContent = 'Something went wrong. Please try again or email molle@nordsym.com.';
-      errEl.style.display = '';
-      btn.textContent = 'Book Strategy Call'; btn.disabled = false; btn.style.opacity = '1';
-    }
-  }
-
-  renderCalendar();
+  let selectedDate = null, selectedTime = null, selectedDateObj = null;
+  const bookingLoadedAt = Date.now();
+  const $ = (sel) => document.querySelector(sel);
+  function formatDate(d){ const y=d.getFullYear(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; }
+  function sameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+  function weekDays(offset){ const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate()); const day=today.getDay(); const monday=new Date(today); monday.setDate(today.getDate()-(day===0?6:day-1)+offset*7); return Array.from({length:5},(_,i)=>{ const d=new Date(monday); d.setDate(monday.getDate()+i); return d; }); }
+  function slotsFor(dayDate){ const base=dayDate.getDay()===5?FRIDAY_SLOTS:DEFAULT_SLOTS; const now=new Date(); if(!sameDay(dayDate,now)) return base; const cutoff=now.getHours()*60+now.getMinutes()+30; return base.filter(t=>{ const [h,m]=t.split(':').map(Number); return h*60+m>=cutoff; }); }
+  function renderDays(){ const today=new Date(); today.setHours(0,0,0,0); [['#ns-week-1',0],['#ns-week-2',1]].forEach(([sel,offset])=>{ const el=$(sel); if(!el) return; el.innerHTML=''; weekDays(offset).forEach(d=>{ const ds=formatDate(d); const btn=document.createElement('button'); btn.type='button'; btn.className='ns-day-btn'+(selectedDate===ds?' selected':''); btn.disabled=d<today || slotsFor(d).length===0; btn.innerHTML=`<span>${d.toLocaleDateString('en',{weekday:'short'})}</span><strong>${d.getDate()}</strong><span>${d.toLocaleDateString('en',{month:'short'})}</span>`; btn.addEventListener('click',()=>selectDate(ds,d)); el.appendChild(btn); }); }); }
+  function selectDate(ds,d){ selectedDate=ds; selectedDateObj=d; selectedTime=null; renderDays(); const label=$('#ns-selected-date'); if(label) label.textContent=d.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}); renderTimes(); }
+  function renderTimes(){ const el=$('#ns-time-slots'); if(!el) return; el.innerHTML=''; if(!selectedDateObj){ el.innerHTML='<p style="margin:0;color:rgba(33,30,24,.55);font-size:13px;">Select a date first.</p>'; return; } const slots=slotsFor(selectedDateObj); if(!slots.length){ el.innerHTML='<p style="margin:0;color:rgba(33,30,24,.55);font-size:13px;">No more slots today. Pick another day.</p>'; return; } slots.forEach(t=>{ const btn=document.createElement('button'); btn.type='button'; btn.className='ns-time-btn'+(selectedTime===t?' selected':''); btn.textContent=t; btn.addEventListener('click',()=>selectTime(t)); el.appendChild(btn); }); }
+  function selectTime(t){ selectedTime=t; renderTimes(); const sum=$('#ns-book-summary'); if(sum) sum.textContent=`${selectedDateObj.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'})} at ${t}`; phCapture('nordsym_booking_slot_selected', { date: selectedDate, time: t }); }
+  function showError(text){ const err=$('#ns-book-error'); if(err){ err.textContent=text; err.style.display='block'; } }
+  function hideError(){ const err=$('#ns-book-error'); if(err) err.style.display='none'; }
+  async function submitBooking(e){ e.preventDefault(); hideError(); if(!selectedDate||!selectedTime) return showError('Select a date and time first.'); if ($('#ns-book-website')?.value || Date.now() - bookingLoadedAt < 2500) return; const name=$('#ns-book-name')?.value.trim(); const email=$('#ns-book-email')?.value.trim(); const notes=$('#ns-book-notes')?.value.trim()||''; if(!name) return showError('Name is required.'); if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('A valid email is required.'); const btn=$('#ns-book-submit'); const old=btn?btn.textContent:''; if(btn){ btn.disabled=true; btn.textContent='BOOKING...'; } phCapture('nordsym_booking_submit_attempted', { date: selectedDate, time: selectedTime }); try { const res=await fetch('https://nordsym.app.n8n.cloud/webhook/aeo-booking',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name, email, notes, date:selectedDate, time:selectedTime, source:'nordsym.com/book', meetingTitle:'Operating review · NordSym', hostName:'Gustav Hemmingsson', hostEmail:'gustav@nordsym.com', timestamp:new Date().toISOString() }) }); if(!res.ok) throw new Error('booking_failed'); phCapture('nordsym_booking_confirmed', { date: selectedDate, time: selectedTime }); const conf=$('#ns-book-confirm'); if(conf){ conf.style.display='block'; conf.querySelector('[data-confirm-details]').textContent=`${selectedDateObj.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'})} at ${selectedTime}.`; } const form=$('#ns-book-form'); if(form) form.style.display='none'; } catch(err){ phCapture('nordsym_booking_failed', { reason: 'webhook' }); showError('Booking failed. Email gustav@nordsym.com and we will book it manually.'); if(btn){ btn.disabled=false; btn.textContent=old; } } }
+  document.addEventListener('DOMContentLoaded',()=>{ renderDays(); renderTimes(); $('#open-booking-panel')?.addEventListener('click',()=>{ phCapture('nordsym_booking_panel_opened'); $('#booking-panel')?.scrollIntoView({behavior:'smooth',block:'start'}); }); $('#ns-book-form')?.addEventListener('submit', submitBooking); });
+})();
 </script>
-</body>
-</html>
+</body></html>

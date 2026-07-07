@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" height="60" viewBox="0 0 350 60" fill="none">
+  <title>NordSym — Horizontal lockup (Keystone + W-01)</title>
+  
+  <g transform="translate(4 8)">
+    <rect x="4" y="9" width="11" height="24" fill="#1C1A17"></rect>
+    <rect x="37" y="9" width="11" height="24" fill="#1C1A17"></rect>
+    <polygon points="18,7 34,7 29,35 23,35" fill="#B0442D"></polygon>
+  </g>
+  <text x="72" y="46" font-family="Archivo, &#39;Helvetica Neue&#39;, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.6" fill="#1C1A17">NORDSYM</text>
+  <rect x="325" y="41" width="8" height="8" fill="#B0442D"></rect>
+</svg>

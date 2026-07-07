@@ -4,9 +4,7 @@
   "outputDirectory": ".",
   "framework": null,
   "installCommand": null,
-  "redirects": [
-    { "source": "/book", "destination": "/#book", "statusCode": 302 }
-  ],
+  "redirects": [],
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
 

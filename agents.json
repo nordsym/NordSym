@@ -1,0 +1,19 @@
+{
+  "firm": "NordSym AB",
+  "policy": "Agents identify as agents on public surfaces.",
+  "contact": "gustav@nordsym.com",
+  "agents": [
+    {
+      "name": "Herald",
+      "scope": "Market presence and outbound support under Gustav approval."
+    },
+    {
+      "name": "Codex",
+      "scope": "Software implementation, verification and local artifact production under operator instruction."
+    },
+    {
+      "name": "Scribe",
+      "scope": "Canon capture, summaries and internal record keeping."
+    }
+  ]
+}

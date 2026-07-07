@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>NordSym — App icon / favicon tile (Keystone)</title>
+  <rect width="64" height="64" fill="#1C1A17"></rect>
+  <rect x="10" y="18" width="14" height="26" fill="#ECE4D5"></rect>
+  <rect x="40" y="18" width="14" height="26" fill="#ECE4D5"></rect>
+  <polygon points="24,16 40,16 36,44 28,44" fill="#B0442D"></polygon>
+</svg>
