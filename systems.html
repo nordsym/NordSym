@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Systems - NordSym</title>
+  <meta name="description" content="The public systems NordSym deliberately makes visible: products, infrastructure, and proof layers around managed agent operations.">
+  <link rel="icon" href="/assets/brand/nordsym-favicon.svg?v=20260708">
+  <link rel="canonical" href="https://nordsym.com/systems">
+  <style>
+    :root {
+      --paper: #f3eee4;
+      --ink: #211d17;
+      --muted: #6f675a;
+      --line: rgba(33, 29, 23, 0.16);
+      --oxide: #a8432b;
+      --night: #17130f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--paper);
+      background-size: 48px 48px;
+      color: var(--ink);
+      font-family: "Instrument Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .mono {
+      font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 32px;
+      background: rgba(243, 238, 228, 0.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav img { height: 22px; width: auto; display: block; }
+    .nav-actions { display: flex; align-items: center; gap: 18px; font-size: 14px; color: var(--muted); }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 600;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 88px 28px 112px; }
+    .eyebrow { color: var(--oxide); font-size: 12px; margin-bottom: 24px; }
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: clamp(44px, 7vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+    .lede {
+      max-width: 720px;
+      margin: 32px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.5;
+    }
+    .boundary {
+      margin: 72px 0 34px;
+      padding: 24px;
+      border: 1px solid var(--ink);
+      background: rgba(243, 238, 228, 0.72);
+      display: grid;
+      grid-template-columns: 0.4fr 1.6fr;
+      gap: 24px;
+    }
+    .boundary p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 17px; }
+    .system-list { border-top: 1px solid var(--ink); }
+    .system {
+      display: grid;
+      grid-template-columns: 86px 1fr 150px;
+      gap: 28px;
+      align-items: start;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .system-number { color: var(--oxide); font-size: 13px; padding-top: 6px; }
+    .system h2 { margin: 0 0 10px; font-size: clamp(28px, 3.6vw, 48px); line-height: 1; letter-spacing: -0.035em; }
+    .system p { margin: 0; max-width: 680px; color: var(--muted); font-size: 17px; line-height: 1.52; }
+    .meta { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .status {
+      border: 1px solid var(--line);
+      padding: 7px 9px;
+      color: var(--oxide);
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+    .system-link {
+      color: var(--ink);
+      border-bottom: 1px solid var(--oxide);
+      font-size: 13px;
+      padding-bottom: 3px;
+    }
+    .internal {
+      margin-top: 72px;
+      padding: 34px;
+      background: var(--night);
+      color: var(--paper);
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 28px;
+    }
+    .internal h2 { margin: 0; font-size: clamp(28px, 4vw, 56px); line-height: 1; font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    .internal p { margin: 0 0 14px; color: #c7bca9; line-height: 1.55; font-size: 17px; }
+    .footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer a { border-bottom: 1px solid rgba(168, 67, 43, 0.5); }
+    @media (max-width: 760px) {
+      .nav { padding: 14px 18px; }
+      .nav-actions a:first-child { display: none; }
+      main { padding: 64px 18px 88px; }
+      .boundary, .system, .internal { grid-template-columns: 1fr; }
+      .system { gap: 10px; }
+      .meta { flex-direction: row; flex-wrap: wrap; }
+      .footer { flex-direction: column; padding: 0 18px 38px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" aria-label="NordSym home"><img src="/assets/brand/nordsym-lockup.svg" alt="NordSym"></a>
+    <div class="nav-actions">
+      <a href="/">Back to NordSym</a>
+      <a class="button" href="/book/">Book a call</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="eyebrow mono">Systems boundary</div>
+    <h1>The systems NordSym deliberately makes visible.</h1>
+    <p class="lede">NordSym runs on architecture it built. Some of it is public. Most of it is not. This page lists what is public enough for humans and agents to inspect without crossing a client boundary.</p>
+
+    <section class="boundary" aria-label="Boundary">
+      <div class="mono">Boundary rule</div>
+      <p>This is not a product museum. It is a public map of the products, infrastructure, and proof layers that explain how NordSym builds and operates agent systems. Private client agreement surfaces, internal runtime maps, and client-specific agents stay out of public discovery files.</p>
+    </section>
+
+    <section class="system-list" aria-label="Visible systems">
+      <article class="system">
+        <div class="system-number mono">S-01</div>
+        <div>
+          <h2>APIClaw</h2>
+          <p>API and provider gateway for agents: discovery, routing, and managed calls without putting every provider key inside the agent.</p>
+        </div>
+        <div class="meta"><span class="status mono">Operating</span><a class="system-link" href="https://apiclaw.cloud">Visit</a></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-02</div>
+        <div>
+          <h2>Agent Badge</h2>
+          <p>Identity and receipts for agent work: who acted, under what mandate, and what record proves it. The current operator surface lives inside Mission Control.</p>
+        </div>
+        <div class="meta"><span class="status mono">In production</span></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-03</div>
+        <div>
+          <h2>skillsync</h2>
+          <p>Open-source skill distribution for keeping agent instructions synchronized across runtimes.</p>
+        </div>
+        <div class="meta"><span class="status mono">Available</span><a class="system-link" href="https://github.com/nordsym/skillsync">GitHub</a></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-04</div>
+        <div>
+          <h2>AI Search</h2>
+          <p>Checks how AI systems find, read, and cite a company.</p>
+        </div>
+        <div class="meta"><span class="status mono">Available</span><a class="system-link" href="https://aisearch.nordsym.com">Visit</a></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-05</div>
+        <div>
+          <h2>GenPRD</h2>
+          <p>Turns a product idea into a build-ready product requirements document.</p>
+        </div>
+        <div class="meta"><span class="status mono">Available</span><a class="system-link" href="https://genprd.se">Visit</a></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-06</div>
+        <div>
+          <h2>FlowVault</h2>
+          <p>Workflow library and reliability layer for n8n operations.</p>
+        </div>
+        <div class="meta"><span class="status mono">Available</span><a class="system-link" href="https://flowvault.se">Visit</a></div>
+      </article>
+      <article class="system">
+        <div class="system-number mono">S-07</div>
+        <div>
+          <h2>CleanBuddy</h2>
+          <p>Operations surface for cleaning companies, built and operated by NordSym for a venture company.</p>
+        </div>
+        <div class="meta"><span class="status mono">In production</span><a class="system-link" href="https://cleanbuddy.ai">Visit</a></div>
+      </article>
+    </section>
+
+    <section class="internal" aria-label="Internal operating layer">
+      <h2>The operating room stays internal.</h2>
+      <div>
+        <p>NordSym itself runs on Mission Control, an internal operating surface for approvals, records, and agent state. It is not public.</p>
+        <p>Agent Atlas is the internal canon for agents, runtimes, schedules, and stop controls. It explains the architecture. It is not a public product.</p>
+        <a class="button" href="/book/">Book a call</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>NordSym AB · 559535-5768</span>
+    <span><a href="/llms.txt">llms.txt</a> · <a href="/agents.md">agents.md</a> · <a href="/privacy.html">Privacy</a></span>
+  </footer>
+</body>
+</html>

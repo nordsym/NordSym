@@ -1,0 +1,69 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "NordSym public discovery",
+    "version": "2026-07-08",
+    "description": "Small public discovery surface for NordSym's agent-readable metadata."
+  },
+  "servers": [
+    {
+      "url": "https://nordsym.com"
+    }
+  ],
+  "paths": {
+    "/agent-info": {
+      "get": {
+        "summary": "Structured NordSym capability and boundary metadata",
+        "operationId": "getAgentInfo",
+        "responses": {
+          "200": {
+            "description": "NordSym public agent metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "summary": "Agent-readable overview of NordSym",
+        "operationId": "getLlmsTxt",
+        "responses": {
+          "200": {
+            "description": "Plain text overview",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/systems": {
+      "get": {
+        "summary": "Public systems boundary page",
+        "operationId": "getSystemsPage",
+        "responses": {
+          "200": {
+            "description": "HTML systems page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,8 @@
     { "source": "/proposal/charlie", "destination": "/proposal/charlie.html" },
     { "source": "/demo-sow/fadi", "destination": "/demo-sow/fadi.html" },
     { "source": "/agent-info", "destination": "/agent-info.json" },
+    { "source": "/agents.txt", "destination": "/agents.md" },
+    { "source": "/systems", "destination": "/systems.html" },
     { "source": "/contact", "destination": "/api/contact" },
     { "source": "/audit", "destination": "/index.html" }
   ]

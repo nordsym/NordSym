@@ -1,27 +1,38 @@
-NordSym AB - AI Discovery Configuration
-
-https://nordsym.com
+# NordSym AB - AI Discovery Configuration
+# https://nordsym.com
 
 Sitemap: https://nordsym.com/sitemap.xml
 
 # Agent-readable discovery assets
 # llms.txt: https://nordsym.com/llms.txt
 # agents.md: https://nordsym.com/agents.md
+# agents.json: https://nordsym.com/agents.json
 # agent-info: https://nordsym.com/agent-info
+# systems: https://nordsym.com/systems
 # MCP posture: https://nordsym.com/.well-known/mcp
 
-# Allow all crawlers by default
 User-agent: *
 Allow: /
 
-# AI & LLM Crawlers
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: anthropic-ai
@@ -30,7 +41,13 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
 Allow: /
 
 User-agent: Applebot
@@ -48,12 +65,5 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# Standard search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: DuckDuckBot
+User-agent: meta-externalagent
 Allow: /

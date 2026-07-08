@@ -10,6 +10,10 @@
     "name": "Gustav Hemmingsson",
     "email": "contact@nordsym.com"
   },
+  "category_frame": {
+    "name": "Agent architecture and operations",
+    "definition": "NordSym installs the layer that gives agents context, mandate, approval boundaries, records, and safe access to the stack a client already runs."
+  },
   "agent": {
     "name": "Symbot",
     "type": "AI Assistant",
@@ -30,20 +34,7 @@
       "No production changes without explicit operator approval"
     ]
   },
-  "category_frame": {
-    "name": "Managed agent operations",
-    "expanded": "Agent architecture and operations",
-    "definition": "NordSym installs the layer that gives agents context, mandate, approval boundaries, records, and safe access to the stack a client already runs."
-  },
   "services": [
-    {
-      "id": "ai-search",
-      "name": "AI Search",
-      "description": "Free visibility check for how AI systems find and cite a company.",
-      "url": "https://aisearch.nordsym.com",
-      "endpoint": "https://nordsym.com/api/audit",
-      "method": "POST"
-    },
     {
       "id": "operating-review",
       "name": "Operating Review",
@@ -58,11 +49,72 @@
       "url": "https://nordsym.com/#layer"
     }
   ],
+  "systems": [
+    {
+      "id": "apiclaw",
+      "name": "APIClaw",
+      "tier": "T1",
+      "status": "Operating",
+      "url": "https://apiclaw.cloud",
+      "description": "API and provider gateway for agents."
+    },
+    {
+      "id": "agent-badge",
+      "name": "Agent Badge",
+      "tier": "T2",
+      "status": "In production",
+      "url": null,
+      "description": "Identity and receipts for agent work. The current operator surface lives inside Mission Control."
+    },
+    {
+      "id": "skillsync",
+      "name": "skillsync",
+      "tier": "T2",
+      "status": "Available",
+      "url": "https://github.com/nordsym/skillsync",
+      "description": "Open-source skill distribution across runtimes."
+    },
+    {
+      "id": "ai-search",
+      "name": "AI Search",
+      "tier": "T1",
+      "status": "Available",
+      "url": "https://aisearch.nordsym.com",
+      "description": "Checks how AI systems find, read, and cite a company."
+    },
+    {
+      "id": "genprd",
+      "name": "GenPRD",
+      "tier": "T1",
+      "status": "Available",
+      "url": "https://genprd.se",
+      "description": "Turns a product idea into a build-ready product requirements document."
+    },
+    {
+      "id": "flowvault",
+      "name": "FlowVault",
+      "tier": "T1",
+      "status": "Available",
+      "url": "https://flowvault.se",
+      "description": "Workflow library and reliability layer for n8n operations."
+    },
+    {
+      "id": "cleanbuddy",
+      "name": "CleanBuddy",
+      "tier": "T3",
+      "status": "In production",
+      "url": "https://cleanbuddy.ai",
+      "description": "Operations surface for cleaning companies, built and operated by NordSym for a venture company."
+    }
+  ],
   "discovery_assets": {
     "llms_txt": "https://nordsym.com/llms.txt",
     "agents_md": "https://nordsym.com/agents.md",
+    "agents_json": "https://nordsym.com/agents.json",
     "ai_plugin": "https://nordsym.com/.well-known/ai-plugin.json",
     "mcp_posture": "https://nordsym.com/.well-known/mcp",
+    "systems": "https://nordsym.com/systems",
+    "openapi": "https://nordsym.com/openapi.json",
     "sitemap": "https://nordsym.com/sitemap.xml",
     "robots": "https://nordsym.com/robots.txt"
   },

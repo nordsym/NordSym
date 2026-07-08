@@ -2,6 +2,9 @@
   "name": "nordsym-site",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "validate:systems": "node scripts/validate-systems-boundary.mjs"
+  },
   "engines": {
     "node": "22.x"
   },
