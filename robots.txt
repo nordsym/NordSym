@@ -6,9 +6,11 @@ Sitemap: https://nordsym.com/sitemap.xml
 # Agent-readable discovery assets
 # llms.txt: https://nordsym.com/llms.txt
 # agents.md: https://nordsym.com/agents.md
+# agents.txt: https://nordsym.com/agents.txt
 # agents.json: https://nordsym.com/agents.json
 # agent-info: https://nordsym.com/agent-info
 # systems: https://nordsym.com/systems
+# systems canon: https://nordsym.com/systems.canon.json
 # MCP posture: https://nordsym.com/.well-known/mcp
 
 User-agent: *

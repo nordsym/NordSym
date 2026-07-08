@@ -47,6 +47,78 @@
         }
       }
     },
+    "/agents.md": {
+      "get": {
+        "summary": "Agent-facing NordSym guide",
+        "operationId": "getAgentsMd",
+        "responses": {
+          "200": {
+            "description": "Markdown guide for agents",
+            "content": {
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agents.txt": {
+      "get": {
+        "summary": "Agent-facing NordSym guide alias",
+        "operationId": "getAgentsTxt",
+        "responses": {
+          "200": {
+            "description": "Markdown guide for agents",
+            "content": {
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agents.json": {
+      "get": {
+        "summary": "Structured list of public NordSym agent roles",
+        "operationId": "getAgentsJson",
+        "responses": {
+          "200": {
+            "description": "NordSym public agent role metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/systems.canon.json": {
+      "get": {
+        "summary": "Canonical public systems boundary",
+        "operationId": "getSystemsCanon",
+        "responses": {
+          "200": {
+            "description": "NordSym public systems boundary data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/systems": {
       "get": {
         "summary": "Public systems boundary page",

@@ -110,10 +110,12 @@
   "discovery_assets": {
     "llms_txt": "https://nordsym.com/llms.txt",
     "agents_md": "https://nordsym.com/agents.md",
+    "agents_txt": "https://nordsym.com/agents.txt",
     "agents_json": "https://nordsym.com/agents.json",
     "ai_plugin": "https://nordsym.com/.well-known/ai-plugin.json",
     "mcp_posture": "https://nordsym.com/.well-known/mcp",
     "systems": "https://nordsym.com/systems",
+    "systems_canon": "https://nordsym.com/systems.canon.json",
     "openapi": "https://nordsym.com/openapi.json",
     "sitemap": "https://nordsym.com/sitemap.xml",
     "robots": "https://nordsym.com/robots.txt"

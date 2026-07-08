@@ -68,30 +68,21 @@
       "one_liner": "Operations surface for cleaning companies, built and operated by NordSym for a venture company."
     }
   ],
-  "internal_systems": [
-    {
-      "name": "Mission Control",
-      "public_treatment": "single line only",
-      "one_liner": "NordSym itself runs on Mission Control, an internal operating surface for approvals, records, and agent state. It is not public."
-    },
-    {
-      "name": "Agent Atlas",
-      "public_treatment": "machine context only",
-      "one_liner": "Agent Atlas is NordSym's internal canon for agents, runtimes, schedules, and stop controls."
-    }
-  ],
-  "private_systems": [
-    {
-      "name": "Deal Room",
-      "public_treatment": "do not list as a public system",
-      "reason": "Private client agreement surface. It may appear in private client links, but not in public machine-readable product lists."
-    }
-  ],
+  "internal_boundary": {
+    "not_listed": [
+      "client agreement surfaces",
+      "client-specific agents",
+      "operating memory",
+      "runtime maps",
+      "internal approval surfaces"
+    ],
+    "reason": "These surfaces exist to run the work, not to market it."
+  },
   "rules": [
     "Do not present the systems list as a product portfolio.",
     "Do not list private client agreement surfaces as public systems.",
     "Do not claim Agent Badge has a standalone public product frontend until a public verification surface is deliberately exposed.",
     "Do not expose internal Mission Control URLs on public discovery surfaces.",
-    "Do not include Hivr in public NordSym discovery surfaces unless it is explicitly reactivated."
+    "Do not include retired systems in public NordSym discovery surfaces unless they are explicitly reactivated."
   ]
 }

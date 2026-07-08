@@ -85,8 +85,10 @@ Do not treat private client agreement surfaces, client-specific agents, internal
 - `https://nordsym.com/sitemap.xml`
 - `https://nordsym.com/llms.txt`
 - `https://nordsym.com/agents.md`
+- `https://nordsym.com/agents.txt`
 - `https://nordsym.com/agent-info`
 - `https://nordsym.com/systems`
+- `https://nordsym.com/systems.canon.json`
 - `https://nordsym.com/.well-known/mcp`
 - `https://nordsym.com/openapi.json`
 

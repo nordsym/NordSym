@@ -17,6 +17,8 @@ const publicFiles = [
   'api/agent-info.js',
   '.well-known/ai-plugin.json',
   'systems.html',
+  'systems.canon.json',
+  'privacy.html',
   'sitemap.xml',
   'robots.txt',
   'openapi.json'
@@ -30,7 +32,9 @@ const banned = [
   /Agent Readiness Audit/i,
   /\bKeystone\b/i,
   /Deal Room/i,
-  /dealroom/i
+  /dealroom/i,
+  /api\.nordsym\.com/i,
+  /gustav@nordsym\.com/i
 ];
 
 function fail(message) {
