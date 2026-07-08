@@ -13,29 +13,28 @@
   <link rel="alternate" type="application/json" href="/agents.json">
   <link rel="alternate" type="application/json" href="/systems.canon.json">
   <meta property="og:title" content="Systems - NordSym">
-  <meta property="og:description" content="A public boundary map of the systems NordSym deliberately makes visible.">
+  <meta property="og:description" content="The systems NordSym deliberately makes visible.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nordsym.com/systems">
   <meta property="og:image" content="https://nordsym.com/assets/og/nordsym-og.png?v=20260708">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Systems - NordSym">
-  <meta name="twitter:description" content="A public boundary map of the systems NordSym deliberately makes visible.">
+  <meta name="twitter:description" content="The systems NordSym deliberately makes visible.">
   <meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png?v=20260708">
   <link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css">
   <style>
     :root {
       --paper: #f3eee4;
       --paper-2: #ede7da;
-      --paper-3: #f6f2e9;
       --ink: #211d17;
       --muted: #6f675a;
       --soft: #8c8474;
       --line: rgba(33, 29, 23, 0.15);
       --line-strong: rgba(33, 29, 23, 0.28);
       --oxide: #a8432b;
-      --oxide-soft: #e08a6e;
       --night: #17130f;
-      --night-line: rgba(243, 238, 228, 0.14);
+      --night-text: #f3eee4;
+      --night-muted: #c7bca9;
     }
 
     * { box-sizing: border-box; }
@@ -53,8 +52,9 @@
       text-rendering: optimizeLegibility;
     }
     a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
     ::selection { background: var(--oxide); color: var(--paper); }
+
     .mono {
       font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
       letter-spacing: 0.14em;
@@ -67,8 +67,8 @@
     .shell {
       max-width: 1180px;
       margin: 0 auto;
-      padding-left: 28px;
-      padding-right: 28px;
+      padding-left: 32px;
+      padding-right: 32px;
     }
     .nav {
       position: sticky;
@@ -86,13 +86,11 @@
     }
     .nav img { display: block; width: auto; height: 22px; }
     .nav-actions { display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--muted); }
-    .nav-actions a { transition: color 0.18s ease; }
     .nav-actions a:hover { color: var(--ink); }
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
       min-height: 42px;
       padding: 0 18px;
       border: 1px solid var(--ink);
@@ -102,7 +100,11 @@
       transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
     }
     .button:hover { background: var(--oxide); border-color: var(--oxide); color: var(--paper); transform: translateY(-1px); }
-    .hero { padding-top: 96px; padding-bottom: 48px; }
+
+    .hero {
+      padding: 94px 0 76px;
+      border-bottom: 1px solid var(--line);
+    }
     .eyebrow {
       display: flex;
       align-items: center;
@@ -118,70 +120,94 @@
       background: var(--oxide);
     }
     h1 {
-      max-width: 820px;
       margin: 0;
+      max-width: 820px;
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
       font-weight: 400;
-      font-size: clamp(44px, 7vw, 92px);
+      font-size: clamp(46px, 7vw, 92px);
       line-height: 0.98;
       letter-spacing: -0.04em;
     }
     h1 em { color: var(--oxide); font-style: italic; }
     .lede {
-      max-width: 690px;
-      margin: 32px 0 0;
+      max-width: 720px;
+      margin: 34px 0 0;
       color: var(--muted);
       font-size: clamp(18px, 2vw, 23px);
       line-height: 1.5;
     }
-    .map-section { padding-top: 34px; padding-bottom: 92px; }
-    .map-intro {
-      max-width: 760px;
-      margin: 0 0 32px;
-      color: var(--ink);
-      font-size: clamp(20px, 2.5vw, 28px);
-      line-height: 1.35;
-      letter-spacing: -0.015em;
+
+    .map {
+      padding: 78px 0 90px;
     }
     .map-card {
       border: 1px solid var(--line-strong);
-      background:
-        linear-gradient(rgba(246, 242, 233, 0.92), rgba(246, 242, 233, 0.92)),
-        linear-gradient(rgba(33, 29, 23, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(33, 29, 23, 0.04) 1px, transparent 1px);
-      background-size: auto, 32px 32px, 32px 32px;
+      background: rgba(246, 242, 233, 0.68);
     }
-    .map-cap {
+    .map-head {
       display: flex;
       justify-content: space-between;
-      gap: 18px;
-      padding: 16px 24px;
+      gap: 22px;
+      padding: 18px 24px;
       border-bottom: 1px solid var(--line);
       color: var(--soft);
       font-size: 11px;
     }
-    .map-cap strong { color: var(--oxide); font-weight: 500; }
-    #systems-map {
-      display: block;
-      width: 100%;
-      height: 540px;
-    }
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
+    .map-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px minmax(0, 0.92fr);
+      gap: 34px;
       align-items: center;
-      gap: 22px;
-      padding: 14px 24px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 11px;
+      padding: 44px;
+      min-height: 360px;
     }
-    .legend span { display: inline-flex; align-items: center; gap: 8px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
-    .dot-private { width: 6px; height: 6px; border-radius: 50%; background: #b7a98e; }
-    .systems-section {
-      padding-top: 94px;
-      padding-bottom: 100px;
+    .map-column {
+      display: grid;
+      gap: 13px;
+    }
+    .map-node {
+      border: 1px solid var(--line-strong);
+      background: rgba(243, 238, 228, 0.75);
+      padding: 13px 16px;
+      font-size: 14px;
+      color: var(--ink);
+      position: relative;
+    }
+    .map-node::before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--oxide);
+    }
+    .map-node span { display: block; padding-left: 18px; }
+    .map-boundary {
+      height: 100%;
+      min-height: 240px;
+      border-left: 1px dashed var(--oxide);
+      display: grid;
+      place-items: center;
+      color: var(--oxide);
+      font-size: 11px;
+      writing-mode: vertical-rl;
+    }
+    .private-box {
+      border: 1px solid var(--line-strong);
+      background: repeating-linear-gradient(45deg, rgba(33, 29, 23, 0.035) 0, rgba(33, 29, 23, 0.035) 2px, transparent 2px, transparent 10px);
+      padding: 26px;
+      color: var(--muted);
+      min-height: 210px;
+      display: grid;
+      align-content: center;
+      gap: 12px;
+    }
+    .private-box strong { color: var(--ink); font-size: 20px; letter-spacing: -0.02em; }
+
+    .systems {
+      padding: 92px 0 104px;
       background: var(--paper-2);
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -193,36 +219,33 @@
       gap: 32px;
       margin-bottom: 42px;
     }
-    .section-label {
-      margin-bottom: 16px;
-      color: var(--oxide);
-      font-size: 11.5px;
-    }
     h2 {
       margin: 0;
       max-width: 560px;
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
       font-weight: 400;
-      font-size: clamp(32px, 4.2vw, 54px);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
+      font-size: clamp(34px, 4.4vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -0.035em;
     }
     .section-head p {
-      max-width: 360px;
+      max-width: 420px;
       margin: 0;
       color: var(--muted);
-      font-size: 15.5px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.55;
     }
-    .system-list { border-top: 1px solid var(--ink); }
+    .system-list {
+      border-top: 1px solid var(--ink);
+    }
     .system {
       display: grid;
-      grid-template-columns: 64px 220px 1fr 170px;
+      grid-template-columns: 64px 240px 1fr 180px;
       gap: 22px;
       align-items: center;
-      padding: 25px 6px;
+      padding: 25px 0;
       border-bottom: 1px solid var(--line);
-      transition: background 0.22s ease, box-shadow 0.22s ease;
+      transition: background 0.18s ease, box-shadow 0.18s ease;
     }
     .system:hover {
       background: rgba(168, 67, 43, 0.045);
@@ -231,532 +254,234 @@
     .system-number { color: var(--oxide); font-size: 12px; }
     .system h3 {
       margin: 0;
-      font-size: clamp(20px, 2.4vw, 30px);
+      font-size: clamp(21px, 2.5vw, 31px);
       line-height: 1;
       letter-spacing: -0.025em;
     }
     .system p {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.52;
-    }
-    .meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .status {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line);
-      padding: 7px 9px;
-      background: rgba(255, 255, 255, 0.18);
-      color: var(--oxide);
-      font-size: 10px;
-      line-height: 1;
+      font-size: 16px;
+      line-height: 1.45;
     }
     .system-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding-bottom: 3px;
-      border-bottom: 1px solid rgba(168, 67, 43, 0.7);
-      color: var(--ink);
-      font-size: 12px;
-    }
-    .system-link:hover { color: var(--oxide); }
-    .boundary-note {
-      padding-top: 84px;
-      padding-bottom: 84px;
-    }
-    .boundary-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 30px;
-      align-items: start;
-    }
-    .boundary-inner .mono {
+      justify-self: end;
       color: var(--oxide);
-      font-size: 11px;
-      padding-top: 11px;
+      font-size: 12px;
+      overflow-wrap: anywhere;
     }
-    .boundary-inner p {
+    .system-link:hover { color: var(--ink); }
+
+    .boundary {
+      padding: 92px 0;
+      background: var(--night);
+      color: var(--night-text);
+    }
+    .boundary-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 54px;
+      align-items: center;
+    }
+    .boundary h2 { color: var(--night-text); }
+    .boundary p {
+      color: var(--night-muted);
+      font-size: 18px;
+      line-height: 1.58;
       margin: 0;
-      color: var(--ink);
-      font-size: clamp(20px, 2.5vw, 29px);
-      line-height: 1.42;
-      letter-spacing: -0.018em;
     }
-    .machine {
-      padding-top: 76px;
-      padding-bottom: 82px;
+    .boundary-card {
+      border: 1px solid rgba(243, 238, 228, 0.18);
+      padding: 34px;
+      background: rgba(243, 238, 228, 0.035);
+    }
+    .boundary-card p + p { margin-top: 18px; }
+
+    footer {
       background: var(--night);
-      color: var(--paper);
-    }
-    .machine-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 42px;
-      align-items: start;
-    }
-    .machine h2 { color: var(--paper); }
-    .machine p {
-      margin: 20px 0 0;
-      color: #c7bca9;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    .machine-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .machine-links a {
-      border: 1px solid var(--night-line);
-      padding: 16px;
-      color: var(--paper);
-      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
-    }
-    .machine-links a:hover {
-      border-color: rgba(224, 138, 110, 0.7);
-      background: rgba(168, 67, 43, 0.12);
-      transform: translateY(-1px);
-    }
-    .machine-links .mono { display: block; color: var(--oxide-soft); font-size: 10px; margin-bottom: 8px; }
-    .machine-links span:last-child { color: #c7bca9; font-size: 14px; }
-    .cta {
-      padding-top: 104px;
-      padding-bottom: 112px;
-      text-align: center;
-      background: var(--paper);
-    }
-    .cta svg { margin-bottom: 26px; }
-    .cta h2 { margin-left: auto; margin-right: auto; max-width: 760px; }
-    .cta .button { margin-top: 34px; background: var(--oxide); border-color: var(--oxide); }
-    .cta .button:hover { background: #7f3220; border-color: #7f3220; }
-    .footer {
-      background: var(--night);
-      color: #c7bca9;
-      padding: 56px 40px 40px;
-      border-top: 1px solid var(--night-line);
+      color: var(--night-muted);
+      border-top: 1px solid rgba(243, 238, 228, 0.12);
+      padding: 52px 0 44px;
     }
     .footer-grid {
-      max-width: 1180px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.45fr 1fr 1.2fr;
-      gap: 40px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 34px;
+      align-items: start;
     }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--paper);
-      margin-bottom: 16px;
-    }
-    .footer-brand img { height: 20px; width: auto; filter: brightness(1.02); }
-    .footer p { max-width: 34ch; margin: 0; color: #c7bca9; font-size: 14px; line-height: 1.6; }
-    .footer-label {
-      margin-bottom: 16px;
-      color: var(--soft);
-      font-size: 11px;
-    }
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      color: #c7bca9;
-      font-size: 14px;
-    }
-    .footer-links a:hover { color: var(--paper); }
-    .footer-bottom {
-      max-width: 1180px;
-      margin: 40px auto 0;
+    .footer-logo { height: 22px; width: auto; margin-bottom: 24px; }
+    footer a { color: var(--night-muted); }
+    footer a:hover { color: var(--night-text); }
+    .footer-links { display: grid; gap: 10px; font-size: 14px; }
+    .legal {
+      margin-top: 44px;
       padding-top: 22px;
-      border-top: 1px solid var(--night-line);
+      border-top: 1px solid rgba(243, 238, 228, 0.12);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-      color: var(--soft);
+      color: #8c8474;
       font-size: 12.5px;
     }
+
     @media (max-width: 900px) {
-      .nav { padding: 13px 18px; }
+      .nav { padding: 14px 20px; }
       .nav-actions a:not(.button) { display: none; }
-      .shell { padding-left: 18px; padding-right: 18px; }
-      .hero { padding-top: 62px; padding-bottom: 36px; }
-      #systems-map { height: 400px; }
-      .section-head, .machine-grid, .boundary-inner { grid-template-columns: 1fr; display: grid; }
-      .system { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-      .meta { flex-direction: row; flex-wrap: wrap; }
-      .machine-links { grid-template-columns: 1fr; }
-      .footer { padding-left: 18px; padding-right: 18px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-    }
-    @media (max-width: 560px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .map-cap, .legend { padding-left: 16px; padding-right: 16px; }
+      .shell { padding-left: 22px; padding-right: 22px; }
+      .hero { padding-top: 70px; }
+      .map-body { grid-template-columns: 1fr; padding: 28px; }
+      .map-boundary { min-height: auto; height: auto; padding: 26px 0; writing-mode: horizontal-tb; border-left: 0; border-top: 1px dashed var(--oxide); border-bottom: 1px dashed var(--oxide); }
+      .section-head, .boundary-grid, .footer-grid { grid-template-columns: 1fr; display: grid; }
+      .system { grid-template-columns: 46px 1fr; align-items: start; }
+      .system p, .system-link { grid-column: 2; justify-self: start; }
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "NordSym Systems",
-    "url": "https://nordsym.com/systems",
-    "description": "The public systems NordSym deliberately makes visible.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "NordSym",
-      "url": "https://nordsym.com/"
-    },
-    "about": {
-      "@type": "Organization",
-      "name": "NordSym AB",
-      "url": "https://nordsym.com/"
-    }
-  }
-  </script>
 </head>
 <body>
-  <nav class="nav" aria-label="Primary">
+  <nav class="nav">
     <a href="/" aria-label="NordSym home"><img src="/assets/brand/nordsym-lockup.svg" alt="NordSym"></a>
     <div class="nav-actions">
-      <a href="/">Back to NordSym</a>
-      <a href="#map">Systems map</a>
+      <a href="#map">Boundary</a>
       <a href="#systems">Visible systems</a>
-      <a class="button" href="/book/">Book a call</a>
+      <a href="/book/" class="button">Book a call</a>
     </div>
   </nav>
 
   <main>
-    <header class="hero shell">
-      <div class="eyebrow mono">Systems index</div>
-      <h1>The systems NordSym deliberately makes <em>visible.</em></h1>
-      <p class="lede">NordSym runs on architecture it built. This page lists the public systems that explain how NordSym builds and operates agent architecture without crossing a client boundary.</p>
+    <header class="hero">
+      <div class="shell">
+        <div class="eyebrow mono">Systems index</div>
+        <h1>The systems NordSym deliberately makes <em>visible.</em></h1>
+        <p class="lede">NordSym runs on architecture it built. This page lists the public products, infrastructure, and proof layers that show how NordSym builds and operates agent systems.</p>
+      </div>
     </header>
 
-    <section id="map" class="map-section shell" aria-labelledby="map-title">
-      <p id="map-title" class="map-intro serif">A public map of products, infrastructure, and proof layers that show how NordSym builds and operates agent systems.</p>
-      <div class="map-card">
-        <div class="map-cap mono">
-          <span>The public boundary</span>
-          <strong>Seven in the open</strong>
-        </div>
-        <canvas id="systems-map" aria-hidden="true"></canvas>
-        <div class="legend mono">
-          <span><i class="dot"></i> Visible system</span>
-          <span><i class="dot-private"></i> Held outside public boundary</span>
+    <section id="map" class="map">
+      <div class="shell">
+        <p class="map-intro serif">A public map of what is in the open, and what stays outside the boundary.</p>
+        <div class="map-card" aria-label="Public boundary map">
+          <div class="map-head mono">
+            <span>The public boundary</span>
+            <span>Visible · Private</span>
+          </div>
+          <div class="map-body">
+            <div class="map-column" aria-label="Visible systems">
+              <div class="map-node"><span>APIClaw</span></div>
+              <div class="map-node"><span>Agent Badge</span></div>
+              <div class="map-node"><span>skillsync</span></div>
+              <div class="map-node"><span>AI Search</span></div>
+              <div class="map-node"><span>GenPRD</span></div>
+              <div class="map-node"><span>FlowVault</span></div>
+              <div class="map-node"><span>CleanBuddy</span></div>
+            </div>
+            <div class="map-boundary mono">Public boundary</div>
+            <div class="private-box">
+              <strong>Held outside the boundary</strong>
+              <span>Client-specific agents, agreement surfaces, operating memory, runtime maps, and internal approval surfaces.</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="systems" class="systems-section" aria-labelledby="systems-title">
+    <section id="systems" class="systems">
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="section-label mono">Visible systems</div>
-            <h2 id="systems-title">Public products, infrastructure, and proof.</h2>
+            <div class="eyebrow mono">Seven in the open</div>
+            <h2>Visible systems</h2>
           </div>
-          <p>Seven systems NordSym runs in the open. Client-specific work, operating memory, and internal approval surfaces stay private by design.</p>
+          <p>Seven systems NordSym runs in the open. Everything client-specific stays private.</p>
         </div>
 
         <div class="system-list">
           <article class="system">
-            <div class="system-number mono">S-01</div>
+            <div class="system-number mono">01</div>
             <h3>APIClaw</h3>
-            <p>API and provider gateway for agents: discovery, routing, and managed calls without putting every provider key inside the agent.</p>
-            <div class="meta"><span class="status mono">Operating</span><a class="system-link mono" href="https://apiclaw.cloud" rel="noopener">apiclaw.cloud</a></div>
+            <p>API and provider gateway for agents.</p>
+            <a class="system-link mono" href="https://apiclaw.cloud/">apiclaw.cloud</a>
           </article>
           <article class="system">
-            <div class="system-number mono">S-02</div>
+            <div class="system-number mono">02</div>
             <h3>Agent Badge</h3>
-            <p>Identity and receipts for agent work: who acted, under what mandate, and what record proves it.</p>
-            <div class="meta"><span class="status mono">In production</span><span class="mono">No public URL yet</span></div>
+            <p>Identity and receipts for agent work, surfaced to clients through their own portal.</p>
+            <span class="system-link mono">Client portal surface</span>
           </article>
           <article class="system">
-            <div class="system-number mono">S-03</div>
+            <div class="system-number mono">03</div>
             <h3>skillsync</h3>
-            <p>Open-source skill distribution for keeping agent instructions synchronized across runtimes.</p>
-            <div class="meta"><span class="status mono">Available</span><a class="system-link mono" href="https://github.com/nordsym/skillsync" rel="noopener">github.com/nordsym</a></div>
+            <p>Open-source skill distribution across runtimes.</p>
+            <a class="system-link mono" href="https://github.com/nordsym/skillsync">github.com/nordsym</a>
           </article>
           <article class="system">
-            <div class="system-number mono">S-04</div>
+            <div class="system-number mono">04</div>
             <h3>AI Search</h3>
             <p>Checks how AI systems find, read, and cite a company.</p>
-            <div class="meta"><span class="status mono">Available</span><a class="system-link mono" href="https://aisearch.nordsym.com" rel="noopener">aisearch.nordsym.com</a></div>
+            <a class="system-link mono" href="https://aisearch.nordsym.com/">aisearch.nordsym.com</a>
           </article>
           <article class="system">
-            <div class="system-number mono">S-05</div>
+            <div class="system-number mono">05</div>
             <h3>GenPRD</h3>
-            <p>Turns a product idea into a build-ready product requirements document.</p>
-            <div class="meta"><span class="status mono">Available</span><a class="system-link mono" href="https://genprd.se" rel="noopener">genprd.se</a></div>
+            <p>Describe a product idea, get a focused, AI-ready PRD that agents can actually build from.</p>
+            <a class="system-link mono" href="https://genprd.se/">genprd.se</a>
           </article>
           <article class="system">
-            <div class="system-number mono">S-06</div>
+            <div class="system-number mono">06</div>
             <h3>FlowVault</h3>
             <p>Workflow library and reliability layer for n8n operations.</p>
-            <div class="meta"><span class="status mono">Available</span><a class="system-link mono" href="https://flowvault.se" rel="noopener">flowvault.se</a></div>
+            <a class="system-link mono" href="https://flowvault.se/">flowvault.se</a>
           </article>
           <article class="system">
-            <div class="system-number mono">S-07</div>
+            <div class="system-number mono">07</div>
             <h3>CleanBuddy</h3>
             <p>Operations surface for cleaning companies, built and operated by NordSym for a venture company.</p>
-            <div class="meta"><span class="status mono">In production</span><a class="system-link mono" href="https://cleanbuddy.ai" rel="noopener">cleanbuddy.ai</a></div>
+            <a class="system-link mono" href="https://cleanbuddy.ai/">cleanbuddy.ai</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="boundary-note shell" aria-labelledby="boundary-title">
-      <div class="boundary-inner">
-        <div id="boundary-title" class="mono">Boundary</div>
-        <p class="serif">Most of what NordSym runs stays private by design. The infrastructure that operates client work is built to do the work, not to be shown.</p>
-      </div>
-    </section>
-
-    <section class="machine" aria-labelledby="machine-title">
-      <div class="shell machine-grid">
-        <div>
-          <div class="section-label mono">Machine-readable</div>
-          <h2 id="machine-title">Agents get the same boundary.</h2>
-          <p>Public discovery files point to the same systems boundary so assistants, crawlers, and search engines do not infer a stale product portfolio or internal client surfaces.</p>
+    <section class="boundary">
+      <div class="shell boundary-grid">
+        <h2>Boundary</h2>
+        <div class="boundary-card">
+          <p>Most of what NordSym runs stays private by design. The infrastructure that operates client work is built to do the work, not to be shown.</p>
+          <p>If a system should exist inside your stack, we can build it.</p>
+          <p><a class="button" href="/book/">Book a call</a></p>
         </div>
-        <div class="machine-links" aria-label="Machine-readable discovery links">
-          <a href="/systems.canon.json"><span class="mono">JSON</span><span>systems.canon.json</span></a>
-          <a href="/llms.txt"><span class="mono">LLM context</span><span>llms.txt</span></a>
-          <a href="/agents.txt"><span class="mono">Agent guide</span><span>agents.txt</span></a>
-          <a href="/openapi.json"><span class="mono">OpenAPI</span><span>openapi.json</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" aria-labelledby="cta-title">
-      <div class="shell">
-        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L13.6 10.4 L24 12 L13.6 13.6 L12 24 L10.4 13.6 L0 12 L10.4 10.4 Z" fill="#A8432B"></path></svg>
-        <h2 id="cta-title">If a system should exist inside your stack, we can build it.</h2>
-        <a class="button" href="/book/">Book a call</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand"><img src="/assets/brand/nordsym-footer-lockup.svg" alt="NordSym"></div>
-        <p>The operating layer between your stack and the agents that run it.</p>
-      </div>
-      <div>
-        <div class="footer-label mono">Page</div>
-        <div class="footer-links">
-          <a href="#map">Systems map</a>
-          <a href="#systems">Visible systems</a>
-          <a href="/">NordSym home</a>
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="/assets/brand/nordsym-lockup.svg" alt="NordSym">
+          <p style="max-width:360px;margin:0;color:var(--night-muted);font-size:17px;line-height:1.55;">The operating layer between your stack and the agents that run it.</p>
+        </div>
+        <div>
+          <div class="mono" style="font-size:11px;color:#8c8474;margin-bottom:14px;">Page</div>
+          <div class="footer-links">
+            <a href="#map">Systems map</a>
+            <a href="#systems">Visible systems</a>
+            <a href="/privacy.html">Privacy</a>
+          </div>
+        </div>
+        <div>
+          <div class="mono" style="font-size:11px;color:#8c8474;margin-bottom:14px;">Contact</div>
+          <div class="footer-links">
+            <a href="/book/">Book a call</a>
+            <a href="mailto:contact@nordsym.com">contact@nordsym.com</a>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="footer-label mono">Contact</div>
-        <div class="footer-links">
-          <a href="/book/">Book a call</a>
-          <a href="/privacy.html">Privacy</a>
-          <a href="mailto:contact@nordsym.com">contact@nordsym.com</a>
-        </div>
+      <div class="legal">
+        <span>© 2026 NordSym. Founder-led, agent-operated.</span>
+        <span>NordSym AB · 559535-5768</span>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 NordSym. Founder-led, agent-operated.</span>
-      <span>NordSym AB · 559535-5768</span>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      const canvas = document.getElementById('systems-map');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      const systems = [
-        { name: 'APIClaw', url: 'https://apiclaw.cloud' },
-        { name: 'Agent Badge' },
-        { name: 'skillsync', url: 'https://github.com/nordsym/skillsync' },
-        { name: 'AI Search', url: 'https://aisearch.nordsym.com' },
-        { name: 'GenPRD', url: 'https://genprd.se' },
-        { name: 'FlowVault', url: 'https://flowvault.se' },
-        { name: 'CleanBuddy', url: 'https://cleanbuddy.ai' }
-      ];
-      const privateMarks = Array.from({ length: 18 }, () => ({
-        angle: Math.random() * Math.PI * 2,
-        radius: 1.34 + Math.random() * 0.5,
-        size: 1 + Math.random() * 2,
-        speed: 0.35 + Math.random() * 0.55,
-        phase: Math.random() * Math.PI * 2
-      }));
-      const hits = [];
-      let width = 0;
-      let height = 0;
-      let raf = null;
-      let start = performance.now();
-      let pulses = [];
-      const colors = {
-        ink: '#211d17',
-        oxide: '#a8432b',
-        muted: '#b7a98e'
-      };
-
-      function resize() {
-        const rect = canvas.getBoundingClientRect();
-        width = rect.width;
-        height = rect.height;
-        canvas.width = Math.max(1, Math.floor(width * dpr));
-        canvas.height = Math.max(1, Math.floor(height * dpr));
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-
-      function drawStar(x, y, size, color) {
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.moveTo(x, y - size * 1.8);
-        ctx.lineTo(x + size * 0.32, y - size * 0.32);
-        ctx.lineTo(x + size * 1.8, y);
-        ctx.lineTo(x + size * 0.32, y + size * 0.32);
-        ctx.lineTo(x, y + size * 1.8);
-        ctx.lineTo(x - size * 0.32, y + size * 0.32);
-        ctx.lineTo(x - size * 1.8, y);
-        ctx.lineTo(x - size * 0.32, y - size * 0.32);
-        ctx.closePath();
-        ctx.fill();
-      }
-
-      function frame(now) {
-        const t = (now - start) / 1000;
-        ctx.clearRect(0, 0, width, height);
-        const cx = width * 0.5;
-        const cy = height * 0.5;
-        const radius = Math.min(width, height) * 0.31;
-        hits.length = 0;
-
-        for (const mark of privateMarks) {
-          const angle = mark.angle + t * 0.018;
-          const r = radius * mark.radius;
-          const x = cx + Math.cos(angle) * r;
-          const y = cy + Math.sin(angle) * r;
-          ctx.globalAlpha = 0.2 + 0.18 * Math.sin(t * mark.speed + mark.phase);
-          ctx.fillStyle = colors.muted;
-          ctx.beginPath();
-          ctx.arc(x, y, mark.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-
-        ctx.save();
-        ctx.strokeStyle = 'rgba(168, 67, 43, 0.5)';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([5, 7]);
-        ctx.lineDashOffset = -t * 7;
-        ctx.beginPath();
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.fillStyle = colors.oxide;
-        ctx.font = '9px "IBM Plex Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('PUBLIC BOUNDARY', cx, cy - radius - 14);
-
-        systems.forEach((system, i) => {
-          const angle = -Math.PI / 2 + Math.PI / systems.length + i * (Math.PI * 2 / systems.length);
-          const x = cx + Math.cos(angle) * radius;
-          const y = cy + Math.sin(angle) * radius;
-          ctx.strokeStyle = 'rgba(33, 29, 23, 0.13)';
-          ctx.lineWidth = 0.8;
-          ctx.beginPath();
-          ctx.moveTo(cx, cy);
-          ctx.lineTo(x, y);
-          ctx.stroke();
-
-          const size = 3.4 + 0.7 * Math.sin(t * 1.1 + i);
-          ctx.fillStyle = colors.ink;
-          ctx.beginPath();
-          ctx.arc(x, y, size, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.strokeStyle = 'rgba(168, 67, 43, 0.45)';
-          ctx.beginPath();
-          ctx.arc(x, y, size + 4, 0, Math.PI * 2);
-          ctx.stroke();
-          hits.push({ x, y, url: system.url });
-
-          const labelX = cx + Math.cos(angle) * (radius + 16);
-          const labelY = cy + Math.sin(angle) * (radius + 16);
-          ctx.fillStyle = '#3a352c';
-          ctx.font = '11px "IBM Plex Mono", monospace';
-          ctx.textBaseline = 'middle';
-          ctx.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
-          ctx.fillText(system.name, labelX, labelY + (Math.abs(Math.cos(angle)) < 0.25 ? (Math.sin(angle) > 0 ? 10 : -10) : 0));
-        });
-
-        ctx.strokeStyle = 'rgba(168, 67, 43, 0.5)';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 12 + 2 * Math.sin(t * 1.4), 0, Math.PI * 2);
-        ctx.stroke();
-        drawStar(cx, cy, 6, colors.oxide);
-        ctx.fillStyle = colors.muted;
-        ctx.font = '9px "IBM Plex Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('NORDSYM', cx, cy + 30);
-
-        if (Math.random() < 0.03 && pulses.length < 3) {
-          pulses.push({ i: Math.floor(Math.random() * systems.length), p: 0 });
-        }
-        pulses = pulses.filter((pulse) => {
-          pulse.p += 0.018;
-          if (pulse.p >= 1) return false;
-          const angle = -Math.PI / 2 + Math.PI / systems.length + pulse.i * (Math.PI * 2 / systems.length);
-          const x = cx + Math.cos(angle) * radius * pulse.p;
-          const y = cy + Math.sin(angle) * radius * pulse.p;
-          ctx.globalAlpha = 1 - pulse.p * 0.3;
-          ctx.fillStyle = colors.oxide;
-          ctx.beginPath();
-          ctx.arc(x, y, 2.4, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-          return true;
-        });
-
-        raf = requestAnimationFrame(frame);
-      }
-
-      function onPointer(event) {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const hit = hits.find((item) => item.url && Math.hypot(x - item.x, y - item.y) < 16);
-        canvas.style.cursor = hit ? 'pointer' : 'default';
-        return hit;
-      }
-
-      canvas.addEventListener('mousemove', onPointer);
-      canvas.addEventListener('click', (event) => {
-        const hit = onPointer(event);
-        if (hit) window.open(hit.url, '_blank', 'noopener');
-      });
-
-      resize();
-      window.addEventListener('resize', resize);
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        raf = requestAnimationFrame(frame);
-      } else {
-        frame(start + 1);
-        if (raf) cancelAnimationFrame(raf);
-      }
-    })();
-  </script>
 </body>
 </html>
