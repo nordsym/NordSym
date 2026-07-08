@@ -358,10 +358,7 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
   align-content: center;
 }
 .ns-operator-schematic {
-  border: 1px solid rgba(33,30,24,.22);
-  background-image: linear-gradient(rgba(33,30,24,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(33,30,24,.035) 1px, transparent 1px);
-  background-size: 20px 20px;
-  padding: 16px;
+  display: none;
 }
 .ns-operator-schematic svg { width: 100%; height: auto; display: block; }
 #ns08 .ns-faq-item button { transition: background .18s var(--ns-ease); }
@@ -513,6 +510,22 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
 /* NordSym pass: softer drawing UI, clearer AI context rail, more alive schematics. */
 .ns-schematic-sheet { overflow: hidden; transition: background .25s var(--ns-ease), box-shadow .25s var(--ns-ease), transform .25s var(--ns-ease); }
 .ns-schematic-sheet:hover { background: linear-gradient(90deg, rgba(176,73,44,.08) 1px, transparent 1px), linear-gradient(0deg, rgba(176,73,44,.06) 1px, transparent 1px), rgba(246,242,234,.72) !important; background-size: 38px 38px, 38px 38px, auto; box-shadow: 0 22px 60px rgba(33,30,24,.08); }
+@media (min-width: 980px) {
+  #ns01 {
+    min-height: calc(100vh - 56px);
+    padding-top: clamp(64px, 9vh, 110px) !important;
+  }
+  #ns01 .ns-schematic-sheet {
+    position: absolute !important;
+    right: 32px;
+    top: clamp(110px, 15vh, 164px);
+    width: min(40vw, 520px);
+  }
+  #ns01 h1, #ns01 p, #ns01 .ns-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+}
 .ns-context-rail-v2 { grid-template-columns: minmax(220px, 1.1fr) minmax(160px, .85fr) auto; gap: 18px; }
 .ns-context-intro { min-width: 0; }
 .ns-context-intro .ns-context-handle { display: block; margin-top: 6px; font: 700 18px/1.05 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -.01em; white-space: normal; }
@@ -1086,46 +1099,13 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
 <div class="ns-operator-id">
 <div class="ns-operator-head">
 <div class="ns-founder-frame"><img alt="Gustav Hemmingsson, founder of NordSym" src="./assets/gustav-founder.jpg"/></div>
-<div class="ns-operator-meta"><strong>Gustav Hemmingsson</strong>Founder<br/>NordSym AB<a class="ns-founder-contact" href="mailto:gustav@nordsym.com">gustav@nordsym.com</a></div>
+<div class="ns-operator-meta"><strong>Gustav Hemmingsson</strong>Founder<br/>NordSym AB<a class="ns-founder-contact" href="mailto:contact@nordsym.com">contact@nordsym.com</a></div>
 </div>
 <div class="ns-operator-grid" aria-label="NordSym operator facts">
 <div class="ns-operator-field"><span>Mode</span><b>Founder-led</b></div>
 <div class="ns-operator-field"><span>Posture</span><b>Agent-operated</b></div>
 <div class="ns-operator-field"><span>Layer</span><b>Stack-native</b></div>
 <div class="ns-operator-field"><span>Records</span><b>Decisions and outputs</b></div>
-</div>
-<div class="ns-operator-schematic" aria-hidden="true">
-<svg viewBox="0 0 330 132" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="op-arrow" markerHeight="6" markerWidth="6" orient="auto" refX="5" refY="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"/></marker></defs>
-<g fill="none" stroke="#211e18" stroke-width="1.15">
-<rect x="16" y="18" width="92" height="26"/>
-<rect x="16" y="54" width="92" height="26"/>
-<rect x="16" y="90" width="92" height="26"/>
-<rect x="138" y="14" width="82" height="104"/>
-<path d="M108 31 H138" marker-end="url(#op-arrow)"/>
-<path d="M108 67 H138" marker-end="url(#op-arrow)"/>
-<path d="M108 103 H138" marker-end="url(#op-arrow)"/>
-<path d="M220 41 H296"/>
-<path d="M220 66 H296"/>
-<path d="M220 91 H296"/>
-<rect x="296" y="31" width="18" height="20"/>
-<rect x="296" y="56" width="18" height="20"/>
-<rect x="296" y="81" width="18" height="20"/>
-</g>
-<g fill="#211e18" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1">
-<text x="31" y="35">CANON</text>
-<text x="33" y="71">STATE</text>
-<text x="25" y="107">TOOLS</text>
-<text x="158" y="45">MANDATE</text>
-<text x="160" y="68">AGENT</text>
-<text x="156" y="91">RECORD</text>
-</g>
-<g fill="#b0492c" stroke="none">
-<circle cx="138" cy="31" r="3"/>
-<circle cx="220" cy="66" r="3"/>
-<rect x="174" y="57" width="10" height="24"/>
-</g>
-</svg>
 </div>
 </div>
 <div class="ns-operator-content">
@@ -1295,7 +1275,7 @@ html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
 <div style="display: flex; flex-direction: column; gap: 9px; font: 400 13px / 1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
 <a href="https://www.linkedin.com/company/nordsym/" rel="noreferrer" style="color: rgb(33, 30, 24);" target="_blank">LinkedIn</a>
 <a href="https://x.com/GusHem" rel="noreferrer" style="color: rgb(33, 30, 24);" target="_blank">X</a>
-<a href="mailto:gustav@nordsym.com" style="color: rgb(33, 30, 24);">gustav@nordsym.com</a>
+<a href="mailto:contact@nordsym.com" style="color: rgb(33, 30, 24);">contact@nordsym.com</a>
 </div>
 </div>
 <div>
