@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="NordSym">
-  <rect width="32" height="32" rx="7" fill="#EAE4D8"></rect>
-  <polygon points="16,8 25,23 7,23" fill="#A6432A"></polygon>
-  <rect x="6.5" y="25" width="19" height="2.6" fill="#A6432A"></rect>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="NordSym">
+  <polygon points="50,4 59,41 96,50 59,59 50,96 41,59 4,50 41,41" fill="#A6432A"></polygon>
+  <circle cx="50" cy="50" r="6.5" fill="#1B1917"></circle>
 </svg>

@@ -20,19 +20,19 @@ export default async function handler(req, res) {
 
     name: "NordSym AB",
     legalName: "NordSym AB",
-    description: "Full Stack AI Partner for MEO, agent-ready business surfaces, AI operating systems, and agent infrastructure.",
+    description: "NordSym designs, builds, and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations.",
     url: "https://nordsym.com",
-    logo: "https://nordsym.com/NordSym%20Logga%20utan%20text.png",
+    logo: "https://nordsym.com/assets/brand/nordsym-social-logo.png",
 
     category_frame: {
-      name: "MEO",
-      expanded: "Machine Experience Optimization",
-      definition: "Optimizing a business surface for machine actors: AI assistants, agents, crawlers, orchestration systems, procurement helpers, and workflow runtimes. An agent-ready business is readable, comparable, callable, observable, and governable by AI agents while humans keep approval and accountability."
+      name: "Managed agent operations",
+      expanded: "Agent architecture and operations",
+      definition: "NordSym installs the layer that gives agents context, mandate, approval boundaries, records, and safe access to the stack a client already runs."
     },
 
     founder: {
       name: "Gustav Hemmingsson",
-      email: "gustav@nordsym.com"
+      email: "contact@nordsym.com"
     },
 
     agent: {
@@ -47,25 +47,25 @@ export default async function handler(req, res) {
         "does not cross client data boundaries",
         "does not change production systems without explicit operator approval"
       ],
-      contact_endpoint: "https://api.nordsym.com/contact"
+      contact_endpoint: "https://nordsym.com/book/"
     },
 
     services: [
       {
-        id: "agent-readiness-audit",
-        name: "Agent Readiness Audit",
-        category: "MEO",
-        description: "Audit and implementation pass across the surfaces AI agents use to understand, compare, call, govern, and recommend a company.",
-        checks: ["readability", "comparability", "callability", "governance", "recommendation_readiness"],
-        deliverables: ["scorecard", "canon-drift report", "recommended llms.txt", "recommended agents.md", "well-known/API/MCP/schema recommendations", "implementation backlog"],
+        id: "operating-review",
+        name: "Operating Review",
+        category: "Managed agent operations",
+        description: "A structured review of where governed agents can operate inside an existing company stack.",
+        checks: ["stack", "operation", "mandate", "approval_boundary", "records"],
+        deliverables: ["operation map", "boundary design", "implementation backlog", "first governed run plan"],
         pricing: "scoped_after_review",
-        intake: "https://api.nordsym.com/contact",
+        intake: "https://nordsym.com/book/",
         delivery_mode: "human_reviewed"
       },
       {
-        id: "ai-operating-system",
-        name: "AI Operating System Build",
-        description: "Operational AI system where data, tools, agents, workflows, approvals, and humans share one coherent surface.",
+        id: "operating-layer",
+        name: "Operating Layer Build",
+        description: "Governed agent infrastructure inside an existing stack, with approvals, stop controls, and records.",
         pricing: "from $25k",
         delivery_mode: "scoped_build"
       },
@@ -147,10 +147,10 @@ export default async function handler(req, res) {
 
     fit: {
       good_fit: [
-        "MEO and agent-ready business surfaces",
+        "managed agent operations",
         "production AI workflows with human approvals",
         "agent infrastructure connecting tools, APIs, data, and humans",
-        "AI operating systems for operations-heavy companies",
+        "governed operating layers for operations-heavy companies",
         "APIClaw integration, MCP/API execution, or agent control-plane work"
       ],
       not_fit: [
@@ -164,7 +164,7 @@ export default async function handler(req, res) {
     api_version: "2.0.0",
     supported_formats: ["json"],
     rate_limit: "100 requests/hour",
-    last_updated: "2026-06-02",
+    last_updated: "2026-07-08",
     agent_friendly: true,
     human_approval_required_for_external_actions: true
   };
