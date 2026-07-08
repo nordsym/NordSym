@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 100" role="img" aria-label="NordSym">
+  
+  <polygon points="50,7.68 58.28,41.72 92.32,50 58.28,58.28 50,92.32 41.72,58.28 7.68,50 41.72,41.72" fill="#A6432A"></polygon>
+  <circle cx="50" cy="50" r="5.98" fill="#EAE4D8"></circle>
+  <text class="wm" x="114" y="72" fill="#EAE4D8"><tspan font-weight="600">Nord</tspan><tspan font-weight="400">Sym</tspan></text>
+</svg>
