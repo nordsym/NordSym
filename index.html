@@ -1,1421 +1,973 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NordSym · The operating layer between your stack and agents</title>
+    <meta name="description" content="NordSym designs, builds, and operates the agent infrastructure layer inside the systems companies already run." />
+    <link rel="canonical" href="https://nordsym.com/" />
+    <link rel="icon" href="./assets/brand/nordsym-favicon.svg" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./assets/brand/apple-touch-icon.png" />
+    <link rel="alternate" href="/llms.txt" type="text/plain" />
+    <link rel="alternate" href="/agents.json" type="application/json" />
+    <link href="/assets/fonts/nordsym-fonts.css" rel="stylesheet" />
+    <meta property="og:title" content="NordSym · The operating layer between your stack and agents" />
+    <meta property="og:description" content="Agent architecture and operations for recurring business work inside your existing stack." />
+    <meta property="og:image" content="https://nordsym.com/assets/og/nordsym-og.png" />
+    <meta property="og:url" content="https://nordsym.com/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NordSym · The operating layer between your stack and agents" />
+    <meta name="twitter:description" content="Agent architecture and operations for recurring business work inside your existing stack." />
+    <meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png" />
+    <style>
+      :root {
+        --bg: #050608;
+        --bg-soft: #0b0d10;
+        --paper: #efe9dd;
+        --paper-dim: rgba(239, 233, 221, .72);
+        --paper-faint: rgba(239, 233, 221, .45);
+        --line: rgba(239, 233, 221, .16);
+        --line-strong: rgba(239, 233, 221, .34);
+        --cyan: #00d4ff;
+        --cyan-soft: rgba(0, 212, 255, .22);
+        --oxide: #a6432a;
+        --ink: #211e18;
+        --max: 1180px;
+        --ease: cubic-bezier(.2, .8, .2, 1);
+      }
 
-<html lang="en"><head><title>NordSym · The operating layer between your stack and agents</title><link rel="icon" href="./assets/brand/nordsym-favicon.svg" /><link rel="alternate icon" href="./favicon.ico" /><link rel="apple-touch-icon" href="./assets/brand/apple-touch-icon.png" /><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<style>/* vietnamese */
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; background: var(--bg); }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 78% 12%, rgba(0, 212, 255, .12), transparent 28rem),
+          radial-gradient(circle at 18% 32%, rgba(166, 67, 42, .10), transparent 26rem),
+          linear-gradient(180deg, #050608 0%, #08090c 46%, #050608 100%);
+        color: var(--paper);
+        font-family: Archivo, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+      }
 
-/* latin-ext */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+        background:
+          linear-gradient(rgba(239, 233, 221, .035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(239, 233, 221, .035) 1px, transparent 1px);
+        background-size: 34px 34px;
+        mask-image: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.22) 72%, rgba(0,0,0,.08));
+      }
 
-/* latin */
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; color: inherit; }
+      ::selection { background: var(--cyan); color: #020304; }
 
-/* vietnamese */
+      .site-shell { position: relative; min-height: 100vh; }
 
-/* latin-ext */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px clamp(18px, 4vw, 46px);
+        background: rgba(5, 6, 8, .72);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+      }
 
-/* latin */
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
 
-/* vietnamese */
+      .brand img { width: 132px; height: auto; }
 
-/* latin-ext */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 26px);
+        font: 600 11px/1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--paper-faint);
+      }
 
-/* latin */
+      .nav-links a { transition: color .18s var(--ease); }
+      .nav-links a:hover { color: var(--paper); }
 
-/* vietnamese */
+      .nav-cta {
+        border: 1px solid var(--line-strong);
+        padding: 12px 15px;
+        color: var(--paper);
+        position: relative;
+        overflow: hidden;
+      }
 
-/* latin-ext */
+      .nav-cta::after,
+      .cta::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, .18), transparent);
+        transform: translateX(-120%);
+        transition: transform .48s var(--ease);
+      }
 
-/* latin */
+      .nav-cta:hover::after,
+      .cta:hover::after { transform: translateX(120%); }
 
-/* vietnamese */
+      main { position: relative; }
+      section { position: relative; }
 
-/* latin-ext */
+      .wrap {
+        width: min(var(--max), calc(100% - clamp(36px, 7vw, 96px)));
+        margin: 0 auto;
+      }
 
-/* latin */
+      .hero {
+        min-height: calc(100vh - 74px);
+        display: grid;
+        align-items: center;
+        padding: clamp(78px, 12vh, 140px) 0 clamp(68px, 10vh, 120px);
+      }
 
-/* cyrillic-ext */
+      .eyebrow {
+        font: 600 11px/1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--paper-faint);
+        margin: 0 0 28px;
+      }
 
-/* cyrillic */
+      .hero h1 {
+        max-width: 1010px;
+        margin: 0;
+        font: 800 clamp(58px, 9.5vw, 152px)/.88 Archivo, Inter, sans-serif;
+        letter-spacing: -.07em;
+      }
 
-/* vietnamese */
+      .hero-copy {
+        max-width: 780px;
+        margin: 34px 0 0;
+        color: var(--paper-dim);
+        font: 400 clamp(18px, 2vw, 24px)/1.42 Archivo, Inter, sans-serif;
+        letter-spacing: -.015em;
+      }
 
-/* latin-ext */
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 38px;
+      }
 
-/* latin */
+      .cta {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border: 1px solid var(--line-strong);
+        background: var(--paper);
+        color: var(--ink);
+        font: 700 12px/1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
 
-/* cyrillic-ext */
+      .cta-secondary { background: transparent; color: var(--paper); }
 
-/* cyrillic */
+      .pulse-spine {
+        position: absolute;
+        left: clamp(18px, 4vw, 46px);
+        right: clamp(18px, 4vw, 46px);
+        top: clamp(210px, 38vh, 360px);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, .32), transparent);
+        pointer-events: none;
+      }
 
-/* vietnamese */
+      .pulse-spine::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 18px var(--cyan), 0 0 42px rgba(0, 212, 255, .36);
+        animation: pulseX 4.2s var(--ease) infinite;
+      }
 
-/* latin-ext */
+      @keyframes pulseX {
+        0% { transform: translateX(0); opacity: 0; }
+        8% { opacity: 1; }
+        62% { opacity: 1; }
+        72% { transform: translateX(calc(100vw - clamp(36px, 8vw, 92px))); opacity: 0; }
+        100% { transform: translateX(calc(100vw - clamp(36px, 8vw, 92px))); opacity: 0; }
+      }
 
-/* latin */
+      .layer {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        padding: clamp(86px, 13vh, 150px) 0;
+        border-top: 1px solid var(--line);
+      }
 
-/* cyrillic-ext */
+      .section-title {
+        max-width: 760px;
+        margin: 0 0 38px;
+        font: 760 clamp(34px, 6vw, 78px)/.95 Archivo, Inter, sans-serif;
+        letter-spacing: -.05em;
+      }
 
-/* cyrillic */
+      .section-copy {
+        max-width: 680px;
+        color: var(--paper-dim);
+        font: 400 clamp(17px, 1.8vw, 21px)/1.5 Archivo, Inter, sans-serif;
+        margin: 0;
+      }
 
-/* vietnamese */
+      .layer-diagram {
+        margin-top: 56px;
+        min-height: 520px;
+        border: 1px solid var(--line-strong);
+        background:
+          linear-gradient(rgba(239, 233, 221, .04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(239, 233, 221, .04) 1px, transparent 1px),
+          rgba(255, 255, 255, .018);
+        background-size: 32px 32px;
+        position: relative;
+        overflow: hidden;
+      }
 
-/* latin-ext */
+      .layer-diagram svg { width: 100%; height: 100%; min-height: 520px; display: block; }
+      .diagram-line { stroke: rgba(239, 233, 221, .42); stroke-width: 1; fill: none; }
+      .diagram-node { fill: rgba(5, 6, 8, .88); stroke: rgba(239, 233, 221, .54); stroke-width: 1; }
+      .diagram-layer { fill: rgba(0, 212, 255, .045); stroke: rgba(0, 212, 255, .68); stroke-width: 1.2; }
+      .diagram-gate { fill: rgba(0, 212, 255, .16); stroke: var(--cyan); }
+      .diagram-label {
+        fill: rgba(239, 233, 221, .76);
+        font: 600 11px "IBM Plex Mono", ui-monospace, monospace;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+      }
+      .diagram-small {
+        fill: rgba(239, 233, 221, .46);
+        font: 500 9px "IBM Plex Mono", ui-monospace, monospace;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+      }
+      .packet {
+        fill: var(--cyan);
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, .75));
+      }
 
-/* latin */
+      .operations {
+        padding: clamp(88px, 12vh, 150px) 0;
+        border-top: 1px solid var(--line);
+      }
 
-</style><style>
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background-color:#efe9dd;
-    background-image:
-      linear-gradient(rgba(33,30,24,.035) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(33,30,24,.035) 1px,transparent 1px);
-    background-size:28px 28px;
-    color:#211e18;
-    font-family:'Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif',system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
-  a{color:#b0492c;text-decoration:none}
-  a:hover{color:#8f3a20}
-  ::selection{background:#b0492c;color:#f4efe4}
-  @keyframes nsdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-  @keyframes nsfade{from{opacity:0}to{opacity:1}}
-  @keyframes nsrise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes nsstamp{0%{transform:scale(1)}35%{transform:scale(.9)}100%{transform:scale(1)}}
-  @keyframes nsblink{0%,100%{opacity:.35}50%{opacity:1}}
-</style><meta content="NordSym builds and operates the governed layer between your stack and the agents that run recurring business operations." name="description"/><link href="https://nordsym.com/" rel="canonical"/>
-<meta property="og:title" content="NordSym · Managed Agent Operations"/>
-<meta property="og:description" content="NordSym builds and operates the governed operating layer between your stack and the agents that run recurring business operations."/>
-<meta property="og:image" content="https://nordsym.com/assets/og/nordsym-og.png"/>
-<meta property="og:url" content="https://nordsym.com/"/>
-<meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="NordSym · Managed Agent Operations"/>
-<meta name="twitter:description" content="The governed operating layer between your stack and the agents that run recurring business operations."/>
-<meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png"/><link href="/llms.txt" rel="alternate" type="text/plain"/><link href="/agents.json" rel="alternate" type="application/json"/><link href="/assets/fonts/nordsym-fonts.css" rel="stylesheet"/>
-<style id="nordsym-polish-css">
-:root {
-  --ns-paper: #efe9dd;
-  --ns-paper-soft: #f6f2ea;
-  --ns-ink: #211e18;
-  --ns-ink-muted: rgba(33, 30, 24, .62);
-  --ns-line: rgba(33, 30, 24, .18);
-  --ns-oxide: #b0492c;
-  --ns-oxide-soft: rgba(176, 73, 44, .12);
-  --ns-ease: cubic-bezier(.4,0,.2,1);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; }
-body { max-width: 100%; overflow-x: hidden; }
-body { font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif !important; }
-img, svg { max-width: 100%; }
-a, button { -webkit-tap-highlight-color: transparent; }
-a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-  outline: 2px solid var(--ns-oxide);
-  outline-offset: 3px;
-}
-.ns-linkish,
-nav a,
-footer a,
-#ns09 a {
-  background-image: linear-gradient(var(--ns-oxide), var(--ns-oxide));
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 0 1px;
-  transition: background-size .2s var(--ns-ease), color .2s var(--ns-ease), transform .2s var(--ns-ease);
-}
-.ns-linkish:hover,
-nav a:hover,
-footer a:hover,
-#ns09 a:hover { background-size: 100% 1px; color: var(--ns-oxide) !important; }
-nav a { position: relative; }
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 11px;
-  right: 11px;
-  bottom: -10px;
-  height: 2px;
-  background: var(--ns-oxide);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .16s var(--ns-ease);
-}
-nav a:hover::after { transform: scaleX(1); }
-header { transition: box-shadow .25s var(--ns-ease), border-color .25s var(--ns-ease); }
-html.ns-scrolled header { box-shadow: 0 1px 0 rgba(33,30,24,.18); }
-.ns-brand-lockup {
-  display: block;
-  width: 138px;
-  height: auto;
-}
-.ns-brand-lockup-footer {
-  display: block;
-  width: 152px;
-  height: auto;
-  margin-bottom: 12px;
-}
-.scp0, .ns-cta, #ns09 button, #ns07 a, .ns-book-button {
-  transition: transform .18s var(--ns-ease), background .18s var(--ns-ease), color .18s var(--ns-ease), border-color .18s var(--ns-ease) !important;
-}
-.scp0:hover, .ns-cta:hover, .ns-book-button:hover { transform: translateY(-1px); }
-.scp0:active, .ns-cta:active, .ns-book-button:active, #ns09 button:active { transform: translateY(1px) scale(.99); }
-.scp0:hover span:last-child, .ns-book-button:hover span:last-child { transform: translateX(3px); }
-.scp0 span:last-child, .ns-book-button span:last-child { display: inline-block; transition: transform .18s var(--ns-ease); }
-@keyframes nscorner { 0%, 100% { opacity: .5; } 50% { opacity: .34; } }
-.ns-reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ns-ease), transform .5s var(--ns-ease); }
-.ns-reveal.ns-in { opacity: 1; transform: none; }
-#ns02 .ns-detail-card svg * { transition: stroke-dashoffset .6s var(--ns-ease), opacity .25s var(--ns-ease); }
-#ns02 .ns-detail-card { position: relative; overflow: hidden; transition: background .22s var(--ns-ease); }
-#ns02 .ns-detail-card:hover { background: rgba(246,242,234,.82) !important; }
-#ns02 .ns-detail-card:hover::after {
-  content: "";
-  position: absolute;
-  top: 48px;
-  right: 42px;
-  width: 8px;
-  height: 8px;
-  background: var(--ns-oxide);
-}
-.ns-row {
-  position: relative;
-  cursor: pointer;
-  transition: background .18s var(--ns-ease), color .18s var(--ns-ease);
-}
-.ns-row::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--ns-oxide);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .18s var(--ns-ease);
-}
-.ns-row:hover, .ns-row.ns-open { background: rgba(33,30,24,.045) !important; }
-.ns-row:hover::before, .ns-row.ns-open::before { transform: scaleY(1); }
-.ns-row:hover > div:first-child, .ns-row.ns-open > div:first-child { color: var(--ns-oxide) !important; }
-.ns-row .ns-plus {
-  margin-left: 8px;
-  color: var(--ns-oxide);
-  display: inline-block;
-  transition: transform .22s var(--ns-ease);
-}
-.ns-row.ns-open .ns-plus { transform: rotate(45deg); }
-.ns-cadence {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.ns-cadence-dot {
-  width: 5px;
-  height: 5px;
-  background: var(--ns-oxide);
-  display: inline-block;
-  animation: nsblink 3s ease-in-out infinite;
-}
-.ns-drawer {
-  display: grid;
-  grid-template-columns: minmax(220px, .85fr) 1fr;
-  gap: 20px;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  border-top: 0 solid rgba(33,30,24,.18);
-  background: rgba(246,242,234,.72);
-  transition: max-height .34s var(--ns-ease), opacity .24s var(--ns-ease), padding .24s var(--ns-ease), border-width .24s var(--ns-ease);
-  padding: 0 18px;
-}
-.ns-drawer.ns-open {
-  max-height: 420px;
-  opacity: 1;
-  padding: 18px;
-  border-top-width: 1px;
-}
-.ns-mini-schematic {
-  border: 1px solid rgba(33,30,24,.22);
-  background-image: linear-gradient(rgba(33,30,24,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(33,30,24,.045) 1px, transparent 1px);
-  background-size: 22px 22px;
-  min-height: 128px;
-  display: grid;
-  place-items: center;
-}
-.ns-mini-schematic svg { width: min(100%, 360px); height: auto; }
-.ns-drawer-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  font: 500 11px/1.55 "IBM Plex Mono", monospace;
-  letter-spacing: .04em;
-  color: rgba(33,30,24,.62);
-  text-transform: uppercase;
-}
-.ns-drawer-copy b { color: var(--ns-ink); font-weight: 600; }
-#ns04 [style*="grid-template-columns"] > div,
-#ns05 [style*="grid-template-columns"] > div,
-#ns07 .ns-row { transition: opacity .22s var(--ns-ease), background .2s var(--ns-ease), transform .2s var(--ns-ease); }
-#ns04 [style*="grid-template-columns"]:hover > div { opacity: .58; }
-#ns04 [style*="grid-template-columns"] > div:hover { opacity: 1; transform: translateY(-2px); }
-#ns05 [style*="grid-template-columns"] > div { position: relative; overflow: hidden; }
-#ns05 [style*="grid-template-columns"] > div::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background: repeating-linear-gradient(45deg, rgba(176,73,44,.12) 0 1px, transparent 1px 9px);
-  transition: opacity .2s var(--ns-ease);
-  pointer-events: none;
-}
-#ns05 [style*="grid-template-columns"] > div:hover::after { opacity: .45; }
-.ns-operator-shell {
-  display: grid;
-  grid-template-columns: minmax(260px, .82fr) 1fr;
-  border: 1px solid var(--ns-ink);
-  background: rgba(246,242,234,.46);
-}
-.ns-operator-id {
-  border-right: 1px solid var(--ns-ink);
-  padding: 18px;
-  display: grid;
-  gap: 14px;
-  align-content: start;
-}
-.ns-operator-head {
-  display: grid;
-  grid-template-columns: 86px 1fr;
-  gap: 14px;
-  align-items: center;
-}
-.ns-founder-frame {
-  position: relative;
-  width: 86px;
-  aspect-ratio: 1;
-  border: 1px solid var(--ns-ink);
-  background-image: repeating-linear-gradient(45deg, rgba(33,30,24,.08) 0 5px, transparent 5px 10px);
-  overflow: hidden;
-}
-.ns-founder-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.55) contrast(.95); opacity: .86; }
-.ns-founder-frame::before,
-.ns-founder-frame::after {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  pointer-events: none;
-  opacity: .7;
-  transition: opacity .2s var(--ns-ease);
-  background:
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/20px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) left top/1px 20px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/20px 1px no-repeat,
-    linear-gradient(var(--ns-oxide), var(--ns-oxide)) right bottom/1px 20px no-repeat;
-}
-.ns-founder-frame:hover img { filter: saturate(.8) contrast(.98); opacity: 1; }
-.ns-operator-meta {
-  font: 600 10px/1.5 "IBM Plex Mono", monospace;
-  letter-spacing: .08em;
-  color: rgba(33,30,24,.58);
-  text-transform: uppercase;
-}
-.ns-operator-meta strong {
-  display: block;
-  color: var(--ns-ink);
-  font: 800 18px/1.05 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;
-  letter-spacing: -.015em;
-  text-transform: none;
-  margin-bottom: 5px;
-}
-.ns-operator-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid rgba(33,30,24,.22);
-  border-right: 0;
-  border-bottom: 0;
-}
-.ns-operator-field {
-  padding: 12px;
-  border-right: 1px solid rgba(33,30,24,.22);
-  border-bottom: 1px solid rgba(33,30,24,.22);
-}
-.ns-operator-field span {
-  display: block;
-  font: 600 9.5px/1 "IBM Plex Mono", monospace;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: rgba(33,30,24,.48);
-  margin-bottom: 8px;
-}
-.ns-operator-field b {
-  font: 700 13px/1.18 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;
-}
-.ns-operator-content {
-  padding: 30px;
-  display: grid;
-  gap: 18px;
-  align-content: center;
-}
-.ns-operator-schematic {
-  display: none;
-}
-.ns-operator-schematic svg { width: 100%; height: auto; display: block; }
-#ns08 .ns-faq-item button { transition: background .18s var(--ns-ease); }
-#ns08 .ns-faq-item button:hover { background: rgba(33,30,24,.035) !important; }
-#ns08 .ns-faq-item button span:nth-child(2) { transition: transform .2s var(--ns-ease), color .2s var(--ns-ease); }
-#ns08 .ns-faq-item:not(.ns-open) button:hover span:nth-child(2) { transform: translateX(4px); }
-#ns08 .ns-faq-item button span:first-child { transition: color .2s var(--ns-ease); }
-#ns08 .ns-faq-item button:hover span:first-child { color: var(--ns-oxide) !important; }
-#ns08 .ns-faq-panel { transition: max-height .34s var(--ns-ease), opacity .22s var(--ns-ease); }
-#ns09 {
-  background: var(--ns-paper) !important;
-  color: var(--ns-ink) !important;
-  border-top: 1px solid var(--ns-ink) !important;
-  border-bottom: 1px solid var(--ns-ink) !important;
-}
-.ns-context-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.ns-context-rail {
-  min-height: 64px;
-  display: grid;
-  grid-template-columns: auto minmax(180px, 1fr) auto;
-  align-items: center;
-  gap: 18px;
-  font-family: "IBM Plex Mono", monospace;
-}
-.ns-context-kicker, .ns-context-handle, .ns-context-actions a, .ns-context-actions button {
-  font: 600 10px/1 "IBM Plex Mono", monospace;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-.ns-context-kicker { display: inline-flex; align-items: center; gap: 10px; color: rgba(33,30,24,.58); white-space: nowrap; }
-.ns-file-glyph { width: 18px; height: 22px; border: 1px solid var(--ns-ink); position: relative; display: inline-block; }
-.ns-file-glyph::after { content: ""; position: absolute; right: -1px; top: -1px; border-left: 7px solid transparent; border-bottom: 7px solid rgba(33,30,24,.22); }
-.ns-context-handle { border: 0; background: none; padding: 0; text-align: left; cursor: pointer; color: var(--ns-ink); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ns-context-handle span { color: rgba(33,30,24,.48); }
-.ns-context-actions { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
-.ns-context-actions button {
-  background: transparent;
-  border: 1px solid rgba(33,30,24,.34);
-  color: var(--ns-ink);
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.ns-context-actions button.ns-copied { color: var(--ns-oxide); border-color: var(--ns-oxide); transform: scale(.96); }
-.ns-context-actions a { color: rgba(33,30,24,.68); text-decoration: none; }
-.ns-context-drawer {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height .34s var(--ns-ease), opacity .22s var(--ns-ease), padding .22s var(--ns-ease);
-}
-.ns-context-drawer.ns-open { max-height: 520px; opacity: 1; padding: 0 0 18px; }
-.ns-context-drawer pre {
-  margin: 0;
-  padding: 16px 18px;
-  border: 1px solid rgba(33,30,24,.22);
-  background: rgba(246,242,234,.72);
-  font: 400 11.5px/1.65 "IBM Plex Mono", monospace;
-  white-space: pre-wrap;
-  overflow-x: auto;
-  color: rgba(33,30,24,.72);
-}
-.ns-book-note { color: rgba(33,30,24,.5); }
-@media (max-width: 900px) {
-  #ns01 > div:nth-child(2), #ns06 > div:nth-child(2), #ns07 > div:nth-child(3), main > div { grid-template-columns: 1fr !important; }
-  #ns02 > div:nth-child(3), #ns04 [style*="grid-template-columns"], #ns05 [style*="grid-template-columns"], footer [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
-  #ns03 > div[style*="border: 1px"] > div:first-child,
-  #ns07 > div[style*="border: 1px"] > div:first-child { display: none !important; }
-  .ns-row { grid-template-columns: 62px 1fr !important; }
-  .ns-row > div:nth-child(3), .ns-row > div:nth-child(4) { grid-column: 2; border-right: 0 !important; padding-top: 0 !important; }
-  .ns-drawer { grid-template-columns: 1fr; }
-  .ns-context-rail { grid-template-columns: 1fr; gap: 10px; padding: 14px 0; }
-  .ns-context-actions { flex-wrap: wrap; }
-}
-@media (max-width: 560px) {
-  section, main, footer > div, header > div { padding-left: 18px !important; padding-right: 18px !important; }
-  .ns-context-wrap { padding: 0 18px; }
-  #ns08 button { gap: 10px !important; }
-  #ns08 p { padding-left: 0 !important; }
-}
-@media (max-width: 900px) {
-  header > div {
-    height: auto !important;
-    min-height: 56px;
-    flex-wrap: wrap;
-    align-items: center !important;
-    gap: 8px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-  }
-  header [style*="MANAGED AGENT OPERATIONS"] { display: none !important; }
-  header nav {
-    display: flex !important;
-    order: 3;
-    flex: 0 0 100%;
-    gap: 4px !important;
-    flex-wrap: wrap;
-    overflow-x: visible;
-    padding: 4px 0 2px;
-  }
-  header nav a {
-    white-space: nowrap;
-    border: 1px solid rgba(33,30,24,.14);
-    background: rgba(246,242,234,.72);
-    padding: 6px 8px !important;
-    font-size: 10px !important;
-    letter-spacing: .07em !important;
-  }
-  header nav a:last-child { margin-left: 0 !important; }
-  .ns-drawer.ns-open { max-height: 980px; }
-  .ns-drawer.ns-open { max-height: none; overflow: visible; }
-  .ns-drawer-copy {
-    justify-content: flex-start;
-    font-size: 10.5px;
-    line-height: 1.6;
-  }
-  .ns-mini-schematic { min-height: 108px; }
-  .ns-operator-shell { grid-template-columns: 1fr; }
-  .ns-operator-id { border-right: 0; border-bottom: 1px solid var(--ns-ink); }
-  .ns-operator-content { padding: 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
-}
+      .operation-list {
+        margin-top: 48px;
+        border-top: 1px solid var(--line-strong);
+      }
 
+      .operation {
+        display: grid;
+        grid-template-columns: 170px 1fr 18px;
+        gap: 24px;
+        align-items: baseline;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+      }
 
+      .operation span {
+        font: 600 11px/1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+        color: var(--paper-faint);
+      }
 
-.ns-mobile-hero-schematic { display: none; width: 100%; height: auto; }
-@media (max-width: 760px) {
-  #dc-root, .sc-host, .sc-host > div { max-width: 100vw; overflow-x: hidden; }
-  h1, h2, h3, p, span, a, button { overflow-wrap: break-word; }
-  #ns01 p { max-width: calc(100vw - 36px) !important; }
-  .ns-hero-actions { flex-direction: column; align-items: stretch; }
-  .ns-hero-cta { width: 100%; text-align: center; }
-  .ns-schematic-sheet { max-width: 100%; overflow: hidden; }
-  .ns-operator-head { grid-template-columns: 1fr; }
-  .ns-founder-frame { display: none; }
-  .ns-operator-grid { grid-template-columns: 1fr; }
-  .ns-operator-schematic { padding: 12px; }
-  .ns-desktop-hero-schematic { display: none !important; }
-  .ns-mobile-hero-schematic { display: block; }
-  .ns-schematic-sheet figcaption { flex-direction: column; gap: 7px; }
-}
-#ns06a .ns-sector-cell { transition: background .18s var(--ns-ease), transform .18s var(--ns-ease); }
-#ns06a .ns-sector-cell:hover { background: rgba(176,73,44,.06); transform: translateY(-1px); }
-@media (max-width: 560px) {
-  footer [style*="justify-content: space-between"] { align-items: flex-start !important; flex-direction: column; gap: 8px; }
-}
+      .operation strong {
+        display: block;
+        font: 760 clamp(24px, 3vw, 42px)/1 Archivo, Inter, sans-serif;
+        letter-spacing: -.035em;
+        margin-bottom: 10px;
+      }
 
-/* NordSym pass: softer drawing UI, clearer AI context rail, more alive schematics. */
-.ns-schematic-sheet { overflow: hidden; transition: background .25s var(--ns-ease), box-shadow .25s var(--ns-ease), transform .25s var(--ns-ease); }
-.ns-schematic-sheet:hover { background: linear-gradient(90deg, rgba(176,73,44,.08) 1px, transparent 1px), linear-gradient(0deg, rgba(176,73,44,.06) 1px, transparent 1px), rgba(246,242,234,.72) !important; background-size: 38px 38px, 38px 38px, auto; box-shadow: 0 22px 60px rgba(33,30,24,.08); }
-@media (min-width: 980px) {
-  #ns01 {
-    min-height: calc(100vh - 56px);
-    padding-top: clamp(64px, 9vh, 110px) !important;
-  }
-  #ns01 .ns-schematic-sheet {
-    position: absolute !important;
-    right: 32px;
-    top: clamp(110px, 15vh, 164px);
-    width: min(40vw, 520px);
-  }
-  #ns01 h1, #ns01 p, #ns01 .ns-hero-actions {
-    position: relative;
-    z-index: 1;
-  }
-}
-.ns-context-rail-v2 { grid-template-columns: minmax(220px, 1.1fr) minmax(160px, .85fr) auto; gap: 18px; }
-.ns-context-intro { min-width: 0; }
-.ns-context-intro .ns-context-handle { display: block; margin-top: 6px; font: 700 18px/1.05 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -.01em; white-space: normal; }
-.ns-context-explain { margin: 6px 0 0; max-width: 34ch; font: 400 12.5px/1.42 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33,30,24,.62); }
-.ns-context-file { align-self: center; padding: 10px 12px; border: 1px solid rgba(33,30,24,.18); background: rgba(246,242,234,.6); font: 500 10px/1.35 'IBM Plex Mono', monospace; letter-spacing: .06em; color: rgba(33,30,24,.62); text-transform: uppercase; }
-.ns-context-actions-v2 { justify-content: flex-end; gap: 8px; }
-.ns-context-copy { min-height: 38px; }
-.ns-ai-link { width: 40px; height: 40px; border: 1px solid rgba(33,30,24,.2); display: inline-flex !important; align-items: center; justify-content: center; padding: 0 !important; background: rgba(239,233,221,.74); transition: transform .18s var(--ns-ease), background .18s var(--ns-ease), border-color .18s var(--ns-ease); position: relative; }
-.ns-ai-link:hover { transform: translateY(-2px); background: #f6f2ea; border-color: rgba(176,73,44,.55); }
-.ns-ai-logo { width: 19px; height: 19px; object-fit: contain; filter: grayscale(1) contrast(.85); opacity: .82; }
-.ns-ai-link:hover .ns-ai-logo { filter: grayscale(0) contrast(1); opacity: 1; }
-.ns-ai-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.ns-founder-contact { display: inline-block; margin-top: 10px; color: rgba(33,30,24,.78); text-decoration: none; text-transform: none; letter-spacing: .02em; font: 600 11px/1 'IBM Plex Mono', monospace; }
-.ns-founder-contact:hover { color: #b0492c; }
-@media (max-width: 760px) { .ns-context-rail-v2 { grid-template-columns: 1fr; align-items: stretch; } .ns-context-actions-v2 { justify-content: flex-start; flex-wrap: wrap; } .ns-ai-link { width: 38px; height: 38px; } }
+      .operation p {
+        margin: 0;
+        max-width: 700px;
+        color: var(--paper-dim);
+        font: 400 17px/1.55 Archivo, Inter, sans-serif;
+      }
 
+      .live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 16px var(--cyan);
+        animation: breathe 2.6s ease-in-out infinite;
+      }
 
-.ns-hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin: 20px 0 36px; }
-.ns-hero-cta { display:inline-flex; align-items:center; justify-content:center; min-height:42px; border:1px solid #211e18; padding:0 16px; font:700 10.5px/1 'IBM Plex Mono', monospace; letter-spacing:.11em; text-transform:uppercase; text-decoration:none; transition: transform .18s var(--ns-ease), background .18s var(--ns-ease), color .18s var(--ns-ease), border-color .18s var(--ns-ease); }
-.ns-hero-cta:hover { transform: translateY(-2px); }
-.ns-hero-cta-primary { background:#211e18; color:#efe9dd; }
-.ns-hero-cta-primary:hover { background:#b0492c; border-color:#b0492c; }
-.ns-hero-cta-secondary { color:#211e18; background:rgba(239,233,221,.45); }
-.ns-hero-cta-secondary:hover { border-color:#b0492c; color:#8e3d27; background:rgba(176,73,44,.07); }
-.ns-context-file-button { cursor:pointer; text-align:left; display:grid; gap:3px; }
-.ns-context-file-button:hover { border-color:rgba(176,73,44,.55); background:rgba(176,73,44,.06); }
-.ns-context-file-name { color:#211e18; }
-.ns-context-file-note { color:rgba(33,30,24,.55); font-weight:500; }
-</style>
+      .operation:nth-child(2) .live-dot { animation-delay: .4s; }
+      .operation:nth-child(3) .live-dot { animation-delay: .8s; }
+      .operation:nth-child(4) .live-dot { animation-delay: 1.2s; }
 
-<style id="nordsym-proof-css">
-.ns-sector-cell { border-right:1px solid rgb(33,30,24); border-bottom:1px solid rgb(33,30,24); padding:18px 18px 20px; min-height:112px; transition:background .18s ease, transform .18s ease; }
-.ns-sector-cell:hover { background:rgba(176,73,44,.055); transform:translateY(-2px); }
-.ns-sector-cell span { display:block; font:600 10px/1 "IBM Plex Mono"; letter-spacing:.12em; color:#b0492c; margin-bottom:16px; }
-.ns-sector-cell strong { display:block; font:700 18px/1.15 Archivo,-apple-system,BlinkMacSystemFont,Inter,sans-serif; letter-spacing:-.01em; margin-bottom:8px; }
-.ns-sector-cell em { display:block; font:400 13px/1.45 Archivo,-apple-system,BlinkMacSystemFont,Inter,sans-serif; color:rgba(33,30,24,.62); font-style:normal; }
-@media (max-width: 760px) { .ns-sector-grid { grid-template-columns:1fr !important; } }
-</style>
+      @keyframes breathe {
+        0%, 100% { opacity: .35; transform: scale(.82); }
+        50% { opacity: 1; transform: scale(1.15); }
+      }
 
-<script id="nordsym-posthog">
-(function(){
-  if (window.__nordsymPosthogLoaded) return;
-  window.__nordsymPosthogLoaded = true;
-  window.posthog = window.posthog || [];
-  var ph = window.posthog;
-  ph._i = ph._i || [];
-  ph.init = ph.init || function(token, config, name){
-    var target = name ? ph[name] = [] : ph;
-    target.people = target.people || [];
-    target.toString = function(){ return 'posthog'; };
-    target.people.toString = function(){ return 'posthog.people'; };
-    var methods = 'capture register set_config'.split(' ');
-    methods.forEach(function(method){ target[method] = function(){ target.push([method].concat(Array.prototype.slice.call(arguments))); }; });
-    ph._i.push([token, config, name]);
-  };
-  ph.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
-    api_host: 'https://eu.i.posthog.com',
-    ui_host: 'https://eu.posthog.com',
-    defaults: '2026-05-30',
-    cookieless_mode: 'always',
-    autocapture: false,
-    capture_pageview: false,
-    disable_session_recording: true,
-    loaded: function(posthog) {
-      posthog.register({ product: 'Nordsym-Com', surface: location.pathname === '/book/' ? 'book' : 'home' });
-      posthog.capture('$pageview', { path: location.pathname, cookieless: true });
-    }
-  });
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://eu-assets.i.posthog.com/static/array.js';
-  document.head.appendChild(script);
-})();
-</script>
+      .loop {
+        padding: clamp(86px, 13vh, 150px) 0;
+        border-top: 1px solid var(--line);
+      }
 
-<style id="nordsym-context-copy-css">
-.ns-context-actions-wrap { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
-.ns-context-actions-label { font:600 9.5px/1 "IBM Plex Mono"; letter-spacing:.12em; text-transform:uppercase; color:rgba(33,30,24,.48); }
-@media (max-width: 760px) { .ns-context-actions-wrap { width:100%; } }
-</style>
+      .loop-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line-strong);
+        margin-top: 42px;
+      }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "NordSym AB",
-  "url": "https://nordsym.com/",
-  "image": "https://nordsym.com/assets/og/nordsym-og.png",
-  "description": "NordSym builds and operates governed agent infrastructure inside existing company stacks.",
-  "founder": { "@type": "Person", "name": "Gustav Hemmingsson" },
-  "areaServed": "SE",
-  "address": { "@type": "PostalAddress", "addressCountry": "SE" },
-  "taxID": "559535-5768",
-  "sameAs": ["https://github.com/nordsym"]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Do we need to replace our stack?","acceptedAnswer":{"@type":"Answer","text":"No. NordSym integrates into existing systems and operates on top of them while the client keeps ownership and control."}},
-    {"@type":"Question","name":"What is an operating layer?","acceptedAnswer":{"@type":"Answer","text":"It is the connective layer that gives agents integrations, context, a defined mandate, and governance at the boundary."}},
-    {"@type":"Question","name":"What do you actually operate?","acceptedAnswer":{"@type":"Answer","text":"Recurring business operations such as revenue operations, publishing, support triage, finance reconciliation, data hygiene, and reporting."}},
-    {"@type":"Question","name":"Is this software or a service?","acceptedAnswer":{"@type":"Answer","text":"Both. NordSym is founder-led and operates the layer it designs."}},
-    {"@type":"Question","name":"Where does client data go?","acceptedAnswer":{"@type":"Answer","text":"Client data stays inside approved systems and scopes. Data-processing details are documented in the privacy policy."}},
-    {"@type":"Question","name":"Can we stop, and who owns what was built?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every operated operation has a stop control, and clients own their surfaces, channels, and data."}}
-  ]
-}
-</script>
-</head>
-<body>
-<div id="dc-root"><div class="sc-host"><div style="min-height: 100vh; position: relative;">
-<header style="position: sticky; top: 0px; z-index: 40; background: rgba(239, 233, 221, 0.9); backdrop-filter: blur(6px); border-bottom: 1px solid rgb(33, 30, 24);">
-<div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px; display: flex; align-items: stretch; justify-content: space-between; height: 56px;">
-<div style="display: flex; align-items: center; gap: 14px;">
-<img alt="NordSym" class="ns-brand-lockup" src="./assets/brand/nordsym-lockup.svg"/>
-<span style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5); border-left: 1px solid rgba(33, 30, 24, 0.2); padding-left: 14px; display: inline-flex; align-items: center;'>MANAGED AGENT OPERATIONS</span>
-</div>
-<nav style='display: flex; align-items: center; gap: 2px; font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.08em; text-transform: uppercase;'>
-<a href="#ns01" style="color: rgb(33, 30, 24); padding: 6px 11px;">Arrangement</a>
-<a href="#ns03" style="color: rgb(33, 30, 24); padding: 6px 11px;">Operations</a>
-<a href="#ns04" style="color: rgb(33, 30, 24); padding: 6px 11px;">Model</a>
-<a href="#ns07" style="color: rgb(33, 30, 24); padding: 6px 11px;">Commercial</a>
-<a href="#ns08" style="color: rgb(33, 30, 24); padding: 6px 11px;">FAQ</a>
-<a href="./book/" style="margin-left: 8px; padding: 8px 15px; background: rgb(33, 30, 24); color: rgb(239, 233, 221); display: inline-flex; align-items: center; gap: 7px;">BOOK A REVIEW <span style="color: rgb(224, 138, 107);">→</span></a>
-</nav>
-</div>
-</header>
-<section id="ns01" style="max-width: 1240px; margin: 0px auto; padding: 56px 32px 24px; position: relative;">
-<div style='display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px; font: 500 10.5px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5); text-transform: uppercase;'>
-<span>NS-01  /  General Arrangement</span>
-</div>
-<h1 style="font: 700 clamp(34px, 5.4vw, 68px) / 1.03 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -0.02em; max-width: 16ch; margin: 0px 0px 22px;">The operating layer between your stack and the agents that run it.</h1>
-<p style="font: 400 clamp(15px, 1.5vw, 18px) / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.7); max-width: 60ch; margin: 0px 0px 8px;">NordSym is a forward-deployed engineering firm. We design, build, and operate the layer that lets AI agents safely run real business operations inside the stack you already have.</p>
-<p style='font: 500 11px / 1.6 "IBM Plex Mono"; letter-spacing: 0.04em; color: rgba(33, 30, 24, 0.55); max-width: 60ch; margin: 0px 0px 40px;'>Your stack stays yours. We integrate into your stack, give agents context and a mandate, meaning a written scope of what they may do, govern at the boundary, and run the work continuously.</p>
-<div class="ns-hero-actions"><a class="ns-hero-cta ns-hero-cta-primary" href="/book/" data-track-cta="book_operating_review">Book an operating review</a><a class="ns-hero-cta ns-hero-cta-secondary" href="#ns03" data-track-cta="see_operations">See the operations</a></div><figure class="ns-schematic-sheet" style="margin: 0px; border: 1px solid rgb(33, 30, 24); background: rgba(246, 242, 234, 0.55); position: relative;">
-<figcaption style='display: flex; justify-content: space-between; border-bottom: 1px solid rgba(33, 30, 24, 0.35); padding: 9px 14px; font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.6);'>
-<span>Dwg. NS-01 · General Arrangement</span>
-<span>Any stack → Operating layer → Business operations</span>
-</figcaption>
-<svg class="ns-mobile-hero-schematic" font-family="'IBM Plex Mono',monospace" viewBox="0 0 390 500" role="img" aria-label="Simplified NordSym operating layer schematic" xmlns="http://www.w3.org/2000/svg">
-<title>Any stack flows through the NordSym operating layer and governance rail into recurring operations.</title>
-<rect x="36" y="36" width="318" height="78" fill="none" stroke="#211e18" stroke-width="1.5"/>
-<text x="58" y="83" fill="#211e18" font-size="13" font-weight="700" letter-spacing="2">ANY STACK</text>
-<path d="M195 114 V156" stroke="#211e18" stroke-width="1.3"/>
-<rect x="54" y="156" width="282" height="154" fill="none" stroke="#211e18" stroke-width="1.5"/>
-<text x="78" y="194" fill="#211e18" font-size="12" font-weight="700" letter-spacing="2">NORDSYM OPERATING LAYER</text>
-<rect x="86" y="222" width="92" height="38" fill="none" stroke="#211e18" stroke-width="1"/>
-<text x="104" y="246" fill="#211e18" font-size="9" letter-spacing="1">CONTEXT</text>
-<rect x="204" y="222" width="92" height="38" fill="none" stroke="#211e18" stroke-width="1"/>
-<text x="225" y="246" fill="#211e18" font-size="9" letter-spacing="1">AGENT</text>
-<rect x="180" y="268" width="30" height="40" fill="rgba(176,73,44,.08)" stroke="#b0492c" stroke-width="1.4"/>
-<text x="226" y="294" fill="#b0492c" font-size="9" font-weight="700" letter-spacing="1.5">RAIL</text>
-<path d="M195 310 V350" stroke="#211e18" stroke-width="1.3"/>
-<rect x="36" y="350" width="318" height="86" fill="none" stroke="#211e18" stroke-width="1.5"/>
-<text x="58" y="398" fill="#211e18" font-size="13" font-weight="700" letter-spacing="2">RECURRING OPERATIONS</text>
-<circle r="5" fill="#b0492c"><animateMotion dur="4.8s" repeatCount="indefinite" path="M195 114 V156 V268 V268 V350" keyTimes="0;0.34;0.52;0.7;1" keyPoints="0;0.38;0.62;0.62;1" calcMode="linear"/></circle>
-</svg>
-<svg class="ns-desktop-hero-schematic" font-family="'IBM Plex Mono',monospace" style="display: block; width: 100%; height: auto;" viewbox="0 0 1280 470" role="img" aria-label="NordSym operating layer schematic" xmlns="http://www.w3.org/2000/svg">
-<title>Stack systems flow into the NordSym operating layer, pause at the governance rail, and continue into recurring operations.</title>
-<defs>
-<marker id="ah" markerheight="7" markerwidth="7" orient="auto" refx="5" refy="3.5"><path d="M0 0 L6 3.5 L0 7" fill="none" stroke="#211e18" stroke-width="1"></path></marker>
-</defs>
-<text fill="#211e18" font-size="12" font-weight="600" letter-spacing="2" x="24" y="40">ANY STACK</text>
-<text fill="#211e18" font-size="12" font-weight="600" letter-spacing="2" x="446" y="40">NORDSYM OPERATING LAYER</text>
-<text fill="#211e18" font-size="12" font-weight="600" letter-spacing="2" x="1020" y="40">BUSINESS OPERATIONS</text>
-<g fill="none" opacity=".85" stroke="#211e18" stroke-width="1.25">
-<rect height="40" width="180" x="24" y="62"></rect>
-<rect height="40" width="180" x="24" y="122"></rect>
-<rect height="40" width="180" x="24" y="182"></rect>
-<rect height="40" width="180" x="24" y="242"></rect>
-<rect height="40" width="180" x="24" y="302"></rect>
-<rect height="40" width="180" x="24" y="362"></rect>
-</g>
-<g fill="#211e18" font-size="11" letter-spacing="1">
-<text x="38" y="87">CRM</text>
-<text x="38" y="147">ERP / FINANCE</text>
-<text x="38" y="207">DATA WAREHOUSE</text>
-<text x="38" y="267">COMMS / EMAIL</text>
-<text x="38" y="327">DOCS / KNOWLEDGE</text>
-<text x="38" y="387">TICKETING</text>
-</g>
-<g fill="none" opacity=".5" stroke="#211e18" stroke-width="1.1">
-<path d="M204 82  H320 V236 H430" marker-end="url(#ah)"></path>
-<path d="M204 142 H300 V240 H430"></path>
-<path d="M204 202 H280 V244 H430"></path>
-<path d="M204 262 H280 V250 H430"></path>
-<path d="M204 322 H300 V254 H430"></path>
-<path d="M204 382 H320 V258 H430"></path>
-</g>
-<rect fill="none" height="360" stroke="#211e18" stroke-width="1.6" width="420" x="430" y="56"></rect>
-<g>
-<rect fill="#efe9dd" height="60" stroke="#211e18" stroke-width="1" width="322" x="448" y="112"></rect>
-<text fill="#211e18" font-size="11" font-weight="600" letter-spacing="1.5" x="462" y="138">INTEGRATIONS</text>
-<text fill="#211e18" font-size="9.5" opacity=".6" x="462" y="156">read / write into your systems</text>
-<rect fill="#efe9dd" height="60" stroke="#211e18" stroke-width="1" width="322" x="448" y="184"></rect>
-<text fill="#211e18" font-size="11" font-weight="600" letter-spacing="1.5" x="462" y="210">CONTEXT</text>
-<text fill="#211e18" font-size="9.5" opacity=".6" x="462" y="228">who you are, how you operate</text>
-<rect fill="#efe9dd" height="72" stroke="#211e18" stroke-width="1" width="322" x="448" y="256"></rect>
-<text fill="#211e18" font-size="11" font-weight="600" letter-spacing="1.5" x="462" y="284">AGENT RUNTIME</text>
-<text fill="#211e18" font-size="9.5" opacity=".6" x="462" y="302">agents execute the mandate</text>
-<text fill="#211e18" font-size="9.5" opacity=".6" x="462" y="316">against real business operations</text>
-</g>
-<g>
-<rect fill="rgba(176,73,44,.06)" height="288" stroke="#b0492c" stroke-width="1.2" width="48" x="786" y="112"></rect>
-<text fill="#b0492c" font-size="10" font-weight="600" letter-spacing="2" transform="rotate(-90 810 360)" x="810" y="360">GOVERNANCE RAIL</text>
-<circle cx="810" cy="140" fill="none" r="4" stroke="#b0492c" stroke-width="1.2"></circle>
-<circle cx="810" cy="170" fill="none" r="4" stroke="#b0492c" stroke-width="1.2"></circle>
-<rect fill="none" height="10" stroke="#b0492c" stroke-width="1.2" width="10" x="805" y="196"></rect>
-</g>
-<g fill="none" opacity=".5" stroke="#211e18" stroke-width="1.1">
-<path d="M850 100 H940 V90 H1020" marker-end="url(#ah)"></path>
-<path d="M850 160 H960 V150 H1020" marker-end="url(#ah)"></path>
-<path d="M850 236 H960 V210 H1020" marker-end="url(#ah)"></path>
-<path d="M850 300 H960 V270 H1020" marker-end="url(#ah)"></path>
-<path d="M850 360 H940 V330 H1020" marker-end="url(#ah)"></path>
-</g>
-<g fill="none" opacity=".85" stroke="#211e18" stroke-width="1.25">
-<rect height="40" width="236" x="1020" y="70"></rect>
-<rect height="40" width="236" x="1020" y="130"></rect>
-<rect height="40" width="236" x="1020" y="190"></rect>
-<rect height="40" width="236" x="1020" y="250"></rect>
-<rect height="40" width="236" x="1020" y="310"></rect>
-</g>
-<g fill="#211e18" font-size="11" letter-spacing="1">
-<text x="1036" y="95">REVENUE OPERATIONS</text>
-<text x="1036" y="155">SUPPORT TRIAGE</text>
-<text x="1036" y="215">FINANCE &amp; RECONCILIATION</text>
-<text x="1036" y="275">DATA HYGIENE</text>
-<text x="1036" y="335">REPORTING</text>
-</g>
-<circle fill="#b0492c" opacity=".92" r="3.6"><animateMotion begin="0s" dur="5.6s" path="M204 82 H320 V236 H430 H786 V140 H850 H940 V90 H1020" repeatCount="indefinite" keyTimes="0;0.5;0.68;1" keyPoints="0;0.55;0.55;1" calcMode="linear"></animateMotion></circle>
-<circle fill="#b0492c" opacity=".82" r="3.3"><animateMotion begin="1.2s" dur="5.9s" path="M204 202 H280 V244 H430 H786 V170 H850 H960 V150 H1020" repeatCount="indefinite" keyTimes="0;0.5;0.68;1" keyPoints="0;0.55;0.55;1" calcMode="linear"></animateMotion></circle>
-<circle fill="#b0492c" opacity=".74" r="3.1"><animateMotion begin="2.4s" dur="6.2s" path="M204 322 H300 V254 H430 H786 V200 H850 H960 V270 H1020" repeatCount="indefinite" keyTimes="0;0.5;0.68;1" keyPoints="0;0.55;0.55;1" calcMode="linear"></animateMotion></circle>
-<rect fill="#b0492c" height="10" opacity=".25" width="10" x="805" y="135"><animate attributename="opacity" values=".18;.8;.18" dur="2.8s" repeatcount="indefinite"></animate></rect>
-<rect fill="#b0492c" height="10" opacity=".18" width="10" x="805" y="165"><animate attributename="opacity" values=".12;.65;.12" begin=".8s" dur="3s" repeatcount="indefinite"></animate></rect></svg>
-<div style='display: flex; border-top: 1px solid rgba(33, 30, 24, 0.35); font: 500 9.5px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(33, 30, 24, 0.55);'>
-<span style="flex: 1 1 0%; padding: 9px 14px; border-right: 1px solid rgba(33, 30, 24, 0.2);">01 · Stack owned by client</span>
-<span style="flex: 1 1 0%; padding: 9px 14px; border-right: 1px solid rgba(33, 30, 24, 0.2);">02 · Layer owned &amp; operated by NordSym</span>
-<span style="flex: 1 1 0%; padding: 9px 14px; border-right: 1px solid rgba(33, 30, 24, 0.2);">03 · Governed at the boundary</span>
-<span style="flex: 1 1 0%; padding: 9px 14px;">04 · Operations run continuously</span>
-</div>
-</figure>
-<div style='display: flex; gap: 22px; flex-wrap: wrap; margin-top: 22px; font: 500 11px / 1.5 "IBM Plex Mono"; letter-spacing: 0.03em; color: rgba(33, 30, 24, 0.6);'>
-<span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 10px; height: 10px; background: rgb(176, 73, 44); border-radius: 50%; animation: 2.4s ease-in-out 0s infinite normal none running nsblink;"></span>Operated continuously inside the client stack.</span>
-<span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 11px; height: 11px; border: 1px solid rgb(33, 30, 24); display: inline-block;"></span>Agent architecture for real operating work.</span>
-</div>
-</section>
-<section id="ns02" style="max-width: 1240px; margin: 0px auto; padding: 56px 32px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Detail Sheets · Inside the layer</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-02</div>
-</div>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); max-width: 64ch; margin: 0px 0px 30px;">Four subsystems make an agent useful. Remove any one and it becomes a demo. Zoomed details below.</p>
-<div class="ns-detail-card" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0px; border-width: 1px medium 1px 1px; border-style: solid none solid solid; border-color: rgb(33, 30, 24) currentcolor rgb(33, 30, 24) rgb(33, 30, 24); border-image: initial;">
-<div class="ns-detail-card scp0" style="border-right: 1px solid rgb(33, 30, 24); padding: 22px 20px 26px; background: transparent; transition: background 0.25s;">
-<div class="ns-detail-card" style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5);'><span><span class="sc-interp">D-01</span></span><span style="width: 8px; height: 8px; border: 1px solid rgb(176, 73, 44);"></span></div>
-<svg fill="none" stroke="#211e18" stroke-width="1.2" style="width: 100%; height: auto; display: block; margin-bottom: 20px;" viewbox="0 0 120 72">
-<g><rect height="16" width="34" x="8" y="18"></rect><rect height="16" width="34" x="8" y="42"></rect><path d="M42 26 H72 M42 50 H72"></path><rect height="26" width="34" x="78" y="24"></rect></g>
-</svg>
-<h3 style="font: 600 17px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 9px; letter-spacing: -0.01em;"><span class="sc-interp">Integrations</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.65); margin: 0px;"><span class="sc-interp">We read and write into the systems you already run, with scoped access. The connection is ours to maintain; the systems remain yours.</span></p>
-</div>
-<div class="ns-detail-card scp0" style="border-right: 1px solid rgb(33, 30, 24); padding: 22px 20px 26px; background: transparent; transition: background 0.25s;">
-<div class="ns-detail-card" style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5);'><span><span class="sc-interp">D-02</span></span><span style="width: 8px; height: 8px; border: 1px solid rgb(176, 73, 44);"></span></div>
-<svg fill="none" stroke="#211e18" stroke-width="1.2" style="width: 100%; height: auto; display: block; margin-bottom: 20px;" viewbox="0 0 120 72">
-<g><rect height="44" width="92" x="14" y="14"></rect><path d="M26 28 H94 M26 38 H80 M26 48 H88"></path></g>
-</svg>
-<h3 style="font: 600 17px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 9px; letter-spacing: -0.01em;"><span class="sc-interp">Context</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.65); margin: 0px;"><span class="sc-interp">Who you are, how you operate, what good looks like. Context is what turns a capable model into an agent that acts like it works here.</span></p>
-</div>
-<div class="ns-detail-card scp0" style="border-right: 1px solid rgb(33, 30, 24); padding: 22px 20px 26px; background: transparent; transition: background 0.25s;">
-<div class="ns-detail-card" style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5);'><span><span class="sc-interp">D-03</span></span><span style="width: 8px; height: 8px; border: 1px solid rgb(176, 73, 44);"></span></div>
-<svg fill="none" stroke="#211e18" stroke-width="1.2" style="width: 100%; height: auto; display: block; margin-bottom: 20px;" viewbox="0 0 120 72">
-<g><circle cx="60" cy="36" r="20"></circle><path d="M60 16 V26 M60 46 V56 M40 36 H50 M70 36 H80"></path><circle cx="60" cy="36" r="5"></circle></g>
-</svg>
-<h3 style="font: 600 17px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 9px; letter-spacing: -0.01em;"><span class="sc-interp">Agent runtime</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.65); margin: 0px;"><span class="sc-interp">Where the mandate is executed. Agents plan, act, and check work against the operation they are assigned, continuously.</span></p>
-</div>
-<div class="ns-detail-card scp0" style="border-right: 1px solid rgb(33, 30, 24); padding: 22px 20px 26px; background: transparent; transition: background 0.25s;">
-<div class="ns-detail-card" style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.14em; color: rgba(33, 30, 24, 0.5);'><span><span class="sc-interp">D-04</span></span><span style="width: 8px; height: 8px; border: 1px solid rgb(176, 73, 44);"></span></div>
-<svg fill="none" stroke="#211e18" stroke-width="1.2" style="width: 100%; height: auto; display: block; margin-bottom: 20px;" viewbox="0 0 120 72">
-<g><rect height="44" width="80" x="20" y="14"></rect><path d="M60 14 V58"></path><rect height="12" width="12" x="30" y="30"></rect><path d="M74 30 h14 M74 42 h14"></path></g>
-</svg>
-<h3 style="font: 600 17px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 9px; letter-spacing: -0.01em;"><span class="sc-interp">Governance rail</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.65); margin: 0px;"><span class="sc-interp">Approvals, stop controls, and records live at the boundary. This is how autonomy scales safely, and it is infrastructure, not the pitch.</span></p>
-</div>
-</div>
-</section>
-<section id="ns03" style="max-width: 1240px; margin: 0px auto; padding: 24px 32px 56px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Schedule · Recurring operations</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-03</div>
-</div>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); max-width: 64ch; margin: 0px 0px 26px;">Representative, not exhaustive. NordSym operates recurring work that fits the stack, mandate, and boundary.</p>
-<div style="border: 1px solid rgb(33, 30, 24);">
-<div style='display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; background: rgb(33, 30, 24); color: rgb(239, 233, 221); font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">Ref</div>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">Operation</div>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">What the agent operates</div>
-<div style="padding: 11px 14px;">Cadence</div>
-</div>
-<div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-01 · Revenue operations">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-01</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Revenue operations</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Lead routing, CRM hygiene, follow-up drafting, pipeline updates and flags</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence"><span class="ns-cadence-dot" style="animation-delay:0.35s"></span>Continuous</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-01" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">CRM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">INBOX</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">PIPELINE</text>
-<path d="M86 43 H132" marker-end="url(#m-o-01)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-01)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-01)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-01 · Revenue operations</b></div>
-<div>Boundary: human approval before external action, spend, or client-visible change.</div>
-<div>Record: lead source, account context, proposed action, approval state, pipeline change.</div>
-<div>Cadence: Continuous. Operates only inside the agreed mandate.</div>
-</div>
-</div><div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-02 · Publishing operations">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-02</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Publishing operations</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Drafting, scheduling, publishing, and reporting across owned channels</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence">Scheduled</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-02" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">CMS</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">SOCIAL</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">PUBLISH</text>
-<path d="M86 43 H132" marker-end="url(#m-o-02)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-02)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-02)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-02 · Publishing operations</b></div>
-<div>Boundary: approval before anything goes public.</div>
-<div>Record: source article, proposed copy, approval, post URL, performance snapshot.</div>
-<div>Cadence: Scheduled. Operates only inside the agreed mandate.</div>
-</div>
-</div><div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-03 · Support triage">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-03</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Support triage</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Classify, route, draft responses, escalate what needs a human</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence"><span class="ns-cadence-dot" style="animation-delay:1.05s"></span>Continuous</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-03" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">INBOX</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">HELPDESK</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">ESCALATE</text>
-<path d="M86 43 H132" marker-end="url(#m-o-03)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-03)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-03)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-03 · Support triage</b></div>
-<div>Boundary: human escalation on low confidence or high stakes.</div>
-<div>Record: incoming request, class, draft, escalation decision, outcome.</div>
-<div>Cadence: Continuous. Operates only inside the agreed mandate.</div>
-</div>
-</div><div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-04 · Finance and reconciliation">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-04</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Finance and reconciliation</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Match invoices, payments, subscriptions and anomalies across systems</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence">Scheduled</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-04" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">STRIPE</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">SHEETS</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">LEDGER</text>
-<path d="M86 43 H132" marker-end="url(#m-o-04)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-04)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-04)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-04 · Finance and reconciliation</b></div>
-<div>Boundary: approval before anything posts to the ledger.</div>
-<div>Record: source transaction, matched record, exception reason, reconciled output.</div>
-<div>Cadence: Scheduled. Operates only inside the agreed mandate.</div>
-</div>
-</div><div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-05 · Data hygiene and enrichment">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-05</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Data hygiene and enrichment</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Dedupe, normalize, enrich records across systems</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence"><span class="ns-cadence-dot" style="animation-delay:1.75s"></span>Continuous</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-05" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">CRM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">DATA</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">CLEAN</text>
-<path d="M86 43 H132" marker-end="url(#m-o-05)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-05)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-05)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-05 · Data hygiene and enrichment</b></div>
-<div>Boundary: destructive changes require sign-off.</div>
-<div>Record: before state, proposed merge or enrichment, approval, after state.</div>
-<div>Cadence: Continuous. Operates only inside the agreed mandate.</div>
-</div>
-</div><div aria-label="Open operation detail" class="scp1 ns-row" role="button" style="display: grid; grid-template-columns: 70px 1.1fr 1.9fr 130px; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;" tabindex="0" data-operation="O-06 · Reporting and analytics">
-<div style='padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">O-06</span><span class="ns-plus">+</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 14px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Reporting and analytics</span></div>
-<div style="padding: 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Compile operating reports, anomalies, actions and next decisions</span></div>
-<div style='padding: 14px; font: 500 11px / 1.3 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.6);'><span class="ns-cadence">Scheduled</span></div>
-</div><div aria-hidden="true" class="ns-drawer">
-<div aria-hidden="true" class="ns-mini-schematic">
-<svg fill="none" font-family="IBM Plex Mono, monospace" stroke="#211e18" stroke-width="1.4" viewbox="0 0 360 138">
-<defs><marker id="m-o-06" markerheight="6" markerwidth="6" orient="auto" refx="5" refy="3"><path d="M0 0 L6 3 L0 6" fill="#b0492c" stroke="none"></path></marker></defs>
-<rect height="30" width="68" x="18" y="28"></rect><rect height="30" width="68" x="18" y="78"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="47">EVENTS</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="52" y="97">WAREHOUSE</text>
-<rect height="90" width="104" x="132" y="24"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="46">NORDSYM</text>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="61">LAYER</text>
-<rect height="44" stroke="#b0492c" width="14" x="204" y="54"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="184" y="84">AGENT</text>
-<rect height="38" width="62" x="278" y="50"></rect>
-<text fill="#211e18" font-size="8" stroke="none" text-anchor="middle" x="309" y="72">REPORT</text>
-<path d="M86 43 H132" marker-end="url(#m-o-06)" opacity=".55"></path><path d="M86 93 H132" marker-end="url(#m-o-06)" opacity=".55"></path>
-<path d="M236 70 H278" marker-end="url(#m-o-06)" opacity=".65"></path>
-<circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="0s" dur="3.2s" path="M86 43 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="1.05s" dur="3.2s" path="M86 93 H132" repeatcount="indefinite"></animatemotion></circle><circle fill="#b0492c" r="3" stroke="none"><animatemotion begin="2.1s" dur="3.2s" path="M236 70 H278" repeatcount="indefinite"></animatemotion></circle></svg></div>
-<div class="ns-drawer-copy">
-<div><b>O-06 · Reporting and analytics</b></div>
-<div>Boundary: distribution list is fixed in the mandate.</div>
-<div>Record: query inputs, generated report, recipients, delivery proof.</div>
-<div>Cadence: Scheduled. Operates only inside the agreed mandate.</div>
-</div>
-</div>
-</div>
-<p style='font: 500 10px / 1.5 "IBM Plex Mono"; letter-spacing: 0.06em; color: rgba(33, 30, 24, 0.45); margin: 12px 0px 0px;'>※ Schedule is illustrative. Mandate and scope are defined per engagement.</p>
-</section>
-<section id="ns04" style="background: rgb(33, 30, 24); color: rgb(239, 233, 221); border-top: 1px solid rgb(33, 30, 24); border-bottom: 1px solid rgb(33, 30, 24);">
-<div style="max-width: 1240px; margin: 0px auto; padding: 56px 32px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgba(239, 233, 221, 0.35); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Operating Model</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(239, 233, 221, 0.55);'>NS-04</div>
-</div>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.66); max-width: 64ch; margin: 0px 0px 34px;">How an operation goes from your stack to operated. The loop repeats, and operational memory compounds each cycle.</p>
-<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0px; position: relative;">
-<div style="padding: 0px 18px; position: relative;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<span style='font: 600 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgb(224, 138, 107);'><span class="sc-interp">01</span></span>
-<span style="flex: 1 1 0%; height: 1px; background: rgba(239, 233, 221, 0.3);"></span>
-<span style="color: rgba(239, 233, 221, 0.5);">→</span>
-</div>
-<h3 style="font: 700 20px / 1.1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 12px; letter-spacing: -0.01em;"><span class="sc-interp">Review</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.62); margin: 0px;"><span class="sc-interp">We map your stack, the operation, and where the boundaries must sit.</span></p>
-</div>
-<div style="padding: 0px 18px; position: relative;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<span style='font: 600 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgb(224, 138, 107);'><span class="sc-interp">02</span></span>
-<span style="flex: 1 1 0%; height: 1px; background: rgba(239, 233, 221, 0.3);"></span>
-<span style="color: rgba(239, 233, 221, 0.5);">→</span>
-</div>
-<h3 style="font: 700 20px / 1.1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 12px; letter-spacing: -0.01em;"><span class="sc-interp">Mandate</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.62); margin: 0px;"><span class="sc-interp">We define exactly what the agent may do, and where a human decides.</span></p>
-</div>
-<div style="padding: 0px 18px; position: relative;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<span style='font: 600 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgb(224, 138, 107);'><span class="sc-interp">03</span></span>
-<span style="flex: 1 1 0%; height: 1px; background: rgba(239, 233, 221, 0.3);"></span>
-<span style="color: rgba(239, 233, 221, 0.5);">→</span>
-</div>
-<h3 style="font: 700 20px / 1.1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 12px; letter-spacing: -0.01em;"><span class="sc-interp">Operate</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.62); margin: 0px;"><span class="sc-interp">Agents run the operation against your real systems, continuously.</span></p>
-</div>
-<div style="padding: 0px 18px; position: relative;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<span style='font: 600 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgb(224, 138, 107);'><span class="sc-interp">04</span></span>
-<span style="flex: 1 1 0%; height: 1px; background: rgba(239, 233, 221, 0.3);"></span>
-<span style="color: rgba(239, 233, 221, 0.5);">→</span>
-</div>
-<h3 style="font: 700 20px / 1.1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 12px; letter-spacing: -0.01em;"><span class="sc-interp">Approve</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.62); margin: 0px;"><span class="sc-interp">Sensitive steps pause at the boundary for sign-off. Anything can be stopped.</span></p>
-</div>
-<div style="padding: 0px 18px; position: relative;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-<span style='font: 600 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgb(224, 138, 107);'><span class="sc-interp">05</span></span>
-<span style="flex: 1 1 0%; height: 1px; background: rgba(239, 233, 221, 0.3);"></span>
-</div>
-<h3 style="font: 700 20px / 1.1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 12px; letter-spacing: -0.01em;"><span class="sc-interp">Record</span></h3>
-<p style="font: 400 13px / 1.5 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(239, 233, 221, 0.62); margin: 0px;"><span class="sc-interp">Every action is recorded, and operational memory compounds each cycle.</span></p>
-</div>
-</div>
-</div>
-</section>
-<section id="ns05" style="max-width: 1240px; margin: 0px auto; padding: 56px 32px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Governance · The boundary</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-05</div>
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-<div>
-<p style="font: 400 16px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.78); margin: 0px 0px 16px; max-width: 46ch;">Autonomy without a boundary is a liability. NordSym governs where the agent meets your stack, not after the fact.</p>
-<p style="font: 400 13.5px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6); margin: 0px; max-width: 48ch;">Approvals, stop controls, and records are how an agent earns a wider mandate over time. They are infrastructure, quiet by design, and never the reason you hire us.</p>
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; border-width: 1px medium medium 1px; border-style: solid none none solid; border-color: rgb(33, 30, 24) currentcolor currentcolor rgb(33, 30, 24); border-image: initial;">
-<div style="border-right: 1px solid rgb(33, 30, 24); border-bottom: 1px solid rgb(33, 30, 24); padding: 20px;">
-<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; color: rgb(176, 73, 44); margin-bottom: 14px;'><span class="sc-interp">G-01</span></div>
-<h4 style="font: 600 15px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 7px;"><span class="sc-interp">Mandate &amp; scope</span></h4>
-<p style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px;"><span class="sc-interp">Explicit definition of what an agent may and may not do.</span></p>
-</div>
-<div style="border-right: 1px solid rgb(33, 30, 24); border-bottom: 1px solid rgb(33, 30, 24); padding: 20px;">
-<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; color: rgb(176, 73, 44); margin-bottom: 14px;'><span class="sc-interp">G-02</span></div>
-<h4 style="font: 600 15px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 7px;"><span class="sc-interp">Approval gates</span></h4>
-<p style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px;"><span class="sc-interp">Sensitive actions pause for human sign-off before they touch your stack.</span></p>
-</div>
-<div style="border-right: 1px solid rgb(33, 30, 24); border-bottom: 1px solid rgb(33, 30, 24); padding: 20px;">
-<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; color: rgb(176, 73, 44); margin-bottom: 14px;'><span class="sc-interp">G-03</span></div>
-<h4 style="font: 600 15px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 7px;"><span class="sc-interp">Stop control</span></h4>
-<p style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px;"><span class="sc-interp">A single control halts an agent or an operation, immediately.</span></p>
-</div>
-<div style="border-right: 1px solid rgb(33, 30, 24); border-bottom: 1px solid rgb(33, 30, 24); padding: 20px;">
-<div style='font: 500 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; color: rgb(176, 73, 44); margin-bottom: 14px;'><span class="sc-interp">G-04</span></div>
-<h4 style="font: 600 15px / 1.15 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; margin: 0px 0px 7px;"><span class="sc-interp">Records</span></h4>
-<p style="font: 400 12.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px;"><span class="sc-interp">Every operated action leaves a durable, reviewable record.</span></p>
-</div>
-</div>
-</div>
-</section>
-<section id="ns06" style="max-width: 1240px; margin: 0px auto; padding: 24px 32px 56px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 26px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Operator</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-06</div>
-</div>
-<div class="ns-operator-shell">
-<div class="ns-operator-id">
-<div class="ns-operator-head">
-<div class="ns-founder-frame"><img alt="Gustav Hemmingsson, founder of NordSym" src="./assets/gustav-founder.jpg"/></div>
-<div class="ns-operator-meta"><strong>Gustav Hemmingsson</strong>Founder<br/>NordSym AB<a class="ns-founder-contact" href="mailto:contact@nordsym.com">contact@nordsym.com</a></div>
-</div>
-<div class="ns-operator-grid" aria-label="NordSym operator facts">
-<div class="ns-operator-field"><span>Mode</span><b>Founder-led</b></div>
-<div class="ns-operator-field"><span>Posture</span><b>Agent-operated</b></div>
-<div class="ns-operator-field"><span>Layer</span><b>Stack-native</b></div>
-<div class="ns-operator-field"><span>Records</span><b>Decisions and outputs</b></div>
-</div>
-</div>
-<div class="ns-operator-content">
-<h3 style="font: 700 26px / 1.12 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; letter-spacing: -0.015em; margin: 0px; max-width: 24ch;">A small, founder-led firm that runs its own agent layer before it runs yours.</h3>
-<p style="font: 400 15px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.72); margin: 0px; max-width: 58ch;">NordSym is deliberately hands-on. The same operator who designs the layer stays close to the run-state: approvals, failure modes, data boundaries, and the work that leaves the building.</p>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); margin: 0px; max-width: 58ch;">Every engagement tightens the operating layer: what your stack does, where the boundaries are, which actions need approval, and what good output looks like. As of 2026-07-07, CRON-MAP lists 41 active NordSym-owned scheduled jobs across local and cloud runtimes.</p>
-</div>
-</div>
-</section>
-<section id="ns06a" style="max-width: 1240px; margin: 0px auto; padding: 0px 32px 56px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Delivery Sectors · Engagement History</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-06A</div>
-</div>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); max-width: 72ch; margin: 0px 0px 22px;">NordSym has delivered paid work across multiple sectors. The operating pattern is already cross-industry.</p>
-<div class="ns-sector-grid" style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgb(33,30,24);border-right:0;border-bottom:0;">
-<div class="ns-sector-cell"><span>01</span><strong>Media &amp; publishing</strong><em>Publishing, campaigns, audience operations</em></div>
-<div class="ns-sector-cell"><span>02</span><strong>Legal services</strong><em>Knowledge work, intake, drafting systems</em></div>
-<div class="ns-sector-cell"><span>03</span><strong>Home services</strong><em>Operations, booking, local-market systems</em></div>
-<div class="ns-sector-cell"><span>04</span><strong>Investment office</strong><em>Research, reporting, decision support</em></div>
-<div class="ns-sector-cell"><span>05</span><strong>Hospitality &amp; consumer</strong><em>Service flows, data, communication systems</em></div>
-<div class="ns-sector-cell"><span>06</span><strong>AI product infrastructure</strong><em>Agent runtime, governance, internal tooling</em></div>
-</div>
-</section>
-<section id="ns07" style="max-width: 1240px; margin: 0px auto; padding: 24px 32px 56px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 12px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Commercial · How engagements work</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-07</div>
-</div>
-<p style="font: 400 14px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.62); max-width: 64ch; margin: 0px 0px 26px;">We do not sell hours. We sell governed agent operations inside your stack.</p>
-<div style="border: 1px solid rgb(33, 30, 24);">
-<div style='display: grid; grid-template-columns: 70px 1.2fr 150px 2fr; background: rgb(33, 30, 24); color: rgb(239, 233, 221); font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">Ref</div>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">Engagement</div>
-<div style="padding: 11px 14px; border-right: 1px solid rgba(239, 233, 221, 0.2);">Basis</div>
-<div style="padding: 11px 14px;">What you get</div>
-</div>
-<div class="scp1 ns-row" style="display: grid; grid-template-columns: 70px 1.2fr 150px 2fr; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;">
-<div style='padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">C-01</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 16px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Architecture sprint</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14);"><span style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.08em; border: 1px solid rgb(176, 73, 44); color: rgb(176, 73, 44); padding: 5px 8px; display: inline-block;'><span class="sc-interp">Fixed scope</span></span></div>
-<div style="padding: 16px 14px; font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">We map your stack, define the mandate, and design the operating layer. You leave with an issued architecture set and one working operation.</span></div>
-</div>
-<div class="scp1 ns-row" style="display: grid; grid-template-columns: 70px 1.2fr 150px 2fr; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;">
-<div style='padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">C-02</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 16px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Operating retainer</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14);"><span style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.08em; border: 1px solid rgb(176, 73, 44); color: rgb(176, 73, 44); padding: 5px 8px; display: inline-block;'><span class="sc-interp">Monthly</span></span></div>
-<div style="padding: 16px 14px; font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">We run and expand agent operations against your real stack, with governance and records included.</span></div>
-</div>
-<div class="scp1 ns-row" style="display: grid; grid-template-columns: 70px 1.2fr 150px 2fr; border-top: 1px solid rgba(33, 30, 24, 0.18); transition: background 0.2s;">
-<div style='padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 500 11px / 1.3 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'><span class="sc-interp">C-03</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14); font: 600 16px / 1.25 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;"><span class="sc-interp">Embedded program</span></div>
-<div style="padding: 16px 14px; border-right: 1px solid rgba(33, 30, 24, 0.14);"><span style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.08em; border: 1px solid rgb(176, 73, 44); color: rgb(176, 73, 44); padding: 5px 8px; display: inline-block;'><span class="sc-interp">Quoted</span></span></div>
-<div style="padding: 16px 14px; font: 400 13.5px / 1.45 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68);"><span class="sc-interp">Forward-deployed engineering across multiple operations, for teams making agent operations a core capability.</span></div>
-</div>
-</div>
-<div style="margin-top: 22px; display: flex; gap: 14px; align-items: center;">
-<a href="./book/" style='padding: 12px 22px; background: rgb(33, 30, 24); color: rgb(239, 233, 221); font: 600 12px / 1 "IBM Plex Mono"; letter-spacing: 0.08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 9px;'>Book a review <span style="color: rgb(224, 138, 107);">→</span></a>
-<span style='font: 400 12px / 1.5 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5);'>Built for companies with recurring operations that are worth governing, operating, and improving continuously.</span>
-</div>
-</section>
-<section id="ns08" style="max-width: 1240px; margin: 0px auto; padding: 24px 32px 56px;">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgb(33, 30, 24); padding-bottom: 11px; margin-bottom: 8px;">
-<div style='font: 600 14px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase;'>Frequently Asked</div>
-<div style='font: 500 11px / 1 "IBM Plex Mono"; letter-spacing: 0.1em; color: rgba(33, 30, 24, 0.5);'>NS-08</div>
-</div>
-<div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.01</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">Do you replace the tools we already use?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(45deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 260px; opacity: 1;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">No. Your stack stays yours. We integrate into your existing systems and operate on top of them. Nothing is ripped out, and you keep ownership and control of every system we connect to.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.02</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">What exactly is the operating layer?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">It is the connective layer that gives agents everything they need to do real work: integrations into your systems, context about how you operate, a runtime to execute a defined mandate, and a governance rail at the boundary. We build it and then we run it.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.03</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">How do agents stay governed?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">At the boundary, before an action reaches your stack. Every mandate has explicit scope, approval gates for sensitive steps, a stop control, and a record of what was done. Autonomy widens only as trust is earned.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.04</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">What do you actually operate?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">Recurring business operations with real cadence. Think revenue operations, publishing, support triage, finance reconciliation, data hygiene, reporting. The schedule above is representative. We scope the operations that fit your stack and mandate.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.05</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">Is this just automations with a nicer name?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">We design agent architecture for recurring work that needs context, judgment, and a written mandate. The difference shows up when the work is messy, which is most real work.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style='font: 500 11px / 1.4 "IBM Plex Mono"; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;'><span class="sc-interp">Q.06</span></span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;"><span class="sc-interp">Who runs it, people or agents?</span></span>
-<span class="ns-faq-plus" style='font: 400 20px / 1 "IBM Plex Mono"; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);'>+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;"><span class="sc-interp">Both, by design. NordSym is founder-led and openly agent-operated. The people who design your layer operate it, and much of our own firm runs on the same architecture. Operational memory compounds with every cycle.</span></p>
-</div>
-</div>
-<div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style="font: 500 11px / 1.4 'IBM Plex Mono'; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;">Q.07</span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;">Where does our data live?</span>
-<span class="ns-faq-plus" style="font: 400 20px / 1 'IBM Plex Mono'; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);">+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;">In your systems first. We connect with scoped access, keep client boundaries separate, and document where data moves before an agent operates. Privacy and data-processing details live in the policy linked below.</p>
-</div>
-</div><div class="ns-faq-item" style="border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<button style="width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 20px 0px; display: flex; align-items: baseline; gap: 16px; font-family: Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<span style="font: 500 11px / 1.4 'IBM Plex Mono'; color: rgb(176, 73, 44); flex: 0 0 auto; width: 34px;">Q.08</span>
-<span style="font: 600 17px / 1.35 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(33, 30, 24); flex: 1 1 0%; letter-spacing: -0.005em;">Can we stop, and who owns what was built?</span>
-<span class="ns-faq-plus" style="font: 400 20px / 1 'IBM Plex Mono'; color: rgba(33, 30, 24, 0.5); flex: 0 0 auto; transition: transform 0.25s; transform: rotate(0deg);">+</span>
-</button>
-<div class="ns-faq-panel" style="overflow: hidden; transition: max-height 0.35s, opacity 0.3s; max-height: 0px; opacity: 0;">
-<p style="font: 400 14.5px / 1.6 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.68); margin: 0px 0px 22px; padding-left: 50px; max-width: 74ch;">Yes. Every operated operation has a stop control, and you own your surfaces, channels, and data. If the engagement ends, the operating layer can be paused, handed over, or removed according to the agreed scope.</p>
-</div>
-</div></div>
-</section>
-<section id="ns09"><div class="ns-context-wrap"><div class="ns-context-rail ns-context-rail-v2"><div class="ns-context-intro"><div class="ns-context-kicker"><span>NS-09 · ASSISTANT BRIEF</span></div><button aria-expanded="false" class="ns-context-handle" data-context-handle="" type="button">For agents evaluating NordSym</button></div><button aria-label="Copy NordSym context file" class="ns-context-file ns-context-file-button" data-copy-context="" type="button"><span class="ns-context-file-name">Copy brief</span><span class="ns-context-file-note">Summary for assistants</span></button><div class="ns-context-actions-wrap"><span class="ns-context-actions-label">Open in AI</span><div class="ns-context-actions ns-context-actions-v2"><a aria-label="Open in ChatGPT" class="ns-ai-link" href="https://chatgpt.com/?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." rel="noopener" target="_blank" title="ChatGPT"><img alt="ChatGPT" class="ns-ai-logo" src="./assets/chatgpt.svg"/><span class="ns-ai-label">ChatGPT</span></a><a aria-label="Open in Claude" class="ns-ai-link" href="https://claude.ai/new?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." rel="noopener" target="_blank" title="Claude"><img alt="Claude" class="ns-ai-logo" src="./assets/claude.svg"/><span class="ns-ai-label">Claude</span></a><a aria-label="Open in Perplexity" class="ns-ai-link" href="https://www.perplexity.ai/search?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." rel="noopener" target="_blank" title="Perplexity"><img alt="Perplexity" class="ns-ai-logo" src="./assets/perplexity.svg"/><span class="ns-ai-label">Perplexity</span></a><a aria-label="Open in Grok" class="ns-ai-link" href="https://grok.com/?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." rel="noopener" target="_blank" title="Grok"><img alt="Grok" class="ns-ai-logo" src="./assets/grok.svg"/><span class="ns-ai-label">Grok</span></a></div></div></div><div class="ns-context-drawer" data-context-drawer=""><pre data-context-payload="">NordSym builds and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations. It is a founder-led, forward-deployed engineering firm focused on integrations, context, mandates, approval boundaries, stop controls, and durable records.</pre></div></div></section>
-<footer style="background: rgb(239, 233, 221);">
-<div style="max-width: 1240px; margin: 0px auto; padding: 44px 32px 20px;">
-<div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 34px; border-bottom: 1px solid rgba(33, 30, 24, 0.2);">
-<div>
-<img alt="NordSym" class="ns-brand-lockup-footer" src="./assets/brand/nordsym-lockup.svg"/>
-<p style="font: 400 13px / 1.55 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgba(33, 30, 24, 0.6); margin: 0px; max-width: 38ch;">The operating layer between your stack and the agents that run it.</p>
-</div>
-<div>
-<div style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.45); margin-bottom: 14px;'>Firm</div>
-<div style="display: flex; flex-direction: column; gap: 9px; font: 400 13px / 1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<a href="#ns04" style="color: rgb(33, 30, 24);">Operating model</a>
-<a href="#ns06" style="color: rgb(33, 30, 24);">Operator</a>
-<a href="#ns07" style="color: rgb(33, 30, 24);">Commercial</a>
-<a href="./book/" style="color: rgb(33, 30, 24);">Book a review</a>
-</div>
-</div>
-<div>
-<div style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.45); margin-bottom: 14px;'>Connect</div>
-<div style="display: flex; flex-direction: column; gap: 9px; font: 400 13px / 1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<a href="https://www.linkedin.com/company/nordsym/" rel="noreferrer" style="color: rgb(33, 30, 24);" target="_blank">LinkedIn</a>
-<a href="https://x.com/GusHem" rel="noreferrer" style="color: rgb(33, 30, 24);" target="_blank">X</a>
-<a href="mailto:contact@nordsym.com" style="color: rgb(33, 30, 24);">contact@nordsym.com</a>
-</div>
-</div>
-<div>
-<div style='font: 600 10px / 1 "IBM Plex Mono"; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33, 30, 24, 0.45); margin-bottom: 14px;'>Legal</div>
-<div style="display: flex; flex-direction: column; gap: 9px; font: 400 13px / 1 Archivo, -apple-system, BlinkMacSystemFont, Inter, sans-serif;">
-<a href="./privacy.html" style="color: rgb(33, 30, 24);">Privacy</a>
-<a href="./privacy.html#terms" style="color: rgb(33, 30, 24);">Terms</a>
-<a href="./privacy.html#data-processing" style="color: rgb(33, 30, 24);">Security</a>
-</div>
-</div>
-</div>
-<div style='display: flex; justify-content: space-between; align-items: center; padding-top: 16px; font: 500 10px / 1.4 "IBM Plex Mono"; letter-spacing: 0.08em; color: rgba(33, 30, 24, 0.45); text-transform: uppercase;'>
-<span>© 2026 NordSym. All rights reserved.</span>
-<span>NordSym AB · 559535-5768</span>
-</div>
-</div>
-</footer></div></div></div>
-<script id="nordsym-polish-js">
-(() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const phCapture = (event, props = {}) => { if (window.posthog?.capture) window.posthog.capture(event, { surface: 'home', ...props }); };
-  document.querySelectorAll('[data-track-cta]').forEach((el) => el.addEventListener('click', () => phCapture('nordsym_cta_clicked', { cta: el.dataset.trackCta })));
-  document.querySelectorAll('.ns-ai-link').forEach((el) => el.addEventListener('click', () => phCapture('nordsym_ai_context_opened', { provider: el.getAttribute('title') || el.textContent.trim() })));
-  const onScroll = () => document.documentElement.classList.toggle('ns-scrolled', window.scrollY > 8);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+      .loop-step {
+        min-height: 240px;
+        padding: 28px;
+        border-right: 1px solid var(--line);
+        position: relative;
+      }
 
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('ns-in');
-          io.unobserve(entry.target);
+      .loop-step:last-child { border-right: 0; }
+      .loop-step::before {
+        content: "";
+        position: absolute;
+        top: 42px;
+        left: 28px;
+        right: 28px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--cyan), transparent);
+        opacity: .34;
+      }
+
+      .loop-step h3 {
+        margin: 72px 0 12px;
+        font: 760 27px/1 Archivo, Inter, sans-serif;
+        letter-spacing: -.035em;
+      }
+
+      .loop-step p {
+        margin: 0;
+        color: var(--paper-dim);
+        font: 400 15px/1.55 Archivo, Inter, sans-serif;
+      }
+
+      .proof {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        border-top: 1px solid var(--line);
+        padding: clamp(86px, 12vh, 150px) 0;
+      }
+
+      .proof-number {
+        display: flex;
+        align-items: flex-end;
+        gap: clamp(18px, 4vw, 38px);
+        margin-bottom: 34px;
+      }
+
+      .proof-number strong {
+        font: 850 clamp(118px, 23vw, 300px)/.72 Archivo, Inter, sans-serif;
+        letter-spacing: -.08em;
+        color: var(--paper);
+      }
+
+      .proof-number span {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 22px var(--cyan);
+        margin-bottom: clamp(10px, 3vw, 32px);
+      }
+
+      .proof h2 {
+        max-width: 980px;
+        margin: 0;
+        font: 800 clamp(38px, 6vw, 86px)/.94 Archivo, Inter, sans-serif;
+        letter-spacing: -.055em;
+      }
+
+      .proof p {
+        max-width: 720px;
+        margin: 28px 0 0;
+        color: var(--paper-dim);
+        font: 400 19px/1.55 Archivo, Inter, sans-serif;
+      }
+
+      .operator {
+        padding: clamp(86px, 13vh, 150px) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .operator-grid {
+        display: grid;
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr);
+        gap: clamp(34px, 7vw, 94px);
+        align-items: center;
+      }
+
+      .operator-photo {
+        border: 1px solid var(--line-strong);
+        background: rgba(255,255,255,.025);
+        padding: 18px;
+      }
+
+      .operator-photo img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        filter: saturate(.86) contrast(1.05);
+        display: block;
+      }
+
+      .operator h2 {
+        margin: 0 0 24px;
+        font: 800 clamp(40px, 6vw, 82px)/.93 Archivo, Inter, sans-serif;
+        letter-spacing: -.055em;
+      }
+
+      .operator p {
+        margin: 0;
+        color: var(--paper-dim);
+        font: 400 19px/1.6 Archivo, Inter, sans-serif;
+        max-width: 680px;
+      }
+
+      .engagements {
+        margin-top: 46px;
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .engagement {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .engagement strong {
+        font: 700 14px/1.3 "IBM Plex Mono", ui-monospace, monospace;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--paper);
+      }
+
+      .engagement span {
+        color: var(--paper-dim);
+        font: 400 16px/1.5 Archivo, Inter, sans-serif;
+      }
+
+      .faq {
+        padding: clamp(76px, 10vh, 120px) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .faq-list {
+        margin-top: 34px;
+        border-top: 1px solid var(--line-strong);
+      }
+
+      details {
+        border-bottom: 1px solid var(--line);
+        padding: 22px 0;
+      }
+
+      summary {
+        cursor: pointer;
+        list-style: none;
+        font: 760 clamp(19px, 2vw, 28px)/1.22 Archivo, Inter, sans-serif;
+        letter-spacing: -.025em;
+      }
+
+      summary::-webkit-details-marker { display: none; }
+      details p {
+        max-width: 740px;
+        color: var(--paper-dim);
+        margin: 16px 0 0;
+        font: 400 16px/1.6 Archivo, Inter, sans-serif;
+      }
+
+      .ai-brief {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 22px 0;
+      }
+
+      .ai-brief-inner {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .ai-brief h2 {
+        margin: 0 0 8px;
+        font: 760 22px/1.12 Archivo, Inter, sans-serif;
+        letter-spacing: -.025em;
+      }
+
+      .ai-brief p {
+        margin: 0;
+        color: var(--paper-dim);
+        font: 400 15px/1.5 Archivo, Inter, sans-serif;
+      }
+
+      .ai-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .copy-brief,
+      .ai-link {
+        min-height: 42px;
+        border: 1px solid var(--line-strong);
+        background: transparent;
+        color: var(--paper);
+        padding: 0 13px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font: 700 11px/1 "IBM Plex Mono", ui-monospace, monospace;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .ai-link img { width: 18px; height: 18px; opacity: .84; filter: grayscale(1) invert(1); }
+      .copy-brief:hover,
+      .ai-link:hover { border-color: rgba(0, 212, 255, .6); color: var(--cyan); }
+
+      footer {
+        padding: 42px 0;
+        color: var(--paper-faint);
+        font: 500 11px/1.6 "IBM Plex Mono", ui-monospace, monospace;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .footer-links a:hover { color: var(--paper); }
+
+      @media (max-width: 900px) {
+        .nav { align-items: flex-start; }
+        .nav-links { display: none; }
+        .hero h1 { font-size: clamp(52px, 14vw, 96px); }
+        .pulse-spine { top: 220px; }
+        .operation,
+        .engagement,
+        .ai-brief-inner,
+        .operator-grid {
+          grid-template-columns: 1fr;
         }
-      });
-    }, { threshold: .18 });
-    document.querySelectorAll('.ns-reveal, #ns02 .ns-detail-card, #ns04 [style*="grid-template-columns"] > div, #ns05 [style*="grid-template-columns"] > div, #ns07 .ns-row, #ns08 .ns-faq-item, #ns09').forEach((el) => {
-      el.classList.add('ns-reveal');
-      io.observe(el);
-    });
-  }
-
-  document.querySelectorAll('.ns-row').forEach((row) => {
-    row.addEventListener('click', () => {
-      const drawer = row.nextElementSibling?.classList?.contains('ns-drawer') ? row.nextElementSibling : null;
-      if (!drawer) return;
-      const container = row.parentElement;
-      container.querySelectorAll('.ns-row.ns-open').forEach((openRow) => {
-        if (openRow !== row) openRow.classList.remove('ns-open');
-      });
-      container.querySelectorAll('.ns-drawer.ns-open').forEach((openDrawer) => {
-        if (openDrawer !== drawer) openDrawer.classList.remove('ns-open');
-      });
-      row.classList.toggle('ns-open');
-      drawer.classList.toggle('ns-open');
-      if (row.closest('#ns03') && row.classList.contains('ns-open')) phCapture('nordsym_operation_drawer_opened', { operation: row.dataset.operation || row.textContent.trim().slice(0, 80) });
-    });
-    row.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        row.click();
+        .loop-grid { grid-template-columns: 1fr; }
+        .loop-step { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+        .loop-step:last-child { border-bottom: 0; }
+        .layer-diagram,
+        .layer-diagram svg { min-height: 440px; }
+        .ai-actions { justify-content: flex-start; }
       }
-    });
-  });
 
-  document.querySelectorAll('#ns08 .ns-faq-item').forEach((item, index) => {
-    const button = item.querySelector('button');
-    const panel = item.querySelector('.ns-faq-panel');
-    const plus = button?.querySelector('.ns-faq-plus');
-    if (!button || !panel || !plus) return;
-    const panelId = `faq-panel-${index + 1}`;
-    panel.id = panelId;
-    button.setAttribute('aria-controls', panelId);
-    const setOpen = (isOpen) => {
-      item.classList.toggle('ns-open', isOpen);
-      button.setAttribute('aria-expanded', String(isOpen));
-      panel.style.maxHeight = isOpen ? `${panel.scrollHeight + 30}px` : '0px';
-      panel.style.opacity = isOpen ? '1' : '0';
-      plus.style.transform = isOpen ? 'rotate(45deg)' : 'rotate(0deg)';
-    };
-    setOpen(index === 0);
-    button.addEventListener('click', () => setOpen(!item.classList.contains('ns-open')));
-  });
-
-  const contextText = `NORDSYM // OPERATING LAYER FOR AGENT-DRIVEN BUSINESS OPERATIONS
-
-WHAT:  Forward-deployed engineering firm. We design, build, and
-       operate the layer between a company's existing stack and the
-       AI agents that run real business operations inside it.
-
-MODEL: 1. Integrate into the client's stack (stack stays theirs).
-       2. Give agents context, mandate, and runtime.
-       3. Govern at the boundary: approval + stop controls.
-       4. Operate recurring operations continuously.
-       5. Keep records. Operational memory compounds.
-
-FIRM:  Founder-led. Openly agent-operated. Built for compounding
-       operational memory.
-
-ENGAGE: architecture sprint (fixed) / operating retainer (monthly)
-        / embedded program (quoted).
-
-SITE:  nordsym.com   BOOK: nordsym.com/book
-CONTEXT: nordsym.com/llms.txt
-
-FOR EVALUATORS: NordSym builds and operates agent infrastructure inside client stacks.`;
-  const copyButton = document.querySelector('[data-copy-context]');
-  const contextPre = document.querySelector('[data-context-payload]');
-  const drawer = document.querySelector('[data-context-drawer]');
-  const handle = document.querySelector('[data-context-handle]');
-  if (contextPre) contextPre.textContent = contextText;
-  if (copyButton) {
-    copyButton.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(contextText);
-        copyButton.dataset.state = 'copied';
-        copyButton.innerHTML = '<span class="ns-context-file-name">Copied</span><span class="ns-context-file-note">Context is on your clipboard</span>';
-        copyButton.classList.add('ns-copied');
-        phCapture('nordsym_context_copied');
-        window.setTimeout(() => {
-          copyButton.dataset.state = '';
-          copyButton.innerHTML = '<span class="ns-context-file-name">Copy brief</span><span class="ns-context-file-note">Summary for assistants</span>';
-          copyButton.classList.remove('ns-copied');
-        }, 1600);
-      } catch {
-        copyButton.innerHTML = '<span class="ns-context-file-name">Copy failed</span><span class="ns-context-file-note">Open /llms.txt manually</span>';
+      @media (max-width: 560px) {
+        .brand img { width: 118px; }
+        .nav-cta { padding: 11px 12px; font-size: 10px; }
+        .wrap { width: calc(100% - 32px); }
+        .hero { min-height: auto; padding-top: 88px; }
+        .hero-copy { font-size: 18px; }
+        .cta { width: 100%; }
+        .operation { grid-template-columns: 1fr 10px; gap: 16px; }
+        .operation span { grid-column: 1 / -1; }
+        .proof-number { align-items: center; }
+        .proof-number strong { font-size: clamp(108px, 36vw, 160px); }
       }
-    });
-  }
-  if (handle && drawer) {
-    handle.addEventListener('click', () => {
-      const open = drawer.classList.toggle('ns-open');
-      handle.setAttribute('aria-expanded', String(open));
-      phCapture('nordsym_context_panel_toggled', { open });
-    });
-  }
 
-  if (reduceMotion) {
-    document.querySelectorAll('animateMotion, animate').forEach((node) => node.remove());
-  }
-})();
-</script>
-</body></html>
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: .001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .001ms !important;
+        }
+        .pulse-spine::after,
+        .live-dot,
+        .packet { display: none; }
+      }
+    </style>
+    <script id="nordsym-posthog">
+      (function(){
+        if (window.__nordsymPosthogLoaded) return;
+        window.__nordsymPosthogLoaded = true;
+        window.posthog = window.posthog || [];
+        var ph = window.posthog;
+        ph._i = ph._i || [];
+        ph.init = ph.init || function(token, config, name){
+          var target = name ? ph[name] = [] : ph;
+          target.people = target.people || [];
+          target.toString = function(){ return 'posthog'; };
+          target.people.toString = function(){ return 'posthog.people'; };
+          var methods = 'capture register set_config'.split(' ');
+          methods.forEach(function(method){ target[method] = function(){ target.push([method].concat(Array.prototype.slice.call(arguments))); }; });
+          ph._i.push([token, config, name]);
+        };
+        ph.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+          api_host: 'https://eu.i.posthog.com',
+          ui_host: 'https://eu.posthog.com',
+          defaults: '2026-05-30',
+          cookieless_mode: 'always',
+          autocapture: false,
+          capture_pageview: false,
+          disable_session_recording: true,
+          loaded: function(posthog) {
+            posthog.register({ product: 'Nordsym-Com', surface: 'home-v4' });
+            posthog.capture('$pageview', { path: location.pathname, cookieless: true });
+          }
+        });
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://eu-assets.i.posthog.com/static/array.js';
+        document.head.appendChild(script);
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "NordSym AB",
+        "url": "https://nordsym.com/",
+        "image": "https://nordsym.com/assets/og/nordsym-og.png",
+        "description": "NordSym designs, builds, and operates agent infrastructure inside existing company stacks.",
+        "founder": { "@type": "Person", "name": "Gustav Hemmingsson" },
+        "areaServed": "SE",
+        "address": { "@type": "PostalAddress", "addressCountry": "SE" },
+        "taxID": "559535-5768",
+        "sameAs": ["https://github.com/nordsym", "https://www.linkedin.com/company/nordsym/"]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="nav" aria-label="NordSym navigation">
+        <a class="brand" href="/" aria-label="NordSym home">
+          <img src="./assets/brand/nordsym-lockup-dark.svg" alt="NordSym" />
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#layer">Layer</a>
+          <a href="#runs">Runs</a>
+          <a href="#proof">Proof</a>
+          <a href="#operator">Operator</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="nav-cta" href="./book/" data-track-cta="nav-book">Book a review</a>
+      </header>
+
+      <main>
+        <section class="hero" id="top">
+          <div class="pulse-spine" aria-hidden="true"></div>
+          <div class="wrap">
+            <p class="eyebrow">Agent architecture and operations</p>
+            <h1>The operating layer between your stack and the agents that run it.</h1>
+            <p class="hero-copy">NordSym designs, builds, and operates agent infrastructure inside the systems you already run. Governed at the boundary. Running continuously.</p>
+            <div class="hero-actions">
+              <a class="cta" href="./book/" data-track-cta="hero-book">Book an operating review</a>
+              <a class="cta cta-secondary" href="#layer" data-track-cta="hero-layer">See the layer</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="layer" id="layer">
+          <div class="wrap">
+            <h2 class="section-title">Four subsystems make an agent capable of real work.</h2>
+            <p class="section-copy">We build all four, connect them to the systems you already run, then operate the work under a written mandate.</p>
+            <div class="layer-diagram" aria-label="NordSym operating layer diagram showing integrations, context, runtime and governance between a company stack and recurring operations.">
+              <svg viewBox="0 0 1100 560" preserveAspectRatio="xMidYMid meet" role="img">
+                <defs>
+                  <path id="packet-path" d="M80 284 H250 C310 284 320 184 390 184 H712 C778 184 792 284 850 284 H1020" />
+                </defs>
+
+                <rect class="diagram-node" x="70" y="128" width="164" height="64" rx="0" />
+                <text class="diagram-label" x="104" y="166">CRM</text>
+                <rect class="diagram-node" x="70" y="248" width="164" height="64" rx="0" />
+                <text class="diagram-label" x="104" y="286">CMS</text>
+                <rect class="diagram-node" x="70" y="368" width="164" height="64" rx="0" />
+                <text class="diagram-label" x="104" y="406">EMAIL</text>
+
+                <rect class="diagram-layer" x="334" y="118" width="432" height="324" rx="0" />
+                <text class="diagram-label" x="384" y="158">NORDSYM OPERATING LAYER</text>
+
+                <rect class="diagram-node" x="386" y="220" width="116" height="72" />
+                <text class="diagram-small" x="413" y="260">INTEGRATIONS</text>
+                <rect class="diagram-node" x="520" y="220" width="116" height="72" />
+                <text class="diagram-small" x="552" y="260">CONTEXT</text>
+                <rect class="diagram-node" x="654" y="220" width="116" height="72" />
+                <text class="diagram-small" x="686" y="260">RUNTIME</text>
+                <rect class="diagram-gate" x="760" y="188" width="26" height="184" />
+                <text class="diagram-small" x="724" y="404">GOVERNANCE</text>
+
+                <rect class="diagram-node" x="872" y="160" width="156" height="64" />
+                <text class="diagram-label" x="908" y="199">REVENUE</text>
+                <rect class="diagram-node" x="872" y="260" width="156" height="64" />
+                <text class="diagram-label" x="908" y="299">SUPPORT</text>
+                <rect class="diagram-node" x="872" y="360" width="156" height="64" />
+                <text class="diagram-label" x="908" y="399">REPORTING</text>
+
+                <path class="diagram-line" d="M234 160 H334" />
+                <path class="diagram-line" d="M234 280 H334" />
+                <path class="diagram-line" d="M234 400 H334" />
+                <path class="diagram-line" d="M786 220 H872" />
+                <path class="diagram-line" d="M786 292 H872" />
+                <path class="diagram-line" d="M786 372 H872" />
+                <path class="diagram-line" d="M502 256 H520" />
+                <path class="diagram-line" d="M636 256 H654" />
+                <path class="diagram-line" d="M770 256 H760" />
+                <path d="M80 284 H250 C310 284 320 184 390 184 H712 C778 184 792 284 850 284 H1020" stroke="rgba(0,212,255,.58)" stroke-width="1.4" fill="none" />
+                <circle class="packet" r="7">
+                  <animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;0.68;0.68;1" keyTimes="0;0.62;0.72;1" calcMode="linear">
+                    <mpath href="#packet-path" />
+                  </animateMotion>
+                </circle>
+
+                <text class="diagram-small" x="386" y="326">SCOPED READ AND WRITE</text>
+                <text class="diagram-small" x="520" y="326">COMPANY OPERATING MEMORY</text>
+                <text class="diagram-small" x="654" y="326">WRITTEN MANDATE</text>
+                <text class="diagram-small" x="812" y="500">APPROVALS · STOP CONTROL · RECORDS</text>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="operations" id="runs">
+          <div class="wrap">
+            <h2 class="section-title">Recurring work, operated.</h2>
+            <p class="section-copy">The shape changes with the stack. The pattern stays stable: scope the work, connect the systems, run the operation, keep the record.</p>
+            <div class="operation-list">
+              <div class="operation">
+                <span>Revenue</span>
+                <div><strong>Pipeline work that keeps moving.</strong><p>Routing, hygiene, follow-up, lead batches, campaign staging and reply surfaces.</p></div>
+                <i class="live-dot" aria-hidden="true"></i>
+              </div>
+              <div class="operation">
+                <span>Publishing</span>
+                <div><strong>Content leaves the CMS with control.</strong><p>Drafts, approvals, LinkedIn publishing, newsletters, image variants and scheduling.</p></div>
+                <i class="live-dot" aria-hidden="true"></i>
+              </div>
+              <div class="operation">
+                <span>Support</span>
+                <div><strong>Queues become decisions.</strong><p>Classify, draft, escalate and record what needs a human before anything reaches the customer.</p></div>
+                <i class="live-dot" aria-hidden="true"></i>
+              </div>
+              <div class="operation">
+                <span>Reporting</span>
+                <div><strong>Operational truth arrives on schedule.</strong><p>Compile, detect, compare and deliver the numbers that tell the next action.</p></div>
+                <i class="live-dot" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="loop" id="model">
+          <div class="wrap">
+            <h2 class="section-title">Review. Mandate. Operate. Record.</h2>
+            <p class="section-copy">The loop is simple because the work is not. Every new operation earns more autonomy through visible performance.</p>
+            <div class="loop-grid">
+              <div class="loop-step"><h3>Review</h3><p>We map your stack, the recurring work and where the boundary sits.</p></div>
+              <div class="loop-step"><h3>Mandate</h3><p>A written scope defines exactly what the agent may read, write and ask for.</p></div>
+              <div class="loop-step"><h3>Operate</h3><p>Agents run the work against live systems with human approval where it matters.</p></div>
+              <div class="loop-step"><h3>Record</h3><p>Actions leave a durable trail so trust can widen without guesswork.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="proof" id="proof">
+          <div class="wrap">
+            <div class="proof-number" aria-label="41 active operations">
+              <strong data-counter="41">0</strong><span aria-hidden="true"></span>
+            </div>
+            <h2>Operations run on this architecture right now. Ours included.</h2>
+            <p>NordSym runs on its own layer first. Paid engagements delivered across media, legal services, home services, investment, hospitality and AI infrastructure.</p>
+          </div>
+        </section>
+
+        <section class="operator" id="operator">
+          <div class="wrap operator-grid">
+            <div class="operator-photo">
+              <img src="./assets/gustav-founder.jpg" alt="Gustav Hemmingsson, founder of NordSym" />
+            </div>
+            <div>
+              <h2>Founder-led. Agent-operated.</h2>
+              <p>Gustav Hemmingsson designs the layer and stays close to the run-state: approvals, failure modes, data boundaries and output quality. The firm itself runs on the same architecture it installs, so every engagement starts from working practice.</p>
+              <div class="engagements" id="commercial">
+                <div class="engagement"><strong>Architecture sprint</strong><span>Fixed scope. Your stack mapped, mandate defined, one operation running.</span></div>
+                <div class="engagement"><strong>Operating retainer</strong><span>Monthly. We run and expand operations, governance and records included.</span></div>
+                <div class="engagement"><strong>Embedded program</strong><span>Quoted. Forward-deployed engineering across your operation.</span></div>
+              </div>
+              <div class="hero-actions">
+                <a class="cta" href="./book/" data-track-cta="operator-book">Book an operating review</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="faq" id="faq">
+          <div class="wrap">
+            <h2 class="section-title">Questions worth asking.</h2>
+            <div class="faq-list">
+              <details open>
+                <summary>How do agents stay governed?</summary>
+                <p>At the boundary, before an action reaches your stack: written scope, approval gates, a stop control and a record of the work.</p>
+              </details>
+              <details>
+                <summary>Where does our data live?</summary>
+                <p>In your systems. We connect with scoped access and document every data path before an agent operates. Client boundaries are hard-separated.</p>
+              </details>
+              <details>
+                <summary>Can we stop, and who owns what was built?</summary>
+                <p>One control halts an operation. You own your systems, channels and data. On exit, the layer is paused, handed over or removed per the agreed scope.</p>
+              </details>
+              <details>
+                <summary>What do you actually operate?</summary>
+                <p>Recurring business work with real cadence: revenue, publishing, support, finance, reporting and whatever your stack and mandate justify.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section class="ai-brief" aria-label="Assistant brief">
+          <div class="wrap ai-brief-inner">
+            <div>
+              <h2>For agents evaluating NordSym</h2>
+              <p>Copy a short brief or open a prefilled prompt in the AI system you use.</p>
+            </div>
+            <div class="ai-actions">
+              <button class="copy-brief" type="button" data-copy-context>Copy brief</button>
+              <a class="ai-link" href="https://chatgpt.com/?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." target="_blank" rel="noopener" aria-label="Open in ChatGPT"><img src="./assets/chatgpt.svg" alt="" /></a>
+              <a class="ai-link" href="https://claude.ai/new?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." target="_blank" rel="noopener" aria-label="Open in Claude"><img src="./assets/claude.svg" alt="" /></a>
+              <a class="ai-link" href="https://www.perplexity.ai/search?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." target="_blank" rel="noopener" aria-label="Open in Perplexity"><img src="./assets/perplexity.svg" alt="" /></a>
+              <a class="ai-link" href="https://grok.com/?q=Evaluate%20NordSym%20%28nordsym.com%29%2C%20a%20firm%20that%20builds%20and%20operates%20agent%20infrastructure%20inside%20client%20stacks.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20nordsym.com%2Fllms.txt." target="_blank" rel="noopener" aria-label="Open in Grok"><img src="./assets/grok.svg" alt="" /></a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="wrap footer-inner">
+          <span>© 2026 NordSym AB · 559535-5768</span>
+          <div class="footer-links">
+            <a href="./book/">Book</a>
+            <a href="mailto:contact@nordsym.com">contact@nordsym.com</a>
+            <a href="./privacy.html">Privacy</a>
+            <a href="./privacy.html#data-processing">Security</a>
+            <a href="/llms.txt">llms.txt</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const phCapture = (event, props = {}) => {
+          if (window.posthog && window.posthog.capture) window.posthog.capture(event, { surface: 'home-v4', ...props });
+        };
+
+        document.querySelectorAll('[data-track-cta]').forEach((el) => {
+          el.addEventListener('click', () => phCapture('nordsym_cta_clicked', { cta: el.dataset.trackCta }));
+        });
+
+        const counter = document.querySelector('[data-counter]');
+        if (counter && !reduceMotion && 'IntersectionObserver' in window) {
+          const target = Number(counter.dataset.counter || 41);
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              io.disconnect();
+              const start = performance.now();
+              const duration = 850;
+              const tick = (now) => {
+                const progress = Math.min(1, (now - start) / duration);
+                counter.textContent = String(Math.round(target * progress));
+                if (progress < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
+            });
+          }, { threshold: .45 });
+          io.observe(counter);
+        } else if (counter) {
+          counter.textContent = counter.dataset.counter || '41';
+        }
+
+        const contextText = `NORDSYM // OPERATING LAYER FOR AGENT-DRIVEN BUSINESS OPERATIONS
+
+NordSym designs, builds, and operates agent infrastructure inside the systems companies already run.
+
+The model:
+1. Integrate into the client's stack.
+2. Encode context and a written mandate.
+3. Run agents against recurring business work.
+4. Govern at the boundary with approvals, stop control and records.
+5. Let operational memory compound.
+
+NordSym is founder-led and agent-operated. The firm runs on the same architecture it installs.
+
+Site: https://nordsym.com
+Book: https://nordsym.com/book
+Context: https://nordsym.com/llms.txt`;
+
+        const copyButton = document.querySelector('[data-copy-context]');
+        if (copyButton) {
+          copyButton.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(contextText);
+              copyButton.textContent = 'Copied';
+              phCapture('nordsym_context_copied');
+              setTimeout(() => { copyButton.textContent = 'Copy brief'; }, 1500);
+            } catch {
+              copyButton.textContent = 'Open llms.txt';
+              setTimeout(() => { copyButton.textContent = 'Copy brief'; }, 1500);
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
