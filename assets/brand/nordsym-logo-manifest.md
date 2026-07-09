@@ -1,7 +1,7 @@
-# NordSym Logo System — Direction 01 "Reduced North Star"
+# NordSym Logo System - Direction 01 "Reduced North Star"
 
 Production asset manifest. Colors: oxide `#A6432A` (star), ink `#1B1917` (wordmark + center dot), warm paper `#EAE4D8`.
-Geometry is a solid four-point compass star with a fixed center dot — no gradients, shadows, or thin strokes. All PNGs are transparent unless noted.
+Geometry is a solid four-point compass star with a fixed center dot - no gradients, shadows, or thin strokes. All PNGs are transparent unless noted.
 
 ## Symbol only
 | File | Use |
@@ -48,6 +48,6 @@ Geometry is a solid four-point compass star with a fixed center dot — no gradi
 | `nordsym-og-image.png` | Open Graph share image draft (1200×630, paper ground). |
 
 ## Notes
-- The `*.svg` **symbol** files are pure vector polygons/circles — no embedded raster, no font dependency.
-- The lockup SVGs set the wordmark in **IBM Plex Sans** via `@import`; for a fully self-contained file, convert the text to outlines in your vector tool (one step) — say the word and I can also ship pre-outlined lockup SVGs.
+- The `*.svg` **symbol** files are pure vector polygons/circles - no embedded raster, no font dependency.
+- The lockup SVGs set the wordmark in **IBM Plex Sans** via `@import`; for a fully self-contained file, convert the text to outlines in your vector tool (one step) - say the word and I can also ship pre-outlined lockup SVGs.
 - All raster type was rendered from IBM Plex Sans (Nord = 600, Sym = 400, −0.02em tracking).

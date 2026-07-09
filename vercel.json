@@ -8,22 +8,6 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
 
-    { "source": "/deal/:customerId/sow", "destination": "/deal/sow.html" },
-    { "source": "/deal/:customerId/mou", "destination": "/deal/mou.html" },
-    { "source": "/deal/:customerId/demo", "destination": "/deal/demo.html" },
-    { "source": "/deal/:customerId/onboarding", "destination": "/deal/onboarding.html" },
-    { "source": "/deal/:customerId", "destination": "/deal/room.html" },
-
-    { "source": "/sow/excom", "destination": "/sow/excom.html" },
-    { "source": "/sow/nakama", "destination": "/sow/nakama.html" },
-    { "source": "/sow/hotclean", "destination": "/sow/hotclen.html" },
-    { "source": "/sow/hotclen", "destination": "/sow/hotclen.html" },
-    { "source": "/sow/upwork", "destination": "/sow/lazy-genius.html" },
-    { "source": "/sow/lazy-genius", "destination": "/sow/lazy-genius.html" },
-    { "source": "/sow/success", "destination": "/sow/success.html" },
-    { "source": "/proposal/fadi", "destination": "/proposal/fadi.html" },
-    { "source": "/proposal/charlie", "destination": "/proposal/charlie.html" },
-    { "source": "/demo-sow/fadi", "destination": "/demo-sow/fadi.html" },
     { "source": "/agent-info", "destination": "/agent-info.json" },
     { "source": "/agents.txt", "destination": "/agents.md" },
     { "source": "/systems", "destination": "/systems.html" },

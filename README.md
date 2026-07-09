@@ -1,95 +1,74 @@
-# NordSym.com — AI Agent Infrastructure Platform
+# NordSym.com
 
 **Live:** https://nordsym.com  
-**Stack:** HTML5, Tailwind CSS, GSAP, Three.js  
-**Deploy:** GitHub Pages + Vercel API routes
+**Positioning:** The operating layer between your stack and the agents that run it.  
+**Stack:** Static HTML, Vercel routes, machine-readable discovery files.
 
----
+## What this repository is
 
-## What is NordSym?
+NordSym.com is the public positioning, proof, and intake surface for NordSym AB.
 
-AI Agent Infrastructure & Orchestration Platform.
+NordSym designs, builds, and operates governed agent infrastructure inside existing business stacks. The site explains the operating-layer model, exposes the public systems boundary, and routes qualified conversations to `/book/`.
 
-We build:
-- **APIClaw** — 15000+ APIs in one MCP server for AI agents
-- **Hivr** — AI agent marketplace & swarm orchestration
-- **Agent-native systems** — Software AI can talk to directly
+## Public boundary
 
----
+The public systems boundary is maintained in:
 
-## Repository Structure
+- `systems.canon.json`
+- `systems.html`
 
-```
-NordSym-Hemsida/
-├── index.html          # Main site
-├── api/
-│   ├── sow/           # Scope of Work signing flow
-│   │   ├── sign.js    # SoW signature handler
-│   │   ├── status.js  # SoW status check
-│   │   └── book.js    # Week 1 checkpoint booking
-│   ├── agent-info.js  # Agent API endpoint
-│   └── audit.js       # AEO audit endpoint
-├── sow/               # SoW signing pages
-│   ├── excom.html
-│   ├── nakama.html
-│   ├── hotclen.html
-│   └── lazy-genius.html
-├── lang.js            # i18n translations (English primary)
-└── mc-bridge.js       # Mission Control integration
-```
+Public discovery surfaces must derive from that boundary:
 
----
+- `llms.txt`
+- `agents.md`
+- `agents.json`
+- `agent-info.json`
+- `/api/agent-info`
+- `openapi.json`
+- `.well-known/ai-plugin.json`
+- `.well-known/mcp`
 
-## API Endpoints
+Internal operating surfaces, client-specific systems, private agreement routes, internal agent rosters, and Mission Control URLs are not public NordSym.com content.
 
-**Scope of Work:**
-- `POST /api/sow/sign` — Sign SoW (writes to Mission Control Convex)
-- `GET /api/sow/status?customerId=[slug]` — Check signing status
-- `POST /api/sow/book` — Book Week 1 checkpoint
+## Current deploy model
 
-**Agent Discovery:**
-- `GET /api/agent-info` — Agent-native metadata
-- `GET /llms.txt` — Full AI context & instructions
+Production is deployed from Vercel. GitHub Pages is not the authority.
 
----
-
-## Local Development
+Before deployment:
 
 ```bash
-# No build step — static site
-# Serve locally:
-python3 -m http.server 8000
+npm run validate:systems
+```
 
-# Or with Vercel CLI:
+## Local development
+
+```bash
+python3 -m http.server 8000
+```
+
+or:
+
+```bash
 vercel dev
 ```
 
----
+## Public discovery endpoints
 
-## Deploy
-
-**Auto-deploy on push to main:**
-- GitHub Pages (static content)
-- Vercel (API routes + edge functions)
-
----
-
-## Mission Control Integration
-
-SoWs write to Mission Control Convex:
-- Deployment: `agile-crane-840.convex.cloud`
-- Schema: `convex/sows.ts`
-- Functions: `getStatus`, `sign`, `create`, `updateStatus`
-
----
+- `/llms.txt`
+- `/agents.md`
+- `/agents.txt`
+- `/agents.json`
+- `/agent-info`
+- `/agent-info.json`
+- `/systems`
+- `/systems.canon.json`
+- `/openapi.json`
+- `/.well-known/ai-plugin.json`
+- `/.well-known/mcp`
 
 ## Contact
 
-**Agent API:** symbot@nordsym.com  
-**Telegram:** [@Symbot_nordsym_bot](https://t.me/Symbot_nordsym_bot?start=nordsym)  
-**Website:** [nordsym.com](https://nordsym.com)
+**Email:** contact@nordsym.com  
+**Website:** https://nordsym.com  
 
----
-
-**NordSym AB** — Full Stack AI Partner  
-Org.nr: 559535-5768 | Stockholm, Sweden
+NordSym AB, 559535-5768.

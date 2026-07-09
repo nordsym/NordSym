@@ -3,7 +3,7 @@
   "info": {
     "title": "NordSym public discovery",
     "version": "2026-07-08",
-    "description": "Small public discovery surface for NordSym's agent-readable metadata."
+    "description": "Small public discovery surface for NordSym's agent architecture and operations metadata."
   },
   "servers": [
     {
@@ -85,7 +85,7 @@
     },
     "/agents.json": {
       "get": {
-        "summary": "Structured list of public NordSym agent roles",
+        "summary": "Structured public NordSym agent policy and boundaries",
         "operationId": "getAgentsJson",
         "responses": {
           "200": {

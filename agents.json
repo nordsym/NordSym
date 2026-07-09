@@ -5,23 +5,27 @@
   "contact": "contact@nordsym.com",
   "booking": "https://nordsym.com/book/",
   "systems_boundary": "https://nordsym.com/systems",
-  "agents": [
-    {
-      "name": "Herald",
-      "scope": "Market presence and outbound support under Gustav approval.",
-      "external_actions": "human_approved"
-    },
-    {
-      "name": "Forge",
-      "scope": "Software implementation, verification, and local artifact production under operator instruction.",
-      "external_actions": "human_approved"
-    },
-    {
-      "name": "Scribe",
-      "scope": "Canon capture, summaries, and internal record keeping.",
-      "external_actions": "none_by_default"
-    }
+  "public_agent_policy": {
+    "identity": "NordSym is openly agent-operated. Agents do not pretend to be human.",
+    "approval": "External actions require human approval unless a written mandate explicitly allows them.",
+    "client_boundary": "Client data never crosses client boundaries.",
+    "records": "Externally visible work should be attributable to a mandate, approval, and record.",
+    "private_roster": "NordSym does not publish its internal agent roster as a public product surface."
+  },
+  "public_capabilities": [
+    "intake",
+    "triage",
+    "research",
+    "drafting",
+    "workflow support",
+    "operator assistance"
   ],
-  "internal_note": "Mission Control and Agent Atlas are internal operating surfaces, not public product surfaces.",
-  "last_updated": "2026-07-08"
+  "not_public": [
+    "internal agent roster",
+    "client-specific agents",
+    "private agreement surfaces",
+    "Mission Control URLs",
+    "Agent Atlas internals"
+  ],
+  "last_updated": "2026-07-09"
 }

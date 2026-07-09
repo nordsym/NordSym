@@ -6,7 +6,7 @@
       "id": "apiclaw",
       "name": "APIClaw",
       "tier": "T1",
-      "type": "public product",
+      "role": "public_gateway",
       "url": "https://apiclaw.cloud",
       "one_liner": "API and provider gateway for agents: discovery, routing, and managed calls without putting every provider key inside the agent."
     },
@@ -14,7 +14,7 @@
       "id": "agent-badge",
       "name": "Agent Badge",
       "tier": "T2",
-      "type": "public infrastructure",
+      "role": "public_proof_infrastructure",
       "url": null,
       "one_liner": "Identity and receipts for agent work: who acted, under what mandate, and what record proves it.",
       "public_note": "The current operator surface lives inside Mission Control. Public verification surfaces should be linked only when deliberately exposed."
@@ -23,7 +23,7 @@
       "id": "skillsync",
       "name": "skillsync",
       "tier": "T2",
-      "type": "open-source infrastructure",
+      "role": "open_source_utility",
       "url": "https://github.com/nordsym/skillsync",
       "one_liner": "Open-source skill distribution for keeping agent instructions synchronized across runtimes."
     },
@@ -31,7 +31,7 @@
       "id": "ai-search",
       "name": "AI Search",
       "tier": "T1",
-      "type": "public product",
+      "role": "public_product_surface",
       "url": "https://aisearch.nordsym.com",
       "one_liner": "Checks how AI systems find, read, and cite a company."
     },
@@ -39,7 +39,7 @@
       "id": "genprd",
       "name": "GenPRD",
       "tier": "T1",
-      "type": "public product",
+      "role": "public_product_surface",
       "url": "https://genprd.se",
       "one_liner": "Turns a product idea into a build-ready product requirements document."
     },
@@ -47,7 +47,7 @@
       "id": "flowvault",
       "name": "FlowVault",
       "tier": "T1",
-      "type": "public product",
+      "role": "public_product_surface",
       "url": "https://flowvault.se",
       "one_liner": "Workflow library and reliability layer for n8n operations."
     },
@@ -55,7 +55,7 @@
       "id": "cleanbuddy",
       "name": "CleanBuddy",
       "tier": "T3",
-      "type": "venture product built by NordSym",
+      "role": "venture_proof_surface",
       "url": "https://cleanbuddy.ai",
       "one_liner": "Operations surface for cleaning companies, built and operated by NordSym for a venture company."
     }
