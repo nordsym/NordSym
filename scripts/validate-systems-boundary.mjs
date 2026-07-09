@@ -7,7 +7,6 @@ const parse = (file) => JSON.parse(read(file));
 
 const canon = parse('systems.canon.json');
 const visible = canon.visible_systems ?? [];
-const allowedStatuses = new Set(canon.status_vocabulary ?? []);
 
 const publicFiles = [
   'llms.txt',
@@ -47,8 +46,8 @@ if (visible.length > 8) {
 }
 
 for (const system of visible) {
-  if (!allowedStatuses.has(system.status)) {
-    fail(`${system.name} has invalid status ${system.status}`);
+  if ('status' in system) {
+    fail(`${system.name} exposes a status field in systems.canon.json`);
   }
   if (system.id === 'agent-badge' && system.url) {
     fail('Agent Badge must not expose a public URL until a verification surface is deliberately public');
