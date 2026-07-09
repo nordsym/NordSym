@@ -179,7 +179,7 @@ export default async function handler(req, res) {
     api_version: '3.0.0',
     supported_formats: ['json'],
     rate_limit: '100 requests/hour',
-    last_updated: '2026-07-08',
+    last_updated: '2026-07-09',
     agent_friendly: true,
     human_approval_required_for_external_actions: true
   };
