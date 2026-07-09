@@ -316,7 +316,7 @@
     [style*="grid-template-columns: 1.5fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr 1fr!important;gap:32px 24px!important;}
     #hero-constellation{height:300px!important;}
     #layer [style*="padding: 14px 10px 22px"]{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-    #layer svg{min-width:640px;}
+    #layer svg{min-width:0;}
   }
   @media (max-width:560px){
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important;}
@@ -341,6 +341,32 @@
     transform: translateY(-1px);
     background: rgba(243, 238, 228, 0.09) !important;
     border-color: rgba(224, 138, 110, 0.52) !important;
+  }
+</style>
+
+<style id="nordsym-layer-hotfix">
+  #layer svg {
+    min-width: 0 !important;
+    max-width: min(720px, 100%) !important;
+  }
+  @media (max-width: 700px) {
+    #layer {
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    #layer > div[style*="position: sticky"] {
+      position: relative !important;
+      top: auto !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      padding: 76px 18px 70px !important;
+    }
+    #layer svg {
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+    }
   }
 </style>
 
@@ -574,7 +600,7 @@
     <div>
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(224, 138, 110); margin-bottom: 26px;">Proof</div>
       <div id="proof-num" style="display: flex; align-items: flex-start; gap: 14px;">
-        <span style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(90px, 13vw, 168px); line-height: 0.86; letter-spacing: -0.03em;">0</span>
+        <span style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(90px, 13vw, 168px); line-height: 0.86; letter-spacing: -0.03em;">41</span>
       </div>
       <p style="font-family: Newsreader, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); line-height: 1.18; letter-spacing: -0.01em; margin: 22px 0px 0px; max-width: 16ch;">operations run on this architecture right now.</p>
 
@@ -678,7 +704,7 @@
     </div>
     <div>
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 24px;">Founder &amp; operator</div>
-      <blockquote style="font-family: Newsreader, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; letter-spacing: -0.02em; margin: 0px;">“Most companies already have the models. What they're missing is the layer that lets agents work - under a mandate, inside a boundary, on the record.”</blockquote>
+      <blockquote style="font-family: Newsreader, serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; letter-spacing: -0.02em; margin: 0px;">“Most companies already have the models. What they're missing is the layer that lets agents work.”</blockquote>
       <div style="display: flex; align-items: center; gap: 14px; margin-top: 32px;">
         <img src="/assets/brand/nordsym-symbol.svg" alt="" aria-hidden="true" style="width: 18px; height: 18px; display: block;">
         <div>
@@ -801,6 +827,138 @@
 
 
 <script>(function(){var brief="NordSym builds and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations. NordSym works as a forward-deployed engineering and operations partner: it integrates into the stack, gives agents context and mandate, keeps human approvals at the boundary, and records the work. Learn more: https://nordsym.com/ and https://nordsym.com/llms.txt";function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}ready(function(){var btn=document.getElementById('copy-ai-context');var status=document.getElementById('copy-ai-context-status');if(!btn)return;btn.addEventListener('click',async function(){try{await navigator.clipboard.writeText(brief);if(status)status.textContent='Copied to clipboard';if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_ai_context_copied',{surface:'home'});}catch(e){if(status)status.textContent='Copy failed. Open /llms.txt instead';}});});})();</script>
+<script id="nordsym-layer-proof-hotfix">
+(function(){
+  function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
+  ready(function(){
+    var layer=document.getElementById('layer');
+    var proof=document.querySelector('#proof-num span');
+    if(proof) proof.textContent='41';
+    (function(){
+      var canvas=document.getElementById('hero-constellation');
+      if(!canvas || !canvas.getContext) return;
+      var ctx=canvas.getContext('2d');
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var nodes=[
+        [0.06,0.76,4,'#211D17'],[0.12,0.56,7,'#211D17'],[0.18,0.84,3,'#C7BCA5'],[0.23,0.64,5,'#A8432B'],
+        [0.31,0.72,3,'#211D17'],[0.36,0.48,8,'#211D17'],[0.41,0.78,3,'#A8432B'],[0.47,0.62,4,'#C7BCA5'],
+        [0.54,0.86,5,'#211D17'],[0.60,0.52,7,'#A8432B'],[0.66,0.74,3,'#211D17'],[0.71,0.58,5,'#C7BCA5'],
+        [0.78,0.82,4,'#211D17'],[0.84,0.68,7,'#211D17'],[0.90,0.92,5,'#A8432B'],[0.96,0.70,4,'#C7BCA5'],
+        [0.03,0.43,2,'#211D17'],[0.16,0.36,3,'#A8432B'],[0.28,0.32,2,'#211D17'],[0.51,0.34,4,'#211D17'],
+        [0.73,0.38,3,'#A8432B'],[0.89,0.42,2,'#211D17']
+      ];
+      function resize(){
+        var rect=canvas.getBoundingClientRect();
+        var dpr=Math.min(window.devicePixelRatio||1,2);
+        canvas.width=Math.max(1,Math.round(rect.width*dpr));
+        canvas.height=Math.max(1,Math.round(rect.height*dpr));
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      function star(cx,cy,r,color){
+        ctx.save();
+        ctx.translate(cx,cy);
+        ctx.fillStyle=color;
+        ctx.beginPath();
+        ctx.moveTo(0,-r);
+        ctx.lineTo(r*0.18,-r*0.18);
+        ctx.lineTo(r,0);
+        ctx.lineTo(r*0.18,r*0.18);
+        ctx.lineTo(0,r);
+        ctx.lineTo(-r*0.18,r*0.18);
+        ctx.lineTo(-r,0);
+        ctx.lineTo(-r*0.18,-r*0.18);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+      function draw(time){
+        var w=canvas.clientWidth;
+        var h=canvas.clientHeight;
+        var cx=w*0.58;
+        var cy=h*0.52;
+        ctx.clearRect(0,0,w,h);
+        nodes.forEach(function(node,idx){
+          var angle=node[0]*Math.PI*2;
+          var dist=Math.min(w,h)*node[1]*0.46;
+          var pulse=reduce?0:Math.sin(time*0.0008+idx)*4;
+          var x=cx+Math.cos(angle)*(dist+pulse);
+          var y=cy+Math.sin(angle)*(dist+pulse*0.6);
+          ctx.strokeStyle='rgba(33,29,23,0.10)';
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(cx,cy);
+          ctx.lineTo(x,y);
+          ctx.stroke();
+          ctx.fillStyle=node[3];
+          ctx.globalAlpha=0.92;
+          ctx.beginPath();
+          ctx.arc(x,y,node[2],0,Math.PI*2);
+          ctx.fill();
+          ctx.globalAlpha=1;
+        });
+        ctx.strokeStyle='rgba(168,67,43,0.42)';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.arc(cx,cy,22,0,Math.PI*2);
+        ctx.stroke();
+        star(cx,cy,20,'#A8432B');
+      }
+      function loop(time){
+        draw(time);
+        if(!reduce) window.requestAnimationFrame(loop);
+      }
+      resize();
+      window.addEventListener('resize',function(){resize(); draw(performance.now());});
+      draw(0);
+      if(!reduce) window.requestAnimationFrame(loop);
+    })();
+    if(!layer) return;
+    var cap=document.getElementById('cap');
+    var conns=document.getElementById('conns-lower');
+    var boundary=document.getElementById('boundary');
+    var agents=document.getElementById('agents');
+    var connsUpper=document.getElementById('conns-upper');
+    var ops=document.getElementById('axon-ops');
+    var stack=document.getElementById('axon-stack');
+    var axonLayer=document.getElementById('axon-layer');
+    var captions=[
+      'Your stack - the systems you already run.',
+      'NordSym installs the operating layer between your stack and the agents.',
+      'Agents work inside a mandate, with approvals and records at the boundary.',
+      'Recurring operations run on top - revenue, support, reporting, and more.'
+    ];
+    function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+    function fade(v,start,end){return clamp((v-start)/(end-start),0,1);}
+    function opacity(node,value){if(node) node.setAttribute('opacity',String(value));}
+    function update(){
+      var mobile=window.matchMedia('(max-width: 700px)').matches;
+      var rect=layer.getBoundingClientRect();
+      var travel=Math.max(1,rect.height-window.innerHeight);
+      var progress=mobile?1:clamp((0-rect.top)/travel,0,1);
+      opacity(conns,fade(progress,0.12,0.34));
+      opacity(boundary,fade(progress,0.32,0.55));
+      opacity(agents,fade(progress,0.55,0.76));
+      opacity(connsUpper,fade(progress,0.72,0.88));
+      opacity(ops,fade(progress,0.78,0.94));
+      if(stack) stack.setAttribute('transform','translate(0,'+(-Math.round(progress*16))+')');
+      if(axonLayer) axonLayer.setAttribute('transform','translate(0,'+(-46-Math.round(progress*18))+')');
+      if(cap){
+        var index=progress<0.28?0:progress<0.56?1:progress<0.82?2:3;
+        cap.textContent=captions[index];
+      }
+    }
+    var ticking=false;
+    function schedule(){
+      if(ticking) return;
+      ticking=true;
+      window.requestAnimationFrame(function(){ticking=false;update();});
+    }
+    update();
+    window.addEventListener('scroll',schedule,{passive:true});
+    window.addEventListener('resize',schedule);
+  });
+})();
+</script>
 <script id="nordsym-posthog">
 (function(){
   if (window.__nordsymPosthogLoaded) return;
