@@ -355,15 +355,14 @@
   }
   @media (max-width: 700px) {
     #layer {
-      height: auto !important;
-      min-height: 0 !important;
+      height: 220vh !important;
+      min-height: 1320px !important;
     }
     #layer > div[style*="position: sticky"] {
-      position: relative !important;
-      top: auto !important;
-      height: auto !important;
-      min-height: 0 !important;
-      overflow: visible !important;
+      position: sticky !important;
+      top: 0 !important;
+      min-height: 100svh !important;
+      overflow: hidden !important;
       padding: 76px 18px 70px !important;
     }
     #layer svg {
@@ -915,7 +914,7 @@
       ctx.clearRect(0,0,W,H);
       var cx=W*0.5, cy=H*0.5;
       var maxR=Math.min(W,H)*0.47;
-      var rot=reduce?0:t*0.028;
+      var rot=reduce?0:t*0.011;
 
       for(var i=0;i<nodes.length;i++){
         var nd=nodes[i],a=nd.ang+rot,r=nd.rq*maxR;
@@ -936,11 +935,11 @@
       ctx.beginPath();ctx.arc(cx,cy,13+(reduce?0:2*Math.sin(t*1.4)),0,Math.PI*2);ctx.stroke();
       drawStar(cx,cy,5.5,OX);
 
-      if(!reduce && Math.random()<0.028 && pulses.length<4){
+      if(!reduce && Math.random()<0.014 && pulses.length<3){
         pulses.push({nd:nodes[(Math.random()*nodes.length)|0],p:0});
       }
       for(var k=pulses.length-1;k>=0;k--){
-        var pl=pulses[k];pl.p+=0.011;
+        var pl=pulses[k];pl.p+=0.0065;
         if(pl.p>=1){pulses.splice(k,1);continue;}
         var pa=pl.nd.ang+rot,pr=pl.nd.rq*maxR*pl.p;
         var px=cx+Math.cos(pa)*pr,py=cy+Math.sin(pa)*pr;
@@ -950,15 +949,15 @@
       }
 
       labCooldown-=1;
-      if(!lab && labCooldown<=0 && !reduce && Math.random()<0.03){
+      if(!lab && labCooldown<=0 && !reduce && Math.random()<0.016){
         lab={nd:nodes[(Math.random()*nodes.length)|0],txt:labelTexts[(Math.random()*labelTexts.length)|0],life:0};
       }
       if(lab){
-        lab.life+=0.014;
+        lab.life+=0.008;
         var la=lab.nd.ang+rot,lr=lab.nd.rq*maxR;
         var lx=cx+Math.cos(la)*lr,ly=cy+Math.sin(la)*lr;
         var alpha=Math.min(1,lab.life*3)*Math.max(0,1-Math.max(0,lab.life-2.2)*1.5);
-        if(alpha<=0){lab=null;labCooldown=80+Math.random()*90;}
+        if(alpha<=0){lab=null;labCooldown=110+Math.random()*140;}
         else{
           ctx.globalAlpha=alpha;
           ctx.font='9px "IBM Plex Mono", monospace';
@@ -978,15 +977,13 @@
     resize();
     window.addEventListener('resize',function(){resize();draw(performance.now());});
     draw(performance.now());
-    if(!reduce) raf=requestAnimationFrame(draw);
   }
 
   function updateAxon(){
     var wrap=document.getElementById('layer');
     if(!wrap) return;
-    var mobile=window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
     var total=Math.max(1,wrap.offsetHeight-window.innerHeight);
-    var p=mobile?1:clamp(-wrap.getBoundingClientRect().top/total);
+    var p=clamp(-wrap.getBoundingClientRect().top/total);
     var lift1=46+p*150;
     var lift2=112+p*248;
     var layer=document.getElementById('axon-layer');
