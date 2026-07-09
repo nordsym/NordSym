@@ -315,6 +315,10 @@
     [style*="grid-template-columns: 1.4fr 1fr"]{grid-template-columns:1fr!important;gap:14px!important;}
     [style*="grid-template-columns: 1.5fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr 1fr!important;gap:32px 24px!important;}
     #hero-constellation{height:300px!important;}
+    footer > div:first-child{display:grid!important;grid-template-columns:1fr!important;gap:32px!important;}
+    footer > div:first-child > div{min-width:0!important;width:100%!important;}
+    footer [id=copy-ai-context]{width:100%!important;}
+    footer a.scp5{width:44px!important;height:44px!important;}
     #layer [style*="padding: 14px 10px 22px"]{overflow-x:auto;-webkit-overflow-scrolling:touch;}
     #layer svg{min-width:0;}
   }
@@ -600,7 +604,7 @@
     <div>
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(224, 138, 110); margin-bottom: 26px;">Proof</div>
       <div id="proof-num" style="display: flex; align-items: flex-start; gap: 14px;">
-        <span style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(90px, 13vw, 168px); line-height: 0.86; letter-spacing: -0.03em;">41</span>
+        <span style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(90px, 13vw, 168px); line-height: 0.86; letter-spacing: -0.03em;">0</span>
       </div>
       <p style="font-family: Newsreader, serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); line-height: 1.18; letter-spacing: -0.01em; margin: 22px 0px 0px; max-width: 16ch;">operations run on this architecture right now.</p>
 
@@ -830,132 +834,198 @@
 <script id="nordsym-layer-proof-hotfix">
 (function(){
   function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
-  ready(function(){
-    var layer=document.getElementById('layer');
+  function clamp(v){return Math.min(1,Math.max(0,v));}
+
+  function initProofCount(){
     var proof=document.querySelector('#proof-num span');
-    if(proof) proof.textContent='41';
-    (function(){
-      var canvas=document.getElementById('hero-constellation');
-      if(!canvas || !canvas.getContext) return;
-      var ctx=canvas.getContext('2d');
-      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var nodes=[
-        [0.06,0.76,4,'#211D17'],[0.12,0.56,7,'#211D17'],[0.18,0.84,3,'#C7BCA5'],[0.23,0.64,5,'#A8432B'],
-        [0.31,0.72,3,'#211D17'],[0.36,0.48,8,'#211D17'],[0.41,0.78,3,'#A8432B'],[0.47,0.62,4,'#C7BCA5'],
-        [0.54,0.86,5,'#211D17'],[0.60,0.52,7,'#A8432B'],[0.66,0.74,3,'#211D17'],[0.71,0.58,5,'#C7BCA5'],
-        [0.78,0.82,4,'#211D17'],[0.84,0.68,7,'#211D17'],[0.90,0.92,5,'#A8432B'],[0.96,0.70,4,'#C7BCA5'],
-        [0.03,0.43,2,'#211D17'],[0.16,0.36,3,'#A8432B'],[0.28,0.32,2,'#211D17'],[0.51,0.34,4,'#211D17'],
-        [0.73,0.38,3,'#A8432B'],[0.89,0.42,2,'#211D17']
-      ];
-      function resize(){
-        var rect=canvas.getBoundingClientRect();
-        var dpr=Math.min(window.devicePixelRatio||1,2);
-        canvas.width=Math.max(1,Math.round(rect.width*dpr));
-        canvas.height=Math.max(1,Math.round(rect.height*dpr));
-        ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(!proof) return;
+    proof.textContent='0';
+    var started=false;
+    function run(){
+      if(started) return;
+      started=true;
+      var start=performance.now();
+      var dur=1500;
+      function step(now){
+        var p=clamp((now-start)/dur);
+        var eased=1-Math.pow(1-p,3);
+        proof.textContent=String(Math.round(eased*41));
+        if(p<1) requestAnimationFrame(step);
       }
-      function star(cx,cy,r,color){
-        ctx.save();
-        ctx.translate(cx,cy);
-        ctx.fillStyle=color;
-        ctx.beginPath();
-        ctx.moveTo(0,-r);
-        ctx.lineTo(r*0.18,-r*0.18);
-        ctx.lineTo(r,0);
-        ctx.lineTo(r*0.18,r*0.18);
-        ctx.lineTo(0,r);
-        ctx.lineTo(-r*0.18,r*0.18);
-        ctx.lineTo(-r,0);
-        ctx.lineTo(-r*0.18,-r*0.18);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      }
-      function draw(time){
-        var w=canvas.clientWidth;
-        var h=canvas.clientHeight;
-        var cx=w*0.58;
-        var cy=h*0.52;
-        ctx.clearRect(0,0,w,h);
-        nodes.forEach(function(node,idx){
-          var angle=node[0]*Math.PI*2;
-          var dist=Math.min(w,h)*node[1]*0.46;
-          var pulse=reduce?0:Math.sin(time*0.0008+idx)*4;
-          var x=cx+Math.cos(angle)*(dist+pulse);
-          var y=cy+Math.sin(angle)*(dist+pulse*0.6);
-          ctx.strokeStyle='rgba(33,29,23,0.10)';
-          ctx.lineWidth=1;
-          ctx.beginPath();
-          ctx.moveTo(cx,cy);
-          ctx.lineTo(x,y);
-          ctx.stroke();
-          ctx.fillStyle=node[3];
-          ctx.globalAlpha=0.92;
-          ctx.beginPath();
-          ctx.arc(x,y,node[2],0,Math.PI*2);
-          ctx.fill();
-          ctx.globalAlpha=1;
-        });
-        ctx.strokeStyle='rgba(168,67,43,0.42)';
-        ctx.lineWidth=1;
-        ctx.beginPath();
-        ctx.arc(cx,cy,22,0,Math.PI*2);
-        ctx.stroke();
-        star(cx,cy,20,'#A8432B');
-      }
-      function loop(time){
-        draw(time);
-        if(!reduce) window.requestAnimationFrame(loop);
-      }
-      resize();
-      window.addEventListener('resize',function(){resize(); draw(performance.now());});
-      draw(0);
-      if(!reduce) window.requestAnimationFrame(loop);
-    })();
-    if(!layer) return;
-    var cap=document.getElementById('cap');
-    var conns=document.getElementById('conns-lower');
-    var boundary=document.getElementById('boundary');
-    var agents=document.getElementById('agents');
-    var connsUpper=document.getElementById('conns-upper');
-    var ops=document.getElementById('axon-ops');
-    var stack=document.getElementById('axon-stack');
-    var axonLayer=document.getElementById('axon-layer');
-    var captions=[
-      'Your stack - the systems you already run.',
-      'NordSym installs the operating layer between your stack and the agents.',
-      'Agents work inside a mandate, with approvals and records at the boundary.',
-      'Recurring operations run on top - revenue, support, reporting, and more.'
-    ];
-    function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
-    function fade(v,start,end){return clamp((v-start)/(end-start),0,1);}
-    function opacity(node,value){if(node) node.setAttribute('opacity',String(value));}
-    function update(){
-      var mobile=window.matchMedia('(max-width: 700px)').matches;
-      var rect=layer.getBoundingClientRect();
-      var travel=Math.max(1,rect.height-window.innerHeight);
-      var progress=mobile?1:clamp((0-rect.top)/travel,0,1);
-      opacity(conns,fade(progress,0.12,0.34));
-      opacity(boundary,fade(progress,0.32,0.55));
-      opacity(agents,fade(progress,0.55,0.76));
-      opacity(connsUpper,fade(progress,0.72,0.88));
-      opacity(ops,fade(progress,0.78,0.94));
-      if(stack) stack.setAttribute('transform','translate(0,'+(-Math.round(progress*16))+')');
-      if(axonLayer) axonLayer.setAttribute('transform','translate(0,'+(-46-Math.round(progress*18))+')');
-      if(cap){
-        var index=progress<0.28?0:progress<0.56?1:progress<0.82?2:3;
-        cap.textContent=captions[index];
-      }
+      requestAnimationFrame(step);
     }
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){run();io.disconnect();}
+        });
+      },{threshold:0.35});
+      io.observe(proof);
+    }else{
+      setTimeout(run,700);
+    }
+  }
+
+  function initConstellation(){
+    var cv=document.getElementById('hero-constellation');
+    if(!cv || !cv.getContext) return;
+    var ctx=cv.getContext('2d');
+    var W=0,H=0,raf=0;
+    var dpr=Math.min(2,window.devicePixelRatio||1);
+    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var INK='#211D17', OX='#A8432B', MUT='#B7A98E', PAPER='#F6F2E9';
+    var nodes=[];
+    for(var i=0;i<84;i++){
+      var roll=Math.random();
+      nodes.push({
+        ang:Math.random()*Math.PI*2,
+        rq:0.14+Math.pow(Math.random(),0.72)*0.9,
+        size:1.1+Math.random()*3.2,
+        phase:Math.random()*6.28,
+        sp:0.4+Math.random()*0.9,
+        c:roll<0.15?OX:(roll<0.4?MUT:INK)
+      });
+    }
+    var labelTexts=['MANDATE UPDATED','OPERATION LOGGED','BOUNDARY CHECK PASS','AGENT DISPATCHED','RECORD WRITTEN','REVIEW COMPLETE'];
+    var pulses=[];
+    var lab=null;
+    var labCooldown=reduce?9999:40;
+    var t0=performance.now();
+
+    function resize(){
+      var r=cv.getBoundingClientRect();
+      W=Math.max(1,r.width);H=Math.max(1,r.height);
+      dpr=Math.min(2,window.devicePixelRatio||1);
+      cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+
+    function drawStar(cx,cy,r,color){
+      ctx.fillStyle=color;
+      ctx.beginPath();
+      ctx.moveTo(cx,cy-r*1.8);ctx.lineTo(cx+r*0.32,cy-r*0.32);
+      ctx.lineTo(cx+r*1.8,cy);ctx.lineTo(cx+r*0.32,cy+r*0.32);
+      ctx.lineTo(cx,cy+r*1.8);ctx.lineTo(cx-r*0.32,cy+r*0.32);
+      ctx.lineTo(cx-r*1.8,cy);ctx.lineTo(cx-r*0.32,cy-r*0.32);
+      ctx.closePath();ctx.fill();
+    }
+
+    function draw(now){
+      var t=(now-t0)/1000;
+      ctx.clearRect(0,0,W,H);
+      var cx=W*0.5, cy=H*0.5;
+      var maxR=Math.min(W,H)*0.47;
+      var rot=reduce?0:t*0.028;
+
+      for(var i=0;i<nodes.length;i++){
+        var nd=nodes[i],a=nd.ang+rot,r=nd.rq*maxR;
+        var x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;
+        ctx.strokeStyle='rgba(33,29,23,0.09)';ctx.lineWidth=0.6;
+        ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();
+      }
+      for(var j=0;j<nodes.length;j++){
+        var n=nodes[j],aa=n.ang+rot,rr=n.rq*maxR;
+        var xx=cx+Math.cos(aa)*rr,yy=cy+Math.sin(aa)*rr;
+        var s=n.size*(reduce?0.9:(0.72+0.28*Math.sin(t*n.sp+n.phase)));
+        ctx.fillStyle=n.c;ctx.globalAlpha=n.c===INK?0.88:0.95;
+        ctx.beginPath();ctx.arc(xx,yy,Math.max(0.4,s),0,Math.PI*2);ctx.fill();
+        ctx.globalAlpha=1;
+      }
+
+      ctx.strokeStyle='rgba(168,67,43,0.55)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.arc(cx,cy,13+(reduce?0:2*Math.sin(t*1.4)),0,Math.PI*2);ctx.stroke();
+      drawStar(cx,cy,5.5,OX);
+
+      if(!reduce && Math.random()<0.028 && pulses.length<4){
+        pulses.push({nd:nodes[(Math.random()*nodes.length)|0],p:0});
+      }
+      for(var k=pulses.length-1;k>=0;k--){
+        var pl=pulses[k];pl.p+=0.011;
+        if(pl.p>=1){pulses.splice(k,1);continue;}
+        var pa=pl.nd.ang+rot,pr=pl.nd.rq*maxR*pl.p;
+        var px=cx+Math.cos(pa)*pr,py=cy+Math.sin(pa)*pr;
+        ctx.fillStyle=OX;ctx.globalAlpha=1-pl.p*0.35;
+        ctx.beginPath();ctx.arc(px,py,2.6,0,Math.PI*2);ctx.fill();
+        ctx.globalAlpha=1;
+      }
+
+      labCooldown-=1;
+      if(!lab && labCooldown<=0 && !reduce && Math.random()<0.03){
+        lab={nd:nodes[(Math.random()*nodes.length)|0],txt:labelTexts[(Math.random()*labelTexts.length)|0],life:0};
+      }
+      if(lab){
+        lab.life+=0.014;
+        var la=lab.nd.ang+rot,lr=lab.nd.rq*maxR;
+        var lx=cx+Math.cos(la)*lr,ly=cy+Math.sin(la)*lr;
+        var alpha=Math.min(1,lab.life*3)*Math.max(0,1-Math.max(0,lab.life-2.2)*1.5);
+        if(alpha<=0){lab=null;labCooldown=80+Math.random()*90;}
+        else{
+          ctx.globalAlpha=alpha;
+          ctx.font='9px "IBM Plex Mono", monospace';
+          var w=ctx.measureText(lab.txt).width+22;
+          var bx=Math.min(W-w-8,Math.max(8,lx+9));
+          var by=Math.min(H-12,Math.max(24,ly-9));
+          ctx.fillStyle=PAPER;ctx.strokeStyle='rgba(33,29,23,0.22)';ctx.lineWidth=1;
+          ctx.beginPath();ctx.rect(bx,by-13,w,19);ctx.fill();ctx.stroke();
+          ctx.fillStyle=OX;ctx.beginPath();ctx.arc(bx+9,by-3.5,2.2,0,Math.PI*2);ctx.fill();
+          ctx.fillStyle='#3A352C';ctx.fillText(lab.txt,bx+16,by+0.5);
+          ctx.globalAlpha=1;
+        }
+      }
+      if(!reduce) raf=requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize',function(){resize();draw(performance.now());});
+    draw(performance.now());
+    if(!reduce) raf=requestAnimationFrame(draw);
+  }
+
+  function updateAxon(){
+    var wrap=document.getElementById('layer');
+    if(!wrap) return;
+    var mobile=window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+    var total=Math.max(1,wrap.offsetHeight-window.innerHeight);
+    var p=mobile?1:clamp(-wrap.getBoundingClientRect().top/total);
+    var lift1=46+p*150;
+    var lift2=112+p*248;
+    var layer=document.getElementById('axon-layer');
+    var ops=document.getElementById('axon-ops');
+    if(layer) layer.setAttribute('transform','translate(0,'+(-lift1)+')');
+    if(ops){ops.setAttribute('transform','translate(0,'+(-lift2)+')');ops.setAttribute('opacity',clamp((p-0.5)/0.3));}
+    document.querySelectorAll('#conns-lower line').forEach(function(l){l.setAttribute('y1',520-lift1);});
+    document.querySelectorAll('#conns-upper line').forEach(function(l){l.setAttribute('y1',500-lift2);l.setAttribute('y2',430-lift1);});
+    function set(id,o){var e=document.getElementById(id);if(e)e.setAttribute('opacity',String(o));}
+    set('conns-lower',clamp((p-0.06)/0.24));
+    set('boundary',clamp((p-0.14)/0.28));
+    set('agents',clamp((p-0.24)/0.3));
+    set('conns-upper',clamp((p-0.5)/0.22));
+    var cap=document.getElementById('cap');
+    if(cap){
+      var text=p<0.34?'Your stack - the systems you already run.':p<0.68?'NordSym operates as the layer above it.':'Recurring operations run on top - revenue, support, reporting, and more.';
+      if(cap.textContent!==text) cap.textContent=text;
+    }
+    for(var n=1;n<=3;n++){
+      var d=document.getElementById('step'+n);
+      if(!d) continue;
+      var on=(n===1&&p<0.34)||(n===2&&p>=0.34&&p<0.68)||(n===3&&p>=0.68);
+      d.setAttribute('fill',on?'#A8432B':'rgba(33,29,23,0.18)');
+    }
+  }
+
+  ready(function(){
+    initProofCount();
+    initConstellation();
     var ticking=false;
     function schedule(){
       if(ticking) return;
       ticking=true;
-      window.requestAnimationFrame(function(){ticking=false;update();});
+      requestAnimationFrame(function(){ticking=false;updateAxon();});
     }
-    update();
+    updateAxon();
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',schedule);
+    setTimeout(updateAxon,250);
   });
 })();
 </script>
