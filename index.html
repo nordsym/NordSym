@@ -28,6 +28,21 @@
   @keyframes flowdash{to{stroke-dashoffset:-320;}}
   @keyframes softpulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
   @keyframes riseline{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  @keyframes stackrail{to{transform:translateX(-50%);}}
+  #stack-rail{position:relative;padding:86px 0 94px;border-top:1px solid rgba(33,29,23,.1);overflow:hidden;}
+  .stack-rail__heading{max-width:1240px;margin:0 auto 34px;padding:0 40px;text-align:center;}
+  .stack-rail__eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#A8432B;margin-bottom:12px;}
+  .stack-rail__heading h2{font-family:Newsreader,serif;font-size:clamp(27px,3vw,43px);font-weight:400;line-height:1.08;letter-spacing:-.018em;margin:0;}
+  .stack-rail__viewport{position:relative;overflow:hidden;padding:8px 0;}
+  .stack-rail__viewport::before,.stack-rail__viewport::after{content:'';position:absolute;z-index:2;top:0;bottom:0;width:min(11vw,150px);pointer-events:none;}
+  .stack-rail__viewport::before{left:0;background:linear-gradient(90deg,#F3EEE4 12%,rgba(243,238,228,0));}
+  .stack-rail__viewport::after{right:0;background:linear-gradient(270deg,#F3EEE4 12%,rgba(243,238,228,0));}
+  .stack-rail__track{display:flex;width:max-content;will-change:transform;}
+  .stack-rail--ready .stack-rail__track{animation:stackrail 46s linear infinite;}
+  .stack-rail__viewport:hover .stack-rail__track,.stack-rail__viewport:focus-within .stack-rail__track{animation-play-state:paused;}
+  .stack-rail__group{display:flex;gap:12px;padding-right:12px;}
+  .stack-tool{display:flex;align-items:center;gap:11px;min-height:58px;padding:0 22px;border:1px solid rgba(33,29,23,.14);border-radius:2px;background:rgba(249,246,239,.72);box-shadow:0 4px 18px rgba(33,29,23,.035);font-size:15px;font-weight:500;color:#342F28;white-space:nowrap;}
+  .stack-tool__icon{display:block;width:21px;height:21px;flex:0 0 21px;background:var(--brand);-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;}
   @media (max-width:900px){
     nav{padding:13px 18px!important;}
     [style*="gap: 28px; font-size: 13.5px"]{display:none!important;}
@@ -50,10 +65,20 @@
     footer a.scp5{width:44px!important;height:44px!important;}
     #layer [style*="padding: 14px 10px 22px"]{overflow-x:auto;-webkit-overflow-scrolling:touch;}
     #layer svg{min-width:0;}
+    #stack-rail{padding:66px 0 72px!important;}
+    .stack-rail__heading{padding:0 18px;margin-bottom:28px;}
+    .stack-rail__viewport{margin-left:-18px;margin-right:-18px;}
+    .stack-tool{min-height:52px;padding:0 18px;font-size:14px;}
   }
   @media (max-width:560px){
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important;}
     [style*="grid-template-columns: 1.5fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr!important;gap:28px!important;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stack-rail__viewport{overflow-x:auto;scrollbar-width:none;}
+    .stack-rail__viewport::-webkit-scrollbar{display:none;}
+    .stack-rail__track{animation:none;}
+    .stack-rail__group[aria-hidden="true"]{display:none;}
   }
 </style><script type="text/javascript" crossorigin="anonymous" src="https://eu-assets.i.posthog.com/array/phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR/config.js"></script>
 
@@ -135,7 +160,49 @@
     <div style="position: relative; min-width: 0px;">
       <canvas id="hero-constellation" width="584" height="540" style="width: 100%; height: 540px; display: block;"></canvas>
     </div>
-  </div></header><section id="layer" style="position: relative; height: 260vh; border-top: 1px solid rgba(33, 29, 23, 0.1);">
+  </div></header>
+  <section id="stack-rail" aria-labelledby="stack-rail-title">
+    <div class="stack-rail__heading">
+      <div class="stack-rail__eyebrow">Your stack stays</div>
+      <h2 id="stack-rail-title">NordSym works where your business already runs.</h2>
+    </div>
+    <div class="stack-rail__viewport" tabindex="0" aria-label="Systems NordSym can work across">
+      <div class="stack-rail__track">
+        <div class="stack-rail__group">
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#6264A7;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@12.4.0/icons/microsoftteams.svg')"></span>Microsoft Teams</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#EA4335;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/gmail.svg')"></span>Gmail</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#4A154B;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@15.19.0/icons/slack.svg')"></span>Slack</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#FF7A59;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/hubspot.svg')"></span>HubSpot</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#00A1E0;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/salesforce.svg')"></span>Salesforce</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#18BFFF;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/airtable.svg')"></span>Airtable</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#211D17;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/notion.svg')"></span>Notion</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#0052CC;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/jira.svg')"></span>Jira</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#181717;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/github.svg')"></span>GitHub</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#211D17;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/vercel.svg')"></span>Vercel</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#3FCF8E;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/supabase.svg')"></span>Supabase</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#635BFF;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/stripe.svg')"></span>Stripe</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#7AB55C;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/shopify.svg')"></span>Shopify</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#21759B;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/wordpress.svg')"></span>WordPress</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#EA4B71;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/n8n.svg')"></span>n8n</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#26A5E4;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/telegram.svg')"></span>Telegram</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#0A66C2;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg')"></span>LinkedIn</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#F03E2F;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/sanity.svg')"></span>Sanity</div>
+        </div>
+        <div class="stack-rail__group" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function(){
+      var rail=document.getElementById('stack-rail');
+      if(!rail)return;
+      var groups=rail.querySelectorAll('.stack-rail__group');
+      if(groups.length!==2)return;
+      groups[1].innerHTML=groups[0].innerHTML;
+      rail.classList.add('stack-rail--ready');
+    })();
+  </script>
+  <section id="layer" style="position: relative; height: 260vh; border-top: 1px solid rgba(33, 29, 23, 0.1);">
   <div style="position: sticky; top: 0px; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 0px 20px;">
     <div style="text-align: center; margin-bottom: 2px;">
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(168, 67, 43);">The operating layer</div>
