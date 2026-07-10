@@ -142,7 +142,7 @@
 <script id="nordsym-booking-flow">
 (function(){
   var endpoint = "https://nordsym.app.n8n.cloud/webhook/aeo-booking";
-  var state = { focus: "", date: "", time: "", name: "", email: "", company: "", notes: "" };
+  var state = { focus: "", date: "", dateLabel: "", time: "", name: "", email: "", company: "", notes: "" };
   var main = document.querySelector("main");
   if (!main) return;
   var sections = Array.prototype.slice.call(main.children);
@@ -203,6 +203,32 @@
       + '<div style="font-size:13px;color:rgb(90,83,71);margin-top:4px;">'+text(body)+'</div></button>';
   }
 
+  function isoDate(date) {
+    var y = date.getFullYear();
+    var m = String(date.getMonth() + 1).padStart(2, "0");
+    var d = String(date.getDate()).padStart(2, "0");
+    return y + "-" + m + "-" + d;
+  }
+
+  function addBusinessDays(count) {
+    var date = new Date();
+    var added = 0;
+    while (added < count) {
+      date.setDate(date.getDate() + 1);
+      var day = date.getDay();
+      if (day !== 0 && day !== 6) added += 1;
+    }
+    return date;
+  }
+
+  function dayOptions() {
+    return [
+      { label: "Next business day", date: isoDate(addBusinessDays(1)) },
+      { label: "In a few days", date: isoDate(addBusinessDays(3)) },
+      { label: "Next week", date: isoDate(addBusinessDays(6)) }
+    ];
+  }
+
   function renderFocus() {
     step = 1;
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
@@ -232,20 +258,21 @@
 
   function renderTime() {
     step = 2;
-    var days = ["Tomorrow", "This week", "Next week"];
+    var days = dayOptions();
     var times = ["09:30", "11:00", "14:00", "16:00"];
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">Pick a window.</h2>'
-      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">Choose a preferred day and time. I will confirm the calendar slot by email.</p>'
+      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">Choose a preferred day and time. A calendar invite is sent when the slot is available.</p>'
       + '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;">'
-      + days.map(function(day){ return choiceButton(day, "Preferred day", 'data-date="'+day+'"'); }).join("")
+      + days.map(function(day){ return choiceButton(day.label, day.date, 'data-date="'+day.date+'" data-date-label="'+day.label+'"'); }).join("")
       + '</div><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">'
       + times.map(function(t){ return choiceButton(t, "Europe/Stockholm", 'data-time="'+t+'"'); }).join("")
       + '</div></div>';
     content.querySelectorAll("[data-date]").forEach(function(btn){
       btn.addEventListener("click", function(){
         state.date = btn.getAttribute("data-date");
-        setBrief("Date", state.date);
+        state.dateLabel = btn.getAttribute("data-date-label") || state.date;
+        setBrief("Date", state.dateLabel);
         content.querySelectorAll("[data-date]").forEach(function(other){ other.style.borderColor = other === btn ? "rgb(168,67,43)" : "rgba(33,29,23,.16)"; });
         activateNext(!!state.date && !!state.time);
       });
@@ -293,7 +320,7 @@
     step = 4;
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;justify-content:center;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,3.8vw,40px);letter-spacing:-.02em;margin:0 0 12px;">'+(ok ? "Request sent." : "Could not send.")+'</h2>'
-      + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+(ok ? "I will confirm the calendar slot by email." : "Email contact@nordsym.com and I will pick this up manually.")+'</p>'
+      + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+(ok ? "Calendar invite sent. The meeting details will also arrive by email." : "Email contact@nordsym.com and I will pick this up manually.")+'</p>'
       + '</div>';
     next.style.display = "none";
     back.textContent = "Start over";
@@ -327,7 +354,7 @@
     if (step === 4) {
       next.style.display = "";
       back.textContent = "← Back";
-      state = { focus: "", date: "", time: "", name: "", email: "", company: "", notes: "" };
+      state = { focus: "", date: "", dateLabel: "", time: "", name: "", email: "", company: "", notes: "" };
       ["Focus","Date","Time","Contact"].forEach(function(label){ setBrief(label, ""); });
       return renderFocus();
     }
