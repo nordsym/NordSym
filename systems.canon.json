@@ -1,6 +1,28 @@
 {
   "last_updated": "2026-07-11",
-  "public_boundary": "NordSym runs on architecture it built. Some of it is public. Most of it is not. This file lists the systems NordSym deliberately makes visible.",
+  "public_boundary": "This file lists public systems that demonstrate NordSym's operating range. Most client operations remain private by design.",
+  "capability_groups": [
+    {
+      "id": "governed-agent-infrastructure",
+      "label": "Governed agent infrastructure",
+      "systems": ["apiclaw", "skillsync"]
+    },
+    {
+      "id": "operational-interfaces-attribution",
+      "label": "Operational interfaces and attribution",
+      "systems": ["agent-badge"]
+    },
+    {
+      "id": "retrieval-discovery-workflow-assets",
+      "label": "Retrieval, discovery, and workflow assets",
+      "systems": ["ai-search", "flowvault"]
+    },
+    {
+      "id": "production-applications",
+      "label": "Production applications",
+      "systems": ["genprd", "cleanbuddy"]
+    }
+  ],
   "visible_systems": [
     {
       "id": "apiclaw",
@@ -68,7 +90,7 @@
       "runtime maps",
       "internal approval surfaces"
     ],
-    "reason": "These surfaces exist to run the work, not to market it."
+    "reason": "These are private operating surfaces and are not part of the public evidence boundary."
   },
   "rules": [
     "Do not present the systems list as a product portfolio.",

@@ -75,6 +75,7 @@ Scope is defined from the operation, systems, risk, and required operating depth
 
 ## Public Proof And Discovery
 
+- The homepage includes one selected, anonymized operational receipt from a broader client engagement. It documents a live editorial distribution operation through its constraint, connected system classes, mandate, human approval boundary, and attributable output. It is one operation, not the full client engagement, and it does not claim invented ROI.
 - Company and operating model: `https://nordsym.com/`
 - Booking: `https://nordsym.com/book/`
 - Public systems boundary: `https://nordsym.com/systems`
@@ -83,7 +84,7 @@ Scope is defined from the operation, systems, risk, and required operating depth
 - Agent guide: `https://nordsym.com/agents.md`
 - Public discovery schema: `https://nordsym.com/openapi.json`
 
-Public systems are evidence of NordSym's operating capability, not a product portfolio. Private client systems, agreement surfaces, internal runtime maps, agent rosters, and operating memory are not public products.
+Public systems are grouped by the capabilities they demonstrate: governed agent infrastructure, operational interfaces and attribution, retrieval and workflow assets, and production applications. They are evidence of NordSym's operating range, not a product portfolio. Private client systems, agreement surfaces, internal runtime maps, agent rosters, and operating memory are not public products.
 
 ## Guidance For AI Assistants
 
