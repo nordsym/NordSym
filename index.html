@@ -38,11 +38,14 @@
   .stack-rail__viewport::before{left:0;background:linear-gradient(90deg,#F3EEE4 12%,rgba(243,238,228,0));}
   .stack-rail__viewport::after{right:0;background:linear-gradient(270deg,#F3EEE4 12%,rgba(243,238,228,0));}
   .stack-rail__track{display:flex;width:max-content;will-change:transform;}
-  .stack-rail--ready .stack-rail__track{animation:stackrail 46s linear infinite;}
+  .stack-rail--ready .stack-rail__track{animation:stackrail 54s linear infinite;}
   .stack-rail__viewport:hover .stack-rail__track,.stack-rail__viewport:focus-within .stack-rail__track{animation-play-state:paused;}
   .stack-rail__group{display:flex;gap:12px;padding-right:12px;}
   .stack-tool{display:flex;align-items:center;gap:11px;min-height:58px;padding:0 22px;border:1px solid rgba(33,29,23,.14);border-radius:2px;background:rgba(249,246,239,.72);box-shadow:0 4px 18px rgba(33,29,23,.035);font-size:15px;font-weight:500;color:#342F28;white-space:nowrap;}
   .stack-tool__icon{display:block;width:21px;height:21px;flex:0 0 21px;background:var(--brand);-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;}
+  #founder-signature .founder-layout{grid-template-columns:148px minmax(0,1fr)!important;gap:44px!important;max-width:980px!important;}
+  #founder-signature .founder-portrait{width:148px!important;height:184px!important;aspect-ratio:auto!important;margin:0!important;background:#E8DFCD!important;border-color:rgba(33,29,23,.13)!important;box-shadow:0 10px 34px rgba(33,29,23,.055);}
+  #founder-signature .founder-portrait img{filter:saturate(.62) contrast(.94) sepia(.07)!important;opacity:.92;}
   @media (max-width:900px){
     nav{padding:13px 18px!important;}
     [style*="gap: 28px; font-size: 13.5px"]{display:none!important;}
@@ -69,6 +72,8 @@
     .stack-rail__heading{padding:0 18px;margin-bottom:28px;}
     .stack-rail__viewport{margin-left:-18px;margin-right:-18px;}
     .stack-tool{min-height:52px;padding:0 18px;font-size:14px;}
+    #founder-signature .founder-layout{grid-template-columns:1fr!important;gap:0!important;}
+    #founder-signature .founder-portrait{display:none!important;}
   }
   @media (max-width:560px){
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important;}
@@ -187,6 +192,11 @@
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#26A5E4;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/telegram.svg')"></span>Telegram</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#0A66C2;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg')"></span>LinkedIn</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#F03E2F;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/sanity.svg')"></span>Sanity</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#D97757;--icon:url('/assets/claude.svg')"></span>Claude</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#211D17;--icon:url('/assets/chatgpt.svg')"></span>OpenAI</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#211D17;--icon:url('/assets/grok.svg')"></span>Grok</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#20808D;--icon:url('/assets/perplexity.svg')"></span>Perplexity</div>
+          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#EE342F;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/convex.svg')"></span>Convex</div>
         </div>
         <div class="stack-rail__group" aria-hidden="true"></div>
       </div>
@@ -492,14 +502,10 @@
 
       </div>
       </div>
-  </div></section><section style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
-  <div style="max-width: 1180px; margin: 0px auto; display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 60px; align-items: center;">
-    <div style="width: min(100%, 360px); margin: 0px auto; aspect-ratio: 4 / 5; border: 1px solid rgba(33, 29, 23, 0.18); background: rgb(33, 29, 23); position: relative; overflow: hidden;">
+  </div></section><section id="founder-signature" style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
+  <div class="founder-layout" style="max-width: 1180px; margin: 0px auto; display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 60px; align-items: center;">
+    <div class="founder-portrait" style="width: min(100%, 360px); margin: 0px auto; aspect-ratio: 4 / 5; border: 1px solid rgba(33, 29, 23, 0.18); background: rgb(33, 29, 23); position: relative; overflow: hidden;">
       <img src="/assets/gustav-founder.jpg" alt="Gustav Hemmingsson, founder of NordSym" style="width: 100%; height: 100%; object-fit: cover; object-position: center 34%; filter: saturate(0.92) contrast(1.02); display: block;">
-      <div style="position: absolute; left: 0px; right: 0px; bottom: 0px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: linear-gradient(rgba(17, 14, 11, 0), rgba(17, 14, 11, 0.78));">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(243, 238, 228); letter-spacing: 0.02em; text-shadow: rgba(0, 0, 0, 0.45) 0px 1px 8px;">Gustav Hemmingsson</span>
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; color: rgb(243, 238, 228); border: 1px solid rgba(243, 238, 228, 0.32); background: rgba(17, 14, 11, 0.46); padding: 4px 7px; letter-spacing: 0.08em; text-transform: uppercase;">Founder</span>
-      </div>
     </div>
     <div>
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 24px;">Founder &amp; operator</div>
