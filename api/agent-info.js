@@ -56,12 +56,13 @@ export default async function handler(req, res) {
       client_boundary: 'Client data never crosses client boundaries.',
       records: 'Externally visible work should be attributable to a mandate, approval, and record.',
       capabilities: [
-        'intake',
-        'triage',
-        'research',
-        'drafting',
-        'workflow support',
-        'operator assistance'
+        'revenue operations',
+        'publishing and content operations',
+        'customer support operations',
+        'finance and billing operations',
+        'reporting and analytics operations',
+        'data hygiene and workflow operations',
+        'local and on-premise AI architecture'
       ],
       contact_endpoint: 'https://nordsym.com/book/'
     },
@@ -107,6 +108,6 @@ export default async function handler(req, res) {
     },
     agent_friendly: true,
     human_approval_required_for_external_actions: true,
-    last_updated: '2026-07-09'
+    last_updated: '2026-07-11'
   });
 }

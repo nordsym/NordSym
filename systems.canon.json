@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-09",
+  "last_updated": "2026-07-11",
   "public_boundary": "NordSym runs on architecture it built. Some of it is public. Most of it is not. This file lists the systems NordSym deliberately makes visible.",
   "visible_systems": [
     {
@@ -17,7 +17,7 @@
       "role": "public_proof_infrastructure",
       "url": null,
       "one_liner": "Identity and receipts for agent work: who acted, under what mandate, and what record proves it.",
-      "public_note": "The current operator surface lives inside Mission Control. Public verification surfaces should be linked only when deliberately exposed."
+      "public_note": "No standalone public frontend is claimed. Public verification surfaces should be linked only when deliberately exposed."
     },
     {
       "id": "skillsync",
@@ -74,7 +74,7 @@
     "Do not present the systems list as a product portfolio.",
     "Do not list private client agreement surfaces as public systems.",
     "Do not claim Agent Badge has a standalone public product frontend until a public verification surface is deliberately exposed.",
-    "Do not expose internal Mission Control URLs on public discovery surfaces.",
+    "Do not expose internal control-plane URLs on public discovery surfaces.",
     "Do not include retired systems in public NordSym discovery surfaces unless they are explicitly reactivated."
   ]
 }

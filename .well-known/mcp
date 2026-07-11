@@ -15,6 +15,7 @@
     }
   ],
   "public_positioning": "The operating layer between your stack and the agents that run it.",
+  "last_updated": "2026-07-11",
   "discovery": {
     "llms_txt": "https://nordsym.com/llms.txt",
     "agents_md": "https://nordsym.com/agents.md",

@@ -17,12 +17,13 @@
   "agent_policy": {
     "type": "AI-assisted operating layer",
     "capabilities": [
-      "intake",
-      "triage",
-      "research",
-      "drafting",
-      "workflow support",
-      "operator assistance"
+      "revenue operations",
+      "publishing and content operations",
+      "customer support operations",
+      "finance and billing operations",
+      "reporting and analytics operations",
+      "data hygiene and workflow operations",
+      "local and on-premise AI architecture"
     ],
     "contact_endpoint": "https://nordsym.com/book/",
     "boundaries": [
@@ -63,5 +64,5 @@
   },
   "agent_friendly": true,
   "human_approval_required_for_external_actions": true,
-  "last_updated": "2026-07-09"
+  "last_updated": "2026-07-11"
 }

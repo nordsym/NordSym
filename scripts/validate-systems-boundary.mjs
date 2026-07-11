@@ -45,6 +45,20 @@ const publicStatusLabels = [
   /\bIn production\b/i
 ];
 
+const internalProductTerms = [
+  /Mission Control/i,
+  /Agent Atlas/i,
+  /Symbot/i
+];
+
+const primaryDiscoveryFiles = [
+  'llms.txt',
+  'agents.md',
+  'agents.json',
+  'agent-info.json',
+  '.well-known/ai-plugin.json'
+];
+
 function fail(message) {
   console.error(`systems-boundary: ${message}`);
   process.exitCode = 1;
@@ -75,6 +89,15 @@ for (const file of publicFiles) {
       if (pattern.test(body)) {
         fail(`${file} contains public status/lifecycle signal ${pattern}`);
       }
+    }
+  }
+}
+
+for (const file of primaryDiscoveryFiles) {
+  const body = read(file);
+  for (const pattern of internalProductTerms) {
+    if (pattern.test(body)) {
+      fail(`${file} exposes internal product term ${pattern}`);
     }
   }
 }

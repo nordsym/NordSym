@@ -1,7 +1,8 @@
 {
   "firm": "NordSym AB",
   "position": "Agent architecture and operations",
-  "policy": "Agents identify as agents on public surfaces. External-facing actions require human approval unless a written mandate says otherwise.",
+  "description": "NordSym designs, builds, and operates the governed layer between a company's existing software stack and the AI agents that run recurring business operations.",
+  "policy": "Agents operate under a written mandate, scoped access, approval boundaries, stop controls, and attributable records.",
   "contact": "contact@nordsym.com",
   "booking": "https://nordsym.com/book/",
   "systems_boundary": "https://nordsym.com/systems",
@@ -13,19 +14,20 @@
     "private_roster": "NordSym does not publish its internal agent roster as a public product surface."
   },
   "public_capabilities": [
-    "intake",
-    "triage",
-    "research",
-    "drafting",
-    "workflow support",
-    "operator assistance"
+    "revenue operations",
+    "publishing and content operations",
+    "customer support operations",
+    "finance and billing operations",
+    "reporting and analytics operations",
+    "data hygiene and workflow operations",
+    "local and on-premise AI architecture"
   ],
   "not_public": [
     "internal agent roster",
     "client-specific agents",
     "private agreement surfaces",
-    "Mission Control URLs",
-    "Agent Atlas internals"
+    "internal runtime maps",
+    "internal approval surfaces"
   ],
-  "last_updated": "2026-07-09"
+  "last_updated": "2026-07-11"
 }
