@@ -25,12 +25,12 @@ These are examples, not a fixed product menu. NordSym works wherever the stack, 
 
 ## How The Operating Model Works
 
-1. Review the existing stack and the recurring operation.
-2. Define the mandate, boundaries, approvals, and stop conditions.
-3. Connect the systems and give agents scoped access.
-4. Operate the agents inside those boundaries.
-5. Record attributable decisions, actions, and outputs.
-6. Improve the operation from observed results.
+1. Trace the systems, decisions, handoffs, and failure points in the recurring operation.
+2. Set the authority, approvals, and stop conditions.
+3. Connect the stack with scoped, revocable access.
+4. Run the work continuously under the agreed mandate.
+5. Return every decision, action, and output as an attributable operating record.
+6. Improve the operation from evidence in that record.
 
 NordSym is model-agnostic. Models can be changed without moving the mandate, business logic, approvals, or records into the model itself.
 
@@ -69,7 +69,7 @@ NordSym is not the right fit for:
 
 - **Architecture sprint** - map one operation and produce its operating blueprint.
 - **Operating retainer** - operate one or more recurring operations inside the client's stack.
-- **Embedded program** - expand a proven first operation into durable agent architecture across the business.
+- **Operating expansion** - expand a proven first operation into durable agent architecture across the business.
 
 Scope is defined from the operation, systems, risk, and required operating depth. Do not invent pricing.
 
