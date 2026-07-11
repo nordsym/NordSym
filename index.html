@@ -108,6 +108,21 @@
   .model-ticker{display:flex;align-items:center;justify-content:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.13em;color:#8B826F;}
   .model-ticker i{width:5px;height:5px;background:#A8432B;display:block;animation:softpulse 1.8s ease-in-out infinite;}
   .op-row:focus-visible,.domain-node:focus-visible,.model-step:focus-visible{outline:2px solid #A8432B;outline-offset:3px;}
+  .ai-handoff{gap:10px!important;}
+  .ai-handoff #copy-ai-context{position:relative;border:1px solid rgba(243,238,228,.2)!important;border-left:2px solid #D97757!important;background:rgba(243,238,228,.035)!important;padding:16px 42px 16px 16px!important;transition:background .2s,border-color .2s!important;}
+  .ai-handoff #copy-ai-context:hover{background:rgba(243,238,228,.07)!important;border-color:rgba(243,238,228,.34)!important;}
+  .ai-handoff #copy-ai-context::after{content:'↗';position:absolute;right:16px;top:17px;color:#D97757;font-size:15px;}
+  .ai-handoff>div:last-child{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px!important;}
+  .ai-handoff>div:last-child>span{display:none!important;}
+  .ai-handoff a[aria-label^="Open in"]{width:auto!important;height:42px!important;padding:0 12px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;background:rgba(243,238,228,.025)!important;border-color:rgba(243,238,228,.14)!important;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
+  .ai-handoff a[aria-label^="Open in"]::after{content:attr(aria-label);color:#C7BCA9;white-space:nowrap;}
+  .ai-handoff a[aria-label^="Open in"]::before{content:'';width:16px;height:16px;flex:0 0 16px;background:var(--ai-color);-webkit-mask:var(--ai-icon) center/contain no-repeat;mask:var(--ai-icon) center/contain no-repeat;}
+  .ai-handoff a[aria-label="Open in ChatGPT"]{--ai-color:#F3EEE4;--ai-icon:url('https://cdn.jsdelivr.net/npm/simple-icons@15.19.0/icons/openai.svg');}
+  .ai-handoff a[aria-label="Open in Claude"]{--ai-color:#D97757;--ai-icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/claude.svg');}
+  .ai-handoff a[aria-label="Open in Perplexity"]{--ai-color:#20B8A6;--ai-icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/perplexity.svg');}
+  .ai-handoff a[aria-label="Open in Grok"]{--ai-color:#F3EEE4;--ai-icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/x.svg');}
+  .ai-handoff a[aria-label^="Open in"] img{display:none!important;}
+  .ai-handoff a[aria-label^="Open in"]:hover{transform:translateY(-1px);background:rgba(243,238,228,.065)!important;border-color:rgba(243,238,228,.3)!important;}
   @media (max-width:960px) and (min-width:901px){
     .ops-deck{grid-template-columns:1fr;gap:28px;}
     .op-stage{min-height:460px;order:-1;}
@@ -658,6 +673,14 @@
 
         </div>
 
+        <div style="border-bottom: 1px solid rgba(33, 29, 23, 0.2);">
+          <button class="scp4" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; padding: 24px 2px; text-align: left; color: rgb(33, 29, 23); font-family: inherit; transition: color 0.22s;">
+            <span style="font-size: 18px; font-weight: 500; letter-spacing: -0.01em;">Can NordSym run AI locally or on-premise?</span>
+            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 16px; color: rgb(168, 67, 43); flex: 0 0 auto;">+</span>
+          </button>
+          <p hidden>Yes. Where privacy, regulation, or data sensitivity requires it, NordSym can design operations around local or on-premise models. The operating layer can be configured so sensitive data stays inside the company's own infrastructure, including deployments where no operational data is sent to external model providers.</p>
+        </div>
+
     </div>
   </div></section><section id="contact" style="padding: 120px 40px; text-align: center;">
   <div style="max-width: 760px; margin: 0px auto;">
@@ -677,7 +700,7 @@
   </div><div style="max-width: 1180px; margin: 48px auto 0px; padding-top: 22px; border-top: 1px solid rgba(243, 238, 228, 0.14); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: rgb(140, 132, 116);"><span>© 2026 NordSym. Founder-led, agent-operated.</span><span>NordSym AB · 559535-5768</span></div></footer></div></div></div>
 
 
-<script>(function(){var brief="NordSym builds and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations. NordSym works as a forward-deployed engineering and operations partner: it integrates into the stack, gives agents context and mandate, keeps human approvals at the boundary, and records the work. Learn more: https://nordsym.com/ and https://nordsym.com/llms.txt";function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}ready(function(){var btn=document.getElementById('copy-ai-context');var status=document.getElementById('copy-ai-context-status');if(!btn)return;btn.addEventListener('click',async function(){try{await navigator.clipboard.writeText(brief);if(status)status.textContent='Copied to clipboard';if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_ai_context_copied',{surface:'home'});}catch(e){if(status)status.textContent='Copy failed. Open /llms.txt instead';}});});})();</script>
+<script>(function(){var brief="NordSym builds and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations. NordSym works as a forward-deployed engineering and operations partner: it integrates into the stack, gives agents context and mandate, keeps human approvals at the boundary, and records the work. Learn more: https://nordsym.com/ and https://nordsym.com/llms.txt";function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}ready(function(){var btn=document.getElementById('copy-ai-context');var status=document.getElementById('copy-ai-context-status');if(!btn)return;btn.parentElement.classList.add('ai-handoff');btn.addEventListener('click',async function(){try{await navigator.clipboard.writeText(brief);if(status)status.textContent='Copied to clipboard';if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_ai_context_copied',{surface:'home'});}catch(e){if(status)status.textContent='Copy failed. Open /llms.txt instead';}});});})();</script>
 <script id="nordsym-accordions">
 (function(){
   function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
