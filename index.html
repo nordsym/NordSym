@@ -108,6 +108,27 @@
   .model-step strong{display:block;font-size:15px;font-weight:600;margin-top:5px;}
   .model-ticker{display:flex;align-items:center;justify-content:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.13em;color:#8B826F;}
   .model-ticker i{width:5px;height:5px;background:#A8432B;display:block;animation:softpulse 1.8s ease-in-out infinite;}
+  .receipt{padding:118px 40px;background:#17140F;color:#F3EEE4;border-top:1px solid rgba(243,238,228,.1);}
+  .receipt__inner{max-width:1180px;margin:0 auto;}
+  .receipt__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:72px;align-items:end;margin-bottom:50px;}
+  .receipt__head h2{font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,4.7vw,58px);line-height:1.02;letter-spacing:-.025em;margin:0;max-width:14ch;}
+  .receipt__head p{font-size:15.5px;line-height:1.65;color:#BDB3A1;margin:0;max-width:40ch;}
+  .receipt__record{border:1px solid rgba(243,238,228,.18);background:linear-gradient(rgba(243,238,228,.025),rgba(243,238,228,.025)),repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(243,238,228,.025) 39px,rgba(243,238,228,.025) 40px);}
+  .receipt__cap{display:flex;justify-content:space-between;gap:20px;padding:16px 20px;border-bottom:1px solid rgba(243,238,228,.16);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#8F8779;}
+  .receipt__cap strong{font-weight:400;color:#E08A6E;}
+  .receipt__flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+  .receipt__cell{position:relative;min-height:190px;padding:25px 24px 29px;border-right:1px solid rgba(243,238,228,.13);}
+  .receipt__cell:last-child{border-right:0;}
+  .receipt__cell:not(:last-child)::after{content:'+';position:absolute;right:-7px;top:28px;z-index:2;width:13px;height:13px;background:#17140F;color:#E08A6E;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:13px;text-align:center;}
+  .receipt__label{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#E08A6E;margin-bottom:35px;}
+  .receipt__cell strong{display:block;font-family:Newsreader,serif;font-size:23px;font-weight:400;line-height:1.08;margin-bottom:12px;}
+  .receipt__cell p{font-size:13px;line-height:1.55;color:#BDB3A1;margin:0;}
+  .receipt__result{display:grid;grid-template-columns:1.3fr .7fr;border-top:1px solid rgba(243,238,228,.16);}
+  .receipt__result-copy{padding:27px 24px;display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:start;}
+  .receipt__result-copy span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#E08A6E;padding-top:4px;}
+  .receipt__result-copy p{font-family:Newsreader,serif;font-size:clamp(20px,2.3vw,28px);line-height:1.26;font-weight:300;margin:0;max-width:31ch;}
+  .receipt__seal{padding:24px;border-left:1px solid rgba(243,238,228,.16);display:flex;align-items:center;justify-content:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#E08A6E;}
+  .receipt__seal i{width:11px;height:11px;border:1px solid #E08A6E;transform:rotate(45deg);box-shadow:0 0 0 6px rgba(224,138,110,.07);}
   .op-row:focus-visible,.domain-node:focus-visible,.model-step:focus-visible{outline:2px solid #A8432B;outline-offset:3px;}
   .ai-handoff{gap:10px!important;}
   .ai-handoff #copy-ai-context{position:relative;border:1px solid rgba(243,238,228,.2)!important;border-left:2px solid #D97757!important;background:rgba(243,238,228,.035)!important;padding:16px 42px 16px 16px!important;transition:background .2s,border-color .2s!important;}
@@ -181,6 +202,17 @@
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important;}
     [style*="grid-template-columns: 1.5fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr!important;gap:28px!important;}
   }
+  @media (max-width:900px){
+    .receipt{padding:88px 22px;}
+    .receipt__head{grid-template-columns:1fr;gap:24px;margin-bottom:36px;}
+    .receipt__flow{grid-template-columns:1fr;}
+    .receipt__cell{min-height:0;border-right:0;border-bottom:1px solid rgba(243,238,228,.13);}
+    .receipt__cell:not(:last-child)::after{right:auto;left:23px;top:auto;bottom:-7px;}
+    .receipt__label{margin-bottom:20px;}
+    .receipt__result{grid-template-columns:1fr;}
+    .receipt__result-copy{grid-template-columns:1fr;gap:14px;}
+    .receipt__seal{border-left:0;border-top:1px solid rgba(243,238,228,.16);justify-content:flex-start;}
+  }
   @media (prefers-reduced-motion:reduce){
     .stack-rail__viewport{overflow-x:auto;scrollbar-width:none;}
     .stack-rail__viewport::-webkit-scrollbar{display:none;}
@@ -248,7 +280,7 @@
       <a href="#model" style="color: rgb(90, 83, 71);">Model</a>
       <a href="#engagements" style="color: rgb(90, 83, 71);">Engagements</a>
     </div>
-    <a href="/book/" class="scp0" style="display: inline-flex; align-items: center; gap: 8px; background: rgb(33, 29, 23); color: rgb(243, 238, 228); font-size: 13.5px; font-weight: 500; padding: 9px 17px; border-radius: 2px; transition: background 0.2s;">Book a call</a>
+    <a href="/book/" class="scp0" style="display: inline-flex; align-items: center; gap: 8px; background: rgb(33, 29, 23); color: rgb(243, 238, 228); font-size: 13.5px; font-weight: 500; padding: 9px 17px; border-radius: 2px; transition: background 0.2s;">Book an operating review</a>
   </div></nav><header id="top" style="position: relative; padding: 80px 40px 60px; overflow: hidden;">
   <div style="max-width: 1240px; margin: 0px auto; display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 48px; align-items: center;">
     <div style="min-width: 0px;">
@@ -259,8 +291,9 @@
     <h1 style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 68px); line-height: 1.03; letter-spacing: -0.025em; margin: 0px; max-width: 15ch;">The operating layer between your stack and the <span style="font-style: italic; color: rgb(168, 67, 43);">agents that run it.</span></h1>
     <div style="display: flex; flex-direction: column; gap: 26px; align-items: flex-start; margin-top: 36px;">
       <p style="font-size: 18px; line-height: 1.55; color: rgb(75, 70, 60); max-width: 44ch; margin: 0px;">NordSym designs, builds, and operates the agent infrastructure that lives inside your existing systems - so recurring operations run continuously, safely, and under a clear mandate.</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.55;letter-spacing:.04em;color:#6A6355;max-width:58ch;margin:18px 0 0;padding-left:14px;border-left:1px solid rgba(168,67,43,.6);">For recurring work that crosses several tools, depends on repeated handoffs, and still needs a person to keep it moving.</p>
       <div style="display: flex; align-items: center; gap: 22px;">
-        <a href="/book/" class="scp1" style="display: inline-flex; align-items: center; gap: 9px; background: rgb(168, 67, 43); color: rgb(243, 238, 228); font-size: 15px; font-weight: 500; padding: 13px 24px; border-radius: 2px; transition: transform 0.18s, background 0.2s;">Book a call
+        <a href="/book/" class="scp1" style="display: inline-flex; align-items: center; gap: 9px; background: rgb(168, 67, 43); color: rgb(243, 238, 228); font-size: 15px; font-weight: 500; padding: 13px 24px; border-radius: 2px; transition: transform 0.18s, background 0.2s;">Book an operating review
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
 
@@ -432,8 +465,8 @@
   </section>
   <section id="industries" class="industries-v2">
     <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;">
-      <div><div class="section-kicker">Where we've operated</div><h2 class="section-title" style="max-width:16ch;color:#F3EEE4;">Operated across industries, not just accounts.</h2></div>
-      <p style="font-size:15.5px;line-height:1.6;color:#BDB3A1;max-width:34ch;margin:0;">The industries change. The operating problem does not: recurring work spread across systems, without a governed layer to run it.</p>
+      <div><div class="section-kicker">Where we've operated</div><h2 class="section-title" style="max-width:16ch;color:#F3EEE4;">Experience across industries. Proof at the operation level.</h2></div>
+      <p style="font-size:15.5px;line-height:1.6;color:#BDB3A1;max-width:38ch;margin:0;">These are sectors where NordSym has built or operated systems. The industries change. The recurring work, broken handoffs, and need for a governed layer do not.</p>
     </div>
     <div class="domain-field">
       <svg viewBox="0 0 1180 610" preserveAspectRatio="none" aria-hidden="true"><path class="domain-line" data-domain="0" d="M590 305 L190 145"/><path class="domain-line" data-domain="1" d="M590 305 L560 100"/><path class="domain-line" data-domain="2" d="M590 305 L970 155"/><path class="domain-line" data-domain="3" d="M590 305 L205 455"/><path class="domain-line" data-domain="4" d="M590 305 L605 510"/><path class="domain-line" data-domain="5" d="M590 305 L970 455"/><ellipse cx="590" cy="305" rx="310" ry="185" fill="none" stroke="rgba(243,238,228,.07)" stroke-dasharray="3 10"/></svg>
@@ -560,7 +593,27 @@
 
       </div>
       </div>
-  </div></section><section id="founder-signature" style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
+  </div></section><section id="receipt" class="receipt">
+    <div class="receipt__inner">
+      <div class="receipt__head">
+        <div><div class="section-kicker" style="color:#E08A6E;">An operational receipt</div><h2>What production proof looks like.</h2></div>
+        <p>An anonymized record from a live editorial distribution operation. Exact systems, authority, boundaries, and outputs. No invented ROI.</p>
+      </div>
+      <div class="receipt__record">
+        <div class="receipt__cap"><span>Receipt 01 / Editorial distribution</span><strong>Production operation</strong></div>
+        <div class="receipt__flow">
+          <div class="receipt__cell"><span class="receipt__label">01 · Constraint</span><strong>Publishing and distribution were separate.</strong><p>Manual handoffs created retry and duplicate-post risk after every article publish.</p></div>
+          <div class="receipt__cell"><span class="receipt__label">02 · Systems</span><strong>Four systems, one operation.</strong><p>CMS, publish runtime, messaging infrastructure, and the company distribution channel.</p></div>
+          <div class="receipt__cell"><span class="receipt__label">03 · Mandate</span><strong>Route only approved events.</strong><p>Drafts, old articles, multi-publication items, and events outside rollout stay held.</p></div>
+          <div class="receipt__cell"><span class="receipt__label">04 · Human boundary</span><strong>Preview before release.</strong><p>An editor enables image mode and approves the preview. Forced reposting stays disabled.</p></div>
+        </div>
+        <div class="receipt__result">
+          <div class="receipt__result-copy"><span>Recorded output</span><p>Post URL, CMS status, timestamps, and target return to the operating record. A distribution failure never blocks the article publish.</p></div>
+          <div class="receipt__seal"><i></i><span>Attributable output<br>Fail-closed guards</span></div>
+        </div>
+      </div>
+    </div>
+  </section><section id="founder-signature" style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
   <div class="founder-layout" style="max-width: 1180px; margin: 0px auto; display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 60px; align-items: center;">
     <div class="founder-portrait" style="width: min(100%, 360px); margin: 0px auto; aspect-ratio: 4 / 5; border: 1px solid rgba(33, 29, 23, 0.18); background: rgb(33, 29, 23); position: relative; overflow: hidden;">
       <img src="/assets/gustav-founder.jpg" alt="Gustav Hemmingsson, founder of NordSym" style="width: 100%; height: 100%; object-fit: cover; object-position: center 34%; filter: saturate(0.92) contrast(1.02); display: block;">
@@ -590,7 +643,7 @@
         </button>
 
           <div hidden style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding: 0px 4px 34px;">
-            <p style="font-size: 16px; line-height: 1.6; color: rgb(75, 70, 60); margin: 0px;">Start with one recurring operation. NordSym maps it, builds the governed layer, and stays with it as it begins to run.</p>
+            <p style="font-size: 16px; line-height: 1.6; color: rgb(75, 70, 60); margin: 0px;">Select one recurring workflow. We map its systems and decisions, build the governed agent layer, and begin operating it as the start of an ongoing relationship.</p>
             <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; color: rgb(90, 83, 71); line-height: 2;"><div>SCOPE - one operation</div><div>MODE - build + operate</div><div>OUTPUT - first governed operation</div></div>
           </div>
 
@@ -699,7 +752,7 @@
       <a aria-label="NordSym on LinkedIn" href="https://www.linkedin.com/company/nordsym/" target="_blank" rel="noreferrer" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.18); display: grid; place-items: center; color: rgb(243, 238, 228); text-decoration: none;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.32 8.02h4.36V24H.32V8.02ZM8.12 8.02h4.18v2.18h.06c.58-1.1 2-2.26 4.13-2.26 4.42 0 5.23 2.9 5.23 6.67V24h-4.35v-8.32c0-1.98-.04-4.53-2.76-4.53-2.77 0-3.19 2.16-3.19 4.39V24H8.12V8.02Z"></path></svg></a>
       <a aria-label="Gustav on X" href="https://x.com/GusHem" target="_blank" rel="noreferrer" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.18); display: grid; place-items: center; color: rgb(243, 238, 228); text-decoration: none;"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L0 1.5h7.58l5.24 6.93L18.9 1.5Zm-1.29 18.92h2.04L6.47 3.47H4.28l13.33 16.95Z"></path></svg></a>
 
-    </div><div style="margin-top: 18px; display: flex; flex-direction: column; gap: 9px; font-size: 14px;"><a href="/book/" style="color: rgb(199, 188, 169);">Book a call</a><a href="/systems" style="color: rgb(199, 188, 169);">Systems</a><a href="/privacy.html" style="color: rgb(199, 188, 169);">Privacy</a><a href="mailto:contact@nordsym.com" style="color: rgb(199, 188, 169);">contact@nordsym.com</a></div></div>
+    </div><div style="margin-top: 18px; display: flex; flex-direction: column; gap: 9px; font-size: 14px;"><a href="/book/" style="color: rgb(199, 188, 169);">Book an operating review</a><a href="/systems" style="color: rgb(199, 188, 169);">Systems</a><a href="/privacy.html" style="color: rgb(199, 188, 169);">Privacy</a><a href="mailto:contact@nordsym.com" style="color: rgb(199, 188, 169);">contact@nordsym.com</a></div></div>
     <div><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.14em; color: rgb(140, 132, 116); text-transform: uppercase; margin-bottom: 16px;">Give your AI context</div><div style="display: grid; gap: 12px; min-width: min(340px, 100%);"><button id="copy-ai-context" type="button" style="border: 1px solid rgba(243, 238, 228, 0.18); background: transparent; color: rgb(243, 238, 228); padding: 14px 16px; text-align: left; cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; letter-spacing: 0.1em; text-transform: uppercase; font-size: 11.5px; line-height: 1.45;"><span style="display: block; color: rgb(243, 238, 228);">Copy NordSym brief</span><span id="copy-ai-context-status" style="display: block; margin-top: 4px; color: rgb(140, 132, 116); letter-spacing: 0.06em; text-transform: none; font-family: &quot;Instrument Sans&quot;, sans-serif; font-size: 12.5px;">Short context for any assistant</span></button><div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.14em; color: rgb(140, 132, 116); text-transform: uppercase; margin-right: 2px;">Open in</span><a aria-label="Open in ChatGPT" href="https://chatgpt.com/?q=Evaluate%20NordSym%20(nordsym.com)%2C%20a%20firm%20that%20builds%20and%20operates%20the%20governed%20operating%20layer%20between%20a%20company's%20existing%20stack%20and%20the%20AI%20agents%20that%20run%20recurring%20business%20operations.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20https%3A%2F%2Fnordsym.com%2Fllms.txt." target="_blank" rel="noreferrer" class="scp5" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.22); display: grid; place-items: center; color: rgb(243, 238, 228); background: transparent; transition: transform 0.18s, background 0.18s, border-color 0.18s, box-shadow 0.18s;"><img src="/assets/chatgpt.svg" alt="" style="width: 18px; height: 18px; opacity: 1;"></a><a aria-label="Open in Claude" href="https://claude.ai/new?q=Evaluate%20NordSym%20(nordsym.com)%2C%20a%20firm%20that%20builds%20and%20operates%20the%20governed%20operating%20layer%20between%20a%20company's%20existing%20stack%20and%20the%20AI%20agents%20that%20run%20recurring%20business%20operations.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20https%3A%2F%2Fnordsym.com%2Fllms.txt." target="_blank" rel="noreferrer" class="scp5" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.22); display: grid; place-items: center; color: rgb(243, 238, 228); background: transparent; transition: transform 0.18s, background 0.18s, border-color 0.18s, box-shadow 0.18s;"><img src="/assets/claude.svg" alt="" style="width: 18px; height: 18px; opacity: 1;"></a><a aria-label="Open in Perplexity" href="https://www.perplexity.ai/search?q=Evaluate%20NordSym%20(nordsym.com)%2C%20a%20firm%20that%20builds%20and%20operates%20the%20governed%20operating%20layer%20between%20a%20company's%20existing%20stack%20and%20the%20AI%20agents%20that%20run%20recurring%20business%20operations.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20https%3A%2F%2Fnordsym.com%2Fllms.txt." target="_blank" rel="noreferrer" class="scp5" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.22); display: grid; place-items: center; color: rgb(243, 238, 228); background: transparent; transition: transform 0.18s, background 0.18s, border-color 0.18s, box-shadow 0.18s;"><img src="/assets/perplexity.svg" alt="" style="width: 18px; height: 18px; opacity: 1;"></a><a aria-label="Open in Grok" href="https://x.com/i/grok?text=Evaluate%20NordSym%20(nordsym.com)%2C%20a%20firm%20that%20builds%20and%20operates%20the%20governed%20operating%20layer%20between%20a%20company's%20existing%20stack%20and%20the%20AI%20agents%20that%20run%20recurring%20business%20operations.%20Is%20this%20a%20credible%20approach%20to%20agent-native%20operations%2C%20and%20who%20is%20it%20best%20suited%20for%3F%20Include%20context%20from%20https%3A%2F%2Fnordsym.com%2Fllms.txt." target="_blank" rel="noreferrer" class="scp5" style="width: 40px; height: 40px; border: 1px solid rgba(243, 238, 228, 0.22); display: grid; place-items: center; color: rgb(243, 238, 228); background: transparent; transition: transform 0.18s, background 0.18s, border-color 0.18s, box-shadow 0.18s;"><img src="/assets/grok.svg" alt="" style="width: 18px; height: 18px; opacity: 1;"></a></div></div></div>
   </div><div style="max-width: 1180px; margin: 48px auto 0px; padding-top: 22px; border-top: 1px solid rgba(243, 238, 228, 0.14); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: rgb(140, 132, 116);"><span>© 2026 NordSym. Founder-led, agent-operated.</span><span>NordSym AB · 559535-5768</span></div></footer></div></div></div>
 
@@ -1045,7 +1098,7 @@
     });
     var seen={};
     var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting||seen[entry.target.id])return;seen[entry.target.id]=true;window.posthog.capture('nordsym_section_viewed',{surface:'home',section:entry.target.id});});},{threshold:.35});
-    ['stack-rail','operations','domains','model','engagements','faq','contact'].forEach(function(id){var section=document.getElementById(id);if(section)observer.observe(section);});
+    ['stack-rail','operate','industries','model','receipt','engagements','faq','contact'].forEach(function(id){var section=document.getElementById(id);if(section)observer.observe(section);});
   });
 })();
 </script>
