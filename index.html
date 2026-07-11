@@ -46,6 +46,70 @@
   #founder-signature .founder-layout{grid-template-columns:148px minmax(0,1fr)!important;gap:44px!important;max-width:980px!important;}
   #founder-signature .founder-portrait{width:148px!important;height:184px!important;aspect-ratio:auto!important;margin:0!important;background:#E8DFCD!important;border-color:rgba(33,29,23,.13)!important;box-shadow:0 10px 34px rgba(33,29,23,.055);}
   #founder-signature .founder-portrait img{filter:saturate(.62) contrast(.94) sepia(.07)!important;opacity:.92;}
+  .section-kicker{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#A8432B;margin-bottom:16px;}
+  .section-title{font-family:Newsreader,serif;font-weight:400;font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-.02em;margin:0;}
+  .operate-v2{padding:110px 40px 124px;border-top:1px solid rgba(33,29,23,.1);background:#F3EEE4;}
+  .ops-deck{max-width:1180px;margin:58px auto 0;display:grid;grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);gap:48px;align-items:stretch;}
+  .op-list{border-top:1px solid rgba(33,29,23,.18);}
+  .op-row{position:relative;width:100%;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:21px 4px;border:0;border-bottom:1px solid rgba(33,29,23,.13);background:transparent;color:#211D17;text-align:left;cursor:pointer;font:inherit;transition:padding .25s,color .2s,background .2s;}
+  .op-row::before{content:'';position:absolute;left:0;top:-1px;bottom:-1px;width:2px;background:#A8432B;transform:scaleY(0);transform-origin:center;transition:transform .3s cubic-bezier(.22,1,.36,1);}
+  .op-row:hover,.op-row.is-active{padding-left:15px;background:rgba(168,67,43,.035);}
+  .op-row.is-active::before{transform:scaleY(1);}
+  .op-row__num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#A8432B;padding-top:5px;}
+  .op-row__title{font-size:19px;font-weight:500;letter-spacing:-.01em;display:block;}
+  .op-row__copy{font-size:13.5px;line-height:1.5;color:#6A6355;display:block;margin-top:6px;max-width:42ch;}
+  .op-stage{position:relative;min-height:520px;border:1px solid rgba(33,29,23,.15);background-color:#EDE7DA;background-image:linear-gradient(rgba(33,29,23,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(33,29,23,.035) 1px,transparent 1px);background-size:32px 32px;overflow:hidden;}
+  .op-stage::after{content:'LIVE OPERATING SCHEMATIC';position:absolute;top:16px;left:18px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.18em;color:#8B826F;}
+  .op-stage svg{width:100%;height:100%;display:block;min-height:520px;}
+  .op-plane{transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .3s;transform-box:fill-box;transform-origin:center;}
+  .op-stage.is-switching .op-plane{transform:translateY(-4px);opacity:.65;}
+  .op-signal{stroke-dasharray:5 8;animation:flowdash 4s linear infinite;}
+  .op-packet{animation:opPacket 2.8s linear infinite;}
+  @keyframes opPacket{0%{transform:translate(-120px,58px);opacity:0}12%{opacity:1}48%{transform:translate(0,0);opacity:1}58%{opacity:1}92%{transform:translate(126px,-62px);opacity:1}100%{transform:translate(140px,-68px);opacity:0}}
+  .op-log{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;color:#746C5E;}
+  .op-log span{display:flex;align-items:center;gap:7px;white-space:nowrap;}
+  .op-log em{font-style:normal;color:#A8432B;}
+  .op-log b{font-weight:400;color:rgba(33,29,23,.28);}
+  .industries-v2{padding:118px 40px 126px;border-top:1px solid rgba(33,29,23,.1);background:#211D17;color:#F3EEE4;overflow:hidden;}
+  .industries-v2 .section-kicker{color:#E08A6E;}
+  .domain-field{position:relative;max-width:1180px;height:610px;margin:64px auto 0;border:1px solid rgba(243,238,228,.14);background-image:linear-gradient(rgba(243,238,228,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(243,238,228,.035) 1px,transparent 1px);background-size:40px 40px;overflow:hidden;}
+  .domain-field svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .domain-line{stroke:rgba(243,238,228,.18);stroke-width:1;transition:stroke .3s,stroke-width .3s;}
+  .domain-line.is-active{stroke:#E08A6E;stroke-width:1.5;}
+  .domain-core{position:absolute;left:50%;top:50%;width:68px;height:68px;transform:translate(-50%,-50%);border:1px solid rgba(224,138,110,.62);border-radius:50%;background:#211D17;display:grid;place-items:center;box-shadow:0 0 0 22px rgba(224,138,110,.035),0 0 0 52px rgba(224,138,110,.018);}
+  .domain-core img{width:24px;height:24px;display:block;}
+  .domain-node{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:230px;padding:14px 16px;border:0;border-left:1px solid rgba(243,238,228,.24);background:rgba(33,29,23,.9);color:#F3EEE4;text-align:left;cursor:pointer;font:inherit;transition:opacity .3s,transform .35s,border-color .3s;}
+  .domain-field.has-active .domain-node:not(.is-active){opacity:.42;}
+  .domain-node:hover,.domain-node.is-active{transform:translate(-50%,-50%) translateX(5px);border-left-color:#E08A6E;opacity:1!important;}
+  .domain-node__meta{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:#E08A6E;margin-bottom:8px;}
+  .domain-node strong{display:block;font-family:Newsreader,serif;font-size:22px;font-weight:400;line-height:1.08;}
+  .domain-node small{display:block;margin-top:7px;font-size:12.5px;line-height:1.4;color:#BDB3A1;}
+  .model-v2{position:relative;height:180vh;background:#EDE7DA;border-top:1px solid rgba(33,29,23,.1);}
+  .model-sticky{position:sticky;top:0;height:100vh;min-height:0;box-sizing:border-box;display:flex;align-items:center;padding:76px 40px;overflow:hidden;}
+  .model-inner{width:100%;max-width:1180px;margin:auto;}
+  .model-loop{position:relative;height:clamp(390px,55vh,560px);margin-top:34px;}
+  .model-loop__track{position:absolute;inset:12px 80px 24px;}
+  .model-loop__track svg{width:100%;height:100%;overflow:visible;}
+  .model-track-base{fill:none;stroke:rgba(33,29,23,.16);stroke-width:1.2;}
+  .model-track-progress{fill:none;stroke:#A8432B;stroke-width:2;stroke-linecap:square;stroke-dasharray:var(--progress,0) 100;transition:stroke-dasharray .65s cubic-bezier(.22,1,.36,1);}
+  .model-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(360px,36vw);text-align:center;}
+  .model-center__meta{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.18em;color:#A8432B;margin-bottom:14px;}
+  .model-center h3{font-family:Newsreader,serif;font-size:clamp(28px,3.3vw,44px);font-weight:400;line-height:1.05;letter-spacing:-.02em;margin:0;}
+  .model-center p{font-size:14px;line-height:1.55;color:#6A6355;max-width:34ch;margin:16px auto 0;}
+  .model-step{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:180px;border:0;background:transparent;color:#211D17;text-align:left;padding:8px;cursor:pointer;font:inherit;transition:opacity .25s,transform .3s;}
+  .model-step::before{content:'';position:absolute;left:-8px;top:13px;width:9px;height:9px;border:1px solid #A8432B;background:#EDE7DA;transform:rotate(45deg);transition:background .25s,box-shadow .25s;}
+  .model-step.is-active::before{background:#A8432B;box-shadow:0 0 0 7px rgba(168,67,43,.1);}
+  .model-step.is-active{transform:translate(-50%,-50%) translateY(-5px);}
+  .model-step__meta{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.15em;color:#A8432B;}
+  .model-step strong{display:block;font-size:15px;font-weight:600;margin-top:5px;}
+  .model-ticker{display:flex;align-items:center;justify-content:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.13em;color:#8B826F;}
+  .model-ticker i{width:5px;height:5px;background:#A8432B;display:block;animation:softpulse 1.8s ease-in-out infinite;}
+  .op-row:focus-visible,.domain-node:focus-visible,.model-step:focus-visible{outline:2px solid #A8432B;outline-offset:3px;}
+  @media (max-width:960px) and (min-width:901px){
+    .ops-deck{grid-template-columns:1fr;gap:28px;}
+    .op-stage{min-height:460px;order:-1;}
+    .op-stage svg{min-height:460px;}
+  }
   @media (max-width:900px){
     nav{padding:13px 18px!important;}
     [style*="gap: 28px; font-size: 13.5px"]{display:none!important;}
@@ -74,6 +138,24 @@
     .stack-tool{min-height:52px;padding:0 18px;font-size:14px;}
     #founder-signature .founder-layout{grid-template-columns:1fr!important;gap:0!important;}
     #founder-signature .founder-portrait{display:none!important;}
+    .operate-v2,.industries-v2{padding:72px 18px 82px!important;}
+    .ops-deck{grid-template-columns:1fr;gap:28px;margin-top:38px;}
+    .op-stage{min-height:390px;order:-1;}
+    .op-stage svg{min-height:390px;}
+    .op-log{font-size:8px;overflow:hidden;}
+    .domain-field{height:auto;margin-top:38px;padding:24px 0;border-left:0;border-right:0;background-size:32px 32px;}
+    .domain-field svg,.domain-core{display:none;}
+    .domain-node{position:relative;left:auto!important;top:auto!important;transform:none!important;width:100%;margin:0;padding:18px 18px 18px 42px;background:transparent;border-left:0;border-bottom:1px solid rgba(243,238,228,.12);opacity:1!important;}
+    .domain-node::before{content:'';position:absolute;left:18px;top:28px;width:8px;height:8px;border:1px solid #E08A6E;transform:rotate(45deg);}
+    .model-v2{height:auto!important;padding:78px 18px 90px!important;}
+    .model-sticky{position:relative!important;min-height:0!important;padding:0!important;overflow:visible!important;}
+    .model-loop{height:auto;margin-top:40px;padding-left:30px;border-left:1px solid rgba(33,29,23,.18);}
+    .model-loop__track{display:none;}
+    .model-center{display:none;}
+    .model-step{position:relative;left:auto!important;top:auto!important;transform:none!important;width:100%;padding:16px 8px 18px 18px;border-bottom:1px solid rgba(33,29,23,.12);}
+    .model-step::before{left:-35px;top:22px;}
+    .model-step.is-active [hidden]{display:block!important;margin-top:10px;font-size:13.5px;line-height:1.55;color:#6A6355;max-width:36ch;}
+    .model-ticker{justify-content:flex-start;margin-top:24px;}
   }
   @media (max-width:560px){
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important;}
@@ -84,6 +166,9 @@
     .stack-rail__viewport::-webkit-scrollbar{display:none;}
     .stack-rail__track{animation:none;}
     .stack-rail__group[aria-hidden="true"]{display:none;}
+    .op-signal,.op-packet,.model-ticker i{animation:none!important;}
+    .model-v2{height:auto!important;padding:90px 40px!important;}
+    .model-sticky{position:relative!important;min-height:0!important;padding:0!important;overflow:visible!important;}
   }
 </style><script type="text/javascript" crossorigin="anonymous" src="https://eu-assets.i.posthog.com/array/phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR/config.js"></script>
 
@@ -277,134 +362,84 @@
     <div style="text-align: center; margin-top: 8px; height: 52px;">
       <p id="cap" style="font-family: Newsreader, serif; font-size: clamp(18px, 2.4vw, 26px); line-height: 1.25; letter-spacing: -0.01em; margin: 0px; max-width: 26ch; color: rgb(33, 29, 23);">Your stack - the systems you already run.</p>
     </div>
-  </div></section><section id="operate" style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
-  <div style="max-width: 1180px; margin: 0px auto;">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px;">
-      <div>
-        <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 16px;">What NordSym operates</div>
-        <h2 style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; margin: 0px; max-width: 18ch;">Recurring operations, installed into your stack.</h2>
-      </div>
-      <p style="font-size: 15.5px; line-height: 1.6; color: rgb(75, 70, 60); max-width: 34ch; margin: 0px;">NordSym runs recurring operations where context, access, approvals, and records are part of the system from day one.</p>
+  </div></section>
+  <section id="operate" class="operate-v2">
+    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;">
+      <div><div class="section-kicker">What NordSym operates</div><h2 class="section-title" style="max-width:18ch;">Recurring operations, installed into your stack.</h2></div>
+      <p style="font-size:15.5px;line-height:1.6;color:#4B463C;max-width:34ch;margin:0;">NordSym runs recurring operations where context, access, approvals, and records are part of the system from day one.</p>
     </div>
-
-    <div style="border-top: 1px solid rgba(33, 29, 23, 0.16);">
-
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">01</span>
-        <span style="font-size: 20px; font-weight: 500;">Revenue operations</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Lead routing, enrichment, follow-up sequencing, and pipeline hygiene run against your CRM.</span>
+    <div class="ops-deck">
+      <div class="op-list">
+        <button class="op-row is-active" aria-pressed="true" data-source="CRM + SIGNALS" data-agent="ROUTE + ENRICH" data-output="PIPELINE RECORD"><span class="op-row__num">01</span><span><span class="op-row__title">Revenue operations</span><span class="op-row__copy">Lead routing, enrichment, follow-up sequencing, and pipeline hygiene run against your CRM.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="CMS + BRIEF" data-agent="DRAFT + SCHEDULE" data-output="PUBLISHED RECORD"><span class="op-row__num">02</span><span><span class="op-row__title">Publishing &amp; content</span><span class="op-row__copy">Drafting, scheduling, and distribution across your CMS and channels, on an editorial cadence.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="INBOX + POLICY" data-agent="TRIAGE + RESOLVE" data-output="CASE RECORD"><span class="op-row__num">03</span><span><span class="op-row__title">Customer support</span><span class="op-row__copy">Triage, resolution, and escalation across inbox and helpdesk, inside your response policy.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="LEDGER + TERMS" data-agent="RECONCILE + DUN" data-output="FINANCE RECORD"><span class="op-row__num">04</span><span><span class="op-row__title">Finance &amp; billing</span><span class="op-row__copy">Reconciliation, invoicing, and dunning against your ledger, with a human boundary on approvals.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="DATA + CADENCE" data-agent="ASSEMBLE + CHECK" data-output="REPORT RECORD"><span class="op-row__num">05</span><span><span class="op-row__title">Reporting &amp; analytics</span><span class="op-row__copy">Recurring reporting assembled from your dashboards and databases, delivered on schedule.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="RECORDS + RULES" data-agent="DEDUP + NORMALIZE" data-output="CLEAN STATE"><span class="op-row__num">06</span><span><span class="op-row__title">Data hygiene &amp; workflow ops</span><span class="op-row__copy">Deduplication, normalization, and cross-system workflow keeping your records continuously correct.</span></span></button>
       </div>
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">02</span>
-        <span style="font-size: 20px; font-weight: 500;">Publishing &amp; content</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Drafting, scheduling, and distribution across your CMS and channels, on an editorial cadence.</span>
-      </div>
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">03</span>
-        <span style="font-size: 20px; font-weight: 500;">Customer support</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Triage, resolution, and escalation across inbox and helpdesk, inside your response policy.</span>
-      </div>
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">04</span>
-        <span style="font-size: 20px; font-weight: 500;">Finance &amp; billing</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Reconciliation, invoicing, and dunning against your ledger, with a human boundary on approvals.</span>
-      </div>
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">05</span>
-        <span style="font-size: 20px; font-weight: 500;">Reporting &amp; analytics</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Recurring reporting assembled from your dashboards and databases, delivered on schedule.</span>
-      </div>
-      <div style="display: grid; grid-template-columns: 70px 1fr 1.4fr; gap: 20px; align-items: center; padding: 22px 4px; border-bottom: 1px solid rgba(33, 29, 23, 0.12);">
-        <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">06</span>
-        <span style="font-size: 20px; font-weight: 500;">Data hygiene &amp; workflow ops</span>
-        <span style="font-size: 14.5px; color: rgb(90, 83, 71);">Deduplication, normalization, and cross-system workflow keeping your records continuously correct.</span>
-      </div>
-    </div>
-  </div></section><section id="industries" style="padding: 96px 40px; border-top: 1px solid rgba(33, 29, 23, 0.1);">
-  <div style="max-width: 1180px; margin: 0px auto;">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px;">
-      <div>
-        <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 16px;">Where we've operated</div>
-        <h2 style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; margin: 0px; max-width: 16ch;">Operated across industries, not just accounts.</h2>
-      </div>
-      <p style="font-size: 15.5px; line-height: 1.6; color: rgb(75, 70, 60); max-width: 32ch; margin: 0px;">The architecture holds wherever the stack, mandate, and boundary are clear. These are the domains it already runs in.</p>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(33, 29, 23, 0.14); border: 1px solid rgba(33, 29, 23, 0.14);">
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">01</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Media &amp; publishing</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Publishing, campaigns, audience operations</span></p>
-        </div>
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">02</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Legal services</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Knowledge work, intake, drafting systems</span></p>
-        </div>
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">03</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Home services</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Operations, booking, local-market systems</span></p>
-        </div>
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">04</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Investment office</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Research, reporting, decision support</span></p>
-        </div>
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">05</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Hospitality &amp; consumer</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Service flows, data, communication systems</span></p>
-        </div>
-
-        <div class="scp2" style="background: rgb(243, 238, 228); padding: 28px 26px 34px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43); margin-bottom: 22px;">06</span></div>
-          <h3 style="font-size: 19px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">AI product infrastructure</span></h3>
-          <p style="font-size: 13.5px; line-height: 1.55; color: rgb(90, 83, 71); margin: 0px;">Agent runtime, governance, internal tooling</span></p>
-        </div>
-
-    </div>
-  </div></section><section id="model" style="padding: 96px 40px; background: rgb(237, 231, 218); border-top: 1px solid rgba(33, 29, 23, 0.1);">
-  <div style="max-width: 1180px; margin: 0px auto;">
-    <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 16px;">How the model works</div>
-    <h2 style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; margin: 0px 0px 52px; max-width: 20ch;">Six moves from a cold stack to a running operation.</h2>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(33, 29, 23, 0.14); border: 1px solid rgba(33, 29, 23, 0.14);">
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">01</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">REVIEW</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Review the stack</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">We map every system, integration, and workflow the operation touches today.</p>
-      </div>
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">02</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">SCOPE</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Define the mandate</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">What agents may do, what they may not, and where a human stays in the loop.</p>
-      </div>
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">03</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">CONNECT</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Connect the systems</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">The operating layer wires into your stack with scoped, revocable access.</p>
-      </div>
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">04</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">OPERATE</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Operate the agents</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">Agents run the operation continuously, within the boundary you defined.</p>
-      </div>
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">05</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">RECORD</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Record what happens</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">Every action is logged, attributable, and reviewable - by you and by us.</p>
-      </div>
-      <div class="scp3" style="background: rgb(237, 231, 218); padding: 30px 26px 36px; transition: background 0.28s, box-shadow 0.28s; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">06</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: rgb(154, 147, 132);">IMPROVE</span></div>
-        <h3 style="font-size: 21px; font-weight: 500; margin: 0px 0px 10px; letter-spacing: -0.01em;">Improve the operation</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: rgb(90, 83, 71); margin: 0px;">The record feeds the next iteration. The operation gets sharper over time.</p>
+      <div class="op-stage">
+        <svg viewBox="0 0 680 520" role="img" aria-label="Active operation moving through the governed NordSym layer">
+          <g class="op-plane">
+            <polygon points="96,344 192,392 192,414 96,366" fill="#E8E0D1" stroke="#6A6355"/>
+            <polygon points="192,392 340,318 340,340 192,414" fill="#D8CFBF" stroke="#6A6355"/>
+            <polygon points="96,344 244,270 340,318 192,392" fill="#F3EEE4" stroke="#6A6355"/>
+            <g fill="none" stroke="#6A6355" stroke-width="1"><path d="M112 336 L78 320 L40 320"/><rect x="37" y="317" width="6" height="6" fill="#F3EEE4"/></g><text x="40" y="309" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#4B463C">01 · SYSTEM INPUT</text>
+            <text id="op-source-label" x="170" y="340" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#3A352C">CRM + SIGNALS</text>
+          </g>
+          <g class="op-plane">
+            <polygon points="244,270 340,318 340,340 244,292" fill="rgba(168,67,43,.16)" stroke="#A8432B"/>
+            <polygon points="340,318 488,244 488,266 340,340" fill="rgba(138,51,31,.28)" stroke="#A8432B"/>
+            <polygon points="244,270 392,196 488,244 340,318" fill="rgba(168,67,43,.12)" stroke="#A8432B" stroke-width="1.4"/>
+            <text id="op-agent-label" x="366" y="250" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#8A331F">ROUTE + ENRICH</text>
+            <text x="366" y="272" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" letter-spacing="1.4" fill="#A8432B">GOVERNED OPERATION</text>
+          </g>
+          <g class="op-plane">
+            <polygon points="392,196 488,244 488,266 392,218" fill="#2C2721" stroke="#211D17"/>
+            <polygon points="488,244 636,170 636,192 488,266" fill="#15120F" stroke="#211D17"/>
+            <polygon points="392,196 540,122 636,170 488,244" fill="#211D17" stroke="#211D17"/>
+            <g fill="none" stroke="#A8432B" stroke-width="1"><path d="M580 142 L614 120 L650 120"/><rect x="647" y="117" width="6" height="6" fill="#A8432B" stroke="none"/></g><text x="650" y="109" text-anchor="end" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#8A331F">03 · RECORDED OUTPUT</text>
+            <text id="op-output-label" x="514" y="184" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#F3EEE4">PIPELINE RECORD</text>
+          </g>
+          <path class="op-signal" d="M192 344 366 258 514 180" fill="none" stroke="#A8432B" stroke-width="1.5"/>
+          <circle class="op-packet" cx="340" cy="260" r="5" fill="#A8432B"/>
+        </svg>
+        <div class="op-log" aria-label="Operation sequence"><span><em>01</em> CONTEXT READ</span><b>→</b><span><em>02</em> BOUNDARY PASS</span><b>→</b><span><em>03</em> RECORD WRITTEN</span></div>
       </div>
     </div>
-  </div></section><section style="padding: 110px 40px; background: rgb(33, 29, 23); color: rgb(243, 238, 228);">
+  </section>
+  <section id="industries" class="industries-v2">
+    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;">
+      <div><div class="section-kicker">Where we've operated</div><h2 class="section-title" style="max-width:16ch;color:#F3EEE4;">Operated across industries, not just accounts.</h2></div>
+      <p style="font-size:15.5px;line-height:1.6;color:#BDB3A1;max-width:34ch;margin:0;">The industries change. The operating problem does not: recurring work spread across systems, without a governed layer to run it.</p>
+    </div>
+    <div class="domain-field">
+      <svg viewBox="0 0 1180 610" preserveAspectRatio="none" aria-hidden="true"><path class="domain-line" data-domain="0" d="M590 305 L190 145"/><path class="domain-line" data-domain="1" d="M590 305 L560 100"/><path class="domain-line" data-domain="2" d="M590 305 L970 155"/><path class="domain-line" data-domain="3" d="M590 305 L205 455"/><path class="domain-line" data-domain="4" d="M590 305 L605 510"/><path class="domain-line" data-domain="5" d="M590 305 L970 455"/><ellipse cx="590" cy="305" rx="310" ry="185" fill="none" stroke="rgba(243,238,228,.07)" stroke-dasharray="3 10"/></svg>
+      <div class="domain-core" aria-hidden="true"><img src="/assets/brand/nordsym-symbol.svg" alt=""></div>
+      <button class="domain-node" data-domain="0" style="--x:16%;--y:24%;"><span class="domain-node__meta">01 · 59.3293N</span><strong>Media &amp; publishing</strong><small>Publishing, campaigns, audience operations</small></button>
+      <button class="domain-node" data-domain="1" style="--x:47%;--y:17%;"><span class="domain-node__meta">02 · 59.3326N</span><strong>Legal services</strong><small>Knowledge work, intake, drafting systems</small></button>
+      <button class="domain-node" data-domain="2" style="--x:82%;--y:25%;"><span class="domain-node__meta">03 · 59.3411N</span><strong>Home services</strong><small>Operations, booking, local-market systems</small></button>
+      <button class="domain-node" data-domain="3" style="--x:17%;--y:75%;"><span class="domain-node__meta">04 · 18.0686E</span><strong>Investment office</strong><small>Research, reporting, decision support</small></button>
+      <button class="domain-node" data-domain="4" style="--x:51%;--y:83%;"><span class="domain-node__meta">05 · 18.0712E</span><strong>Hospitality &amp; consumer</strong><small>Service flows, data, communication systems</small></button>
+      <button class="domain-node" data-domain="5" style="--x:82%;--y:75%;"><span class="domain-node__meta">06 · 18.0839E</span><strong>AI product infrastructure</strong><small>Agent runtime, governance, internal tooling</small></button>
+    </div>
+  </section>
+  <section id="model" class="model-v2">
+    <div class="model-sticky"><div class="model-inner">
+      <div class="section-kicker">How the model works</div><h2 class="section-title" style="max-width:20ch;">Six moves from a cold stack to a running operation.</h2>
+      <div class="model-loop">
+        <div class="model-loop__track"><svg viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true"><path class="model-track-base" pathLength="100" d="M160 260 C160 80 340 40 500 40 C700 40 840 110 840 260 C840 420 690 480 500 480 C300 480 160 420 160 260Z"/><path class="model-track-progress" pathLength="100" d="M160 260 C160 80 340 40 500 40 C700 40 840 110 840 260 C840 420 690 480 500 480 C300 480 160 420 160 260Z"/></svg></div>
+        <div class="model-center" aria-live="polite"><div class="model-center__meta" id="model-active-meta">01 · REVIEW</div><h3 id="model-active-title">Review the stack</h3><p id="model-active-copy">We map every system, integration, and workflow the operation touches today.</p></div>
+        <button class="model-step is-active" data-step="0" style="--x:24%;--y:18%;"><span class="model-step__meta">01 · REVIEW</span><strong>Review the stack</strong><span hidden>We map every system, integration, and workflow the operation touches today.</span></button>
+        <button class="model-step" data-step="1" style="--x:50%;--y:8%;"><span class="model-step__meta">02 · SCOPE</span><strong>Define the mandate</strong><span hidden>What agents may do, what they may not, and where a human stays in the loop.</span></button>
+        <button class="model-step" data-step="2" style="--x:78%;--y:20%;"><span class="model-step__meta">03 · CONNECT</span><strong>Connect the systems</strong><span hidden>The operating layer wires into your stack with scoped, revocable access.</span></button>
+        <button class="model-step" data-step="3" style="--x:82%;--y:75%;"><span class="model-step__meta">04 · OPERATE</span><strong>Operate the agents</strong><span hidden>Agents run the operation continuously, within the boundary you defined.</span></button>
+        <button class="model-step" data-step="4" style="--x:50%;--y:91%;"><span class="model-step__meta">05 · RECORD</span><strong>Record what happens</strong><span hidden>Every action is logged, attributable, and reviewable - by you and by us.</span></button>
+        <button class="model-step" data-step="5" style="--x:19%;--y:73%;"><span class="model-step__meta">06 · IMPROVE</span><strong>Improve the operation</strong><span hidden>The record feeds the next iteration. The operation gets sharper over time.</span></button>
+      </div>
+      <div class="model-ticker"><i></i><span id="model-ticker-text">REVIEW ACTIVE · STACK SURVEY IN PROGRESS</span></div>
+    </div></div>
+  </section>
+  <section style="padding: 110px 40px; background: rgb(33, 29, 23); color: rgb(243, 238, 228);">
   <div style="max-width: 1180px; margin: 0px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
     <div>
       <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(224, 138, 110); margin-bottom: 26px;">Proof</div>
@@ -837,6 +872,75 @@
     window.addEventListener('resize',schedule);
     setTimeout(updateAxon,250);
   });
+})();
+</script>
+<script id="nordsym-spatial-sections">
+(function(){
+  function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
+  function initSpatialSections(){
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var opRows=[].slice.call(document.querySelectorAll('.op-row'));
+    var opStage=document.querySelector('.op-stage');
+    var opSource=document.getElementById('op-source-label');
+    var opAgent=document.getElementById('op-agent-label');
+    var opOutput=document.getElementById('op-output-label');
+    var opIndex=0,opTouched=false,opVisible=false;
+    function setOperation(index,user){
+      var row=opRows[index];if(!row)return;
+      opIndex=index;if(user)opTouched=true;
+      opRows.forEach(function(r,i){var on=i===index;r.classList.toggle('is-active',on);r.setAttribute('aria-pressed',on?'true':'false');});
+      if(opStage)opStage.classList.add('is-switching');
+      setTimeout(function(){if(opSource)opSource.textContent=row.dataset.source;if(opAgent)opAgent.textContent=row.dataset.agent;if(opOutput)opOutput.textContent=row.dataset.output;if(opStage)opStage.classList.remove('is-switching');},120);
+    }
+    opRows.forEach(function(row,i){['mouseenter','focus','click'].forEach(function(evt){row.addEventListener(evt,function(){setOperation(i,evt!=='mouseenter');});});});
+    if(opStage&&'IntersectionObserver'in window){new IntersectionObserver(function(entries){opVisible=entries[0].isIntersecting;},{threshold:.35}).observe(opStage);}
+    if(!reduce)setInterval(function(){if(opVisible&&!opTouched)setOperation((opIndex+1)%opRows.length,false);},3600);
+
+    var field=document.querySelector('.domain-field');
+    var domains=[].slice.call(document.querySelectorAll('.domain-node'));
+    var domainLines=[].slice.call(document.querySelectorAll('.domain-line'));
+    function setDomain(index,on){
+      if(!field)return;
+      field.classList.toggle('has-active',on);
+      domains.forEach(function(n,i){n.classList.toggle('is-active',on&&i===index);});
+      domainLines.forEach(function(l){l.classList.toggle('is-active',on&&Number(l.dataset.domain)===index);});
+    }
+    domains.forEach(function(node,i){node.addEventListener('mouseenter',function(){setDomain(i,true);});node.addEventListener('focus',function(){setDomain(i,true);});node.addEventListener('click',function(){setDomain(i,true);});});
+    if(field)field.addEventListener('mouseleave',function(){setDomain(0,false);});
+
+    var model=document.getElementById('model');
+    var steps=[].slice.call(document.querySelectorAll('.model-step'));
+    var modelTitle=document.getElementById('model-active-title');
+    var modelCopy=document.getElementById('model-active-copy');
+    var modelMeta=document.getElementById('model-active-meta');
+    var ticker=document.getElementById('model-ticker-text');
+    var progress=document.querySelector('.model-track-progress');
+    var tickerTexts=['STACK SURVEY IN PROGRESS','MANDATE BOUNDARY WRITTEN','SCOPED ACCESS CONNECTED','OPERATION RUNNING','ATTRIBUTABLE RECORD WRITTEN','RECORD FEEDS NEXT ITERATION'];
+    var modelIndex=-1;
+    function setModel(index){
+      index=Math.max(0,Math.min(steps.length-1,index));if(index===modelIndex)return;modelIndex=index;
+      var step=steps[index];
+      steps.forEach(function(s,i){s.classList.toggle('is-active',i===index);});
+      if(modelMeta)modelMeta.textContent=step.querySelector('.model-step__meta').textContent;
+      if(modelTitle)modelTitle.textContent=step.querySelector('strong').textContent;
+      if(modelCopy)modelCopy.textContent=step.querySelector('[hidden]').textContent;
+      if(ticker)ticker.textContent=step.querySelector('.model-step__meta').textContent.split('·').pop().trim()+' ACTIVE · '+tickerTexts[index];
+      if(progress)progress.style.setProperty('--progress',String(((index+1)/steps.length)*100));
+    }
+    steps.forEach(function(step,i){step.addEventListener('mouseenter',function(){setModel(i);});step.addEventListener('focus',function(){setModel(i);});step.addEventListener('click',function(){setModel(i);});});
+    function updateModel(){
+      if(!model||window.innerWidth<=900||reduce)return;
+      var total=Math.max(1,model.offsetHeight-window.innerHeight);
+      var p=Math.min(1,Math.max(0,-model.getBoundingClientRect().top/total));
+      setModel(Math.min(5,Math.floor(p*6)));
+    }
+    setModel(0);updateModel();
+    var ticking=false;
+    function schedule(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;updateModel();});}
+    window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);
+  }
+  ready(initSpatialSections);
 })();
 </script>
 <script id="nordsym-posthog">
