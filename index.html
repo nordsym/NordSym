@@ -44,6 +44,7 @@
   .stack-rail__group{display:flex;gap:12px;padding-right:12px;}
   .stack-tool{display:flex;align-items:center;gap:11px;min-height:58px;padding:0 22px;border:1px solid rgba(33,29,23,.14);border-radius:2px;background:rgba(249,246,239,.72);box-shadow:0 4px 18px rgba(33,29,23,.035);font-size:15px;font-weight:500;color:#342F28;white-space:nowrap;}
   .stack-tool__icon{display:block;width:21px;height:21px;flex:0 0 21px;background:var(--brand);-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;}
+  .stack-tool__icon--full{background:transparent var(--icon) center/contain no-repeat;-webkit-mask:none;mask:none;}
   #founder-signature .founder-layout{grid-template-columns:148px minmax(0,1fr)!important;gap:44px!important;max-width:980px!important;}
   #founder-signature .founder-portrait{width:148px!important;height:184px!important;aspect-ratio:auto!important;margin:0!important;background:#E8DFCD!important;border-color:rgba(33,29,23,.13)!important;box-shadow:0 10px 34px rgba(33,29,23,.055);}
   #founder-signature .founder-portrait img{filter:saturate(.62) contrast(.94) sepia(.07)!important;opacity:.92;}
@@ -280,10 +281,10 @@
         <div class="stack-rail__group">
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#6264A7;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@12.4.0/icons/microsoftteams.svg')"></span>Microsoft Teams</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#EA4335;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/gmail.svg')"></span>Gmail</div>
-          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#4A154B;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@15.19.0/icons/slack.svg')"></span>Slack</div>
+          <div class="stack-tool"><span class="stack-tool__icon stack-tool__icon--full" style="--icon:url('/assets/slack-color.svg')"></span>Slack</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#FF7A59;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/hubspot.svg')"></span>HubSpot</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#00A1E0;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/salesforce.svg')"></span>Salesforce</div>
-          <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#18BFFF;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/airtable.svg')"></span>Airtable</div>
+          <div class="stack-tool"><span class="stack-tool__icon stack-tool__icon--full" style="--icon:url('/assets/airtable-color.svg')"></span>Airtable</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#211D17;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/notion.svg')"></span>Notion</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#0052CC;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/jira.svg')"></span>Jira</div>
           <div class="stack-tool"><span class="stack-tool__icon" style="--brand:#181717;--icon:url('https://cdn.jsdelivr.net/npm/simple-icons@16.25.0/icons/github.svg')"></span>GitHub</div>
