@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png?v=20260709">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nordsym.com/#organization","name":"NordSym AB","legalName":"NordSym AB","url":"https://nordsym.com/","identifier":"559535-5768","logo":"https://nordsym.com/assets/brand/nordsym-social-logo.png","founder":{"@id":"https://nordsym.com/#gustav-hemmingsson"},"sameAs":["https://github.com/nordsym","https://www.linkedin.com/company/nordsym/"],"knowsAbout":["agent architecture","agent operations","governed agent infrastructure","local AI","on-premise AI","MCP","API gateways"]},{"@type":"Person","@id":"https://nordsym.com/#gustav-hemmingsson","name":"Gustav Hemmingsson","jobTitle":"Founder","worksFor":{"@id":"https://nordsym.com/#organization"},"url":"https://nordsym.com/"},{"@type":"Service","@id":"https://nordsym.com/#operating-review","name":"Operating Review","provider":{"@id":"https://nordsym.com/#organization"},"serviceType":"Agent architecture and operations","description":"A structured review of where governed agents can operate inside an existing company stack.","url":"https://nordsym.com/book/"},{"@type":"Service","@id":"https://nordsym.com/#operating-layer","name":"Operating Layer Build","provider":{"@id":"https://nordsym.com/#organization"},"serviceType":"Governed agent infrastructure","description":"Governed agent infrastructure inside an existing stack, with approvals, stop controls, and records.","url":"https://nordsym.com/book/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you replace our existing tools?","acceptedAnswer":{"@type":"Answer","text":"No. NordSym installs the operating layer inside the stack you already run. Your CRM, CMS, databases, and workflows stay where they are. Agents work across them."}},{"@type":"Question","name":"How do you keep agents safe?","acceptedAnswer":{"@type":"Answer","text":"Agents work under a written mandate, scoped access, approval gates, stop controls, and operating records. Wider autonomy is earned as the system proves it can operate safely."}},{"@type":"Question","name":"Who is accountable when an agent acts?","acceptedAnswer":{"@type":"Answer","text":"NordSym is accountable for the operating layer it designs and runs. The client retains approval authority for actions inside its business, and every decision or output is recorded against the agreed mandate."}},{"@type":"Question","name":"What happens after the first call?","acceptedAnswer":{"@type":"Answer","text":"The first call maps the recurring operation, the stack it touches, the approval boundary, and the smallest useful mandate. From there NordSym proposes the operating layer to build or run first."}},{"@type":"Question","name":"Which models do you use?","acceptedAnswer":{"@type":"Answer","text":"NordSym is model-agnostic. The operating layer can use the model that fits the job while keeping the mandate, tools, approvals, and records outside the model itself."}},{"@type":"Question","name":"Is our data used to train anything?","acceptedAnswer":{"@type":"Answer","text":"No. Client data is used to operate the agreed system, not to train NordSym-owned models. Client data stays inside the client boundary."}},{"@type":"Question","name":"Can NordSym run AI locally or on-premise?","acceptedAnswer":{"@type":"Answer","text":"Yes. NordSym can design operations around local or on-premise models when privacy, regulation, or data sensitivity requires it, including deployments where no operational data is sent to external model providers."}}]}</script>
-<script async="" src="https://eu-assets.i.posthog.com/static/array.js"></script><style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
   html{scroll-behavior:smooth;}
   body{margin:0;background:#F3EEE4;color:#211D17;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   a{color:#A8432B;text-decoration:none;}
@@ -190,7 +190,7 @@
     .model-v2{height:auto!important;padding:90px 40px!important;}
     .model-sticky{position:relative!important;min-height:0!important;padding:0!important;overflow:visible!important;}
   }
-</style><script type="text/javascript" crossorigin="anonymous" src="https://eu-assets.i.posthog.com/array/phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR/config.js"></script>
+</style>
 
 <style id="nordsym-ai-context-polish">
   .scp5 {
@@ -728,7 +728,17 @@
           button.setAttribute('aria-expanded',String(next));
           if(icon)icon.textContent=next?'−':'+';
         }
-        button.addEventListener('click',function(){setOpen(button.getAttribute('aria-expanded')!=='true');});
+        button.addEventListener('click',function(){
+          var next=button.getAttribute('aria-expanded')!=='true';
+          setOpen(next);
+          if(next&&window.posthog&&window.posthog.capture){
+            window.posthog.capture(sectionId==='faq'?'nordsym_faq_opened':'nordsym_engagement_opened',{
+              item_index:index+1,
+              item_label:(button.querySelector('span')||button).textContent.trim(),
+              surface:'home'
+            });
+          }
+        });
         setOpen(open);
       });
     });
@@ -1004,35 +1014,39 @@
 (function(){
   if (window.__nordsymPosthogLoaded) return;
   window.__nordsymPosthogLoaded = true;
-  window.posthog = window.posthog || [];
-  var ph = window.posthog;
-  ph._i = ph._i || [];
-  ph.init = ph.init || function(token, config, name){
-    var target = name ? ph[name] = [] : ph;
-    target.people = target.people || [];
-    target.toString = function(){ return 'posthog'; };
-    target.people.toString = function(){ return 'posthog.people'; };
-    var methods = 'capture register set_config'.split(' ');
-    methods.forEach(function(method){ target[method] = function(){ target.push([method].concat(Array.prototype.slice.call(arguments))); }; });
-    ph._i.push([token, config, name]);
-  };
-  ph.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+  !function(d,p){var s=d.createElement('script'),first=d.getElementsByTagName('script')[0];p=p||[];window.posthog=p;p._i=p._i||[];p.init=function(token,config,name){var target=name?p[name]=[]:p;target.people=target.people||[];['capture','register','set_config'].forEach(function(method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};});p._i.push([token,config,name]);};s.async=true;s.crossOrigin='anonymous';s.src='https://eu-assets.i.posthog.com/static/array.js';first.parentNode.insertBefore(s,first);}(document,window.posthog);
+  window.posthog.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
     api_host: 'https://eu.i.posthog.com',
     ui_host: 'https://eu.posthog.com',
     defaults: '2026-05-30',
-    cookieless_mode: 'always',
+    persistence: 'memory',
+    disable_persistence: true,
+    person_profiles: 'identified_only',
     autocapture: false,
     capture_pageview: false,
     disable_session_recording: true,
     loaded: function(posthog) {
       posthog.register({ product: 'Nordsym-Com', surface: 'home' });
-      posthog.capture('$pageview', { path: location.pathname, cookieless: true });
+      posthog.capture('$pageview', { path: location.pathname, privacy_mode: 'memory_only' });
     }
   });
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://eu-assets.i.posthog.com/static/array.js';
-  document.head.appendChild(script);
+  function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
+  ready(function(){
+    document.addEventListener('click',function(event){
+      var link=event.target.closest('a');
+      if(!link)return;
+      var href=link.getAttribute('href')||'';
+      if(href.indexOf('/book/')===0){
+        window.posthog.capture('nordsym_book_clicked',{surface:'home',placement:(link.closest('section')||{}).id||'navigation',label:link.textContent.trim()});
+      }
+      if(link.getAttribute('aria-label')&&link.getAttribute('aria-label').indexOf('Open in ')===0){
+        window.posthog.capture('nordsym_ai_handoff_opened',{surface:'home',destination:link.getAttribute('aria-label').replace('Open in ','')});
+      }
+    });
+    var seen={};
+    var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(!entry.isIntersecting||seen[entry.target.id])return;seen[entry.target.id]=true;window.posthog.capture('nordsym_section_viewed',{surface:'home',section:entry.target.id});});},{threshold:.35});
+    ['stack-rail','operations','domains','model','engagements','faq','contact'].forEach(function(id){var section=document.getElementById(id);if(section)observer.observe(section);});
+  });
 })();
 </script>
 </body></html>

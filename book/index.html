@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png?v=20260709">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nordsym.com/#organization","name":"NordSym AB","legalName":"NordSym AB","url":"https://nordsym.com/","identifier":"559535-5768","logo":"https://nordsym.com/assets/brand/nordsym-social-logo.png","founder":{"@id":"https://nordsym.com/#gustav-hemmingsson"}},{"@type":"Person","@id":"https://nordsym.com/#gustav-hemmingsson","name":"Gustav Hemmingsson","jobTitle":"Founder","worksFor":{"@id":"https://nordsym.com/#organization"}},{"@type":"Service","@id":"https://nordsym.com/#operating-review","name":"Operating Review","provider":{"@id":"https://nordsym.com/#organization"},"serviceType":"Agent architecture and operations","description":"A structured review of where governed agents can operate inside an existing company stack.","url":"https://nordsym.com/book/"},{"@type":"BreadcrumbList","@id":"https://nordsym.com/book/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nordsym.com/"},{"@type":"ListItem","position":2,"name":"Book a call","item":"https://nordsym.com/book/"}]}]}</script>
 
-<script async="" src="https://eu-assets.i.posthog.com/static/array.js"></script><style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
   body{margin:0;background:#EDE7DA;color:#211D17;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
   input,textarea,select,button{font-family:inherit;}
   @keyframes pop{from{transform:scale(0.6);opacity:0;}to{transform:scale(1);opacity:1;}}
@@ -28,7 +28,7 @@
     [style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;}
     [data-rail]{border-right:none!important;border-bottom:1px solid rgba(33,29,23,0.12)!important;}
   }
-</style><script type="text/javascript" crossorigin="anonymous" src="https://eu-assets.i.posthog.com/array/phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR/config.js"></script></head>
+</style></head>
 <body>
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Book a call with NordSym</h1>
 <div id="dc-root"><div class="sc-host" data-sc-name="Root"><div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 20px;">
@@ -332,21 +332,24 @@
   async function submit() {
     next.disabled = true;
     next.textContent = "Sending";
+    if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_submitted',{surface:'book',focus:state.focus});
     try {
       var res = await fetch(endpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(Object.assign({ source: "nordsym.com/book", submittedAt: new Date().toISOString() }, state))
       });
+      if(window.posthog&&window.posthog.capture)window.posthog.capture(res.ok?'nordsym_booking_succeeded':'nordsym_booking_failed',{surface:'book',focus:state.focus});
       renderConfirmed(res.ok);
     } catch (err) {
+      if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_failed',{surface:'book',focus:state.focus,reason:'network'});
       renderConfirmed(false);
     }
   }
 
   next.addEventListener("click", function(){
-    if (step === 1 && state.focus) return renderTime();
-    if (step === 2 && state.date && state.time) return renderDetails();
+    if (step === 1 && state.focus) { if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_focus_selected',{surface:'book',focus:state.focus}); return renderTime(); }
+    if (step === 2 && state.date && state.time) { if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_time_selected',{surface:'book'}); return renderDetails(); }
     if (step === 3 && state.name && state.email && state.company) return submit();
   });
   back.addEventListener("click", function(){
@@ -369,35 +372,22 @@
 (function(){
   if (window.__nordsymPosthogLoaded) return;
   window.__nordsymPosthogLoaded = true;
-  window.posthog = window.posthog || [];
-  var ph = window.posthog;
-  ph._i = ph._i || [];
-  ph.init = ph.init || function(token, config, name){
-    var target = name ? ph[name] = [] : ph;
-    target.people = target.people || [];
-    target.toString = function(){ return 'posthog'; };
-    target.people.toString = function(){ return 'posthog.people'; };
-    var methods = 'capture register set_config'.split(' ');
-    methods.forEach(function(method){ target[method] = function(){ target.push([method].concat(Array.prototype.slice.call(arguments))); }; });
-    ph._i.push([token, config, name]);
-  };
-  ph.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+  !function(d,p){var s=d.createElement('script'),first=d.getElementsByTagName('script')[0];p=p||[];window.posthog=p;p._i=p._i||[];p.init=function(token,config,name){var target=name?p[name]=[]:p;target.people=target.people||[];['capture','register','set_config'].forEach(function(method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};});p._i.push([token,config,name]);};s.async=true;s.crossOrigin='anonymous';s.src='https://eu-assets.i.posthog.com/static/array.js';first.parentNode.insertBefore(s,first);}(document,window.posthog);
+  window.posthog.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
     api_host: 'https://eu.i.posthog.com',
     ui_host: 'https://eu.posthog.com',
     defaults: '2026-05-30',
-    cookieless_mode: 'always',
+    persistence: 'memory',
+    disable_persistence: true,
+    person_profiles: 'identified_only',
     autocapture: false,
     capture_pageview: false,
     disable_session_recording: true,
     loaded: function(posthog) {
       posthog.register({ product: 'Nordsym-Com', surface: 'book' });
-      posthog.capture('$pageview', { path: location.pathname, cookieless: true });
+      posthog.capture('$pageview', { path: location.pathname, privacy_mode: 'memory_only' });
     }
   });
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://eu-assets.i.posthog.com/static/array.js';
-  document.head.appendChild(script);
 })();
 </script>
 </body></html>
