@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "validate:systems": "node scripts/validate-systems-boundary.mjs"
+    "validate:systems": "node scripts/validate-systems-boundary.mjs",
+    "validate:analytics": "node scripts/validate-posthog-config.mjs"
   },
   "engines": {
     "node": "22.x"

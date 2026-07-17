@@ -1072,15 +1072,14 @@
     api_host: 'https://eu.i.posthog.com',
     ui_host: 'https://eu.posthog.com',
     defaults: '2026-05-30',
-    persistence: 'memory',
-    disable_persistence: true,
+    cookieless_mode: 'always',
     person_profiles: 'identified_only',
     autocapture: false,
     capture_pageview: false,
     disable_session_recording: true,
     loaded: function(posthog) {
       posthog.register({ product: 'Nordsym-Com', surface: 'home' });
-      posthog.capture('$pageview', { path: location.pathname, privacy_mode: 'memory_only' });
+      posthog.capture('$pageview', { path: location.pathname, privacy_mode: 'server_hash' });
     }
   });
   function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
