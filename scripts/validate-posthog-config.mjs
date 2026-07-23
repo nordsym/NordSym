@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const paidLandingPage = 'lp/fakturaklart/index.html';
-const paidLandingScript = 'lp/fakturaklart/script.js';
+const paidLandingPage = 'fakturaklart/index.html';
+const paidLandingScript = 'fakturaklart/script.js';
 const trackedPages = ['index.html', 'book/index.html', paidLandingPage];
 const qualificationValues = {
   company_size: ['1-4', '5-14', '15-49', '50+'],
@@ -72,7 +72,7 @@ for (const [text, label] of [
   ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
   ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
   ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=fakturaklart");', 'paid URL context removal'],
-  ['var webhookSource = paidVariant ? "nordsym.com/lp/fakturaklart" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
+  ['var webhookSource = paidVariant ? "nordsym.com/fakturaklart" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
   ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],
@@ -111,11 +111,22 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
 for (const [text, label] of [
-  ['Boka ett första samtal', 'first-call CTA'],
-  ['separat operativ genomgång', 'separate operational-review disclosure'],
+  ['Boka kostnadsfri flödesdiagnos', 'diagnostic CTA'],
+  ['NordSym AB · 559535-5768', 'legal trust marker'],
+  ['Diagnosgarantin:', 'diagnostic risk reversal'],
+  ['Verifierat NordSym-produktionskvitto', 'bounded production proof'],
+  ['84%', 'third-party manual-process evidence'],
+  ['47%', 'third-party invoicing evidence'],
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
+}
+for (const [text, label] of [
+  ['rätt fit', 'Swenglish fit language'],
+  ['hjälpt X', 'placeholder social proof'],
+  ['garanterad besparing', 'unsupported outcome guarantee']
+]) {
+  if (landingMarkup.includes(text)) failures.push(`${paidLandingPage}: contains forbidden ${label}`);
 }
 const qualificationInputs = [...landingMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
 for (const [key, expectedValues] of Object.entries(qualificationValues)) {

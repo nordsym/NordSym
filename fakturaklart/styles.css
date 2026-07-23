@@ -181,9 +181,38 @@ p {
 
 .hero-lead {
   max-width: 39rem;
-  margin-bottom: 38px;
+  margin-bottom: 24px;
   color: #4b463c;
   font-size: clamp(1.08rem, 1.5vw, 1.28rem);
+}
+
+.urgency-line {
+  max-width: 37rem;
+  margin: 0 0 32px;
+  padding-left: 15px;
+  border-left: 2px solid var(--oxide);
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.cta-note {
+  margin: 13px 0 0;
+  color: var(--ink-soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-proof {
+  margin: 22px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.hero-proof a {
+  color: inherit;
+  text-underline-offset: 0.18em;
 }
 
 .button {
@@ -449,6 +478,67 @@ p {
   font-size: 0.9rem;
 }
 
+.evidence {
+  padding-block: 92px;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.evidence-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 60px;
+  align-items: start;
+}
+
+.evidence-heading h2 {
+  max-width: 18ch;
+  font-size: clamp(2.5rem, 4.8vw, 4.6rem);
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 58px;
+  border-top: 1px solid rgba(33, 29, 23, 0.24);
+  border-left: 1px solid rgba(33, 29, 23, 0.24);
+}
+
+.evidence-grid article {
+  min-height: 230px;
+  padding: 28px;
+  border-right: 1px solid rgba(33, 29, 23, 0.24);
+  border-bottom: 1px solid rgba(33, 29, 23, 0.24);
+  background: rgba(248, 244, 236, 0.5);
+}
+
+.evidence-grid strong {
+  display: block;
+  color: var(--oxide);
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(3.4rem, 6vw, 5.8rem);
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.evidence-grid p {
+  max-width: 28ch;
+  margin: 42px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.evidence-source {
+  max-width: 76rem;
+  margin: 20px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.evidence-source a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
 .section-heading {
   max-width: 860px;
 }
@@ -506,6 +596,32 @@ p {
   margin-bottom: 0;
   color: var(--ink-soft);
   font-size: 0.92rem;
+}
+
+.attempts-grid article {
+  min-height: 255px;
+}
+
+.fit-boundary {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-top: 34px;
+  padding: 24px 26px;
+  border: 1px solid rgba(33, 29, 23, 0.24);
+  background: rgba(248, 244, 236, 0.5);
+}
+
+.fit-boundary > span {
+  color: var(--oxide);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.45rem;
+}
+
+.fit-boundary p {
+  max-width: 72rem;
+  margin: 0;
 }
 
 .truth-line {
@@ -588,7 +704,7 @@ p {
 
 .record-output {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 180px 1fr auto;
   gap: 30px;
   align-items: start;
   padding: 28px 24px;
@@ -606,6 +722,17 @@ p {
   font-size: clamp(1.35rem, 2.2vw, 1.95rem);
   font-weight: 300;
   line-height: 1.28;
+}
+
+.record-output a {
+  align-self: end;
+  color: #e08a6e;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.11em;
+  text-decoration-color: rgba(224, 138, 110, 0.6);
+  text-transform: uppercase;
+  text-underline-offset: 0.22em;
 }
 
 .method-list {
@@ -894,6 +1021,12 @@ p {
   margin-top: 42px;
 }
 
+.final-note {
+  margin: 18px auto 0;
+  color: var(--night-soft);
+  font-size: 0.78rem;
+}
+
 .site-footer {
   min-height: 118px;
   display: flex;
@@ -946,6 +1079,11 @@ p {
 
   .record-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .evidence-heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .record-grid article {
@@ -1010,6 +1148,19 @@ p {
     margin-top: 50px;
   }
 
+  .evidence-grid {
+    grid-template-columns: 1fr;
+    margin-top: 44px;
+  }
+
+  .evidence-grid article {
+    min-height: 0;
+  }
+
+  .evidence-grid p {
+    margin-top: 24px;
+  }
+
   .symptom-ledger article {
     min-height: 0;
     padding: 26px 0 30px;
@@ -1036,6 +1187,11 @@ p {
   }
 
   .truth-line {
+    grid-template-columns: 34px 1fr;
+    padding: 20px;
+  }
+
+  .fit-boundary {
     grid-template-columns: 34px 1fr;
     padding: 20px;
   }

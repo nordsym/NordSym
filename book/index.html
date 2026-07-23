@@ -177,8 +177,8 @@
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Från utfört jobb till fakturaklart";
-  var webhookSource = paidVariant ? "nordsym.com/lp/fakturaklart" : "nordsym.com/book";
+  var paidFocus = "Flödesdiagnos: utfört jobb till fakturaklart";
+  var webhookSource = paidVariant ? "nordsym.com/fakturaklart" : "nordsym.com/book";
   var acquisition = {};
 
   function categoricalValue(value) {
@@ -215,12 +215,12 @@
   }
 
   var copy = paidVariant ? {
-    title: "Boka ett samtal - NordSym",
-    description: "Boka ett samtal med NordSym om vägen från utfört servicejobb till kontrollerat fakturaunderlag.",
-    heading: "Boka ett samtal med NordSym",
-    briefHeading: "Ditt underlag",
+    title: "Boka kostnadsfri flödesdiagnos - NordSym",
+    description: "Boka en kostnadsfri diagnos av vägen från utfört servicejobb till fakturaklart underlag.",
+    heading: "Boka din kostnadsfria flödesdiagnos",
+    briefHeading: "Din diagnos",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ett 30-minuters första samtal med grundaren. <br>Vi testar om problemet, volymen och systemvägen <br>motiverar en separat operativ genomgång.",
+    railDescription: "Ta med ett typiskt servicejobb. <br>Få ett beslutsunderlag på en sida med <br>flaskhals, mätetal och ett tydligt beslut.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -230,8 +230,8 @@
     focusOptions: [
       {
         value: paidFocus,
-        title: "Från utfört jobb till fakturaklart",
-        body: "Koppla serviceunderlag, kontroller, avvikelser och attest till ett mätbart flöde fram till fakturaklart underlag."
+        title: "Flödesdiagnos: utfört jobb till fakturaklart",
+        body: "Följ ett avslutat servicejobb genom underlag, kontroller, avvikelser och attest och avgör vad som faktiskt är värt att lösa."
       },
       {
         value: "Managed operations",
@@ -253,7 +253,7 @@
     timeHeading: "Välj en tid.",
     timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "En kort notering räcker. Samtalet kvalificerar om en separat operativ genomgång är rätt nästa steg.",
+    detailsDescription: "En kort notering räcker. Ta gärna med ett typiskt jobb som fastnar före fakturering. Efter diagnosen får du ett beslutsunderlag på en sida med ett tydligt ja, nej eller ”lös det i systemet ni redan har”.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
     fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
     send: "Skicka förfrågan",

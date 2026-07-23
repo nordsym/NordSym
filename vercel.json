@@ -4,7 +4,10 @@
   "outputDirectory": ".",
   "framework": null,
   "installCommand": null,
-  "redirects": [],
+  "redirects": [
+    { "source": "/lp/fakturaklart", "destination": "/fakturaklart/", "permanent": true },
+    { "source": "/lp/fakturaklart/:path*", "destination": "/fakturaklart/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
 
