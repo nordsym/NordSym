@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "NordSym public discovery",
-    "version": "2026-07-11",
+    "version": "2026-07-23",
     "description": "Small public discovery surface for NordSym's agent architecture and operations metadata."
   },
   "servers": [

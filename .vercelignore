@@ -1,1 +1,11 @@
-output/company-profile/
+output/
+assets/brand/archive/
+assets/brand/nordsym-logo-manifest.md
+assets/operations-room.png
+img/
+README.md
+book.html
+mc-bridge.js
+schematic.js
+scripts/
+styles.css

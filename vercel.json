@@ -5,6 +5,21 @@
   "framework": null,
   "installCommand": null,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.nordsym.com" }],
+      "destination": "https://nordsym.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "api.nordsym.com" }],
+      "destination": "https://nordsym.com/:path*",
+      "permanent": true
+    },
+    { "source": "/contact", "destination": "/book/", "permanent": true },
+    { "source": "/audit", "destination": "https://aisearch.nordsym.com", "permanent": true },
+    { "source": "/book.html", "destination": "/book/", "permanent": true },
     { "source": "/lp/fakturaklart", "destination": "/fakturaklart/", "permanent": true },
     { "source": "/lp/fakturaklart/", "destination": "/fakturaklart/", "permanent": true },
     { "source": "/lp/fakturaklart/:path*", "destination": "/fakturaklart/:path*", "permanent": true }
@@ -12,10 +27,37 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
 
+    { "source": "/apple-touch-icon.png", "destination": "/assets/brand/apple-touch-icon.png" },
+    { "source": "/android-chrome-192x192.png", "destination": "/assets/brand/web-app-icon-192.png" },
+    { "source": "/android-chrome-512x512.png", "destination": "/assets/brand/web-app-icon-512.png" },
+    { "source": "/logo.png", "destination": "/assets/brand/nordsym-social-logo.png" },
+    { "source": "/logo.svg", "destination": "/assets/brand/nordsym-symbol.svg" },
+    { "source": "/nordsym-logo-transparent.png", "destination": "/assets/brand/nordsym-social-logo.png" },
+    { "source": "/NordSym Logga utan text.png", "destination": "/assets/brand/nordsym-social-logo.png" },
+    { "source": "/assets/brand/nordsym-social-logo-20260723.png", "destination": "/assets/brand/nordsym-social-logo.png" },
+    { "source": "/assets/og/nordsym-og-20260723.png", "destination": "/assets/og/nordsym-og.png" },
+    { "source": "/manifest.json", "destination": "/site.webmanifest" },
+    { "source": "/manifest.webmanifest", "destination": "/site.webmanifest" },
     { "source": "/agent-info", "destination": "/agent-info.json" },
     { "source": "/agents.txt", "destination": "/agents.md" },
-    { "source": "/systems", "destination": "/systems.html" },
-    { "source": "/contact", "destination": "/api/contact" },
-    { "source": "/audit", "destination": "/index.html" }
+    { "source": "/systems", "destination": "/systems.html" }
+  ],
+  "headers": [
+    {
+      "source": "/.well-known/mcp",
+      "headers": [{ "key": "Content-Type", "value": "application/json; charset=utf-8" }]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [{ "key": "Content-Type", "value": "application/manifest+json; charset=utf-8" }]
+    },
+    {
+      "source": "/assets/brand/nordsym-social-logo-20260723.png",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/og/nordsym-og-20260723.png",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
   ]
 }

@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     description:
       "NordSym designs, builds, and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations.",
     url: 'https://nordsym.com',
-    logo: 'https://nordsym.com/assets/brand/nordsym-social-logo.png',
+    logo: 'https://nordsym.com/assets/brand/nordsym-social-logo-20260723.png',
     founder: {
       name: 'Gustav Hemmingsson',
       email: 'contact@nordsym.com'
@@ -108,6 +108,6 @@ export default async function handler(req, res) {
     },
     agent_friendly: true,
     human_approval_required_for_external_actions: true,
-    last_updated: '2026-07-11'
+    last_updated: '2026-07-23'
   });
 }

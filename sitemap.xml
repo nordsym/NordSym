@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- NordSym Sitemap - Updated: 2026-07-16 -->
+  <!-- NordSym Sitemap - Updated: 2026-07-23 -->
 
   <url>
     <loc>https://nordsym.com/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/book/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/systems</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -46,49 +46,49 @@
 
   <url>
     <loc>https://nordsym.com/agents.json</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/agent-info</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/openapi.json</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/systems.canon.json</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/.well-known/ai-plugin.json</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/.well-known/mcp</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://nordsym.com/privacy.html</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
