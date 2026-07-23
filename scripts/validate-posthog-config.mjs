@@ -1,9 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const trackedPages = ['index.html', 'book/index.html'];
+const paidLandingPage = 'lp/innehallsoperation/index.html';
+if (existsSync(resolve(root, paidLandingPage))) trackedPages.push(paidLandingPage);
 const failures = [];
 
 for (const relativePath of trackedPages) {
@@ -31,6 +33,64 @@ for (const relativePath of trackedPages) {
   }
 }
 
+const bookingPath = 'book/index.html';
+const booking = readFileSync(resolve(root, bookingPath), 'utf8');
+const requiredBookingParams = [
+  'source',
+  'company_size',
+  'cadence',
+  'bottleneck',
+  'systems_count',
+  'timing',
+  'utm_id',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term'
+];
+const acquisitionList = booking.match(/var ACQUISITION_PARAM_KEYS = \[([\s\S]*?)\];/);
+if (!acquisitionList) {
+  failures.push(`${bookingPath}: missing acquisition parameter allowlist`);
+} else {
+  const declaredParams = [...acquisitionList[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  if (JSON.stringify(declaredParams) !== JSON.stringify(requiredBookingParams)) {
+    failures.push(`${bookingPath}: acquisition parameter allowlist differs from the approved keys`);
+  }
+}
+for (const [text, label] of [
+  ['var SUPPORTED_ROUTE = { lang: "sv", offer: "innehallsoperation" };', 'paid offer allowlist'],
+  ['var ACQUISITION_ALLOWED = {', 'exact qualification value allowlist'],
+  ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
+  ['var webhookSource = paidVariant ? "nordsym.com/lp/innehallsoperation" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
+  ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
+  ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
+  ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties']
+]) {
+  if (!booking.includes(text)) failures.push(`${bookingPath}: missing ${label}`);
+}
+
+const captureCalls = booking.match(/posthog\.capture\([\s\S]*?\);/g) ?? [];
+for (const call of captureCalls) {
+  if (/\bstate\.(?:name|email|company|notes)\b/.test(call)) {
+    failures.push(`${bookingPath}: PostHog capture call references booking PII state`);
+  }
+  if (/(?:^|[{,]\s*)(?:name|email|company|notes)\s*:/.test(call)) {
+    failures.push(`${bookingPath}: PostHog capture call declares a booking PII property`);
+  }
+}
+const bookingEventCalls = booking
+  .split('\n')
+  .filter((line) => line.includes('captureBooking(') && !line.includes('function captureBooking'));
+for (const call of bookingEventCalls) {
+  if (/\bstate\.(?:name|email|company|notes)\b/.test(call)) {
+    failures.push(`${bookingPath}: booking analytics event references booking PII state`);
+  }
+  if (/(?:^|[{,]\s*)(?:name|email|company|notes)\s*:/.test(call)) {
+    failures.push(`${bookingPath}: booking analytics event declares a booking PII property`);
+  }
+}
+
 const privacy = readFileSync(resolve(root, 'privacy.html'), 'utf8');
 for (const phrase of ['privacy-preserving hash', 'rotates daily']) {
   if (!privacy.includes(phrase)) failures.push(`privacy.html: missing ${phrase}`);
@@ -42,4 +102,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('posthog-config: ok (2 public surfaces, daily server hash, no browser persistence)');
+console.log(`posthog-config: ok (${trackedPages.length} public surfaces, daily server hash, no browser persistence)`);

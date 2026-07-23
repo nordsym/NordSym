@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/nordsym-favicon.svg?v=20260709">
 <link rel="shortcut icon" href="/favicon.ico?v=20260709" sizes="any">
@@ -18,7 +18,8 @@
 <meta name="twitter:image" content="https://nordsym.com/assets/og/nordsym-og.png?v=20260709">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nordsym.com/#organization","name":"NordSym AB","legalName":"NordSym AB","url":"https://nordsym.com/","identifier":"559535-5768","logo":"https://nordsym.com/assets/brand/nordsym-social-logo.png","founder":{"@id":"https://nordsym.com/#gustav-hemmingsson"}},{"@type":"Person","@id":"https://nordsym.com/#gustav-hemmingsson","name":"Gustav Hemmingsson","jobTitle":"Founder","worksFor":{"@id":"https://nordsym.com/#organization"}},{"@type":"Service","@id":"https://nordsym.com/#operating-review","name":"Operating Review","provider":{"@id":"https://nordsym.com/#organization"},"serviceType":"Agent architecture and operations","description":"A structured review of where governed agents can operate inside an existing company stack.","url":"https://nordsym.com/book/"},{"@type":"BreadcrumbList","@id":"https://nordsym.com/book/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nordsym.com/"},{"@type":"ListItem","position":2,"name":"Book a call","item":"https://nordsym.com/book/"}]}]}</script>
 
-<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
+  *,*::before,*::after{box-sizing:border-box;}
   body{margin:0;background:#EDE7DA;color:#211D17;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
   input,textarea,select,button{font-family:inherit;}
   @keyframes pop{from{transform:scale(0.6);opacity:0;}to{transform:scale(1);opacity:1;}}
@@ -27,6 +28,16 @@
     [style*="grid-template-columns: 300px 1fr"]{grid-template-columns:1fr!important;}
     [style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;}
     [data-rail]{border-right:none!important;border-bottom:1px solid rgba(33,29,23,0.12)!important;}
+    #dc-root,#dc-root>.sc-host{height:auto;min-height:100%;}
+    #dc-root>.sc-host>div{align-items:flex-start!important;padding:20px!important;}
+    #dc-root>.sc-host>div>div{grid-template-columns:minmax(0,1fr)!important;}
+    [data-rail],#booking-main{min-width:0!important;width:auto!important;}
+    [data-rail]{padding:24px 20px!important;}
+    #booking-main{padding:24px 20px 22px!important;min-height:0!important;}
+    #booking-stepper{margin-bottom:24px!important;}
+    #booking-stepper>div>span:last-child{display:none;}
+    #booking-content [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important;}
+    #booking-content [style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   }
 </style></head>
 <body>
@@ -142,7 +153,167 @@
 <script id="nordsym-booking-flow">
 (function(){
   var endpoint = "https://nordsym.app.n8n.cloud/webhook/aeo-booking";
-  var state = { focus: "", date: "", dateLabel: "", time: "", name: "", email: "", company: "", notes: "" };
+  var SUPPORTED_ROUTE = { lang: "sv", offer: "innehallsoperation" };
+  var ACQUISITION_PARAM_KEYS = [
+    "source",
+    "company_size",
+    "cadence",
+    "bottleneck",
+    "systems_count",
+    "timing",
+    "utm_id",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term"
+  ];
+  var ACQUISITION_ALLOWED = {
+    source: ["meta_paid"],
+    company_size: ["1-4", "5-14", "15-49", "50+"],
+    cadence: ["sporadic", "monthly", "weekly", "daily"],
+    bottleneck: ["ideas", "production", "approval", "publishing", "distribution", "measurement"],
+    systems_count: ["1", "2", "3+"],
+    timing: ["now", "quarter", "exploring"]
+  };
+  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  var params = new URLSearchParams(window.location.search);
+  var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
+  var paidFocus = "Innehåll till distribution";
+  var webhookSource = paidVariant ? "nordsym.com/lp/innehallsoperation" : "nordsym.com/book";
+  var acquisition = {};
+
+  function categoricalValue(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9._~-]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 120);
+  }
+
+  Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
+    var value = params.get(key);
+    if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
+  });
+  UTM_PARAM_KEYS.forEach(function(key){
+    var value = categoricalValue(params.get(key));
+    if (value) acquisition[key] = value;
+  });
+
+  var analyticsContext = Object.assign({
+    booking_variant: paidVariant ? "innehallsoperation_sv" : "default"
+  }, acquisition);
+  if (paidVariant) {
+    analyticsContext.lang = SUPPORTED_ROUTE.lang;
+    analyticsContext.offer = SUPPORTED_ROUTE.offer;
+  }
+  window.__nordsymAnalyticsContext = analyticsContext;
+
+  var copy = paidVariant ? {
+    title: "Boka ett samtal - NordSym",
+    description: "Boka ett samtal med NordSym om en styrd innehållsoperation från produktion till distribution.",
+    heading: "Boka ett samtal med NordSym",
+    briefHeading: "Ditt underlag",
+    briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
+    railDescription: "Ett 30-minuterssamtal med grundaren.<br>Ingen presentation. Vi kartlägger era system<br>och var operationslagret passar.",
+    stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
+    back: "← Tillbaka",
+    startOver: "Börja om",
+    continue: "Fortsätt",
+    focusHeading: "Vad ska vi börja driva?",
+    focusDescription: "Välj närmast utgångspunkt. Vi preciserar den under samtalet.",
+    focusOptions: [
+      {
+        value: paidFocus,
+        title: "Innehåll till distribution",
+        body: "Koppla innehåll till ett återkommande distributionsflöde. Vi kartlägger system och beslut, bygger det styrda lagret och börjar driva operationen."
+      },
+      {
+        value: "Managed operations",
+        title: "Löpande operationer",
+        body: "Vi driver och förbättrar sammankopplade operationer löpande."
+      },
+      {
+        value: "Operating expansion",
+        title: "Utökat operationslager",
+        body: "Utöka operationslagret till fler delar av verksamheten."
+      },
+      {
+        value: "Still exploring",
+        title: "Utforskar fortfarande",
+        body: "Inte helt säker än. Vi går igenom det tillsammans."
+      }
+    ],
+    dayLabels: ["Nästa vardag", "Om några dagar", "Nästa vecka"],
+    timeHeading: "Välj en tid.",
+    timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
+    detailsHeading: "Vart ska jag skicka bekräftelsen?",
+    detailsDescription: "En kort notering räcker. Vi kartlägger resten under samtalet.",
+    fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
+    send: "Skicka förfrågan",
+    sending: "Skickar",
+    sentHeading: "Förfrågan skickad.",
+    failedHeading: "Kunde inte skicka.",
+    sentDescription: "Kalenderinbjudan är skickad. Mötesuppgifterna kommer också via e-post.",
+    fallback: "Mejla contact@nordsym.com så tar jag hand om det manuellt."
+  } : {
+    briefLabels: { focus: "Focus", date: "Date", time: "Time", contact: "Contact" },
+    back: "← Back",
+    startOver: "Start over",
+    continue: "Continue",
+    focusHeading: "What should we operate?",
+    focusDescription: "Pick the closest starting point. We will refine it on the call.",
+    focusOptions: [
+      {
+        value: "First operation",
+        title: "First operation",
+        body: "Select one recurring workflow. We map its systems and decisions, build the governed layer, and begin operating it."
+      },
+      {
+        value: "Managed operations",
+        title: "Managed operations",
+        body: "We continuously run and improve connected operations."
+      },
+      {
+        value: "Operating expansion",
+        title: "Operating expansion",
+        body: "Expand the operating layer across the business."
+      },
+      {
+        value: "Still exploring",
+        title: "Still exploring",
+        body: "Not sure yet. Let us talk it through."
+      }
+    ],
+    dayLabels: ["Next business day", "In a few days", "Next week"],
+    timeHeading: "Pick a window.",
+    timeDescription: "Choose a preferred day and time. A calendar invite is sent when the slot is available.",
+    detailsHeading: "Where should I send the confirmation?",
+    detailsDescription: "A short note is enough. We will map the rest on the call.",
+    fields: { name: "Name", email: "Email", company: "Company", notes: "Notes" },
+    send: "Send request",
+    sending: "Sending",
+    sentHeading: "Request sent.",
+    failedHeading: "Could not send.",
+    sentDescription: "Calendar invite sent. The meeting details will also arrive by email.",
+    fallback: "Email contact@nordsym.com and I will pick this up manually."
+  };
+
+  function initialState() {
+    return {
+      focus: paidVariant ? paidFocus : "",
+      date: "",
+      dateLabel: "",
+      time: "",
+      name: "",
+      email: "",
+      company: "",
+      notes: ""
+    };
+  }
+
+  var state = initialState();
   var main = document.querySelector("main");
   if (!main) return;
   var sections = Array.prototype.slice.call(main.children);
@@ -150,11 +321,25 @@
   var content = sections[1];
   var nav = sections[2];
   if (!stepper || !content || !nav) return;
+  main.id = "booking-main";
+  stepper.id = "booking-stepper";
+  content.id = "booking-content";
+  nav.id = "booking-nav";
   var back = nav.querySelector("button:first-child");
   var next = nav.querySelector("button:last-child");
   back.id = "booking-back";
   next.id = "booking-continue";
   var step = 1;
+
+  function trackingProperties(properties) {
+    return Object.assign({ surface: "book" }, analyticsContext, properties || {});
+  }
+
+  function captureBooking(eventName, properties) {
+    if (window.posthog && window.posthog.capture) {
+      window.posthog.capture(eventName, trackingProperties(properties));
+    }
+  }
 
   function text(value) {
     return String(value || "").replace(/[&<>"']/g, function(ch){
@@ -162,15 +347,66 @@
     });
   }
 
-  function setBrief(label, value) {
+  function prepareBriefTargets() {
     var labels = Array.prototype.slice.call(document.querySelectorAll("aside div"));
-    var item = labels.find(function(el){ return el.textContent.trim().toLowerCase() === label.toLowerCase(); });
+    Object.keys(copy.briefLabels).forEach(function(key){
+      var englishLabel = { focus: "Focus", date: "Date", time: "Time", contact: "Contact" }[key];
+      var item = labels.find(function(el){ return el.textContent.trim() === englishLabel; });
+      if (item && item.parentElement) item.parentElement.setAttribute("data-brief-key", key);
+    });
+  }
+
+  function setBrief(key, value) {
+    var item = document.querySelector('[data-brief-key="'+key+'"]');
     if (!item || !item.parentElement) return;
-    var target = item.parentElement.children[1];
+    var target = item.children[1];
     if (target) {
       target.textContent = value || "-";
       target.style.color = value ? "rgb(33, 29, 23)" : "rgb(181, 173, 156)";
     }
+  }
+
+  function focusLabel(value) {
+    var option = copy.focusOptions.find(function(item){ return item.value === value; });
+    return option ? option.title : value;
+  }
+
+  function localizeShell() {
+    prepareBriefTargets();
+    if (!paidVariant) return;
+
+    document.documentElement.lang = "sv";
+    document.title = copy.title;
+    var heading = document.querySelector("body > h1");
+    if (heading) heading.textContent = copy.heading;
+    [
+      ['meta[name="description"]', copy.description],
+      ['meta[property="og:title"]', copy.title],
+      ['meta[property="og:description"]', copy.description],
+      ['meta[name="twitter:title"]', copy.title],
+      ['meta[name="twitter:description"]', copy.description]
+    ].forEach(function(entry){
+      var meta = document.querySelector(entry[0]);
+      if (meta) meta.setAttribute("content", entry[1]);
+    });
+
+    var rail = document.querySelector("[data-rail]");
+    if (rail) {
+      if (rail.children[1]) rail.children[1].textContent = copy.briefHeading;
+      if (rail.children[3]) rail.children[3].innerHTML = copy.railDescription;
+    }
+    Object.keys(copy.briefLabels).forEach(function(key){
+      var item = document.querySelector('[data-brief-key="'+key+'"]');
+      if (item && item.children[0]) item.children[0].textContent = copy.briefLabels[key];
+    });
+
+    var currentStepLabels = ["Focus", "Time", "Details", "Confirmed"];
+    Array.prototype.slice.call(stepper.querySelectorAll("span")).forEach(function(label){
+      var index = currentStepLabels.indexOf(label.textContent.trim());
+      if (index !== -1) label.textContent = copy.stepLabels[index];
+    });
+    back.textContent = copy.back;
+    next.textContent = copy.continue;
   }
 
   function activateNext(enabled) {
@@ -223,27 +459,26 @@
 
   function dayOptions() {
     return [
-      { label: "Next business day", date: isoDate(addBusinessDays(1)) },
-      { label: "In a few days", date: isoDate(addBusinessDays(3)) },
-      { label: "Next week", date: isoDate(addBusinessDays(6)) }
+      { label: copy.dayLabels[0], date: isoDate(addBusinessDays(1)) },
+      { label: copy.dayLabels[1], date: isoDate(addBusinessDays(3)) },
+      { label: copy.dayLabels[2], date: isoDate(addBusinessDays(6)) }
     ];
   }
 
   function renderFocus() {
     step = 1;
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
-      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">What should we operate?</h2>'
-      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">Pick the closest starting point. We will refine it on the call.</p>'
+      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.focusHeading)+'</h2>'
+      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.focusDescription)+'</p>'
       + '<div style="display:flex;flex-direction:column;gap:10px;">'
-      + choiceButton("First operation", "Select one recurring workflow. We map its systems and decisions, build the governed layer, and begin operating it.", 'data-focus="First operation"')
-      + choiceButton("Managed operations", "We continuously run and improve connected operations.", 'data-focus="Managed operations"')
-      + choiceButton("Operating expansion", "Expand the operating layer across the business.", 'data-focus="Operating expansion"')
-      + choiceButton("Still exploring", "Not sure yet. Let us talk it through.", 'data-focus="Still exploring"')
+      + copy.focusOptions.map(function(option){
+        return choiceButton(option.title, option.body, 'data-focus="'+text(option.value)+'"');
+      }).join("")
       + '</div></div>';
     content.querySelectorAll("[data-focus]").forEach(function(btn){
       btn.addEventListener("click", function(){
         state.focus = btn.getAttribute("data-focus");
-        setBrief("Focus", state.focus);
+        setBrief("focus", focusLabel(state.focus));
         content.querySelectorAll("[data-focus]").forEach(function(other){
           other.style.borderColor = other === btn ? "rgb(168, 67, 43)" : "rgba(33, 29, 23, 0.16)";
           other.style.background = other === btn ? "rgba(168, 67, 43, 0.06)" : "rgb(250,247,240)";
@@ -251,7 +486,16 @@
         activateNext(true);
       });
     });
-    next.textContent = "Continue";
+    if (paidVariant && state.focus) {
+      var selected = Array.prototype.slice.call(content.querySelectorAll("[data-focus]")).find(function(btn){
+        return btn.getAttribute("data-focus") === state.focus;
+      });
+      if (selected) {
+        selected.style.borderColor = "rgb(168, 67, 43)";
+        selected.style.background = "rgba(168, 67, 43, 0.06)";
+      }
+    }
+    next.textContent = copy.continue;
     activateNext(!!state.focus);
     paintStepper();
   }
@@ -261,8 +505,8 @@
     var days = dayOptions();
     var times = ["09:30", "11:00", "14:00", "16:00"];
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
-      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">Pick a window.</h2>'
-      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">Choose a preferred day and time. A calendar invite is sent when the slot is available.</p>'
+      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.timeHeading)+'</h2>'
+      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.timeDescription)+'</p>'
       + '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;">'
       + days.map(function(day){ return choiceButton(day.label, day.date, 'data-date="'+day.date+'" data-date-label="'+day.label+'"'); }).join("")
       + '</div><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">'
@@ -272,7 +516,7 @@
       btn.addEventListener("click", function(){
         state.date = btn.getAttribute("data-date");
         state.dateLabel = btn.getAttribute("data-date-label") || state.date;
-        setBrief("Date", state.dateLabel);
+        setBrief("date", state.dateLabel);
         content.querySelectorAll("[data-date]").forEach(function(other){ other.style.borderColor = other === btn ? "rgb(168,67,43)" : "rgba(33,29,23,.16)"; });
         activateNext(!!state.date && !!state.time);
       });
@@ -280,11 +524,12 @@
     content.querySelectorAll("[data-time]").forEach(function(btn){
       btn.addEventListener("click", function(){
         state.time = btn.getAttribute("data-time");
-        setBrief("Time", state.time);
+        setBrief("time", state.time);
         content.querySelectorAll("[data-time]").forEach(function(other){ other.style.borderColor = other === btn ? "rgb(168,67,43)" : "rgba(33,29,23,.16)"; });
         activateNext(!!state.date && !!state.time);
       });
     });
+    next.textContent = copy.continue;
     activateNext(!!state.date && !!state.time);
     paintStepper();
   }
@@ -297,10 +542,10 @@
   function renderDetails() {
     step = 3;
     content.innerHTML = '<form id="booking-details" style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
-      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">Where should I send the confirmation?</h2>'
-      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">A short note is enough. We will map the rest on the call.</p>'
-      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">'+input("name","Name")+input("email","Email","email")+'</div>'
-      + input("company","Company") + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">Notes<textarea name="notes" rows="4" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;"></textarea></label>'
+      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.detailsHeading)+'</h2>'
+      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.detailsDescription)+'</p>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">'+input("name",copy.fields.name)+input("email",copy.fields.email,"email")+'</div>'
+      + input("company",copy.fields.company) + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">'+text(copy.fields.notes)+'<textarea name="notes" rows="4" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;"></textarea></label>'
       + '</form>';
     var form = content.querySelector("form");
     form.addEventListener("input", function(){
@@ -308,10 +553,10 @@
       state.email = form.elements.email.value.trim();
       state.company = form.elements.company.value.trim();
       state.notes = form.elements.notes.value.trim();
-      setBrief("Contact", state.name || state.email);
+      setBrief("contact", state.name || state.email);
       activateNext(!!state.name && !!state.email && !!state.company);
     });
-    next.textContent = "Send request";
+    next.textContent = copy.send;
     activateNext(!!state.name && !!state.email && !!state.company);
     paintStepper();
   }
@@ -319,11 +564,11 @@
   function renderConfirmed(ok) {
     step = 4;
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;justify-content:center;">'
-      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,3.8vw,40px);letter-spacing:-.02em;margin:0 0 12px;">'+(ok ? "Request sent." : "Could not send.")+'</h2>'
-      + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+(ok ? "Calendar invite sent. The meeting details will also arrive by email." : "Email contact@nordsym.com and I will pick this up manually.")+'</p>'
+      + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,3.8vw,40px);letter-spacing:-.02em;margin:0 0 12px;">'+text(ok ? copy.sentHeading : copy.failedHeading)+'</h2>'
+      + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+text(ok ? copy.sentDescription : copy.fallback)+'</p>'
       + '</div>';
     next.style.display = "none";
-    back.textContent = "Start over";
+    back.textContent = copy.startOver;
     back.style.pointerEvents = "auto";
     back.style.color = "rgb(90, 83, 71)";
     paintStepper();
@@ -331,40 +576,64 @@
 
   async function submit() {
     next.disabled = true;
-    next.textContent = "Sending";
-    if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_submitted',{surface:'book',focus:state.focus});
+    next.textContent = copy.sending;
+    captureBooking("nordsym_booking_submitted", { focus: state.focus });
     try {
       var res = await fetch(endpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(Object.assign({ source: "nordsym.com/book", submittedAt: new Date().toISOString() }, state))
+        body: JSON.stringify(Object.assign({
+          source: webhookSource,
+          submittedAt: new Date().toISOString()
+        }, state, {
+          acquisition: Object.assign({}, acquisition, paidVariant ? {
+            lang: SUPPORTED_ROUTE.lang,
+            offer: SUPPORTED_ROUTE.offer
+          } : {})
+        }))
       });
-      if(window.posthog&&window.posthog.capture)window.posthog.capture(res.ok?'nordsym_booking_succeeded':'nordsym_booking_failed',{surface:'book',focus:state.focus});
+      captureBooking(res.ok ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus });
       renderConfirmed(res.ok);
     } catch (err) {
-      if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_failed',{surface:'book',focus:state.focus,reason:'network'});
+      captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "network" });
       renderConfirmed(false);
     }
   }
 
   next.addEventListener("click", function(){
-    if (step === 1 && state.focus) { if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_focus_selected',{surface:'book',focus:state.focus}); return renderTime(); }
-    if (step === 2 && state.date && state.time) { if(window.posthog&&window.posthog.capture)window.posthog.capture('nordsym_booking_time_selected',{surface:'book'}); return renderDetails(); }
+    if (step === 1 && state.focus) {
+      captureBooking("nordsym_booking_focus_selected", { focus: state.focus });
+      return renderTime();
+    }
+    if (step === 2 && state.date && state.time) {
+      captureBooking("nordsym_booking_time_selected");
+      return renderDetails();
+    }
     if (step === 3 && state.name && state.email && state.company) return submit();
   });
   back.addEventListener("click", function(){
     if (step === 1) return;
     if (step === 4) {
       next.style.display = "";
-      back.textContent = "← Back";
-      state = { focus: "", date: "", dateLabel: "", time: "", name: "", email: "", company: "", notes: "" };
-      ["Focus","Date","Time","Contact"].forEach(function(label){ setBrief(label, ""); });
+      back.textContent = copy.back;
+      state = initialState();
+      ["focus","date","time","contact"].forEach(function(key){ setBrief(key, ""); });
+      if (paidVariant) {
+        setBrief("focus", focusLabel(state.focus));
+        return renderTime();
+      }
       return renderFocus();
     }
     if (step === 3) return renderTime();
     if (step === 2) return renderFocus();
   });
-  renderFocus();
+  localizeShell();
+  if (paidVariant) {
+    setBrief("focus", focusLabel(state.focus));
+    renderTime();
+  } else {
+    renderFocus();
+  }
 })();
 </script>
 
@@ -384,7 +653,7 @@
     disable_session_recording: true,
     loaded: function(posthog) {
       posthog.register({ product: 'Nordsym-Com', surface: 'book' });
-      posthog.capture('$pageview', { path: location.pathname, privacy_mode: 'server_hash' });
+      posthog.capture('$pageview', Object.assign({ path: location.pathname, privacy_mode: 'server_hash' }, window.__nordsymAnalyticsContext || {}));
     }
   });
 })();
