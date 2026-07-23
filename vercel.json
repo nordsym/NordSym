@@ -6,6 +6,7 @@
   "installCommand": null,
   "redirects": [
     { "source": "/lp/fakturaklart", "destination": "/fakturaklart/", "permanent": true },
+    { "source": "/lp/fakturaklart/", "destination": "/fakturaklart/", "permanent": true },
     { "source": "/lp/fakturaklart/:path*", "destination": "/fakturaklart/:path*", "permanent": true }
   ],
   "rewrites": [
