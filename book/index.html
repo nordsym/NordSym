@@ -153,70 +153,74 @@
 <script id="nordsym-booking-flow">
 (function(){
   var endpoint = "https://nordsym.app.n8n.cloud/webhook/aeo-booking";
-  var SUPPORTED_ROUTE = { lang: "sv", offer: "innehallsoperation" };
+  var SUPPORTED_ROUTE = { lang: "sv", offer: "fakturaklart" };
   var ACQUISITION_PARAM_KEYS = [
     "source",
     "company_size",
-    "cadence",
+    "job_volume",
     "bottleneck",
     "systems_count",
     "timing",
     "utm_id",
     "utm_source",
     "utm_medium",
-    "utm_campaign",
-    "utm_content",
-    "utm_term"
+    "utm_campaign"
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
     company_size: ["1-4", "5-14", "15-49", "50+"],
-    cadence: ["sporadic", "monthly", "weekly", "daily"],
-    bottleneck: ["ideas", "production", "approval", "publishing", "distribution", "measurement"],
+    job_volume: ["1-9", "10-49", "50-199", "200+"],
+    bottleneck: ["missing_info", "agreement_check", "system_entry", "invoice_preparation", "approval", "customer_questions"],
     systems_count: ["1", "2", "3+"],
     timing: ["now", "quarter", "exploring"]
   };
-  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Innehåll till distribution";
-  var webhookSource = paidVariant ? "nordsym.com/lp/innehallsoperation" : "nordsym.com/book";
+  var paidFocus = "Från utfört jobb till fakturaklart";
+  var webhookSource = paidVariant ? "nordsym.com/lp/fakturaklart" : "nordsym.com/book";
   var acquisition = {};
 
   function categoricalValue(value) {
-    return String(value || "")
-      .trim()
+    var raw = String(value || "").trim();
+    if (!raw || raw.indexOf("@") !== -1 || raw.replace(/\D/g, "").length >= 7) return "";
+    return raw
       .toLowerCase()
       .replace(/[^a-z0-9._~-]+/g, "_")
       .replace(/^_+|_+$/g, "")
       .slice(0, 120);
   }
 
-  Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
-    var value = params.get(key);
-    if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
-  });
+  if (paidVariant) {
+    Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
+      var value = params.get(key);
+      if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
+    });
+  }
   UTM_PARAM_KEYS.forEach(function(key){
     var value = categoricalValue(params.get(key));
     if (value) acquisition[key] = value;
   });
 
   var analyticsContext = Object.assign({
-    booking_variant: paidVariant ? "innehallsoperation_sv" : "default"
+    booking_variant: paidVariant ? "fakturaklart_sv" : "default"
   }, acquisition);
   if (paidVariant) {
     analyticsContext.lang = SUPPORTED_ROUTE.lang;
     analyticsContext.offer = SUPPORTED_ROUTE.offer;
   }
   window.__nordsymAnalyticsContext = analyticsContext;
+  if (paidVariant && window.history && window.history.replaceState) {
+    window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=fakturaklart");
+  }
 
   var copy = paidVariant ? {
     title: "Boka ett samtal - NordSym",
-    description: "Boka ett samtal med NordSym om en styrd innehållsoperation från produktion till distribution.",
+    description: "Boka ett samtal med NordSym om vägen från utfört servicejobb till kontrollerat fakturaunderlag.",
     heading: "Boka ett samtal med NordSym",
     briefHeading: "Ditt underlag",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ett 30-minuterssamtal med grundaren.<br>Ingen presentation. Vi kartlägger era system<br>och var operationslagret passar.",
+    railDescription: "Ett 30-minuters första samtal med grundaren. <br>Vi testar om problemet, volymen och systemvägen <br>motiverar en separat operativ genomgång.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -226,8 +230,8 @@
     focusOptions: [
       {
         value: paidFocus,
-        title: "Innehåll till distribution",
-        body: "Koppla innehåll till ett återkommande distributionsflöde. Vi kartlägger system och beslut, bygger det styrda lagret och börjar driva operationen."
+        title: "Från utfört jobb till fakturaklart",
+        body: "Koppla serviceunderlag, kontroller, avvikelser och attest till ett mätbart flöde fram till fakturaklart underlag."
       },
       {
         value: "Managed operations",
@@ -249,7 +253,8 @@
     timeHeading: "Välj en tid.",
     timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "En kort notering räcker. Vi kartlägger resten under samtalet.",
+    detailsDescription: "En kort notering räcker. Samtalet kvalificerar om en separat operativ genomgång är rätt nästa steg.",
+    privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
     fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
     send: "Skicka förfrågan",
     sending: "Skickar",
@@ -290,7 +295,8 @@
     timeHeading: "Pick a window.",
     timeDescription: "Choose a preferred day and time. A calendar invite is sent when the slot is available.",
     detailsHeading: "Where should I send the confirmation?",
-    detailsDescription: "A short note is enough. We will map the rest on the call.",
+    detailsDescription: "A short note is enough. We will qualify the right next step on the call.",
+    privacyLabel: "How NordSym handles booking data.",
     fields: { name: "Name", email: "Email", company: "Company", notes: "Notes" },
     send: "Send request",
     sending: "Sending",
@@ -535,8 +541,9 @@
   }
 
   function input(name, label, type) {
+    var maxLength = name === "email" ? 254 : name === "company" ? 160 : 120;
     return '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);">'+text(label)
-      + '<input name="'+name+'" type="'+(type || "text")+'" required style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;"></label>';
+      + '<input name="'+name+'" type="'+(type || "text")+'" maxlength="'+maxLength+'" required style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;"></label>';
   }
 
   function renderDetails() {
@@ -545,7 +552,8 @@
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.detailsHeading)+'</h2>'
       + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.detailsDescription)+'</p>'
       + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">'+input("name",copy.fields.name)+input("email",copy.fields.email,"email")+'</div>'
-      + input("company",copy.fields.company) + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">'+text(copy.fields.notes)+'<textarea name="notes" rows="4" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;"></textarea></label>'
+      + input("company",copy.fields.company) + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">'+text(copy.fields.notes)+'<textarea name="notes" rows="4" maxlength="1000" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;"></textarea></label>'
+      + '<p style="font-size:12px;line-height:1.5;color:rgb(90,83,71);margin:14px 0 0;"><a href="/privacy.html" style="color:inherit;text-underline-offset:.18em;">'+text(copy.privacyLabel)+'</a></p>'
       + '</form>';
     var form = content.querySelector("form");
     form.addEventListener("input", function(){
@@ -554,10 +562,10 @@
       state.company = form.elements.company.value.trim();
       state.notes = form.elements.notes.value.trim();
       setBrief("contact", state.name || state.email);
-      activateNext(!!state.name && !!state.email && !!state.company);
+      activateNext(form.checkValidity());
     });
     next.textContent = copy.send;
-    activateNext(!!state.name && !!state.email && !!state.company);
+    activateNext(form.checkValidity());
     paintStepper();
   }
 
@@ -609,7 +617,14 @@
       captureBooking("nordsym_booking_time_selected");
       return renderDetails();
     }
-    if (step === 3 && state.name && state.email && state.company) return submit();
+    if (step === 3) {
+      var detailsForm = document.getElementById("booking-details");
+      if (!detailsForm || !detailsForm.checkValidity()) {
+        if (detailsForm) detailsForm.reportValidity();
+        return;
+      }
+      return submit();
+    }
   });
   back.addEventListener("click", function(){
     if (step === 1) return;

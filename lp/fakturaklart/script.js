@@ -1,13 +1,13 @@
 (function () {
   "use strict";
 
-  var SURFACE = "lp_innehallsoperation";
-  var OFFER = "innehallsoperation";
-  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id"];
+  var SURFACE = "lp_fakturaklart";
+  var OFFER = "fakturaklart";
+  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id"];
   var ALLOWED = {
     company_size: ["1-4", "5-14", "15-49", "50+"],
-    cadence: ["sporadic", "monthly", "weekly", "daily"],
-    bottleneck: ["ideas", "production", "approval", "publishing", "distribution", "measurement"],
+    job_volume: ["1-9", "10-49", "50-199", "200+"],
+    bottleneck: ["missing_info", "agreement_check", "system_entry", "invoice_preparation", "approval", "customer_questions"],
     systems_count: ["1", "2", "3+"],
     timing: ["now", "quarter", "exploring"]
   };
@@ -18,6 +18,16 @@
       surface: SURFACE,
       offer: OFFER
     }, window.__nordsymPaidContext || {}, properties || {}));
+  }
+
+  function campaignValue(value) {
+    var raw = String(value || "").trim();
+    if (!raw || raw.indexOf("@") !== -1 || raw.replace(/\D/g, "").length >= 7) return "";
+    return raw
+      .toLowerCase()
+      .replace(/[^a-z0-9._~-]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 120);
   }
 
   function setupCtas() {
@@ -42,7 +52,7 @@
     var stepTopic = document.getElementById("step-topic");
     var progressBar = document.getElementById("progress-bar");
     var error = document.getElementById("form-error");
-    var topics = ["Bolagsstorlek", "Publiceringstakt", "Flaskhals", "System", "Tidpunkt"];
+    var topics = ["Bolagsstorlek", "Jobbvolym", "Flaskhals", "System", "Tidpunkt"];
     var currentStep = 0;
     var hasStarted = false;
 
@@ -81,7 +91,7 @@
 
       var checked = selectedInput(steps[currentStep]);
       var focusTarget = checked || steps[currentStep].querySelector("input[type=radio]");
-      if (focusTarget && currentStep > 0) focusTarget.focus();
+      if (focusTarget) focusTarget.focus();
     }
 
     form.addEventListener("change", function (event) {
@@ -142,8 +152,8 @@
 
       var inbound = new URLSearchParams(window.location.search);
       UTM_KEYS.forEach(function (key) {
-        var value = inbound.get(key);
-        if (value) destination.searchParams.set(key, value.slice(0, 200));
+        var value = campaignValue(inbound.get(key));
+        if (value) destination.searchParams.set(key, value);
       });
 
       window.location.assign(destination.pathname + destination.search);

@@ -663,7 +663,7 @@ p {
 }
 
 .qualification-intro .kicker {
-  color: #f3b19d;
+  color: #fff8f3;
 }
 
 .qualification-intro h2 {
@@ -674,7 +674,7 @@ p {
 .qualification-intro > p {
   max-width: 36ch;
   margin: 28px 0 0;
-  color: #f1d6ce;
+  color: #fff8f3;
 }
 
 .privacy-note {
@@ -693,8 +693,14 @@ p {
 
 .privacy-note p {
   margin: 0;
-  color: #f1d6ce;
+  color: #fff8f3;
   font-size: 0.82rem;
+}
+
+.privacy-note a {
+  color: inherit;
+  text-decoration-color: rgba(255, 248, 243, 0.72);
+  text-underline-offset: 0.18em;
 }
 
 .qualification-form {

@@ -1,11 +1,18 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const trackedPages = ['index.html', 'book/index.html'];
-const paidLandingPage = 'lp/innehallsoperation/index.html';
-if (existsSync(resolve(root, paidLandingPage))) trackedPages.push(paidLandingPage);
+const paidLandingPage = 'lp/fakturaklart/index.html';
+const paidLandingScript = 'lp/fakturaklart/script.js';
+const trackedPages = ['index.html', 'book/index.html', paidLandingPage];
+const qualificationValues = {
+  company_size: ['1-4', '5-14', '15-49', '50+'],
+  job_volume: ['1-9', '10-49', '50-199', '200+'],
+  bottleneck: ['missing_info', 'agreement_check', 'system_entry', 'invoice_preparation', 'approval', 'customer_questions'],
+  systems_count: ['1', '2', '3+'],
+  timing: ['now', 'quarter', 'exploring']
+};
 const failures = [];
 
 for (const relativePath of trackedPages) {
@@ -38,16 +45,14 @@ const booking = readFileSync(resolve(root, bookingPath), 'utf8');
 const requiredBookingParams = [
   'source',
   'company_size',
-  'cadence',
+  'job_volume',
   'bottleneck',
   'systems_count',
   'timing',
   'utm_id',
   'utm_source',
   'utm_medium',
-  'utm_campaign',
-  'utm_content',
-  'utm_term'
+  'utm_campaign'
 ];
 const acquisitionList = booking.match(/var ACQUISITION_PARAM_KEYS = \[([\s\S]*?)\];/);
 if (!acquisitionList) {
@@ -59,15 +64,75 @@ if (!acquisitionList) {
   }
 }
 for (const [text, label] of [
-  ['var SUPPORTED_ROUTE = { lang: "sv", offer: "innehallsoperation" };', 'paid offer allowlist'],
+  ['var SUPPORTED_ROUTE = { lang: "sv", offer: "fakturaklart" };', 'paid offer allowlist'],
+  ['var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;', 'exact paid variant gate'],
   ['var ACQUISITION_ALLOWED = {', 'exact qualification value allowlist'],
+  ['source: ["meta_paid"],', 'paid source allowlist'],
+  ['if (paidVariant) {\n    Object.keys(ACQUISITION_ALLOWED)', 'paid-only qualification parsing'],
   ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
-  ['var webhookSource = paidVariant ? "nordsym.com/lp/innehallsoperation" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
+  ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
+  ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=fakturaklart");', 'paid URL context removal'],
+  ['var webhookSource = paidVariant ? "nordsym.com/lp/fakturaklart" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
-  ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties']
+  ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],
+  ['form.checkValidity()', 'native booking form validation'],
+  ['detailsForm.reportValidity()', 'visible booking validation feedback'],
+  ['maxlength="1000"', 'booking note length limit'],
+  ['href="/privacy.html"', 'booking privacy link']
 ]) {
   if (!booking.includes(text)) failures.push(`${bookingPath}: missing ${label}`);
+}
+for (const [key, values] of Object.entries(qualificationValues)) {
+  const declaration = `${key}: [${values.map((value) => `"${value}"`).join(', ')}]`;
+  if (!booking.includes(declaration)) {
+    failures.push(`${bookingPath}: ${key} values differ from the paid-funnel contract`);
+  }
+}
+
+const landing = readFileSync(resolve(root, paidLandingScript), 'utf8');
+for (const [text, label] of [
+  ['var SURFACE = "lp_fakturaklart";', 'paid landing surface'],
+  ['var OFFER = "fakturaklart";', 'paid landing offer'],
+  ['var destination = new URL("/book/", window.location.origin);', 'default booking destination'],
+  ['destination.searchParams.set("offer", OFFER);', 'paid booking offer handoff'],
+  ['destination.searchParams.set("source", "meta_paid");', 'paid source handoff'],
+  ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
+  ['if (focusTarget) focusTarget.focus();', 'qualification focus restoration']
+]) {
+  if (!landing.includes(text)) failures.push(`${paidLandingScript}: missing ${label}`);
+}
+for (const [key, values] of Object.entries(qualificationValues)) {
+  const declaration = `${key}: [${values.map((value) => `"${value}"`).join(', ')}]`;
+  if (!landing.includes(declaration)) {
+    failures.push(`${paidLandingScript}: ${key} values differ from the paid-funnel contract`);
+  }
+}
+
+const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
+for (const [text, label] of [
+  ['Boka ett första samtal', 'first-call CTA'],
+  ['separat operativ genomgång', 'separate operational-review disclosure'],
+  ['href="/privacy.html"', 'qualification privacy link']
+]) {
+  if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
+}
+const qualificationInputs = [...landingMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
+for (const [key, expectedValues] of Object.entries(qualificationValues)) {
+  const actualValues = qualificationInputs.flatMap((input) => {
+    const name = input.match(/\bname="([^"]+)"/)?.[1];
+    const value = input.match(/\bvalue="([^"]+)"/)?.[1];
+    return name === key && value ? [value] : [];
+  });
+  if (JSON.stringify(actualValues) !== JSON.stringify(expectedValues)) {
+    failures.push(`${paidLandingPage}: ${key} form values differ from the paid-funnel contract`);
+  }
+}
+
+for (const stale of ['innehallsoperation', 'innehållsoperation', 'cadence']) {
+  if (booking.includes(stale)) failures.push(`${bookingPath}: contains stale paid-funnel identifier ${stale}`);
+  if (landing.includes(stale)) failures.push(`${paidLandingScript}: contains stale paid-funnel identifier ${stale}`);
+  if (landingMarkup.includes(stale)) failures.push(`${paidLandingPage}: contains stale paid-funnel identifier ${stale}`);
 }
 
 const captureCalls = booking.match(/posthog\.capture\([\s\S]*?\);/g) ?? [];
@@ -90,9 +155,18 @@ for (const call of bookingEventCalls) {
     failures.push(`${bookingPath}: booking analytics event declares a booking PII property`);
   }
 }
+const landingEventCalls = landing.match(/\bcapture\((["'])[^"']+\1[\s\S]*?\);/g) ?? [];
+for (const call of landingEventCalls) {
+  if (/\b(?:formData|answers)\.(?:name|email|company|notes)\b/.test(call)) {
+    failures.push(`${paidLandingScript}: paid landing analytics event references PII state`);
+  }
+  if (/(?:^|[{,]\s*)(?:name|email|company|notes)\s*:/.test(call)) {
+    failures.push(`${paidLandingScript}: paid landing analytics event declares a PII property`);
+  }
+}
 
 const privacy = readFileSync(resolve(root, 'privacy.html'), 'utf8');
-for (const phrase of ['privacy-preserving hash', 'rotates daily']) {
+for (const phrase of ['privacy-preserving hash', 'rotates daily', 'company-size range', 'job-volume range', 'bottleneck category']) {
   if (!privacy.includes(phrase)) failures.push(`privacy.html: missing ${phrase}`);
 }
 if (privacy.includes('memory-only')) failures.push('privacy.html: contains stale memory-only language');
