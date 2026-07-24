@@ -209,7 +209,7 @@
 
 <script id="nordsym-booking-flow">
 (function(){
-  var endpoint = "https://nordsym.app.n8n.cloud/webhook/aeo-booking";
+  var endpoint = "/api/book";
   var availabilityEndpoint = "https://nordsym.app.n8n.cloud/webhook/availability";
   var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };
   var ACQUISITION_PARAM_KEYS = [
@@ -848,6 +848,7 @@
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(Object.assign({
+          requestId: window.crypto.randomUUID(),
           source: webhookSource,
           locale: paidVariant ? "sv-SE" : "en-GB",
           offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
@@ -859,8 +860,10 @@
           } : {})
         }))
       });
-      captureBooking(res.ok ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus });
-      renderConfirmed(res.ok);
+      var responseBody = await res.json().catch(function () { return null; });
+      var booked = res.ok && responseBody && responseBody.success === true;
+      captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus });
+      renderConfirmed(booked);
     } catch (err) {
       captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "network" });
       renderConfirmed(false);

@@ -24,16 +24,26 @@
     <main>
       <div class="sheet-label">NS-LEGAL · Privacy</div>
       <h1>Privacy and data processing.</h1>
-      <p class="lede">This site sets no cookies. Anonymous, cookieless usage statistics run on PostHog EU. If you contact NordSym, we process the information you send.</p>
+      <p class="lede">Anonymous, cookieless usage statistics run on PostHog EU. Optional Meta advertising measurement is disabled unless you actively allow it. If you contact NordSym, we process the information you send.</p>
       <section class="block"><h2>What we process</h2><p>Correspondence, contact details and business context you choose to share with us. When you book a review, NordSym uses the submitted name, email, notes, date and time to create and hold the meeting.</p></section>
-      <section class="block"><h2>Analytics</h2><p>NordSym uses PostHog EU in cookieless server-hash mode for anonymous site usage statistics. PostHog groups same-day activity with a privacy-preserving hash that rotates daily. On paid qualification pages, NordSym also processes categorical business context selected by the visitor: company-size range, operation-state category, bottleneck category, system-count range and mandate category. Allowlisted campaign identifiers may be included. These answers contain no name, email address or free text. The site does not use cookies, local storage, session storage, session replay, or named visitor identification.</p></section>
+      <section class="block"><h2>Analytics</h2><p>NordSym uses PostHog EU in cookieless server-hash mode for anonymous site usage statistics. PostHog groups same-day activity with a privacy-preserving hash that rotates daily. On paid qualification pages, NordSym also processes categorical business context selected by the visitor: company-size range, operation-state category, bottleneck category, system-count range and mandate category. Allowlisted campaign identifiers may be included. These answers contain no name, email address or free text. PostHog does not use cookies, local storage, session storage, session replay, or named visitor identification.</p></section>
+      <section class="block" id="meta-measurement"><h2>Optional Meta advertising measurement</h2><p>Meta Pixel and Meta Conversions API remain disabled unless you actively allow advertising measurement. If allowed, NordSym may send page and conversion events, event time and identifier, page URL, IP and browser information, and Meta cookie or click identifiers to Meta. This integration does not send your name, email address, company, notes, or qualification answers. Meta-related cookies may be created only after consent. Rejecting this measurement does not affect the site or booking flow.</p><p><button id="reset-meta-consent" type="button">Withdraw or change advertising consent</button></p></section>
       <section class="block"><h2>Booking data</h2><p>The booking form posts to NordSym's n8n booking workflow, which creates the meeting workflow and related calendar handling. Booking data is used only to coordinate the review and respond to the request.</p></section>
       <section class="block" id="data-processing"><h2>Client data handling</h2><p>Client data is handled under written mandate. Client data never crosses client boundaries. Agents operate only inside approved surfaces, scopes and approval paths.</p></section>
-      <section class="block"><h2>Legal basis</h2><p>We process correspondence under legitimate interest and contract performance when work is discussed or delivered.</p></section>
+      <section class="block"><h2>Legal basis</h2><p>We process correspondence under legitimate interest and contract performance when work is discussed or delivered. Optional Meta advertising measurement runs only with consent, which you can withdraw at any time.</p></section>
       <section class="block"><h2>Retention and rights</h2><p>You can ask for access, correction or deletion by emailing NordSym at <a href="mailto:contact@nordsym.com">contact@nordsym.com</a>.</p></section>
       <section class="block" id="terms"><h2>Terms</h2><p>Engagement terms are agreed in writing before work starts. Client systems, channels and data remain client-owned unless a written agreement says otherwise.</p></section>
       <p class="mono">NordSym AB · 559535-5768 · Sweden</p>
     </main>
     <footer>© 2026 NordSym AB · Privacy · Security · Terms</footer>
+    <script>
+      document.getElementById("reset-meta-consent").addEventListener("click", function () {
+        ["nordsym_marketing_consent", "_fbp", "_fbc"].forEach(function (name) {
+          document.cookie = name + "=; Path=/; Max-Age=0; SameSite=Lax; Secure";
+          document.cookie = name + "=; Path=/; Domain=nordsym.com; Max-Age=0; SameSite=Lax; Secure";
+        });
+        this.textContent = "Advertising consent cleared";
+      });
+    </script>
   </body>
 </html>

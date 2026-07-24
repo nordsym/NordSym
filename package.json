@@ -2,9 +2,12 @@
   "name": "nordsym-site",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "validate:systems": "node scripts/validate-systems-boundary.mjs",
-    "validate:analytics": "node scripts/validate-posthog-config.mjs"
+    "validate:analytics": "node scripts/validate-posthog-config.mjs",
+    "validate:meta": "node scripts/validate-meta-measurement.mjs",
+    "test:meta": "node --test tests/meta-measurement.test.mjs"
   },
   "engines": {
     "node": "22.x"

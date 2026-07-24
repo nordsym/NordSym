@@ -142,6 +142,7 @@
       }
 
       capture("nordsym_paid_qualification_completed", answers);
+      window.nordsymMeta?.track("Lead");
 
       var destination = new URL("/book/", window.location.origin);
       destination.searchParams.set("lang", "sv");
