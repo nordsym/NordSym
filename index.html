@@ -437,11 +437,11 @@
         <text x="450" y="356" text-anchor="middle" font-size="10.5" letter-spacing="1.5" fill="#6A6355">RECURRING OPERATIONS</text>
         <g font-size="11" font-family="'Instrument Sans',sans-serif">
           <g fill="#A8432B"><rect x="672" y="430" width="7" height="7"></rect><rect x="672" y="452" width="7" height="7"></rect><rect x="672" y="474" width="7" height="7"></rect><rect x="672" y="496" width="7" height="7"></rect><rect x="672" y="518" width="7" height="7"></rect></g>
-          <text x="685" y="437" fill="#3A352C">Rev</text>
-          <text x="685" y="459" fill="#3A352C">Publish</text>
-          <text x="685" y="481" fill="#3A352C">Support</text>
-          <text x="685" y="503" fill="#3A352C">Report</text>
-          <text x="685" y="525" fill="#3A352C">Data</text>
+          <text x="685" y="437" fill="#3A352C">Revenue</text>
+          <text x="685" y="459" fill="#3A352C">Operations</text>
+          <text x="685" y="481" fill="#3A352C">Service</text>
+          <text x="685" y="503" fill="#3A352C">Finance</text>
+          <text x="685" y="525" fill="#3A352C">Intelligence</text>
         </g>
       </g>
     </svg>
@@ -997,7 +997,7 @@
     set('conns-upper',clamp((p-0.5)/0.22));
     var cap=document.getElementById('cap');
     if(cap){
-      var text=p<0.34?'Your stack - the systems you already run.':p<0.68?'NordSym operates as the layer above it.':'Recurring operations run on top - revenue, support, reporting, and more.';
+      var text=p<0.34?'Your stack - the systems you already run.':p<0.68?'NordSym operates as the layer above it.':'Recurring operations run across the business.';
       if(cap.textContent!==text) cap.textContent=text;
     }
     for(var n=1;n<=3;n++){
