@@ -131,10 +131,16 @@ const bookingMarkup = readFileSync(resolve(root, 'book/index.html'), 'utf8');
 for (const [text, label] of [
   ['dataset.bookingVariant = "sv"', 'pre-render Swedish route marker'],
   ['dataset.bookingReady = "true"', 'localized-shell readiness marker'],
-  ['paidVariant ? "Svensk tid" : "Europe/Stockholm"', 'Swedish time-zone label'],
+  ['var availabilityEndpoint = "https://nordsym.app.n8n.cloud/webhook/availability"', 'calendar availability endpoint'],
+  ['class="booking-scheduler"', 'paid calendar layout'],
+  ['Upptagna tider hämtas direkt från kalendern.', 'real calendar availability disclosure'],
+  ["(unavailable ? 'Upptagen' : 'Ledig')", 'calendar slot status'],
   ['date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB"', 'localized booking date']
 ]) {
   if (!bookingMarkup.includes(text)) failures.push(`book/index.html: missing ${label}`);
+}
+if (bookingMarkup.includes('Svensk tid')) {
+  failures.push('book/index.html: contains removed Swedish time-zone filler');
 }
 const qualificationInputs = [...landingMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
 for (const [key, expectedValues] of Object.entries(qualificationValues)) {
