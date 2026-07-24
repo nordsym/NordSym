@@ -640,11 +640,14 @@
         if (request !== availabilityRequest) return;
         if (!raw) throw new Error("Availability returned an empty response");
         var result = JSON.parse(raw);
-        var times = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
+        var times = Array.isArray(result.offered) ? result.offered : [];
         var busy = Array.isArray(result.busy) ? result.busy : [];
+        var capped = result.capped === true;
+        if (!times.length) throw new Error("Availability returned no offered times");
         panel.innerHTML = '<p class="availability-label">Lediga tider</p>'
           + '<h3>Välj en tid</h3>'
           + '<p class="availability-date">'+text(displayLongDate(date))+'</p>'
+          +(capped ? '<p class="availability-message" style="margin:0 0 14px;">Dagen är fullbokad. Välj en annan dag.</p>' : '')
           + '<div class="time-grid">'
           + times.map(function(time){
             var unavailable = busy.indexOf(time) !== -1;
@@ -652,7 +655,7 @@
             return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+time+'"'
               +(unavailable ? ' disabled' : '')
               +' aria-pressed="'+(selected ? 'true' : 'false')+'"><strong>'+time+'</strong><span>'
-              +(unavailable ? 'Upptagen' : 'Ledig')+'</span></button>';
+              +(capped ? 'Fullbokad' : unavailable ? 'Upptagen' : 'Ledig')+'</span></button>';
           }).join("")
           + '</div>';
         panel.querySelectorAll("[data-time]").forEach(function(button){

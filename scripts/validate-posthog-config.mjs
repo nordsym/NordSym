@@ -134,7 +134,8 @@ for (const [text, label] of [
   ['var availabilityEndpoint = "https://nordsym.app.n8n.cloud/webhook/availability"', 'calendar availability endpoint'],
   ['class="booking-scheduler"', 'paid calendar layout'],
   ['Upptagna tider hämtas direkt från kalendern.', 'real calendar availability disclosure'],
-  ["(unavailable ? 'Upptagen' : 'Ledig')", 'calendar slot status'],
+  ['var times = Array.isArray(result.offered) ? result.offered : [];', 'server-defined weekday schedule'],
+  ["capped ? 'Fullbokad' : unavailable ? 'Upptagen' : 'Ledig'", 'calendar slot status'],
   ['date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB"', 'localized booking date']
 ]) {
   if (!bookingMarkup.includes(text)) failures.push(`book/index.html: missing ${label}`);
