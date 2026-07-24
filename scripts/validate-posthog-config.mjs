@@ -111,12 +111,12 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
 for (const [text, label] of [
-  ['Ansök om kostnadsfri operationskartläggning', 'operations mapping CTA'],
-  ['NordSym AB · 559535-5768', 'legal trust marker'],
-  ['Kartläggningsgarantin:', 'mapping risk reversal'],
+  ['Få mitt kostnadsfria driftbeslut', 'operations decision CTA'],
+  ['NordSym AB</strong><span>559535-5768', 'legal trust marker'],
+  ['Riskvändningen:', 'mapping risk reversal'],
   ['Verifierat NordSym-produktionskvitto', 'bounded production proof'],
-  ['Aarke söker ansvar över', 'first-party mandate evidence'],
-  ['Pet Media Group söker en automationsryggrad', 'second first-party mandate evidence'],
+  ['https://career.aarke.com/jobs/7964035-automation-ai-specialist', 'first-party mandate evidence'],
+  ['https://careers.petmediagroup.com/jobs/7203323-automation-engineer-ai-enabled', 'second first-party mandate evidence'],
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
