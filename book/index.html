@@ -8,6 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="application-name" content="NordSym">
 <meta name="theme-color" content="#F3EEE4">
+<script>
+  (function(){
+    var route = new URLSearchParams(window.location.search);
+    if (route.get("lang") === "sv" && route.get("offer") === "ai_i_drift") {
+      document.documentElement.dataset.bookingVariant = "sv";
+      window.setTimeout(function(){
+        document.documentElement.dataset.bookingReady = "true";
+      }, 1500);
+    }
+  })();
+</script>
 <title>Book a call - NordSym</title>
 <meta name="description" content="Book a call with NordSym to map where governed agents can operate inside your existing stack.">
 <link rel="canonical" href="https://nordsym.com/book/">
@@ -32,6 +43,7 @@
 <style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css"><style>
   *,*::before,*::after{box-sizing:border-box;}
   body{margin:0;background:#EDE7DA;color:#211D17;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  html[data-booking-variant="sv"]:not([data-booking-ready="true"]) body{visibility:hidden;}
   input,textarea,select,button{font-family:inherit;}
   @keyframes pop{from{transform:scale(0.6);opacity:0;}to{transform:scale(1);opacity:1;}}
   @keyframes fadeup{from{transform:translateY(8px);opacity:0;}to{transform:translateY(0);opacity:1;}}
@@ -231,7 +243,7 @@
     heading: "Boka din kostnadsfria operationskartläggning",
     briefHeading: "Din kartläggning",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ta med ett prioriterat återkommande flöde. <br>Få ett driftbeslut på en sida med <br>operationsgräns, acceptanstest och systemväg.",
+    railDescription: "Ta med ett prioriterat flöde. <br>Få ett skriftligt besked om vad som bör byggas, hur det ska fungera och vad NordSym kan ta ansvar för.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -424,6 +436,7 @@
     });
     back.textContent = copy.back;
     next.textContent = copy.continue;
+    document.documentElement.dataset.bookingReady = "true";
   }
 
   function activateNext(enabled) {
@@ -461,6 +474,16 @@
     var m = String(date.getMonth() + 1).padStart(2, "0");
     var d = String(date.getDate()).padStart(2, "0");
     return y + "-" + m + "-" + d;
+  }
+
+  function displayDate(value) {
+    var parts = String(value).split("-");
+    var date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    return date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB", {
+      weekday: "short",
+      day: "numeric",
+      month: "long"
+    });
   }
 
   function addBusinessDays(count) {
@@ -525,9 +548,9 @@
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.timeHeading)+'</h2>'
       + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.timeDescription)+'</p>'
       + '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;">'
-      + days.map(function(day){ return choiceButton(day.label, day.date, 'data-date="'+day.date+'" data-date-label="'+day.label+'"'); }).join("")
+      + days.map(function(day){ return choiceButton(day.label, displayDate(day.date), 'data-date="'+day.date+'" data-date-label="'+day.label+'"'); }).join("")
       + '</div><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">'
-      + times.map(function(t){ return choiceButton(t, "Europe/Stockholm", 'data-time="'+t+'"'); }).join("")
+      + times.map(function(t){ return choiceButton(t, paidVariant ? "Svensk tid" : "Europe/Stockholm", 'data-time="'+t+'"'); }).join("")
       + '</div></div>';
     content.querySelectorAll("[data-date]").forEach(function(btn){
       btn.addEventListener("click", function(){

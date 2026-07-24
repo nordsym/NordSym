@@ -114,9 +114,7 @@ for (const [text, label] of [
   ['Få mitt kostnadsfria driftbeslut', 'operations decision CTA'],
   ['NordSym AB</strong><span>559535-5768', 'legal trust marker'],
   ['Riskvändningen:', 'mapping risk reversal'],
-  ['Verifierat NordSym-produktionskvitto', 'bounded production proof'],
-  ['https://career.aarke.com/jobs/7964035-automation-ai-specialist', 'first-party mandate evidence'],
-  ['https://careers.petmediagroup.com/jobs/7203323-automation-engineer-ai-enabled', 'second first-party mandate evidence'],
+  ['Det NordSym tar ansvar för', 'bounded operating responsibility'],
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
@@ -127,6 +125,16 @@ for (const [text, label] of [
   ['garanterad besparing', 'unsupported outcome guarantee']
 ]) {
   if (landingMarkup.includes(text)) failures.push(`${paidLandingPage}: contains forbidden ${label}`);
+}
+
+const bookingMarkup = readFileSync(resolve(root, 'book/index.html'), 'utf8');
+for (const [text, label] of [
+  ['dataset.bookingVariant = "sv"', 'pre-render Swedish route marker'],
+  ['dataset.bookingReady = "true"', 'localized-shell readiness marker'],
+  ['paidVariant ? "Svensk tid" : "Europe/Stockholm"', 'Swedish time-zone label'],
+  ['date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB"', 'localized booking date']
+]) {
+  if (!bookingMarkup.includes(text)) failures.push(`book/index.html: missing ${label}`);
 }
 const qualificationInputs = [...landingMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
 for (const [key, expectedValues] of Object.entries(qualificationValues)) {

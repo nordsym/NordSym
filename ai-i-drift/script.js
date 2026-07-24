@@ -40,54 +40,6 @@
     });
   }
 
-  function setupProof() {
-    var status = document.getElementById("proof-status");
-    var systems = document.getElementById("proof-systems");
-    var controls = document.getElementById("proof-controls");
-    var outputs = document.getElementById("proof-outputs");
-    var checked = document.getElementById("proof-checked");
-    if (!status || !systems || !controls || !outputs || !checked) return;
-
-    fetch("/api/operation-proof", {
-      method: "GET",
-      cache: "no-store",
-      headers: { Accept: "application/json" }
-    })
-      .then(function (response) {
-        if (!response.ok) throw new Error("Proof endpoint returned " + response.status);
-        return response.json();
-      })
-      .then(function (proof) {
-        var valid =
-          proof &&
-          proof.status === "verified" &&
-          proof.proof_type === "verified-production-record" &&
-          Number.isInteger(proof.systems_count) &&
-          Number.isInteger(proof.control_boundaries) &&
-          Number.isInteger(proof.recorded_outputs) &&
-          typeof proof.checked_at === "string";
-        if (!valid) throw new Error("Unexpected proof shape");
-
-        var checkedAt = new Date(proof.checked_at);
-        var reviewedAt = new Date(proof.last_reviewed + "T12:00:00+02:00");
-        systems.textContent = String(proof.systems_count);
-        controls.textContent = String(proof.control_boundaries);
-        outputs.textContent = String(proof.recorded_outputs);
-        status.classList.add("is-online");
-        status.innerHTML = '<i aria-hidden="true"></i> Bevisendpoint online';
-        checked.textContent =
-          "Kontrollerad " +
-          checkedAt.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) +
-          " · manuellt granskad " +
-          reviewedAt.toLocaleDateString("sv-SE", { day: "numeric", month: "short", year: "numeric" });
-      })
-      .catch(function () {
-        status.classList.add("is-offline");
-        status.innerHTML = '<i aria-hidden="true"></i> Livekontroll otillgänglig';
-        checked.textContent = "Produktionskvittot är manuellt verifierat 24 juli 2026";
-      });
-  }
-
   function setupQualification() {
     var form = document.getElementById("qualification-form");
     if (!form) return;
@@ -212,7 +164,6 @@
     renderStep(false);
   }
 
-  setupProof();
   setupCtas();
   setupQualification();
 }());
