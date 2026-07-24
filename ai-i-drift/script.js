@@ -1,15 +1,15 @@
 (function () {
   "use strict";
 
-  var SURFACE = "lp_fakturaklart";
-  var OFFER = "fakturaklart";
+  var SURFACE = "lp_ai_i_drift";
+  var OFFER = "ai_i_drift";
   var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id"];
   var ALLOWED = {
-    company_size: ["1-4", "5-14", "15-49", "50+"],
-    job_volume: ["1-9", "10-49", "50-199", "200+"],
-    bottleneck: ["missing_info", "agreement_check", "system_entry", "invoice_preparation", "approval", "customer_questions"],
-    systems_count: ["1", "2", "3+"],
-    timing: ["now", "quarter", "exploring"]
+    company_size: ["1-19", "20-49", "50-199", "200+"],
+    operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
+    bottleneck: ["process_clarity", "integration", "production_reliability", "delivery_capacity", "governance", "measurement"],
+    systems_count: ["1", "2", "3-5", "6+"],
+    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
   };
 
   function capture(eventName, properties) {
@@ -52,7 +52,7 @@
     var stepTopic = document.getElementById("step-topic");
     var progressBar = document.getElementById("progress-bar");
     var error = document.getElementById("form-error");
-    var topics = ["Bolagsstorlek", "Jobbvolym", "Flaskhals", "System", "Tidpunkt"];
+    var topics = ["Bolagsstorlek", "Operationsläge", "Blockering", "System", "Mandat"];
     var currentStep = 0;
     var hasStarted = false;
 
@@ -75,7 +75,7 @@
       capture("nordsym_paid_qualification_started");
     }
 
-    function renderStep() {
+    function renderStep(shouldFocus) {
       steps.forEach(function (step, index) {
         var active = index === currentStep;
         step.hidden = !active;
@@ -89,9 +89,11 @@
       submitButton.hidden = currentStep !== steps.length - 1;
       clearError();
 
-      var checked = selectedInput(steps[currentStep]);
-      var focusTarget = checked || steps[currentStep].querySelector("input[type=radio]");
-      if (focusTarget) focusTarget.focus();
+      if (shouldFocus) {
+        var checked = selectedInput(steps[currentStep]);
+        var focusTarget = checked || steps[currentStep].querySelector("input[type=radio]");
+        if (focusTarget) focusTarget.focus();
+      }
     }
 
     form.addEventListener("change", function (event) {
@@ -108,12 +110,12 @@
         return;
       }
       currentStep += 1;
-      renderStep();
+      renderStep(true);
     });
 
     backButton.addEventListener("click", function () {
       currentStep = Math.max(0, currentStep - 1);
-      renderStep();
+      renderStep(true);
     });
 
     form.addEventListener("submit", function (event) {
@@ -159,7 +161,7 @@
       window.location.assign(destination.pathname + destination.search);
     });
 
-    renderStep();
+    renderStep(false);
   }
 
   setupCtas();

@@ -164,14 +164,14 @@
 <script id="nordsym-booking-flow">
 (function(){
   var endpoint = "https://nordsym.app.n8n.cloud/webhook/aeo-booking";
-  var SUPPORTED_ROUTE = { lang: "sv", offer: "fakturaklart" };
+  var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };
   var ACQUISITION_PARAM_KEYS = [
     "source",
     "company_size",
-    "job_volume",
+    "operation_state",
     "bottleneck",
     "systems_count",
-    "timing",
+    "mandate",
     "utm_id",
     "utm_source",
     "utm_medium",
@@ -179,17 +179,17 @@
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
-    company_size: ["1-4", "5-14", "15-49", "50+"],
-    job_volume: ["1-9", "10-49", "50-199", "200+"],
-    bottleneck: ["missing_info", "agreement_check", "system_entry", "invoice_preparation", "approval", "customer_questions"],
-    systems_count: ["1", "2", "3+"],
-    timing: ["now", "quarter", "exploring"]
+    company_size: ["1-19", "20-49", "50-199", "200+"],
+    operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
+    bottleneck: ["process_clarity", "integration", "production_reliability", "delivery_capacity", "governance", "measurement"],
+    systems_count: ["1", "2", "3-5", "6+"],
+    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
   };
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Flödesdiagnos: utfört jobb till fakturaklart";
-  var webhookSource = paidVariant ? "nordsym.com/fakturaklart" : "nordsym.com/book";
+  var paidFocus = "Operationskartläggning: AI i stabil drift";
+  var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
 
   function categoricalValue(value) {
@@ -214,7 +214,7 @@
   });
 
   var analyticsContext = Object.assign({
-    booking_variant: paidVariant ? "fakturaklart_sv" : "default"
+    booking_variant: paidVariant ? "ai_i_drift_sv" : "default"
   }, acquisition);
   if (paidVariant) {
     analyticsContext.lang = SUPPORTED_ROUTE.lang;
@@ -222,16 +222,16 @@
   }
   window.__nordsymAnalyticsContext = analyticsContext;
   if (paidVariant && window.history && window.history.replaceState) {
-    window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=fakturaklart");
+    window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=ai_i_drift");
   }
 
   var copy = paidVariant ? {
-    title: "Boka kostnadsfri flödesdiagnos - NordSym",
-    description: "Boka en kostnadsfri diagnos av vägen från utfört servicejobb till fakturaklart underlag.",
-    heading: "Boka din kostnadsfria flödesdiagnos",
-    briefHeading: "Din diagnos",
+    title: "Boka kostnadsfri operationskartläggning - NordSym",
+    description: "Boka en kostnadsfri kartläggning av en prioriterad AI- eller automationsoperation.",
+    heading: "Boka din kostnadsfria operationskartläggning",
+    briefHeading: "Din kartläggning",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ta med ett typiskt servicejobb. <br>Få ett beslutsunderlag på en sida med <br>flaskhals, mätetal och ett tydligt beslut.",
+    railDescription: "Ta med ett prioriterat återkommande flöde. <br>Få ett driftbeslut på en sida med <br>operationsgräns, acceptanstest och systemväg.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -241,8 +241,8 @@
     focusOptions: [
       {
         value: paidFocus,
-        title: "Flödesdiagnos: utfört jobb till fakturaklart",
-        body: "Följ ett avslutat servicejobb genom underlag, kontroller, avvikelser och attest och avgör vad som faktiskt är värt att lösa."
+        title: "Operationskartläggning: AI i stabil drift",
+        body: "Följ ett prioriterat återkommande flöde genom system, beslut, undantag och mätning och avgör vad som faktiskt bör byggas."
       },
       {
         value: "Managed operations",
@@ -264,7 +264,7 @@
     timeHeading: "Välj en tid.",
     timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "En kort notering räcker. Ta gärna med ett typiskt jobb som fastnar före fakturering. Efter diagnosen får du ett beslutsunderlag på en sida med ett tydligt ja, nej eller ”lös det i systemet ni redan har”.",
+    detailsDescription: "En kort notering räcker. Ta gärna med det prioriterade flödet och vad som blockerar det idag. Efter kartläggningen får du ett driftbeslut på en sida: bygg, avstå eller ”lös det i systemet ni redan har”.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
     fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
     send: "Skicka förfrågan",

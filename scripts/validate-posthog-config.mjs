@@ -3,15 +3,15 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const paidLandingPage = 'fakturaklart/index.html';
-const paidLandingScript = 'fakturaklart/script.js';
+const paidLandingPage = 'ai-i-drift/index.html';
+const paidLandingScript = 'ai-i-drift/script.js';
 const trackedPages = ['index.html', 'book/index.html', paidLandingPage];
 const qualificationValues = {
-  company_size: ['1-4', '5-14', '15-49', '50+'],
-  job_volume: ['1-9', '10-49', '50-199', '200+'],
-  bottleneck: ['missing_info', 'agreement_check', 'system_entry', 'invoice_preparation', 'approval', 'customer_questions'],
-  systems_count: ['1', '2', '3+'],
-  timing: ['now', 'quarter', 'exploring']
+  company_size: ['1-19', '20-49', '50-199', '200+'],
+  operation_state: ['named_priority', 'active_build', 'prototype_only', 'multiple_backlog'],
+  bottleneck: ['process_clarity', 'integration', 'production_reliability', 'delivery_capacity', 'governance', 'measurement'],
+  systems_count: ['1', '2', '3-5', '6+'],
+  mandate: ['sponsor_now', 'owner_in_place', 'hiring_owner', 'exploring']
 };
 const failures = [];
 
@@ -45,10 +45,10 @@ const booking = readFileSync(resolve(root, bookingPath), 'utf8');
 const requiredBookingParams = [
   'source',
   'company_size',
-  'job_volume',
+  'operation_state',
   'bottleneck',
   'systems_count',
-  'timing',
+  'mandate',
   'utm_id',
   'utm_source',
   'utm_medium',
@@ -64,15 +64,15 @@ if (!acquisitionList) {
   }
 }
 for (const [text, label] of [
-  ['var SUPPORTED_ROUTE = { lang: "sv", offer: "fakturaklart" };', 'paid offer allowlist'],
+  ['var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };', 'paid offer allowlist'],
   ['var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;', 'exact paid variant gate'],
   ['var ACQUISITION_ALLOWED = {', 'exact qualification value allowlist'],
   ['source: ["meta_paid"],', 'paid source allowlist'],
   ['if (paidVariant) {\n    Object.keys(ACQUISITION_ALLOWED)', 'paid-only qualification parsing'],
   ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
   ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
-  ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=fakturaklart");', 'paid URL context removal'],
-  ['var webhookSource = paidVariant ? "nordsym.com/fakturaklart" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
+  ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=ai_i_drift");', 'paid URL context removal'],
+  ['var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
   ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],
@@ -92,8 +92,8 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landing = readFileSync(resolve(root, paidLandingScript), 'utf8');
 for (const [text, label] of [
-  ['var SURFACE = "lp_fakturaklart";', 'paid landing surface'],
-  ['var OFFER = "fakturaklart";', 'paid landing offer'],
+  ['var SURFACE = "lp_ai_i_drift";', 'paid landing surface'],
+  ['var OFFER = "ai_i_drift";', 'paid landing offer'],
   ['var destination = new URL("/book/", window.location.origin);', 'default booking destination'],
   ['destination.searchParams.set("offer", OFFER);', 'paid booking offer handoff'],
   ['destination.searchParams.set("source", "meta_paid");', 'paid source handoff'],
@@ -111,12 +111,12 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
 for (const [text, label] of [
-  ['Boka kostnadsfri flödesdiagnos', 'diagnostic CTA'],
+  ['Ansök om kostnadsfri operationskartläggning', 'operations mapping CTA'],
   ['NordSym AB · 559535-5768', 'legal trust marker'],
-  ['Diagnosgarantin:', 'diagnostic risk reversal'],
+  ['Kartläggningsgarantin:', 'mapping risk reversal'],
   ['Verifierat NordSym-produktionskvitto', 'bounded production proof'],
-  ['84%', 'third-party manual-process evidence'],
-  ['47%', 'third-party invoicing evidence'],
+  ['Aarke söker ansvar över', 'first-party mandate evidence'],
+  ['Pet Media Group söker en automationsryggrad', 'second first-party mandate evidence'],
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
@@ -177,7 +177,7 @@ for (const call of landingEventCalls) {
 }
 
 const privacy = readFileSync(resolve(root, 'privacy.html'), 'utf8');
-for (const phrase of ['privacy-preserving hash', 'rotates daily', 'company-size range', 'job-volume range', 'bottleneck category']) {
+for (const phrase of ['privacy-preserving hash', 'rotates daily', 'company-size range', 'operation-state category', 'bottleneck category', 'mandate category']) {
   if (!privacy.includes(phrase)) failures.push(`privacy.html: missing ${phrase}`);
 }
 if (privacy.includes('memory-only')) failures.push('privacy.html: contains stale memory-only language');
