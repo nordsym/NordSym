@@ -73,6 +73,8 @@ for (const [text, label] of [
   ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
   ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=ai_i_drift");', 'paid URL context removal'],
   ['var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
+  ['locale: paidVariant ? "sv-SE" : "en-GB"', 'explicit booking locale'],
+  ['offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default"', 'explicit booking offer key'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
   ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],

@@ -849,6 +849,8 @@
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(Object.assign({
           source: webhookSource,
+          locale: paidVariant ? "sv-SE" : "en-GB",
+          offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
           submittedAt: new Date().toISOString()
         }, state, {
           acquisition: Object.assign({}, acquisition, paidVariant ? {
