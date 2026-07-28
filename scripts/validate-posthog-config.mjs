@@ -5,6 +5,8 @@ import { dirname, resolve } from 'node:path';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const paidLandingPage = 'ai-i-drift/index.html';
 const paidLandingScript = 'ai-i-drift/script.js';
+const videoBridgePage = 'ai-i-drift/sa-fungerar-det/index.html';
+const videoBridgeScript = 'ai-i-drift/sa-fungerar-det/script.mjs';
 const trackedPages = ['index.html', 'book/index.html', paidLandingPage];
 const qualificationValues = {
   company_size: ['1-19', '20-49', '50-199', '200+'],
@@ -120,6 +122,40 @@ for (const [text, label] of [
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
+}
+
+const bridgeMarkup = readFileSync(resolve(root, videoBridgePage), 'utf8');
+const bridgeScript = readFileSync(resolve(root, videoBridgeScript), 'utf8');
+for (const [text, label] of [
+  ['content="noindex,nofollow,noarchive"', 'paid noindex boundary'],
+  ['id="bridge-cta"', 'bridge CTA'],
+  ['Öppna transkriptet', 'accessible transcript'],
+  ['Video inväntar godkänt material', 'truthful preview state']
+]) {
+  if (!bridgeMarkup.includes(text)) failures.push(`${videoBridgePage}: missing ${label}`);
+}
+for (const [text, label] of [
+  ['const ROUTE_VARIANT = "video_bridge";', 'route variant'],
+  ["cookieless_mode: \"always\"", 'cookieless server-hash mode'],
+  ["person_profiles: \"identified_only\"", 'identified-only person profiles'],
+  ['autocapture: false', 'disabled autocapture'],
+  ['capture_pageview: false', 'disabled automatic pageviews'],
+  ['disable_session_recording: true', 'disabled session recording'],
+  ['privacy_mode: "server_hash"', 'server-hash event marker'],
+  ['nordsym_paid_video_play', 'video play event'],
+  ['nordsym_paid_video_progress', 'video progress event'],
+  ['nordsym_paid_video_complete', 'video complete event'],
+  ['nordsym_paid_landing_cta_clicked', 'existing CTA event'],
+  ['if (!media) return;', 'unapproved media gate']
+]) {
+  if (!bridgeScript.includes(text)) failures.push(`${videoBridgeScript}: missing ${label}`);
+}
+for (const [pattern, label] of [
+  [/posthog\.identify\(/, 'visitor identification'],
+  [/\b(?:name|email|phone|company|notes)\s*:/, 'PII event property'],
+  [/nordsymMeta\?\.track|fbq\(['"]track/, 'Meta conversion event']
+]) {
+  if (pattern.test(bridgeScript)) failures.push(`${videoBridgeScript}: contains forbidden ${label}`);
 }
 for (const [text, label] of [
   ['rätt fit', 'Swenglish fit language'],

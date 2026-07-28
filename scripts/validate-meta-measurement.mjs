@@ -27,12 +27,18 @@ const server = read('api/book.js');
 const config = read('api/meta-config.js');
 const landing = read('ai-i-drift/index.html');
 const landingScript = read('ai-i-drift/script.js');
+const videoBridge = read('ai-i-drift/sa-fungerar-det/index.html');
+const videoBridgeScript = read('ai-i-drift/sa-fungerar-det/script.mjs');
 const booking = read('book/index.html');
 const privacy = read('privacy.html');
 
 for (const [source, text, label] of [
   [landing, '/assets/meta-measurement.js', 'landing measurement client'],
   [landingScript, 'window.nordsymMeta?.track("Lead")', 'qualified Lead event'],
+  [videoBridge, '/assets/meta-measurement.css', 'bridge consent styles'],
+  [videoBridgeScript, 'script.src = "/assets/meta-measurement.js"', 'asset-gated bridge measurement client'],
+  [videoBridgeScript, 'if (!media) return;', 'unapproved bridge media gate'],
+  [videoBridgeScript, 'loadPostHog();\n  loadConsentGatedMeta();', 'approved-only bridge analytics activation'],
   [client, "window.fbq('track', eventName, data, { eventID: id })", 'browser deduplication identifier'],
   [client, "window.fbq('set', 'autoConfig', false, config.pixelId)", 'automatic event collection disabled'],
   [booking, 'var endpoint = "/api/book";', 'same-origin booking proxy'],
@@ -58,6 +64,9 @@ for (const [source, pattern, label] of [
   [client, /\b(?:email|company|notes|qualification_answers)\s*:/, 'client Meta PII field'],
   [server, /console\.(?:log|error|warn)/, 'server logging'],
   [landingScript, /nordsymMeta\?\.track\([^)]*answers/, 'qualification answers in Meta call'],
+  [videoBridgeScript, /nordsymMeta\?\.track|fbq\(['"]track|(?:Lead|Schedule)["']\s*\)/, 'bridge Meta conversion event'],
+  [videoBridgeScript, /\b(?:name|email|phone|company|notes)\s*:/, 'bridge PII field'],
+  [videoBridge, /<script[^>]+meta-measurement\.js/, 'eager bridge Pixel loader'],
   [booking, /nordsymMeta\?\.track\([^)]*state\./, 'booking PII state in Meta call'],
   [booking, /meta-measurement\.js/, 'Pixel loader on booking form'],
   [client, /fetch\(['"]\/api\/meta-(?:conversion|event)/, 'public browser CAPI relay'],

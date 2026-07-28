@@ -1,0 +1,220 @@
+.bridge-page {
+  min-height: 100vh;
+}
+
+.bridge-header {
+  width: min(100% - 48px, var(--max));
+}
+
+.bridge-main {
+  min-height: calc(100vh - 84px);
+  display: grid;
+  place-items: center;
+}
+
+.bridge-shell {
+  width: min(100% - 80px, var(--max));
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(520px, 1.28fr);
+  gap: clamp(52px, 7vw, 104px);
+  align-items: center;
+  padding: 64px 0 80px;
+}
+
+.bridge-copy h1 {
+  max-width: 8ch;
+  margin-bottom: 24px;
+}
+
+.bridge-lead {
+  max-width: 31rem;
+  margin-bottom: 28px;
+  color: var(--ink-soft);
+  font-size: clamp(1.08rem, 1.7vw, 1.32rem);
+}
+
+.media-column {
+  min-width: 0;
+}
+
+.media-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  color: var(--paper);
+  background: var(--night);
+  border: 1px solid rgba(33, 29, 23, 0.3);
+  box-shadow: 0 34px 90px rgba(33, 29, 23, 0.18);
+}
+
+.preview-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 18px;
+  padding: clamp(20px, 4vw, 38px);
+  background:
+    linear-gradient(rgba(243, 238, 228, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 238, 228, 0.055) 1px, transparent 1px),
+    var(--night);
+  background-size: 36px 36px;
+}
+
+.preview-label,
+.operation-map,
+.play-control,
+.preview-state p,
+.transcript summary {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.preview-label {
+  width: fit-content;
+  padding: 7px 9px;
+  color: #e08a6e;
+  border: 1px solid rgba(224, 138, 110, 0.45);
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.operation-map {
+  align-self: center;
+  display: grid;
+  grid-template-columns: auto minmax(22px, 1fr) auto minmax(22px, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  color: var(--paper);
+  font-size: clamp(0.56rem, 1vw, 0.7rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.operation-map span {
+  padding: 12px 14px;
+  border: 1px solid rgba(243, 238, 228, 0.36);
+}
+
+.operation-map i {
+  height: 1px;
+  background: #e08a6e;
+}
+
+.operation-map i.is-broken {
+  background: repeating-linear-gradient(90deg, #e08a6e 0 6px, transparent 6px 11px);
+}
+
+.play-control {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  color: var(--paper);
+  background: transparent;
+  border: 1px solid rgba(243, 238, 228, 0.26);
+  font-size: 0.68rem;
+}
+
+.play-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.preview-state p {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--night-soft);
+  font-size: 0.58rem;
+  line-height: 1.55;
+}
+
+.media-frame video {
+  width: 100%;
+  height: 100%;
+  background: var(--night);
+  object-fit: cover;
+}
+
+.transcript {
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.transcript summary {
+  padding: 18px 0;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.transcript > div {
+  max-width: 68ch;
+  padding-bottom: 8px;
+}
+
+.transcript p {
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 900px) {
+  .bridge-shell {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .bridge-copy h1 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .bridge-header,
+  .bridge-shell {
+    width: min(100% - 32px, var(--max));
+  }
+
+  .bridge-header {
+    min-height: 72px;
+  }
+
+  .bridge-header .header-note {
+    display: none;
+  }
+
+  .bridge-main {
+    min-height: calc(100vh - 72px);
+  }
+
+  .bridge-shell {
+    padding: 46px 0 56px;
+  }
+
+  .bridge-copy h1 {
+    font-size: clamp(3.2rem, 17vw, 4.5rem);
+  }
+
+  .media-frame[data-media-state="preview"] {
+    aspect-ratio: 4 / 5;
+  }
+
+  .operation-map {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .operation-map i {
+    width: 1px;
+    height: 20px;
+    margin-left: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
