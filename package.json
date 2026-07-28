@@ -7,7 +7,9 @@
     "validate:systems": "node scripts/validate-systems-boundary.mjs",
     "validate:analytics": "node scripts/validate-posthog-config.mjs",
     "validate:meta": "node scripts/validate-meta-measurement.mjs",
-    "test:meta": "node --test tests/meta-measurement.test.mjs"
+    "validate:video-bridge": "node scripts/validate-video-bridge.mjs",
+    "test:meta": "node --test tests/meta-measurement.test.mjs",
+    "test:video-bridge": "node --test tests/video-bridge.test.mjs"
   },
   "engines": {
     "node": "22.x"
