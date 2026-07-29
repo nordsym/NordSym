@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>När en AI-operation fungerar på riktigt | NordSym</title>
+  <meta name="description" content="Se varför AI-initiativ fastnar mellan demo och drift, och hur NordSym avgränsar en operation som går att styra och mäta.">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/nordsym-favicon.svg">
+  <link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./bridge.css">
+  <link rel="stylesheet" href="/assets/meta-measurement.css">
+</head>
+<body class="bridge-page">
+  <a class="skip-link" href="#main">Hoppa till innehållet</a>
+
+  <header class="site-header bridge-header">
+    <a class="brand" href="/" aria-label="NordSym, startsida">
+      <img src="/assets/brand/nordsym-header-lockup.svg" alt="NordSym" width="186" height="50">
+    </a>
+    <span class="header-note">AI i drift · Ett prioriterat flöde</span>
+  </header>
+
+  <main id="main" class="bridge-main">
+    <section class="bridge-shell" aria-labelledby="bridge-title">
+      <div class="bridge-intro">
+        <p class="kicker">Från demo till styrd operation</p>
+        <h1 id="bridge-title">Det är inte en AI-operation om någon måste rädda den varje dag.</h1>
+        <p>På drygt en minut ser du varför AI-initiativ fastnar mellan demo och drift, och vad NordSym kartlägger innan något bygge börjar.</p>
+      </div>
+
+      <div class="bridge-video-frame">
+        <div class="bridge-video-meta" aria-hidden="true">
+          <span>NordSym operationsbrief</span>
+          <span>01:05</span>
+        </div>
+        <video
+          id="bridge-video"
+          controls
+          playsinline
+          preload="metadata"
+          poster="/assets/ai-i-drift-video-poster.svg"
+          aria-describedby="video-expectation"
+        >
+          <source src="/assets/video/ai-i-drift-sa-fungerar-det.mp4" type="video/mp4">
+          Din webbläsare kan inte spela upp videon. Läs transkriptet nedan.
+        </video>
+      </div>
+
+      <div class="bridge-action">
+        <a
+          id="bridge-cta"
+          class="button button-primary"
+          href="/ai-i-drift/#kvalificering"
+          data-placement="video_bridge"
+        >
+          Kartlägg mitt flöde
+          <span aria-hidden="true">→</span>
+        </a>
+        <p id="video-expectation">Kostnadsfri kartläggning · Fem frågor före bokning · Inget betalt arbete utan separat godkännande</p>
+      </div>
+
+      <details class="bridge-transcript">
+        <summary>Visa videons transkript<span aria-hidden="true">+</span></summary>
+        <p>Om en agent fungerar i demon men någon måste kontrollera varje körning, rätta fel data och rädda undantagen, då har ni inte tagit bort arbetet. Ni har flyttat det.</p>
+        <p>Det händer när man börjar med modellen eller verktyget och lämnar själva operationen åt sidan. NordSym börjar i ett verkligt, återkommande flöde. Vi sätter gränsen för vad agenten får göra, kopplar den till systemen ni redan använder, bygger stopp och mänskliga beslut där osäkerheten börjar och mäter vad som faktiskt händer i drift.</p>
+        <p>Första steget är en kostnadsfri kartläggning. Vi följer ett prioriterat flöde och avgör om det finns en säker, mätbar väg till produktion. Om svaret är nej säger vi det. Om svaret är ja kan NordSym lämna ett separat förslag på att bygga och driva operationen.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer bridge-footer">
+    <img src="/assets/brand/nordsym-footer-lockup.svg" alt="NordSym" width="156" height="42">
+    <p>NordSym AB · 559535-5768</p>
+  </footer>
+
+  <script id="nordsym-posthog">
+  (function(){
+    if (window.__nordsymPosthogLoaded) return;
+    window.__nordsymPosthogLoaded = true;
+    var campaign = {};
+    var params = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_id'].forEach(function(key){
+      var raw = String(params.get(key) || '').trim();
+      if (!raw || raw.indexOf('@') !== -1 || raw.replace(/\D/g, '').length >= 7) return;
+      var value = raw
+        .toLowerCase()
+        .replace(/[^a-z0-9._~-]+/g, '_')
+        .replace(/^_+|_+$/g, '')
+        .slice(0, 120);
+      if (value) campaign[key] = value;
+    });
+    window.__nordsymPaidContext = campaign;
+    !function(d,p){var s=d.createElement('script'),first=d.getElementsByTagName('script')[0];p=p||[];window.posthog=p;p._i=p._i||[];p.init=function(token,config,name){var target=name?p[name]=[]:p;target.people=target.people||[];['capture','register','set_config'].forEach(function(method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};});p._i.push([token,config,name]);};s.async=true;s.crossOrigin='anonymous';s.src='https://eu-assets.i.posthog.com/static/array.js';first.parentNode.insertBefore(s,first);}(document,window.posthog);
+    window.posthog.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+      api_host: 'https://eu.i.posthog.com',
+      ui_host: 'https://eu.posthog.com',
+      defaults: '2026-05-30',
+      cookieless_mode: 'always',
+      person_profiles: 'identified_only',
+      autocapture: false,
+      capture_pageview: false,
+      capture_pageleave: false,
+      disable_session_recording: true,
+      loaded: function(posthog) {
+        posthog.register({ product: 'Nordsym-Com', surface: 'lp_ai_i_drift_bridge', offer: 'ai_i_drift' });
+        posthog.capture('$pageview', Object.assign({ path: location.pathname, privacy_mode: 'server_hash' }, campaign));
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/meta-measurement.js" defer></script>
+  <script src="./bridge.js" defer></script>
+</body>
+</html>

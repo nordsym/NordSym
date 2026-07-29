@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <title>NordSym Meta Creative Contact Sheet</title>
+  <style>
+    @font-face {
+      font-family: "Instrument Sans";
+      src: url("../../assets/fonts/instrument-sans-400.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../assets/fonts/ibm-plex-mono-600.ttf") format("truetype");
+      font-weight: 600;
+    }
+    * { box-sizing: border-box; }
+    body {
+      width: 1800px;
+      height: 880px;
+      margin: 0;
+      padding: 52px;
+      color: #211d17;
+      background: #e8e0d1;
+      font-family: "Instrument Sans", sans-serif;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(33,29,23,.2);
+    }
+    h1 { margin: 0; font-size: 34px; font-weight: 400; }
+    header span {
+      font: 600 13px/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+    }
+    figure {
+      margin: 0;
+      padding: 18px;
+      background: #f3eee4;
+      border: 1px solid rgba(33,29,23,.18);
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 656px;
+      object-fit: contain;
+      background: #d7d0c2;
+    }
+    figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 15px;
+      font: 600 12px/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    figcaption span:last-child { color: #a8432b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NordSym · Meta static review</h1>
+    <span>Feed 4:5 · 1080 × 1350</span>
+  </header>
+  <main>
+    <figure>
+      <img src="./exports/c01-demo-ar-inte-drift-1080x1350.png" alt="">
+      <figcaption><span>C01 · Demo är inte drift</span><span>Readiness</span></figcaption>
+    </figure>
+    <figure>
+      <img src="./exports/c02-dolda-manuella-arbetet-1080x1350.png" alt="">
+      <figcaption><span>C02 · Dolda arbetet</span><span>Hidden cost</span></figcaption>
+    </figure>
+    <figure>
+      <img src="./exports/c03-grundare-operationskarta-1080x1350.png" alt="">
+      <figcaption><span>C03 · Operationskarta</span><span>Operating layer</span></figcaption>
+    </figure>
+  </main>
+</body>
+</html>
