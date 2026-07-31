@@ -7,6 +7,7 @@
     "validate:systems": "node scripts/validate-systems-boundary.mjs",
     "validate:analytics": "node scripts/validate-posthog-config.mjs",
     "validate:meta": "node scripts/validate-meta-measurement.mjs",
+    "validate:bridge": "node scripts/validate-ai-drift-bridge.mjs",
     "test:meta": "node --test tests/meta-measurement.test.mjs"
   },
   "engines": {

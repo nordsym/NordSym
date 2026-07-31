@@ -1,0 +1,258 @@
+:root {
+  --paper: #f3eee4;
+  --ink: #17130f;
+  --muted: #a79e90;
+  --oxide: #cf6044;
+  --line: rgba(243, 238, 228, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: #080705;
+}
+
+.frame {
+  position: relative;
+  width: 1600px;
+  height: 900px;
+  display: none;
+  overflow: hidden;
+  padding: 62px 76px;
+  color: var(--paper);
+  background:
+    linear-gradient(rgba(243, 238, 228, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 238, 228, 0.045) 1px, transparent 1px),
+    var(--ink);
+  background-size: 80px 80px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.frame.is-active {
+  display: block;
+}
+
+.frame::after {
+  position: absolute;
+  inset: 30px;
+  content: "";
+  pointer-events: none;
+  border: 1px solid rgba(243, 238, 228, 0.14);
+}
+
+header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+header img {
+  width: 190px;
+  height: auto;
+}
+
+header span,
+.frame-number {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 15px;
+  letter-spacing: 0.15em;
+}
+
+.frame-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 1320px;
+  margin-top: 104px;
+}
+
+.kicker {
+  margin: 0 0 20px;
+  color: var(--oxide);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+h1 {
+  max-width: 11ch;
+  margin: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 112px;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.support {
+  max-width: 760px;
+  margin: 34px 0 0;
+  color: #d6cfc2;
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+.frame-number {
+  position: absolute;
+  right: 76px;
+  bottom: 58px;
+  z-index: 2;
+}
+
+.frame-two .frame-copy {
+  margin-top: 56px;
+}
+
+.frame-two h1 {
+  max-width: 12ch;
+  font-size: 92px;
+}
+
+.exceptions {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  margin-top: 52px;
+  border-top: 1px solid var(--line);
+}
+
+.exceptions div {
+  min-height: 96px;
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.exceptions span,
+.exceptions em {
+  color: var(--oxide);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 17px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.exceptions strong {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.exceptions em {
+  padding: 13px 17px;
+  border: 1px solid rgba(207, 96, 68, 0.65);
+}
+
+.frame-three h1 {
+  max-width: 12ch;
+  font-size: 102px;
+}
+
+.signal-line {
+  position: absolute;
+  right: 80px;
+  bottom: 170px;
+  left: 80px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signal-line::before {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: rgba(243, 238, 228, 0.28);
+}
+
+.signal-line i {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: var(--oxide);
+  border: 5px solid var(--ink);
+  outline: 1px solid var(--oxide);
+  transform: rotate(45deg);
+}
+
+.frame-four .frame-copy {
+  margin-top: 68px;
+}
+
+.frame-four h1 {
+  max-width: 13ch;
+  font-size: 82px;
+}
+
+.operation-map {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1.2fr auto 0.8fr;
+  align-items: center;
+  gap: 14px;
+  margin-top: 100px;
+}
+
+.operation-map span {
+  min-height: 92px;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  color: #d9d2c6;
+  border: 1px solid rgba(243, 238, 228, 0.26);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.operation-map span.accent {
+  color: var(--paper);
+  background: rgba(207, 96, 68, 0.15);
+  border-color: var(--oxide);
+}
+
+.operation-map b {
+  color: var(--oxide);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.frame-five .frame-copy {
+  margin-top: 90px;
+}
+
+.frame-five h1 {
+  max-width: 12ch;
+  font-size: 100px;
+}
+
+.cta {
+  min-height: 58px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 44px;
+  padding: 0 28px;
+  color: var(--paper);
+  background: var(--oxide);
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}

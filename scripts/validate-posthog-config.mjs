@@ -5,7 +5,12 @@ import { dirname, resolve } from 'node:path';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const paidLandingPage = 'ai-i-drift/index.html';
 const paidLandingScript = 'ai-i-drift/script.js';
-const trackedPages = ['index.html', 'book/index.html', paidLandingPage];
+const trackedPages = [
+  'index.html',
+  'book/index.html',
+  paidLandingPage,
+  'ai-i-drift/sa-fungerar-det/index.html'
+];
 const qualificationValues = {
   company_size: ['1-19', '20-49', '50-199', '200+'],
   operation_state: ['named_priority', 'active_build', 'prototype_only', 'multiple_backlog'],
@@ -52,7 +57,8 @@ const requiredBookingParams = [
   'utm_id',
   'utm_source',
   'utm_medium',
-  'utm_campaign'
+  'utm_campaign',
+  'utm_content'
 ];
 const acquisitionList = booking.match(/var ACQUISITION_PARAM_KEYS = \[([\s\S]*?)\];/);
 if (!acquisitionList) {
@@ -71,12 +77,14 @@ for (const [text, label] of [
   ['if (paidVariant) {\n    Object.keys(ACQUISITION_ALLOWED)', 'paid-only qualification parsing'],
   ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
   ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
-  ['window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=ai_i_drift");', 'paid URL context removal'],
+  ['var hasCompleteQualification = paidVariant &&', 'complete qualification gate'],
+  ['Object.keys(ACQUISITION_ALLOWED).every', 'qualification completeness check'],
   ['var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";', 'paid and default webhook source allowlist'],
   ['locale: paidVariant ? "sv-SE" : "en-GB"', 'explicit booking locale'],
   ['offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default"', 'explicit booking offer key'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
+  ['qualification_signal', 'qualification signal'],
   ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],
   ['form.checkValidity()', 'native booking form validation'],
   ['detailsForm.reportValidity()', 'visible booking validation feedback'],
@@ -113,10 +121,10 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
 for (const [text, label] of [
-  ['Få mitt kostnadsfria driftbeslut', 'operations decision CTA'],
-  ['NordSym AB</strong><span>559535-5768', 'legal trust marker'],
-  ['Riskvändningen:', 'mapping risk reversal'],
-  ['Det NordSym tar ansvar för', 'bounded operating responsibility'],
+  ['Se vad som saknas', 'readiness review CTA'],
+  ['Grundarledd leverans', 'founder delivery trust marker'],
+  ['Efter kartläggningen vet ni:', 'mapping expectation'],
+  ['Det vi går igenom', 'mapping scope'],
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
@@ -144,6 +152,9 @@ for (const [text, label] of [
 }
 if (bookingMarkup.includes('Svensk tid')) {
   failures.push('book/index.html: contains removed Swedish time-zone filler');
+}
+if (bookingMarkup.includes('window.history.replaceState')) {
+  failures.push('book/index.html: removes paid attribution from the booking URL');
 }
 const qualificationInputs = [...landingMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
 for (const [key, expectedValues] of Object.entries(qualificationValues)) {

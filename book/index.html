@@ -222,7 +222,8 @@
     "utm_id",
     "utm_source",
     "utm_medium",
-    "utm_campaign"
+    "utm_campaign",
+    "utm_content"
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
@@ -232,10 +233,10 @@
     systems_count: ["1", "2", "3-5", "6+"],
     mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
   };
-  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign"];
+  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Operationskartläggning: AI i stabil drift";
+  var paidFocus = "AI-beredskapskartläggning";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
 
@@ -259,6 +260,18 @@
     var value = categoricalValue(params.get(key));
     if (value) acquisition[key] = value;
   });
+  var hasCompleteQualification = paidVariant &&
+    Object.keys(ACQUISITION_ALLOWED).every(function(key){
+      return Boolean(acquisition[key]);
+    });
+  if (hasCompleteQualification) {
+    acquisition.qualification_signal =
+      acquisition.operation_state !== "multiple_backlog" &&
+      acquisition.systems_count !== "1" &&
+      acquisition.mandate !== "exploring"
+        ? "qualified_opportunity"
+        : "form_complete";
+  }
 
   var analyticsContext = Object.assign({
     booking_variant: paidVariant ? "ai_i_drift_sv" : "default"
@@ -268,38 +281,35 @@
     analyticsContext.offer = SUPPORTED_ROUTE.offer;
   }
   window.__nordsymAnalyticsContext = analyticsContext;
-  if (paidVariant && window.history && window.history.replaceState) {
-    window.history.replaceState({}, "", window.location.pathname + "?lang=sv&offer=ai_i_drift");
-  }
 
   var copy = paidVariant ? {
-    title: "Boka kostnadsfri operationskartläggning - NordSym",
-    description: "Boka en kostnadsfri kartläggning av en prioriterad AI- eller automationsoperation.",
-    heading: "Boka din kostnadsfria operationskartläggning",
-    briefHeading: "Din kartläggning",
+    title: "Boka en kostnadsfri genomgång - NordSym",
+    description: "Boka en kostnadsfri genomgång av ert AI-arbete, systemen det berör och vad som krävs för att få det att fungera i vardagen.",
+    heading: "Boka en kostnadsfri genomgång",
+    briefHeading: "Er genomgång",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ta med ett prioriterat flöde. <br>Få ett skriftligt besked om vad som bör byggas, hur det ska fungera och vad NordSym kan ta ansvar för.",
+    railDescription: "Ta med det AI-arbete som är viktigast nu. <br>Få en konkret rekommendation om vad som saknas, vad som bör byggas och vem som behöver äga nästa steg.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
     continue: "Fortsätt",
-    focusHeading: "Vad ska vi börja driva?",
+    focusHeading: "Vad vill ni få att fungera?",
     focusDescription: "Välj närmast utgångspunkt. Vi preciserar den under samtalet.",
     focusOptions: [
       {
         value: paidFocus,
-        title: "Operationskartläggning: AI i stabil drift",
-        body: "Följ ett prioriterat återkommande flöde genom system, beslut, undantag och mätning och avgör vad som faktiskt bör byggas."
+        title: "Genomgång av er AI-beredskap",
+        body: "Vi går igenom ett prioriterat AI-arbete, systemen det berör och vad som krävs för att få det att fungera i vardagen."
       },
       {
         value: "Managed operations",
-        title: "Löpande operationer",
-        body: "Vi driver och förbättrar sammankopplade operationer löpande."
+        title: "Löpande ansvar",
+        body: "NordSym bygger, följer upp och förbättrar lösningen löpande."
       },
       {
         value: "Operating expansion",
-        title: "Utökat operationslager",
-        body: "Utöka operationslagret till fler delar av verksamheten."
+        title: "Fler delar av verksamheten",
+        body: "Bygg vidare från ett fungerande område till fler system och arbetssätt."
       },
       {
         value: "Still exploring",
@@ -311,12 +321,12 @@
     timeHeading: "Välj en tid.",
     timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "En kort notering räcker. Ta gärna med det prioriterade flödet och vad som blockerar det idag. Efter kartläggningen får du ett driftbeslut på en sida: bygg, avstå eller ”lös det i systemet ni redan har”.",
+    detailsDescription: "Berätta kort vilket AI-arbete ni vill få att fungera och vad som blockerar det i dag.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
     fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
-    send: "Skicka förfrågan",
-    sending: "Skickar",
-    sentHeading: "Förfrågan skickad.",
+    send: "Boka tiden",
+    sending: "Bokar",
+    sentHeading: "Tiden är bokad.",
     failedHeading: "Kunde inte skicka.",
     sentDescription: "Kalenderinbjudan är skickad. Mötesuppgifterna kommer också via e-post.",
     fallback: "Mejla contact@nordsym.com så tar jag hand om det manuellt."
