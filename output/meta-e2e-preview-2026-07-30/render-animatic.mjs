@@ -21,6 +21,13 @@ const page = await browser.newPage({
 
 await page.goto(pathToFileURL(path.join(root, "animatic.html")).href);
 await page.evaluate(() => document.fonts.ready);
+await page.locator("img").evaluateAll(async (images) => {
+  await Promise.all(images.map((image) => image.decode()));
+  const failed = images.filter((image) => image.naturalWidth === 0);
+  if (failed.length > 0) {
+    throw new Error(`Animatic contains ${failed.length} unloaded image(s).`);
+  }
+});
 
 const frames = await page.locator("[data-frame]").evaluateAll((nodes) =>
   nodes.map((node) => node.getAttribute("data-frame")).filter(Boolean)

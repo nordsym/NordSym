@@ -4,24 +4,23 @@ Destination for all three concepts:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The route is the intended sparse video bridge, but returned `404` on 2026-07-28.
-Do not use it as a live ad destination until NordSym.com implements it and a live
-readback returns `200`. Its CTA should continue to the existing qualification flow
-and booking.
+The route is the intended sparse video bridge. Its CTA continues to the existing
+qualification flow and booking. Do not use it as an ad destination until the
+production release returns `200` and the Meta launch gates are complete.
 
-## C01 - Demo är inte drift
+## C01 - Fungerar agenten utanför testet?
 
 ### Primary text
 
-En agent som bara klarar normalfallet är inte redo för drift. Drift börjar när även
-undantag, stopp och överlämningar fungerar.
+En agent är inte redo bara för att normalfallet fungerar. Det verkliga testet
+börjar när underlag saknas, åtkomst ändras eller ett beslut är oklart.
 
-NordSym kartlägger kostnadsfritt ett prioriterat flöde. Ni får ett konkret besked:
-bygg det här, eller låt bli.
+NordSym kartlägger AI-arbetet, systemen och besluten runt det och visar vad som
+krävs för att lösningen ska fungera i vardagen.
 
 ### Headline
 
-Demo är inte drift
+Fungerar agenten utanför testet?
 
 ### Description
 
@@ -39,18 +38,19 @@ Whether the buyer accepts that a successful normal path is not production readin
 
 ### Primary text
 
-Om en senior person måste upptäcka, tolka och rädda varje undantag finns det
-manuella arbetet fortfarande kvar. Ni har bara flyttat det.
+Om en senior medarbetare måste upptäcka och lösa varje avvikelse är arbetet fortfarande
+manuellt. Ni har bara flyttat det till personen som måste ta över.
 
-NordSym kartlägger kostnadsfritt ett verkligt flöde och visar vad som måste styras.
+NordSym kartlägger hur arbetet, systemen och besluten hänger ihop och visar vad
+som krävs för att agenten ska fungera i vardagen.
 
 ### Headline
 
-Vem räddar undantagen?
+Vem tar över när agenten fastnar?
 
 ### Description
 
-Kartlägg ett verkligt flöde
+Se vad som saknas
 
 ### CTA
 
@@ -61,18 +61,19 @@ Läs mer
 Whether hidden senior intervention creates stronger buyer recognition than
 production-readiness language.
 
-## C03 - Operationskarta
+## C03 - Det som måste fungera runt agenten
 
 ### Primary text
 
-NordSym bygger inte bara agenten. Vi tar ansvar för operationen runt den:
-startsignal, åtkomst, beslut, undantag, stopp och mätning.
+Agenten är bara en del av lösningen. NordSym bygger och tar ansvar för det som
+måste fungera runt den: startsignal, åtkomst, beslut, avvikelser, stopp och
+uppföljning.
 
-Börja med en kostnadsfri kartläggning av ett prioriterat flöde.
+Börja med en kostnadsfri kartläggning av er AI-beredskap.
 
 ### Headline
 
-Agenten är inte hela operationen
+Agenten är bara en del av lösningen
 
 ### Description
 

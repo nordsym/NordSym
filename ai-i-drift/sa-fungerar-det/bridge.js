@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id"];
+  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content"];
   var video = document.getElementById("bridge-video");
   var cta = document.getElementById("bridge-cta");
   var milestones = {};

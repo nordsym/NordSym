@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>När en AI-operation fungerar på riktigt | NordSym</title>
-  <meta name="description" content="Se varför AI-initiativ fastnar mellan demo och drift, och hur NordSym avgränsar en operation som går att styra och mäta.">
+  <title>När AI ska fungera i vardagen | NordSym</title>
+  <meta name="description" content="Se vad som brukar saknas när AI ska fungera i företagets riktiga system, med verkliga beslut och undantag.">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/nordsym-favicon.svg">
   <link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css">
   <link rel="stylesheet" href="../styles.css">
@@ -20,21 +20,21 @@
     <a class="brand" href="/" aria-label="NordSym, startsida">
       <img src="/assets/brand/nordsym-header-lockup.svg" alt="NordSym" width="186" height="50">
     </a>
-    <span class="header-note">AI i drift · Ett prioriterat flöde</span>
+    <span class="header-note">AI i vardagen · System, ansvar och uppföljning</span>
   </header>
 
   <main id="main" class="bridge-main">
     <section class="bridge-shell" aria-labelledby="bridge-title">
       <div class="bridge-intro">
-        <p class="kicker">Från demo till styrd operation</p>
-        <h1 id="bridge-title">Det är inte en AI-operation om någon måste rädda den varje dag.</h1>
-        <p>På drygt en minut ser du varför AI-initiativ fastnar mellan demo och drift, och vad NordSym kartlägger innan något bygge börjar.</p>
+        <p class="kicker">När AI möter verkligheten</p>
+        <h1 id="bridge-title">När agenten fastnar ska inte en senior medarbetare behöva ta över.</h1>
+        <p>På mindre än en minut ser du varför AI-lösningar fastnar och vad som krävs för att de ska fungera i vardagen.</p>
       </div>
 
       <div class="bridge-video-frame">
         <div class="bridge-video-meta" aria-hidden="true">
-          <span>NordSym operationsbrief</span>
-          <span>01:05</span>
+          <span>Så får ni AI att fungera i vardagen</span>
+          <span>00:47</span>
         </div>
         <video
           id="bridge-video"
@@ -44,7 +44,14 @@
           poster="/assets/ai-i-drift-video-poster.svg"
           aria-describedby="video-expectation"
         >
-          <source src="/assets/video/ai-i-drift-sa-fungerar-det.mp4" type="video/mp4">
+          <source src="/assets/video/ai-i-drift-sa-fungerar-det-v2.mp4" type="video/mp4">
+          <track
+            default
+            kind="captions"
+            srclang="sv"
+            label="Svenska"
+            src="/assets/video/ai-i-drift-sa-fungerar-det-v2.sv.vtt"
+          >
           Din webbläsare kan inte spela upp videon. Läs transkriptet nedan.
         </video>
       </div>
@@ -56,24 +63,24 @@
           href="/ai-i-drift/#kvalificering"
           data-placement="video_bridge"
         >
-          Kartlägg mitt flöde
+          Se vad som saknas
           <span aria-hidden="true">→</span>
         </a>
-        <p id="video-expectation">Kostnadsfri kartläggning · Fem frågor före bokning · Inget betalt arbete utan separat godkännande</p>
+        <p id="video-expectation">Kostnadsfri första genomgång · Fem frågor före bokning</p>
       </div>
 
       <details class="bridge-transcript">
-        <summary>Visa videons transkript<span aria-hidden="true">+</span></summary>
-        <p>Om en agent fungerar i demon men någon måste kontrollera varje körning, rätta fel data och rädda undantagen, då har ni inte tagit bort arbetet. Ni har flyttat det.</p>
-        <p>Det händer när man börjar med modellen eller verktyget och lämnar själva operationen åt sidan. NordSym börjar i ett verkligt, återkommande flöde. Vi sätter gränsen för vad agenten får göra, kopplar den till systemen ni redan använder, bygger stopp och mänskliga beslut där osäkerheten börjar och mäter vad som faktiskt händer i drift.</p>
-        <p>Första steget är en kostnadsfri kartläggning. Vi följer ett prioriterat flöde och avgör om det finns en säker, mätbar väg till produktion. Om svaret är nej säger vi det. Om svaret är ja kan NordSym lämna ett separat förslag på att bygga och driva operationen.</p>
+        <summary>Läs videons text<span aria-hidden="true">+</span></summary>
+        <p>Ni kanske redan har en agent eller automation som fungerar ibland. Men när något oväntat händer måste någon hoppa in, rätta data, ge ny åtkomst eller avgöra vad som ska hända. Då har ni inte tagit bort arbetet. Ni har bara flyttat det till personen som måste ta över.</p>
+        <p>NordSym börjar med arbetet ni vill få gjort. Vi går igenom vilka system som berörs, vad agenten får besluta själv och när den ska stanna eller be om hjälp. Sedan bygger vi det som saknas och följer upp att det fungerar i vardagen.</p>
+        <p>Första steget är en kostnadsfri kartläggning av er AI-beredskap. Vi går igenom vad ni försöker få gjort, vilka system som berörs och vad som blockerar i dag. Om NordSym är rätt väg framåt visar vi hur ett första avgränsat bygge kan se ut.</p>
       </details>
     </section>
   </main>
 
   <footer class="site-footer bridge-footer">
     <img src="/assets/brand/nordsym-footer-lockup.svg" alt="NordSym" width="156" height="42">
-    <p>NordSym AB · 559535-5768</p>
+    <p>NordSym AB</p>
   </footer>
 
   <script id="nordsym-posthog">
@@ -82,7 +89,7 @@
     window.__nordsymPosthogLoaded = true;
     var campaign = {};
     var params = new URLSearchParams(location.search);
-    ['utm_source','utm_medium','utm_campaign','utm_id'].forEach(function(key){
+    ['utm_source','utm_medium','utm_campaign','utm_id','utm_content'].forEach(function(key){
       var raw = String(params.get(key) || '').trim();
       if (!raw || raw.indexOf('@') !== -1 || raw.replace(/\D/g, '').length >= 7) return;
       var value = raw

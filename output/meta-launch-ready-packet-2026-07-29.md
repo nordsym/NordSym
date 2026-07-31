@@ -74,7 +74,7 @@ The accepted static package remains frozen at:
 
 | Cell | Recognition moment | Role in test | Destination |
 | --- | --- | --- | --- |
-| C02, Vem räddar undantagen? | A senior person still rescues every exception | Lead cell | Video bridge |
+| C02, Vem räddar undantagen? | A senior employee still rescues every exception | Lead cell | Video bridge |
 | C01, Demo är inte drift | The normal path works but production does not | Reserve challenger | Video bridge |
 | C03, Agenten är inte hela operationen | The buyer needs to see the operating layer | Trust challenger | Video bridge |
 
@@ -87,18 +87,18 @@ carousel is required for the first tranche.
 
 **Buyer recognition:** hidden senior intervention.
 
-**Hook:** Om en senior person måste rädda varje undantag har ni inte
+**Hook:** Om en senior medarbetare måste rädda varje undantag har ni inte
 automatiserat jobbet.
 
 **Script, 35 to 45 seconds:**
 
-Om en senior person måste upptäcka och rädda varje undantag har ni inte
+Om en senior medarbetare måste upptäcka och rädda varje undantag har ni inte
 automatiserat jobbet. Ni har byggt en ny manuell process runt agenten.
 
-Det är därför så många AI-initiativ fungerar i demon men stannar före stabil
-drift. NordSym börjar inte med ännu ett verktyg. Vi följer ett prioriterat flöde
-genom systemen ni redan använder och sätter gränser, stopp, beslut och mätning
-runt det.
+Det är därför så många AI-lösningar fungerar i ett test men faller när något
+oväntat händer. NordSym börjar med arbetet ni vill få gjort. Vi går igenom vilka
+system som berörs, vad agenten får besluta själv och när den ska stanna eller be
+om hjälp. Sedan bygger vi det som saknas och följer upp att det fungerar.
 
 Vill du se hur det fungerar? Se den korta genomgången och kartlägg sedan ett
 verkligt flöde kostnadsfritt.
@@ -113,7 +113,7 @@ verkligt flöde kostnadsfritt.
 
 **On-screen text:** `Vem räddar undantagen?`
 
-**CTA:** `Se hur en styrd operation fungerar`
+**CTA:** `Se vad som krävs för att få det att fungera`
 
 ### V02. ElevenLabs-assisted voiceover
 
@@ -203,7 +203,9 @@ Local implementation:
 - Tracking: `ai-i-drift/sa-fungerar-det/bridge.js`
 - Poster: `assets/ai-i-drift-video-poster.svg`
 - Intended video asset:
-  `assets/video/ai-i-drift-sa-fungerar-det.mp4`
+  `assets/video/ai-i-drift-sa-fungerar-det-v2.mp4`
+- Swedish captions:
+  `assets/video/ai-i-drift-sa-fungerar-det-v2.sv.vtt`
 
 The page is intentionally sparse:
 

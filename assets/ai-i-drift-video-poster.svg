@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">NordSym, från demo till drift</title>
-  <desc id="desc">En mörk operationskarta med styrda stopp och undantag.</desc>
+  <title id="title">NordSym, när AI möter verkligheten</title>
+  <desc id="desc">En mörk systemkarta med kontroller, undantag och uppföljning.</desc>
   <defs>
     <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
       <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#f3eee4" stroke-opacity=".055" stroke-width="1"/>
@@ -9,9 +9,9 @@
   <rect width="1600" height="900" fill="#17140f"/>
   <rect width="1600" height="900" fill="url(#grid)"/>
   <path d="M110 110h80M110 110v80M1490 710v80M1490 790h-80" fill="none" stroke="#f3eee4" stroke-opacity=".28" stroke-width="2"/>
-  <text x="120" y="170" fill="#e08a6e" font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="4">NORDSYM OPERATIONSBRIEF</text>
-  <text x="120" y="280" fill="#f3eee4" font-family="Newsreader, Georgia, serif" font-size="84">Från demo till</text>
-  <text x="120" y="365" fill="#f3eee4" font-family="Newsreader, Georgia, serif" font-size="84">styrd operation.</text>
+  <text x="120" y="170" fill="#e08a6e" font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="4">NORDSYM AI-BEREDSKAP</text>
+  <text x="120" y="280" fill="#f3eee4" font-family="Newsreader, Georgia, serif" font-size="84">När AI möter</text>
+  <text x="120" y="365" fill="#f3eee4" font-family="Newsreader, Georgia, serif" font-size="84">verkligheten.</text>
   <g transform="translate(120 500)">
     <rect width="242" height="92" fill="#211d17" stroke="#f3eee4" stroke-opacity=".28"/>
     <text x="24" y="36" fill="#e08a6e" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="2">01</text>
@@ -27,7 +27,7 @@
     <path d="M898 46h86" stroke="#f3eee4" stroke-opacity=".32" stroke-width="2"/>
     <rect x="984" width="242" height="92" fill="#211d17" stroke="#f3eee4" stroke-opacity=".28"/>
     <text x="1008" y="36" fill="#e08a6e" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="2">04</text>
-    <text x="1008" y="68" fill="#f3eee4" font-family="Instrument Sans, sans-serif" font-size="22">Mätbar drift</text>
+    <text x="1008" y="68" fill="#f3eee4" font-family="Instrument Sans, sans-serif" font-size="22">Uppföljning</text>
   </g>
   <g transform="translate(722 704)">
     <circle cx="78" cy="78" r="77" fill="#a8432b"/>

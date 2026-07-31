@@ -3,7 +3,7 @@
 
   var SURFACE = "lp_ai_i_drift";
   var OFFER = "ai_i_drift";
-  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id"];
+  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content"];
   var ALLOWED = {
     company_size: ["1-19", "20-49", "50-199", "200+"],
     operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
@@ -52,7 +52,7 @@
     var stepTopic = document.getElementById("step-topic");
     var progressBar = document.getElementById("progress-bar");
     var error = document.getElementById("form-error");
-    var topics = ["Bolagsstorlek", "Operationsläge", "Blockering", "System", "Mandat"];
+    var topics = ["Bolagsstorlek", "AI-läge", "Blockering", "System", "Mandat"];
     var currentStep = 0;
     var hasStarted = false;
 
@@ -109,7 +109,7 @@
         showError("Välj ett alternativ för att fortsätta.");
         return;
       }
-      currentStep += 1;
+      currentStep = Math.min(steps.length - 1, currentStep + 1);
       renderStep(true);
     });
 
@@ -141,7 +141,13 @@
         return;
       }
 
-      capture("nordsym_paid_qualification_completed", answers);
+      var qualifiedOpportunity =
+        answers.operation_state !== "multiple_backlog" &&
+        answers.systems_count !== "1" &&
+        answers.mandate !== "exploring";
+      capture("nordsym_paid_qualification_completed", Object.assign({}, answers, {
+        qualification_signal: qualifiedOpportunity ? "qualified_opportunity" : "form_complete"
+      }));
       window.nordsymMeta?.track("Lead");
 
       var destination = new URL("/book/", window.location.origin);

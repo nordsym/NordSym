@@ -57,7 +57,6 @@ header {
 header img {
   width: 190px;
   height: auto;
-  filter: brightness(0) invert(1);
 }
 
 header span,

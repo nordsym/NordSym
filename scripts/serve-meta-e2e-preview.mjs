@@ -12,6 +12,7 @@ const mime = {
   ".mp4": "video/mp4",
   ".png": "image/png",
   ".svg": "image/svg+xml",
+  ".vtt": "text/vtt; charset=utf-8",
   ".woff2": "font/woff2"
 };
 const previewHeaders = {

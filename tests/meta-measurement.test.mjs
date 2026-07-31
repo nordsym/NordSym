@@ -23,7 +23,7 @@ const validBooking = {
   locale: 'sv-SE',
   offerKey: 'ai_i_drift',
   submittedAt: '2026-07-25T10:00:00.000Z',
-  focus: 'Operationskartläggning: AI i stabil drift',
+  focus: 'AI-beredskapskartläggning',
   date: '2026-08-03',
   dateLabel: 'måndag 3 augusti',
   time: '14:00',
@@ -38,6 +38,8 @@ const validBooking = {
     bottleneck: 'integration',
     systems_count: '3-5',
     mandate: 'sponsor_now',
+    qualification_signal: 'qualified_opportunity',
+    utm_content: 'c02_static',
     lang: 'sv',
     offer: 'ai_i_drift'
   }
@@ -89,7 +91,7 @@ test('server event is fixed to the booked mapping and contains no direct PII', (
       fbc: 'fb.1.1710000000000.AbCdEfGhIj'
     },
     custom_data: {
-      content_name: 'ai_i_drift_operations_mapping',
+      content_name: 'ai_i_drift_readiness_mapping',
       content_category: 'lead_generation'
     }
   });
