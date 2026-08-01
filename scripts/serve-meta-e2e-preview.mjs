@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { extname, join, normalize, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const port = 4173;
+const port = Number(process.env.PORT || 4173);
 const mime = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -40,8 +40,9 @@ const server = createServer((request, response) => {
     response.end(JSON.stringify({
       preview: true,
       date: requestUrl.searchParams.get("date") || "",
-      offered: ["09:30", "11:00", "14:00", "16:00"],
-      busy: ["11:00"],
+      offered: ["10:00", "14:00", "16:00"],
+      busy: ["10:00", "16:00"],
+      durationMinutes: 20,
       capped: false
     }));
     return;

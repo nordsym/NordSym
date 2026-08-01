@@ -102,6 +102,8 @@ test('server event is fixed to the booked mapping and contains no direct PII', (
 test('booking boundary rejects unknown, stale and incomplete paid requests', () => {
   const now = new Date('2026-07-25T10:05:00.000Z');
   assert.equal(validateBookingRequest(validBooking, now).ok, true);
+  assert.equal(validateBookingRequest({ ...validBooking, time: '14:20' }, now).ok, true);
+  assert.equal(validateBookingRequest({ ...validBooking, time: '14:15' }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, admin: true }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, submittedAt: '2026-07-24T01:00:00Z' }, now).ok, false);
   assert.equal(

@@ -66,8 +66,8 @@
   .availability-panel h3{margin:0;font-family:Newsreader,serif;font-size:22px;font-weight:400;}
   .availability-date{margin:5px 0 17px;color:#5A5347;font-size:12px;text-transform:capitalize;}
   .availability-message{margin:34px 0 0;color:#5A5347;font-size:13px;line-height:1.55;}
-  .time-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-  .time-slot{min-height:54px;padding:9px 8px;border:1px solid rgba(33,29,23,.16);background:#FAF7F0;color:#211D17;cursor:pointer;text-align:left;}
+  .time-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .time-slot{min-height:46px;padding:9px 10px;border:1px solid rgba(33,29,23,.16);background:#FAF7F0;color:#211D17;cursor:pointer;text-align:center;}
   .time-slot strong,.time-slot span{display:block;}
   .time-slot strong{font-size:14px;font-weight:500;}
   .time-slot span{margin-top:3px;color:#5A5347;font-size:9px;}
@@ -95,6 +95,7 @@
     #booking-content [style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
     .booking-scheduler{grid-template-columns:1fr;}
     .availability-panel{min-height:0;}
+    .time-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
   }
 </style></head>
 <body>
@@ -126,7 +127,7 @@
         </div>
       </div>
 
-      <div style="margin-top: auto; padding-top: 26px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; line-height: 1.7; color: rgb(154, 147, 132);">A 30-minute call with the founder.<br>No deck. We look at the work,<br>your tech stack and the first agent.</div>
+      <div style="margin-top: auto; padding-top: 26px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; line-height: 1.7; color: rgb(154, 147, 132);">A 20-minute call with the founder.<br>No deck. We look at the work,<br>your tech stack and the first agent.</div>
     </aside>
 
 
@@ -288,7 +289,7 @@
     heading: "Boka en kostnadsfri genomgång",
     briefHeading: "Er genomgång",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "Ta med det återkommande arbete som kostar mest tid eller pengar. <br>Få en konkret rekommendation om vad en AI-agent kan ta över och vad som behöver byggas i er tech stack.",
+    railDescription: "20 minuter med Gustav. <br>Vi tittar på arbetet, er tech stack och vad en AI-agent faktiskt kan ta över.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -317,9 +318,8 @@
         body: "Inte helt säker än. Vi går igenom det tillsammans."
       }
     ],
-    dayLabels: ["Nästa vardag", "Om några dagar", "Nästa vecka"],
     timeHeading: "Välj en tid.",
-    timeDescription: "Välj önskad dag och tid. En kalenderinbjudan skickas om tiden är tillgänglig.",
+    timeDescription: "Välj en dag. Lediga 20-minuterstider hämtas direkt från kalendern.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
     detailsDescription: "Berätta kort vilket återkommande arbete ni vill att en AI-agent ska ta över och vad som blockerar det i dag.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
@@ -359,9 +359,8 @@
         body: "Not sure yet. Let us talk it through."
       }
     ],
-    dayLabels: ["Next business day", "In a few days", "Next week"],
     timeHeading: "Pick a window.",
-    timeDescription: "Choose a preferred day and time. A calendar invite is sent when the slot is available.",
+    timeDescription: "Choose a day. Available 20-minute times are checked against the calendar.",
     detailsHeading: "Where should I send the confirmation?",
     detailsDescription: "A short note is enough. We will qualify the right next step on the call.",
     privacyLabel: "How NordSym handles booking data.",
@@ -392,6 +391,7 @@
   calendarView.setHours(12, 0, 0, 0);
   calendarView.setDate(1);
   var availabilityRequest = 0;
+  var bookingError = "";
   var main = document.querySelector("main");
   if (!main) return;
   var sections = Array.prototype.slice.call(main.children);
@@ -525,43 +525,14 @@
     return y + "-" + m + "-" + d;
   }
 
-  function displayDate(value) {
-    var parts = String(value).split("-");
-    var date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-    return date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB", {
-      weekday: "short",
-      day: "numeric",
-      month: "long"
-    });
-  }
-
   function displayLongDate(value) {
     var parts = String(value).split("-");
     var date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-    return date.toLocaleDateString("sv-SE", {
+    return date.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB", {
       weekday: "long",
       day: "numeric",
       month: "long"
     });
-  }
-
-  function addBusinessDays(count) {
-    var date = new Date();
-    var added = 0;
-    while (added < count) {
-      date.setDate(date.getDate() + 1);
-      var day = date.getDay();
-      if (day !== 0 && day !== 6) added += 1;
-    }
-    return date;
-  }
-
-  function dayOptions() {
-    return [
-      { label: copy.dayLabels[0], date: isoDate(addBusinessDays(1)) },
-      { label: copy.dayLabels[1], date: isoDate(addBusinessDays(3)) },
-      { label: copy.dayLabels[2], date: isoDate(addBusinessDays(6)) }
-    ];
   }
 
   function sameMonth(left, right) {
@@ -607,25 +578,28 @@
     currentMonth.setHours(12, 0, 0, 0);
     currentMonth.setDate(1);
     var lastMonth = new Date(bounds.maximum.getFullYear(), bounds.maximum.getMonth(), 1, 12);
-    var title = calendarView.toLocaleDateString("sv-SE", { month: "long", year: "numeric" });
-    return '<section class="booking-calendar" aria-label="Välj datum">'
+    var title = calendarView.toLocaleDateString(paidVariant ? "sv-SE" : "en-GB", { month: "long", year: "numeric" });
+    var weekdayLabels = paidVariant
+      ? ['Mån','Tis','Ons','Tor','Fre','Lör','Sön']
+      : ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    return '<section class="booking-calendar" aria-label="'+(paidVariant ? 'Välj datum' : 'Choose a date')+'">'
       + '<div class="calendar-toolbar">'
-      + '<button type="button" class="calendar-nav" data-calendar-prev aria-label="Föregående månad"'
+      + '<button type="button" class="calendar-nav" data-calendar-prev aria-label="'+(paidVariant ? 'Föregående månad' : 'Previous month')+'"'
       +(sameMonth(calendarView, currentMonth) ? ' disabled' : '')+'>←</button>'
       + '<strong>'+text(title)+'</strong>'
-      + '<button type="button" class="calendar-nav" data-calendar-next aria-label="Nästa månad"'
+      + '<button type="button" class="calendar-nav" data-calendar-next aria-label="'+(paidVariant ? 'Nästa månad' : 'Next month')+'"'
       +(sameMonth(calendarView, lastMonth) ? ' disabled' : '')+'>→</button>'
       + '</div>'
-      + '<div class="calendar-weekdays" aria-hidden="true"><span>Mån</span><span>Tis</span><span>Ons</span><span>Tor</span><span>Fre</span><span>Lör</span><span>Sön</span></div>'
+      + '<div class="calendar-weekdays" aria-hidden="true">'+weekdayLabels.map(function(label){ return '<span>'+label+'</span>'; }).join('')+'</div>'
       + '<div class="calendar-grid">'+days.join("")+'</div>'
       + '</section>';
   }
 
   function availabilityPlaceholder() {
     return '<section class="availability-panel" data-availability-panel aria-live="polite">'
-      + '<p class="availability-label">Lediga tider</p>'
-      + '<h3>Välj ett datum</h3>'
-      + '<p class="availability-message">När du väljer en dag hämtar vi verklig tillgänglighet från kalendern.</p>'
+      + '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
+      + '<h3>'+(paidVariant ? 'Välj ett datum' : 'Choose a date')+'</h3>'
+      + '<p class="availability-message">'+(paidVariant ? 'När du väljer en dag hämtar vi verklig tillgänglighet från kalendern.' : 'Choose a day to check live calendar availability.')+'</p>'
       + '</section>';
   }
 
@@ -633,9 +607,9 @@
     var panel = content.querySelector("[data-availability-panel]");
     if (!panel) return;
     var request = availabilityRequest += 1;
-    panel.innerHTML = '<p class="availability-label">Lediga tider</p>'
+    panel.innerHTML = '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
       + '<h3>'+text(displayLongDate(date))+'</h3>'
-      + '<p class="availability-message">Kontrollerar kalendern...</p>';
+      + '<p class="availability-message">'+(paidVariant ? 'Kontrollerar kalendern...' : 'Checking the calendar...')+'</p>';
 
     fetch(availabilityEndpoint + "?date=" + encodeURIComponent(date), {
       method: "GET",
@@ -653,24 +627,28 @@
         var times = Array.isArray(result.offered) ? result.offered : [];
         var busy = Array.isArray(result.busy) ? result.busy : [];
         var capped = result.capped === true;
+        if (result.durationMinutes !== 20) throw new Error("Availability duration mismatch");
         if (!times.length) throw new Error("Availability returned no offered times");
-        panel.innerHTML = '<p class="availability-label">Lediga tider</p>'
-          + '<h3>Välj en tid</h3>'
+        panel.innerHTML = '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
+          + '<h3>'+(paidVariant ? 'Välj en tid' : 'Choose a time')+'</h3>'
           + '<p class="availability-date">'+text(displayLongDate(date))+'</p>'
-          +(capped ? '<p class="availability-message" style="margin:0 0 14px;">Dagen är fullbokad. Välj en annan dag.</p>' : '')
+          +(capped ? '<p class="availability-message" style="margin:0 0 14px;">'+(paidVariant ? 'Dagen är fullbokad. Välj en annan dag.' : 'This day is fully booked. Choose another day.')+'</p>' : '')
           + '<div class="time-grid">'
           + times.map(function(time){
             var unavailable = busy.indexOf(time) !== -1;
             var selected = state.time === time;
             return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+time+'"'
               +(unavailable ? ' disabled' : '')
-              +' aria-pressed="'+(selected ? 'true' : 'false')+'"><strong>'+time+'</strong><span>'
-              +(capped ? 'Fullbokad' : unavailable ? 'Upptagen' : 'Ledig')+'</span></button>';
+              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+time+(unavailable ? (paidVariant ? ', upptagen' : ', unavailable') : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+time+'</strong>'
+              +(unavailable ? '<span>'+(capped ? (paidVariant ? 'Fullbokad' : 'Full') : (paidVariant ? 'Upptagen' : 'Busy'))+'</span>' : '')+'</button>';
           }).join("")
           + '</div>';
         panel.querySelectorAll("[data-time]").forEach(function(button){
           button.addEventListener("click", function(){
             state.time = button.getAttribute("data-time");
+            bookingError = "";
+            var alert = content.querySelector('[role="alert"]');
+            if (alert) alert.remove();
             setBrief("time", state.time);
             panel.querySelectorAll("[data-time]").forEach(function(other){
               other.classList.toggle("is-selected", other === button);
@@ -682,9 +660,9 @@
       })
       .catch(function(){
         if (request !== availabilityRequest) return;
-        panel.innerHTML = '<p class="availability-label">Lediga tider</p>'
-          + '<h3>Kalendern kunde inte läsas</h3>'
-          + '<p class="availability-message">Försök igen eller välj ett annat datum. Ingen tid kan bokas utan en aktuell kalenderkontroll.</p>';
+        panel.innerHTML = '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
+          + '<h3>'+(paidVariant ? 'Kalendern kunde inte läsas' : 'The calendar could not be read')+'</h3>'
+          + '<p class="availability-message">'+(paidVariant ? 'Försök igen eller välj ett annat datum. Ingen tid kan bokas utan en aktuell kalenderkontroll.' : 'Try again or choose another date. No time can be booked without a current calendar check.')+'</p>';
       });
   }
 
@@ -764,44 +742,12 @@
 
   function renderTime() {
     step = 2;
-    if (paidVariant) {
-      content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
-        + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">Välj en tid</h2>'
-        + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">Upptagna tider hämtas direkt från kalendern.</p>'
-        + '<div class="booking-scheduler">'+calendarMarkup()+availabilityPlaceholder()+'</div></div>';
-      bindCalendar();
-      next.textContent = copy.continue;
-      activateNext(!!state.date && !!state.time);
-      paintStepper();
-      return;
-    }
-    var days = dayOptions();
-    var times = ["09:30", "11:00", "14:00", "16:00"];
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.timeHeading)+'</h2>'
       + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.timeDescription)+'</p>'
-      + '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;">'
-      + days.map(function(day){ return choiceButton(day.label, displayDate(day.date), 'data-date="'+day.date+'" data-date-label="'+day.label+'"'); }).join("")
-      + '</div><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">'
-      + times.map(function(t){ return choiceButton(t, "Europe/Stockholm", 'data-time="'+t+'"'); }).join("")
-      + '</div></div>';
-    content.querySelectorAll("[data-date]").forEach(function(btn){
-      btn.addEventListener("click", function(){
-        state.date = btn.getAttribute("data-date");
-        state.dateLabel = btn.getAttribute("data-date-label") || state.date;
-        setBrief("date", state.dateLabel);
-        content.querySelectorAll("[data-date]").forEach(function(other){ other.style.borderColor = other === btn ? "rgb(168,67,43)" : "rgba(33,29,23,.16)"; });
-        activateNext(!!state.date && !!state.time);
-      });
-    });
-    content.querySelectorAll("[data-time]").forEach(function(btn){
-      btn.addEventListener("click", function(){
-        state.time = btn.getAttribute("data-time");
-        setBrief("time", state.time);
-        content.querySelectorAll("[data-time]").forEach(function(other){ other.style.borderColor = other === btn ? "rgb(168,67,43)" : "rgba(33,29,23,.16)"; });
-        activateNext(!!state.date && !!state.time);
-      });
-    });
+      +(bookingError ? '<p role="alert" style="font-size:13px;line-height:1.5;color:#8C2F1B;background:rgba(168,67,43,.08);border:1px solid rgba(168,67,43,.2);padding:10px 12px;margin:0 0 14px;">'+text(bookingError)+'</p>' : '')
+      + '<div class="booking-scheduler">'+calendarMarkup()+availabilityPlaceholder()+'</div></div>';
+    bindCalendar();
     next.textContent = copy.continue;
     activateNext(!!state.date && !!state.time);
     paintStepper();
@@ -810,7 +756,7 @@
   function input(name, label, type) {
     var maxLength = name === "email" ? 254 : name === "company" ? 160 : 120;
     return '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);">'+text(label)
-      + '<input name="'+name+'" type="'+(type || "text")+'" maxlength="'+maxLength+'" required style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;"></label>';
+      + '<input name="'+name+'" type="'+(type || "text")+'" maxlength="'+maxLength+'" value="'+text(state[name])+'" required style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;"></label>';
   }
 
   function renderDetails() {
@@ -819,7 +765,7 @@
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.detailsHeading)+'</h2>'
       + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.detailsDescription)+'</p>'
       + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">'+input("name",copy.fields.name)+input("email",copy.fields.email,"email")+'</div>'
-      + input("company",copy.fields.company) + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">'+text(copy.fields.notes)+'<textarea name="notes" rows="4" maxlength="1000" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;"></textarea></label>'
+      + input("company",copy.fields.company) + '<label style="display:grid;gap:6px;font-size:13px;color:rgb(90,83,71);margin-top:12px;">'+text(copy.fields.notes)+'<textarea name="notes" rows="4" maxlength="1000" style="width:100%;border:1px solid rgba(33,29,23,.16);background:rgb(250,247,240);border-radius:4px;padding:13px 14px;color:rgb(33,29,23);outline:none;resize:vertical;">'+text(state.notes)+'</textarea></label>'
       + '<p style="font-size:12px;line-height:1.5;color:rgb(90,83,71);margin:14px 0 0;"><a href="/privacy.html" style="color:inherit;text-underline-offset:.18em;">'+text(copy.privacyLabel)+'</a></p>'
       + '</form>';
     var form = content.querySelector("form");
@@ -872,6 +818,17 @@
       });
       var responseBody = await res.json().catch(function () { return null; });
       var booked = res.ok && responseBody && responseBody.success === true;
+      if (res.status === 409) {
+        bookingError = paidVariant
+          ? "Tiden hann bli upptagen. Välj en ny tid, era uppgifter finns kvar."
+          : "That time was just taken. Choose another time; your details are still here.";
+        state.time = "";
+        setBrief("time", "");
+        captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "slot_unavailable" });
+        renderTime();
+        return;
+      }
+      bookingError = "";
       captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus });
       renderConfirmed(booked);
     } catch (err) {
