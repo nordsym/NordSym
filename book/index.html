@@ -319,7 +319,7 @@
       }
     ],
     timeHeading: "Välj en tid.",
-    timeDescription: "Välj en dag. Lediga 20-minuterstider hämtas direkt från kalendern.",
+    timeDescription: "Välj en dag. Vi visar ett begränsat urval och kontrollerar kalendern direkt.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
     detailsDescription: "Berätta kort vilket återkommande arbete ni vill att en AI-agent ska ta över och vad som blockerar det i dag.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
@@ -360,7 +360,7 @@
       }
     ],
     timeHeading: "Pick a window.",
-    timeDescription: "Choose a day. Available 20-minute times are checked against the calendar.",
+    timeDescription: "Choose a day. We release a limited set of times and check the calendar live.",
     detailsHeading: "Where should I send the confirmation?",
     detailsDescription: "A short note is enough. We will qualify the right next step on the call.",
     privacyLabel: "How NordSym handles booking data.",
@@ -626,6 +626,7 @@
         var result = JSON.parse(raw);
         var times = Array.isArray(result.offered) ? result.offered : [];
         var busy = Array.isArray(result.busy) ? result.busy : [];
+        var held = Array.isArray(result.held) ? result.held : [];
         var capped = result.capped === true;
         if (result.durationMinutes !== 20) throw new Error("Availability duration mismatch");
         if (!times.length) throw new Error("Availability returned no offered times");
@@ -635,12 +636,22 @@
           +(capped ? '<p class="availability-message" style="margin:0 0 14px;">'+(paidVariant ? 'Dagen är fullbokad. Välj en annan dag.' : 'This day is fully booked. Choose another day.')+'</p>' : '')
           + '<div class="time-grid">'
           + times.map(function(time){
-            var unavailable = busy.indexOf(time) !== -1;
+            var calendarBusy = busy.indexOf(time) !== -1;
+            var capacityHeld = held.indexOf(time) !== -1;
+            var unavailable = calendarBusy || capacityHeld;
             var selected = state.time === time;
             return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+time+'"'
               +(unavailable ? ' disabled' : '')
-              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+time+(unavailable ? (paidVariant ? ', upptagen' : ', unavailable') : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+time+'</strong>'
-              +(unavailable ? '<span>'+(capped ? (paidVariant ? 'Fullbokad' : 'Full') : (paidVariant ? 'Upptagen' : 'Busy'))+'</span>' : '')+'</button>';
+              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+time+(capacityHeld
+                ? (paidVariant ? ', reserverad' : ', reserved')
+                : unavailable
+                  ? (paidVariant ? ', upptagen' : ', unavailable')
+                  : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+time+'</strong>'
+              +(unavailable ? '<span>'+(capped
+                ? (paidVariant ? 'Fullbokad' : 'Full')
+                : capacityHeld
+                  ? (paidVariant ? 'Reserverad' : 'Reserved')
+                  : (paidVariant ? 'Upptagen' : 'Busy'))+'</span>' : '')+'</button>';
           }).join("")
           + '</div>';
         panel.querySelectorAll("[data-time]").forEach(function(button){
