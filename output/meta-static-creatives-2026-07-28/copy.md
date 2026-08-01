@@ -8,23 +8,24 @@ The route is the intended sparse video bridge. Its CTA continues to the existing
 qualification flow and booking. Do not use it as an ad destination until the
 production release returns `200` and the Meta launch gates are complete.
 
-## C01 - Fungerar agenten utanför testet?
+## C01 - Vilket arbete borde teamet slippa?
 
 ### Primary text
 
-En agent är inte redo bara för att normalfallet fungerar. Det verkliga testet
-börjar när underlag saknas, åtkomst ändras eller ett beslut är oklart.
+Varje vecka går tid till samma kontroller, uppdateringar och uppföljningar i
+systemen ni redan använder.
 
-NordSym kartlägger AI-arbetet, systemen och besluten runt det och visar vad som
-krävs för att lösningen ska fungera i vardagen.
+NordSym bygger och driver AI-agenter i er tech stack som tar över det
+återkommande arbetet. Börja med att hitta uppgiften som kostar mest tid eller
+pengar.
 
 ### Headline
 
-Fungerar agenten utanför testet?
+Vilket arbete borde teamet slippa?
 
 ### Description
 
-Se vad som saknas
+Hitta första arbetsflödet
 
 ### CTA
 
@@ -32,25 +33,25 @@ Läs mer
 
 ### Variable
 
-Whether the buyer accepts that a successful normal path is not production readiness.
+Whether recurring cost creates enough recognition to start the review.
 
-## C02 - Det dolda manuella arbetet
+## C02 - Vad ska första agenten ta över?
 
 ### Primary text
 
-Om en senior medarbetare måste upptäcka och lösa varje avvikelse är arbetet fortfarande
-manuellt. Ni har bara flyttat det till personen som måste ta över.
+Vilket återkommande arbete betalar ni människor för att göra varje vecka?
 
-NordSym kartlägger hur arbetet, systemen och besluten hänger ihop och visar vad
-som krävs för att agenten ska fungera i vardagen.
+NordSym bygger och driver AI-agenter i er tech stack som samlar in underlag,
+uppdaterar system och följer upp arbetet. Börja med att hitta den första
+uppgiften som är värd att flytta från teamet.
 
 ### Headline
 
-Vem tar över när agenten fastnar?
+Vad ska en AI-agent ta över?
 
 ### Description
 
-Se vad som saknas
+Hitta första arbetsflödet
 
 ### CTA
 
@@ -58,26 +59,26 @@ Läs mer
 
 ### Variable
 
-Whether hidden senior intervention creates stronger buyer recognition than
-production-readiness language.
+Whether the direct question about paid recurring work drives qualified
+recognition.
 
-## C03 - Det som måste fungera runt agenten
+## C03 - Agenten arbetar i er tech stack
 
 ### Primary text
 
-Agenten är bara en del av lösningen. NordSym bygger och tar ansvar för det som
-måste fungera runt den: startsignal, åtkomst, beslut, avvikelser, stopp och
-uppföljning.
+En AI-agent skapar kapacitet först när den kan arbeta i systemen där jobbet
+redan händer.
 
-Börja med en kostnadsfri kartläggning av er AI-beredskap.
+NordSym bygger, kopplar in och driver agenten i er tech stack. Börja med ett
+återkommande arbetsflöde som kostar teamet tid eller företaget pengar.
 
 ### Headline
 
-Agenten är bara en del av lösningen
+Bygg agenten där jobbet händer
 
 ### Description
 
-Lämnas tom
+Se hur NordSym arbetar
 
 ### CTA
 
@@ -85,5 +86,5 @@ Läs mer
 
 ### Variable
 
-Whether a visible operating-layer map increases trust compared with an abstract
-problem diagnosis.
+Whether the inside-your-tech-stack mechanism increases trust without making
+governance the sales promise.

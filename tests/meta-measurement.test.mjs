@@ -23,7 +23,7 @@ const validBooking = {
   locale: 'sv-SE',
   offerKey: 'ai_i_drift',
   submittedAt: '2026-07-25T10:00:00.000Z',
-  focus: 'AI-beredskapskartläggning',
+  focus: 'Hitta rätt arbete för en AI-agent',
   date: '2026-08-03',
   dateLabel: 'måndag 3 augusti',
   time: '14:00',

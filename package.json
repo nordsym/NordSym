@@ -8,6 +8,7 @@
     "validate:analytics": "node scripts/validate-posthog-config.mjs",
     "validate:meta": "node scripts/validate-meta-measurement.mjs",
     "validate:bridge": "node scripts/validate-ai-drift-bridge.mjs",
+    "validate:positioning": "node scripts/validate-positioning-parity.mjs",
     "test:meta": "node --test tests/meta-measurement.test.mjs"
   },
   "engines": {

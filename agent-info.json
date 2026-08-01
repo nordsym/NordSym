@@ -3,49 +3,33 @@
   "@type": "Organization",
   "name": "NordSym AB",
   "legalName": "NordSym AB",
-  "description": "NordSym designs, builds, and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations.",
+  "description": "NordSym builds and operates AI agents inside client tech stacks to take over recurring work that costs time and money.",
   "url": "https://nordsym.com",
   "logo": "https://nordsym.com/assets/brand/nordsym-social-logo-20260723.png",
-  "founder": {
-    "name": "Gustav Hemmingsson",
-    "email": "contact@nordsym.com"
-  },
+  "founder": { "name": "Gustav Hemmingsson", "email": "contact@nordsym.com" },
   "category_frame": {
     "name": "Agent architecture and operations",
-    "definition": "NordSym installs the layer that gives agents context, mandate, approval boundaries, records, and safe access to the stack a client already runs."
+    "definition": "The technical work required to connect AI agents to a company's systems, data, decisions and people, then keep the resulting operation working in day-to-day use."
   },
   "agent_policy": {
-    "type": "AI-assisted operating layer",
-    "capabilities": [
-      "revenue operations",
-      "publishing and content operations",
-      "customer support operations",
-      "finance and billing operations",
-      "reporting and analytics operations",
-      "data hygiene and workflow operations",
-      "local and on-premise AI architecture"
-    ],
+    "type": "AI agent build and operation",
+    "capabilities": ["revenue operations", "publishing and content operations", "customer support operations", "finance and billing operations", "reporting and analytics operations", "data hygiene and workflow operations", "local, private and on-premise AI architecture"],
     "contact_endpoint": "https://nordsym.com/book/",
-    "boundaries": [
-      "No contracts without human approval",
-      "No external communications without human approval",
-      "No client data crossing boundaries",
-      "No production changes without explicit operator approval"
-    ]
+    "boundaries": ["No contracts without human approval", "No external communications without human approval", "No client data crossing boundaries", "No production changes without explicit operator approval"]
   },
   "services": [
     {
       "id": "operating-review",
-      "name": "Operating Review",
-      "description": "A structured review of where governed agents can operate inside an existing company stack.",
+      "name": "AI Agent Operating Review",
+      "description": "A structured review of recurring work that an AI agent could take over inside the company's existing tech stack.",
       "url": "https://nordsym.com/book/",
       "intake": "https://nordsym.com/book/"
     },
     {
-      "id": "operating-layer",
-      "name": "Operating Layer Build",
-      "description": "Governed agent infrastructure inside an existing stack, with approvals, stop controls, and records.",
-      "url": "https://nordsym.com/#layer"
+      "id": "agent-build-operation",
+      "name": "AI Agent Build and Operation",
+      "description": "NordSym builds and operates AI agents inside the client's tech stack for recurring business work.",
+      "url": "https://nordsym.com/#engagements"
     }
   ],
   "systems_source": "https://nordsym.com/systems.canon.json",
@@ -58,11 +42,9 @@
     "mcp_posture": "https://nordsym.com/.well-known/mcp",
     "systems": "https://nordsym.com/systems",
     "systems_canon": "https://nordsym.com/systems.canon.json",
-    "openapi": "https://nordsym.com/openapi.json",
-    "sitemap": "https://nordsym.com/sitemap.xml",
-    "robots": "https://nordsym.com/robots.txt"
+    "openapi": "https://nordsym.com/openapi.json"
   },
   "agent_friendly": true,
   "human_approval_required_for_external_actions": true,
-  "last_updated": "2026-07-23"
+  "last_updated": "2026-08-01"
 }

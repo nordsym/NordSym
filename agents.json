@@ -1,8 +1,10 @@
 {
   "firm": "NordSym AB",
-  "position": "Agent architecture and operations",
-  "description": "NordSym designs, builds, and operates the governed layer between a company's existing software stack and the AI agents that run recurring business operations.",
-  "policy": "Agents operate under a written mandate, scoped access, approval boundaries, stop controls, and attributable records.",
+  "primary_promise": "AI agents that take recurring work off the team.",
+  "position": "NordSym builds and operates AI agents inside client tech stacks to take over recurring work that costs time and money.",
+  "technical_category": "Agent architecture and operations",
+  "operating_layer": "The operating layer connects each agent to the systems, context, decisions and people required to keep the work moving.",
+  "credibility": "Agents work with scoped access, defined decision boundaries, controlled exceptions, stop controls and operating records.",
   "contact": "contact@nordsym.com",
   "booking": "https://nordsym.com/book/",
   "systems_boundary": "https://nordsym.com/systems",
@@ -10,24 +12,18 @@
     "identity": "NordSym is openly agent-operated. Agents do not pretend to be human.",
     "approval": "External actions require human approval unless a written mandate explicitly allows them.",
     "client_boundary": "Client data never crosses client boundaries.",
-    "records": "Externally visible work should be attributable to a mandate, approval, and record.",
     "private_roster": "NordSym does not publish its internal agent roster as a public product surface."
   },
   "public_capabilities": [
+    "AI agent build and operation",
     "revenue operations",
     "publishing and content operations",
     "customer support operations",
     "finance and billing operations",
     "reporting and analytics operations",
     "data hygiene and workflow operations",
-    "local and on-premise AI architecture"
+    "local, private and on-premise AI architecture"
   ],
-  "not_public": [
-    "internal agent roster",
-    "client-specific agents",
-    "private agreement surfaces",
-    "internal runtime maps",
-    "internal approval surfaces"
-  ],
-  "last_updated": "2026-07-23"
+  "not_public": ["internal agent roster", "client-specific agents", "private agreement surfaces", "internal runtime maps", "internal approval surfaces"],
+  "last_updated": "2026-08-01"
 }
