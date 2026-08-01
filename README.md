@@ -1,7 +1,7 @@
 # NordSym.com
 
 **Live:** https://nordsym.com  
-**Positioning:** The operating layer between your stack and the agents that run it.  
+**Positioning:** AI agents built and operated inside your tech stack to take recurring work off your team.
 **Stack:** Static HTML, Vercel routes, machine-readable discovery files.
 
 ## What this repository is

@@ -21,12 +21,14 @@ Then open:
 ## Contents
 
 - `index.html`: placement-faithful C02 feed preview and click-through.
-- `animatic.html`: editable five-frame local animatic source.
+- `animatic.html`: retired pre-positioning animatic kept only as historical evidence.
 - `animatic-frames/`: rendered 1600x900 frame images.
-- `ai-i-drift-sa-fungerar-det-animatic.mp4`: 65-second silent review animatic.
+- `ai-i-drift-sa-fungerar-det-animatic.mp4`: retired pre-positioning review asset. Do not launch.
 - `measurement-map.md`: event ownership and data boundary.
 - `campaign-draft.md`: inert Ads Manager reproduction spec.
 - `evidence-receipt.md`: verified state and blocker classification.
 - `evidence/`: mobile screenshots of the review path.
 
-The animatic is explicitly not final media. It exists so the whole path can be reviewed before Gustav records anything or approves a voice provider.
+The prior animatic and V2 voiceover no longer match the outcome-first positioning.
+The current packet defines the replacement founder recording. Do not upload or
+launch either historical video asset.

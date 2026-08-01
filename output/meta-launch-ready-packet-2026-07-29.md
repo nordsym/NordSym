@@ -1,7 +1,9 @@
 # NordSym Meta launch packet
 
-Prepared 2026-07-29. Internal review state only. No Meta entity, payment method,
-tracking configuration, campaign, publication or spend was changed.
+Prepared 2026-07-29. Superseded by `meta-launch-ready-packet-2026-08-01.md`.
+The demo, exception and governance-led copy below is historical and must not be
+used for launch. No Meta entity, payment method, tracking configuration,
+campaign, publication or spend was changed.
 
 ## Launch verdict
 

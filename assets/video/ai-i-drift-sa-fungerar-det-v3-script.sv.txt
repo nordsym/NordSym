@@ -1,0 +1,9 @@
+Vilket återkommande arbete betalar ni människor för att göra varje vecka?
+
+Det kan vara att samla in underlag, uppdatera flera system, kontrollera att allt stämmer eller följa upp samma sak igen och igen.
+
+NordSym bygger AI-agenter inne i er tech stack som tar över det arbetet. Vi börjar med en uppgift som kostar tydlig tid eller pengar. Sedan kopplar vi agenten till systemen där jobbet redan händer och driver den vidare när verksamheten förändras.
+
+Agenten sköter det återkommande. En människa kommer in när det faktiskt behövs ett beslut.
+
+Klicka vidare och svara på fem frågor. Då kan vi se vilket arbete som är värt att flytta från teamet först.

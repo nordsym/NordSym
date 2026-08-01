@@ -1,6 +1,6 @@
 # NordSym Meta acquisition launch pack
 
-Status: Draft for Gustav approval
+Status: Superseded by `meta-launch-ready-packet-2026-08-01.md`. Do not use for launch.
 Date: 2026-07-27
 Authority: Recording preparation and zero-spend experiment design only
 Destination: https://nordsym.com/ai-i-drift/

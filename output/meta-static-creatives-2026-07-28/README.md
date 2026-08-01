@@ -4,17 +4,17 @@ Local review package. Nothing in this directory is deployed or uploaded to Meta.
 
 ## Concepts
 
-1. `C01` tests production-readiness classification.
-2. `C02` tests recognition of hidden senior intervention.
-3. `C03` tests whether the operating-layer map makes NordSym's responsibility concrete.
+1. `C01` tests recognition of recurring work that should already be off the team.
+2. `C02` asks which paid recurring work the first AI agent should take over.
+3. `C03` explains the mechanism: NordSym builds and operates the agent inside the client's tech stack.
 
 All three lead to the approved sparse video bridge:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-At review time on 2026-07-28 this intended route returns `404`. Do not use it as
-an ad destination until NordSym.com has implemented it and a live readback returns
-`200`. The current `/ai-i-drift/` route returns `200`.
+The bridge route is production-inert and must not be used as an ad destination
+until the coordinated positioning release, replacement video and remaining Meta
+launch gates have passed.
 
 Once implemented, the bridge continues to the existing qualification flow and booking.
 
@@ -52,8 +52,9 @@ render.mjs
 
 No slideshow or carousel is included in this first-round package.
 
-## Freeze
+## Positioning cutover
 
-The static pack is frozen after Gustav's 2026-07-28 review. Treat the three
-concepts as separate ads for later performance testing. Do not expand or revise
-them without new evidence or explicit operator direction.
+Gustav authorized this bounded rewrite on 2026-08-01 so the Meta material matches
+NordSym's outcome-first public positioning. `C02` is the recommended lead. `C01`
+and `C03` are reserve cells under the same commercial promise, not separate
+funnels. Do not upload or activate them without separate exact approval.

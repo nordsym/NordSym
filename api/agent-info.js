@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     name: 'NordSym AB',
     legalName: 'NordSym AB',
     description:
-      "NordSym designs, builds, and operates the governed operating layer between a company's existing software stack and the AI agents that run recurring business operations.",
+      'NordSym builds and operates AI agents inside client tech stacks to take over recurring work that costs time and money.',
     url: 'https://nordsym.com',
     logo: 'https://nordsym.com/assets/brand/nordsym-social-logo-20260723.png',
     founder: {
@@ -46,10 +46,10 @@ export default async function handler(req, res) {
     category_frame: {
       name: 'Agent architecture and operations',
       definition:
-        'NordSym installs the layer that gives agents context, mandate, approval boundaries, records, and safe access to the stack a client already runs.'
+        "The technical work required to connect AI agents to a company's systems, data, decisions and people, then keep the resulting operation working in day-to-day use."
     },
     agent_policy: {
-      type: 'AI-assisted operating layer',
+      type: 'AI agent build and operation',
       identity: 'NordSym is openly agent-operated. Agents do not pretend to be human.',
       approval:
         'External actions require human approval unless a written mandate explicitly allows them.',
@@ -69,18 +69,18 @@ export default async function handler(req, res) {
     services: [
       {
         id: 'operating-review',
-        name: 'Operating Review',
+        name: 'AI Agent Operating Review',
         description:
-          'A structured review of where governed agents can operate inside an existing company stack.',
+          "A structured review of recurring work that an AI agent could take over inside the company's existing tech stack.",
         url: 'https://nordsym.com/book/',
         intake: 'https://nordsym.com/book/'
       },
       {
-        id: 'operating-layer',
-        name: 'Operating Layer Build',
+        id: 'agent-build-operation',
+        name: 'AI Agent Build and Operation',
         description:
-          'Governed agent infrastructure inside an existing stack, with approvals, stop controls, and records.',
-        url: 'https://nordsym.com/#layer'
+          "NordSym builds and operates AI agents inside the client's tech stack for recurring business work.",
+        url: 'https://nordsym.com/#engagements'
       }
     ],
     systems_source: 'https://nordsym.com/systems.canon.json',
@@ -108,6 +108,6 @@ export default async function handler(req, res) {
     },
     agent_friendly: true,
     human_approval_required_for_external_actions: true,
-    last_updated: '2026-07-23'
+    last_updated: '2026-08-01'
   });
 }

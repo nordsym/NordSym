@@ -3,7 +3,7 @@
   "domain": "nordsym.com",
   "mcp_available": false,
   "status": "no_direct_public_mcp_for_nordsym_com",
-  "description": "NordSym.com is the public company and intake surface for NordSym's agent architecture and operations work. It does not expose a direct public MCP server.",
+  "description": "NordSym.com is the public company and intake surface for NordSym's AI agent build and operation work. It does not expose a direct public MCP server.",
   "related_mcp_surfaces": [
     {
       "name": "APIClaw",
@@ -14,8 +14,8 @@
       "role": "API and provider gateway for agents"
     }
   ],
-  "public_positioning": "The operating layer between your stack and the agents that run it.",
-  "last_updated": "2026-07-23",
+  "public_positioning": "AI agents built and operated inside your tech stack to take recurring work off your team.",
+  "last_updated": "2026-08-01",
   "discovery": {
     "llms_txt": "https://nordsym.com/llms.txt",
     "agents_md": "https://nordsym.com/agents.md",

@@ -4,7 +4,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Campaign
 
-- Name: `NS | AI i drift | Website leads | V1`
+- Name: `NS | Recurring work | Website leads | V1`
 - Buying type: Auction
 - Objective: Leads
 - Conversion location: Website
@@ -13,11 +13,11 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Ad set
 
-- Name: `SE | Broad | AI drift | V1`
+- Name: `SE | Broad | Recurring work | V1`
 - Country: Sweden
 - Age: 25+
 - Language: Swedish
-- Audience: Broad. Meta cannot natively encode "AI initiative requires babysitting" or verified operational mandate. The creative and five-question qualification must self-select the buyer.
+- Audience: Broad. Meta cannot natively encode which companies have expensive recurring work suitable for an AI agent. The creative and five-question qualification must self-select the buyer.
 - Placements: Advantage+ placements, with the 4:5 feed asset and 1:1 fallback mapped explicitly. Do not publish cropped story or reel variants without review.
 - Performance goal: Maximize number of conversions
 - Dataset: Not selected
@@ -29,17 +29,17 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Ad
 
-- Name: `C02 | Vem tar över när agenten fastnar | Static | V1`
+- Name: `C02 | Vad ska en AI-agent ta över | Static | V1`
 - Identity: NordSym Facebook Page and `@nordsymab`, pending final readback in Ads Manager
 - Format: Single image
 - Primary text:
 
-  `Om en senior medarbetare måste upptäcka och lösa varje avvikelse är arbetet fortfarande manuellt. Ni har bara flyttat det till personen som måste ta över.`
+  `Vilket återkommande arbete betalar ni människor för att göra varje vecka?`
 
-  `NordSym kartlägger hur arbetet, systemen och besluten hänger ihop och visar vad som krävs för att agenten ska fungera i vardagen.`
+  `NordSym bygger och driver AI-agenter i er tech stack som samlar in underlag, uppdaterar system och följer upp arbetet. Börja med att hitta den första uppgiften som är värd att flytta från teamet.`
 
-- Headline: `Vem tar över när agenten fastnar?`
-- Description: `Se vad som saknas`
+- Headline: `Vad ska en AI-agent ta över?`
+- Description: `Hitta första arbetsflödet`
 - CTA: `Läs mer`
 - Destination:
 
@@ -66,8 +66,8 @@ Do not create this campaign until the bridge route is live, the final video is a
 Stop delivery before the ceiling if the funnel or measurement fails, the ad-to-page
 message breaks, or spend produces clicks without any completed qualification after
 enough landing-page sessions to inspect behavior. Continue only when tracked
-completions include at least one qualified-opportunity signal and the resulting
-conversation is commercially plausible. A booking alone is not success.
+completions describe recurring work with a real owner, multiple-system context and
+commercial value. A booking alone is not success.
 
 ## Zero-spend state
 

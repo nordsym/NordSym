@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-23",
+  "last_updated": "2026-08-01",
   "public_boundary": "This file lists public systems that demonstrate NordSym's operating range. Most client operations remain private by design.",
   "capability_groups": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "id": "operational-interfaces-attribution",
-      "label": "Operational interfaces and attribution",
+      "label": "Operational proof and attribution",
       "systems": ["agent-badge"]
     },
     {
@@ -38,8 +38,8 @@
       "tier": "T2",
       "role": "public_proof_infrastructure",
       "url": null,
-      "one_liner": "Identity and receipts for agent work: who acted, under what mandate, and what record proves it.",
-      "public_note": "No standalone public frontend is claimed. Public verification surfaces should be linked only when deliberately exposed."
+      "one_liner": "Optional cross-system attestation for selected agent outcomes: who acted, under what scope and what evidence supports the result.",
+      "public_note": "Agent Badge is a bounded proof component, not NordSym's primary offer or a standalone product claim."
     },
     {
       "id": "skillsync",

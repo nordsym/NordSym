@@ -2,7 +2,7 @@
   "id": "/",
   "name": "NordSym",
   "short_name": "NordSym",
-  "description": "Agent architecture & operations",
+  "description": "AI agents inside your tech stack",
   "start_url": "/",
   "scope": "/",
   "display": "browser",

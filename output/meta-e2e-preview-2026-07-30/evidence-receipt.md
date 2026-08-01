@@ -1,33 +1,42 @@
 # Meta E2E preview evidence receipt
 
-Verified 2026-07-30 against current repository state and live read-only Meta Ads connector state.
+Historical verification from 2026-07-30. Superseded for creative and funnel copy
+by `../meta-launch-ready-packet-2026-08-01.md`.
 
-## READY WITHOUT GUSTAV
+## Still valid
 
-- C02 is rendered in a mobile Meta-feed-style preview with exact primary text, headline, description and `Läs mer` CTA.
+- The production-inert preview architecture remains valid.
 - The image and CTA open the local `/ai-i-drift/sa-fungerar-det/` bridge with sanitized campaign parameters.
-- The bridge loads the final 47-second, 1600x900 H.264 ElevenLabs V2 asset with the correct NordSym logo, Swedish captions and no preview label.
+- UTM preservation, qualification, booking and external-call blocking remain valid.
 - The bridge CTA preserves `utm_source`, `utm_medium`, `utm_campaign`, `utm_id` and `utm_content`, then opens the five-question qualification.
 - A complete qualified path reaches the current Swedish booking experience.
 - All form completions can book. `qualification_signal` separates a form completion from a qualified-opportunity signal. Commercial interest remains a later NordSym Sales decision.
 - The local preview server returns deterministic availability, keeps one slot visibly occupied and blocks booking submission.
 - The preview server CSP blocks external scripts and connections. The walkthrough does not send PostHog, Meta, n8n or booking requests.
-- Mobile screenshots cover the ad, bridge, playing animatic, qualification, availability and final booking form.
+- The Meta account readback and launch-only gates below remain unchanged.
+
+## Superseded evidence
+
+The screenshots, C02 copy, V2 ElevenLabs asset and animatic show the prior
+demo-and-exception-led positioning. They are historical evidence only and must
+not be used as launch approval for the coordinated positioning release.
 
 ## NEEDS GUSTAV NOW
 
-None for the website release. Meta dataset/token, payment and activation remain
-separate human-authorized gates.
+Record the founder bridge video from
+`../../assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`, or explicitly
+authorize a separate voiceover production. The final MP4, captions and HTML
+transcript must match before the coordinated site release.
 
 ## LAUNCH-ONLY LATER
 
-Optional founder recording specification:
+Founder recording specification:
 
-- Script: the three-paragraph transcript present on the bridge page.
-- Framing: horizontal 16:9, chest-up, eye level, simple NordSym home-office background.
+- Script: `../../assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`.
+- Framing: vertical 9:16 master, chest-up, eye level, simple NordSym home-office background.
 - Duration: 45 to 60 seconds.
-- Delivery: calm, direct, one thought per sentence. No presenter voice.
-- Export: H.264 MP4, 1920x1080, clean speech, no music required.
+- Delivery: calm, direct, one thought per sentence.
+- Export: H.264 MP4, minimum 1080x1920, clean speech, no music required.
 - Acceptance check: natural Swedish, intelligible on a phone, transcript and spoken promise match, no unsupported outcome or security claim.
 
 Launch-only gates:
