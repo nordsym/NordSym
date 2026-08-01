@@ -30,7 +30,7 @@ assert(agentsMarkdown.includes("builds and operates AI agents inside"), "agents.
 assert(agentsJson.primary_promise === "AI agents that take recurring work off the team.", "agents.json primary promise has drifted.");
 assert(agentInfo.description?.includes("builds and operates AI agents inside"), "agent-info.json description has drifted.");
 assert(apiAgentInfo.includes("builds and operates AI agents inside"), "api/agent-info.js description has drifted.");
-assert(paidLanding.includes("Vilket återkommande arbete vill ni få bort från teamet?"), "Paid qualification framing has drifted.");
+assert(paidLanding.includes("Vad ska en AI-agent ta över först?"), "Paid qualification framing has drifted.");
 assert(paidBridge.includes("Se hur en AI-agent kan ta återkommande arbete från teamet."), "Paid bridge headline has drifted.");
 assert(paidBridge.includes("Hitta arbetet en agent kan ta över"), "Paid bridge CTA has drifted.");
 assert(staticCopy.includes("Vad ska en AI-agent ta över?"), "Lead static headline has drifted.");
