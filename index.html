@@ -84,7 +84,17 @@
   .op-log span{display:flex;align-items:center;gap:7px;white-space:nowrap;}
   .op-log em{font-style:normal;color:#A8432B;}
   .op-log b{font-weight:400;color:rgba(33,29,23,.28);}
-  #engagements button.scp4 + div:not([hidden]){display:grid;grid-template-columns:1.4fr 1fr;gap:40px;padding:0 4px 34px;font-size:16px;line-height:1.6;color:#4B463C;}
+  .engagements-v2{padding:104px 40px 112px;background:#EDE7DA;border-top:1px solid rgba(33,29,23,.1);}
+  .engagements-head{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:end;}
+  .engagements-head>p{font-size:16px;line-height:1.65;color:#4B463C;max-width:40ch;margin:0;}
+  .engagement-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;border-top:1px solid rgba(33,29,23,.24);border-bottom:1px solid rgba(33,29,23,.18);}
+  .engagement-step{position:relative;padding:34px 30px 38px 0;min-height:250px;}
+  .engagement-step:not(:last-child){border-right:1px solid rgba(33,29,23,.16);margin-right:30px;}
+  .engagement-step::before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;background:#A8432B;transform:rotate(45deg);}
+  .engagement-step__num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A8432B;margin-bottom:34px;}
+  .engagement-step h3{font-family:Newsreader,serif;font-size:clamp(25px,2.5vw,34px);font-weight:400;line-height:1.08;letter-spacing:-.02em;margin:0;max-width:12ch;}
+  .engagement-step p{font-size:15.5px;line-height:1.62;color:#4B463C;margin:20px 0 0;max-width:32ch;}
+  .engagement-step__meta{display:block;margin-top:28px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:#6A6355;}
   #faq button.scp4{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:none;border:0;cursor:pointer;padding:24px 2px;text-align:left;color:#211D17;font-family:inherit;transition:color .22s;}
   #faq button.scp4>span:first-child{font-size:18px;font-weight:500;letter-spacing:-.01em;}
   #faq button.scp4>span:last-child{font-family:'IBM Plex Mono',monospace;font-size:16px;color:#A8432B;flex:0 0 auto;}
@@ -175,7 +185,14 @@
     [style*="padding: 110px 40px"]{padding-top:66px!important;padding-bottom:66px!important;}
     [style*="padding: 120px 40px"]{padding-top:70px!important;padding-bottom:70px!important;}
     [style*="grid-template-columns: 1.02fr 0.98fr"]{grid-template-columns:1fr!important;gap:22px!important;}
-    #engagements button.scp4 + div:not([hidden]){grid-template-columns:1fr;gap:18px;}
+    .engagements-v2{padding:72px 18px 78px!important;}
+    .engagements-head{grid-template-columns:1fr;gap:22px;}
+    .engagement-path{grid-template-columns:1fr;margin-top:40px;border-bottom:0;border-left:1px solid rgba(33,29,23,.18);border-top:0;}
+    .engagement-step{min-height:0;padding:4px 0 36px 28px;}
+    .engagement-step:not(:last-child){border-right:0;border-bottom:1px solid rgba(33,29,23,.14);margin:0 0 34px;}
+    .engagement-step::before{top:4px;left:-5px;}
+    .engagement-step__num{margin-bottom:18px;}
+    .engagement-step h3{max-width:none;}
     [style*="grid-template-columns: 70px 1fr 1.4fr"]{grid-template-columns:1fr!important;gap:6px!important;align-items:start!important;}
     [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr 1fr!important;}
     [style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:36px!important;}
@@ -295,7 +312,7 @@
       <a href="#layer" style="color: rgb(90, 83, 71);">How it works</a>
       <a href="#operate" style="color: rgb(90, 83, 71);">What agents handle</a>
       <a href="#receipt" style="color: rgb(90, 83, 71);">Proof</a>
-      <a href="#engagements" style="color: rgb(90, 83, 71);">Ways to work</a>
+      <a href="#engagements" style="color: rgb(90, 83, 71);">How we start</a>
     </div>
     <a href="/book/" class="scp0" style="display: inline-flex; align-items: center; gap: 8px; background: rgb(33, 29, 23); color: rgb(243, 238, 228); font-size: 13.5px; font-weight: 500; padding: 9px 17px; border-radius: 2px; transition: background 0.2s;">Find the work</a>
   </div></nav><header id="top" style="position: relative; padding: 80px 40px 60px; overflow: hidden;">
@@ -456,17 +473,17 @@
   </div></section>
   <section id="operate" class="operate-v2">
     <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;">
-      <div><div class="section-kicker">What AI agents can handle</div><h2 class="section-title" style="max-width:18ch;">Recurring work that should not need constant human attention.</h2></div>
-      <p style="font-size:15.5px;line-height:1.6;color:#4B463C;max-width:34ch;margin:0;">NordSym builds the agent around the real systems, decisions and exceptions behind the work, then operates it as those systems and requirements change.</p>
+      <div><div class="section-kicker">Work hiding in plain sight</div><h2 class="section-title" style="max-width:20ch;">Look for the work people repeat, chase, check or rescue every week.</h2></div>
+      <p style="font-size:15.5px;line-height:1.6;color:#4B463C;max-width:37ch;margin:0;">That is where an AI agent can create real capacity. NordSym connects the agent to the systems where the work already happens and keeps it working as the business changes.</p>
     </div>
     <div class="ops-deck">
       <div class="op-list">
-        <button class="op-row is-active" aria-pressed="true" data-source="CRM + SIGNALS" data-agent="ROUTE + ENRICH" data-output="PIPELINE RECORD"><span class="op-row__num">01</span><span><span class="op-row__title">Revenue operations</span><span class="op-row__copy">Qualify and route leads, run follow-up, update records and keep the pipeline moving inside your CRM.</span></span></button>
-        <button class="op-row" aria-pressed="false" data-source="CMS + BRIEF" data-agent="DRAFT + SCHEDULE" data-output="PUBLISHED RECORD"><span class="op-row__num">02</span><span><span class="op-row__title">Publishing &amp; content</span><span class="op-row__copy">Prepare, approve, schedule and distribute content across your CMS and channels.</span></span></button>
-        <button class="op-row" aria-pressed="false" data-source="INBOX + POLICY" data-agent="TRIAGE + RESOLVE" data-output="CASE RECORD"><span class="op-row__num">03</span><span><span class="op-row__title">Customer support</span><span class="op-row__copy">Triage incoming requests, resolve routine cases and route exceptions to the right person.</span></span></button>
-        <button class="op-row" aria-pressed="false" data-source="LEDGER + TERMS" data-agent="RECONCILE + DUN" data-output="FINANCE RECORD"><span class="op-row__num">04</span><span><span class="op-row__title">Finance &amp; billing</span><span class="op-row__copy">Reconcile records, prepare invoices and follow up on outstanding items, with human approval where required.</span></span></button>
-        <button class="op-row" aria-pressed="false" data-source="DATA + CADENCE" data-agent="ASSEMBLE + CHECK" data-output="REPORT RECORD"><span class="op-row__num">05</span><span><span class="op-row__title">Reporting &amp; analytics</span><span class="op-row__copy">Pull data from the relevant sources, reconcile it and deliver recurring reports on schedule.</span></span></button>
-        <button class="op-row" aria-pressed="false" data-source="RECORDS + RULES" data-agent="DEDUP + NORMALIZE" data-output="CLEAN STATE"><span class="op-row__num">06</span><span><span class="op-row__title">Data hygiene &amp; workflow ops</span><span class="op-row__copy">Detect duplicates, normalize records and keep workflows synchronized across systems.</span></span></button>
+        <button class="op-row is-active" aria-pressed="true" data-source="LEADS + CRM" data-agent="QUALIFY + FOLLOW UP" data-output="UPDATED PIPELINE"><span class="op-row__num">01</span><span><span class="op-row__title">Follow up before leads go cold</span><span class="op-row__copy">Qualify new leads, follow up at the right time and keep outcomes current in the CRM.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="APPROVED CONTENT" data-agent="PREPARE + PUBLISH" data-output="LIVE CONTENT"><span class="op-row__num">02</span><span><span class="op-row__title">Publish without manual handoffs</span><span class="op-row__copy">Prepare approved content, publish it across the right channels and return the live result.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="REQUEST + POLICY" data-agent="TRIAGE + RESOLVE" data-output="RESOLVED CASE"><span class="op-row__num">03</span><span><span class="op-row__title">Keep customer requests moving</span><span class="op-row__copy">Route routine requests automatically and involve the right person when a real decision is needed.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="RECORDS + TERMS" data-agent="RECONCILE + FOLLOW UP" data-output="UPDATED LEDGER"><span class="op-row__num">04</span><span><span class="op-row__title">Close finance follow-ups</span><span class="op-row__copy">Reconcile records, prepare invoices and follow up on missing information or payment.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="SOURCES + SCHEDULE" data-agent="ASSEMBLE + CHECK" data-output="DELIVERED REPORT"><span class="op-row__num">05</span><span><span class="op-row__title">Build recurring reports</span><span class="op-row__copy">Collect data from the right systems, check it and deliver the report on schedule.</span></span></button>
+        <button class="op-row" aria-pressed="false" data-source="RECORDS + RULES" data-agent="CLEAN + SYNC" data-output="RELIABLE DATA"><span class="op-row__num">06</span><span><span class="op-row__title">Keep systems in sync</span><span class="op-row__copy">Find duplicates, correct records and keep shared data current across the tech stack.</span></span></button>
       </div>
       <div class="op-stage">
         <svg viewBox="0 0 680 520" role="img" aria-label="Active workflow handled by an AI agent inside the client's tech stack">
@@ -474,22 +491,22 @@
             <polygon points="96,344 192,392 192,414 96,366" fill="#E8E0D1" stroke="#6A6355"/>
             <polygon points="192,392 340,318 340,340 192,414" fill="#D8CFBF" stroke="#6A6355"/>
             <polygon points="96,344 244,270 340,318 192,392" fill="#F3EEE4" stroke="#6A6355"/>
-            <g fill="none" stroke="#6A6355" stroke-width="1"><path d="M112 336 L78 320 L40 320"/><rect x="37" y="317" width="6" height="6" fill="#F3EEE4"/></g><text x="40" y="309" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#4B463C">01 · SYSTEM INPUT</text>
-            <text id="op-source-label" x="170" y="340" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#3A352C">CRM + SIGNALS</text>
+            <g fill="none" stroke="#6A6355" stroke-width="1"><path d="M112 336 L78 320 L40 320"/><rect x="37" y="317" width="6" height="6" fill="#F3EEE4"/></g><text x="40" y="309" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#4B463C">01 · WORK IN</text>
+            <text id="op-source-label" x="170" y="340" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#3A352C">LEADS + CRM</text>
           </g>
           <g class="op-plane">
             <polygon points="244,270 340,318 340,340 244,292" fill="rgba(168,67,43,.16)" stroke="#A8432B"/>
             <polygon points="340,318 488,244 488,266 340,340" fill="rgba(138,51,31,.28)" stroke="#A8432B"/>
             <polygon points="244,270 392,196 488,244 340,318" fill="rgba(168,67,43,.12)" stroke="#A8432B" stroke-width="1.4"/>
-            <text id="op-agent-label" x="366" y="250" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#8A331F">ROUTE + ENRICH</text>
+            <text id="op-agent-label" x="366" y="250" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#8A331F">QUALIFY + FOLLOW UP</text>
             <text x="366" y="272" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" letter-spacing="1.4" fill="#A8432B">AGENT AT WORK</text>
           </g>
           <g class="op-plane">
             <polygon points="392,196 488,244 488,266 392,218" fill="#2C2721" stroke="#211D17"/>
             <polygon points="488,244 636,170 636,192 488,266" fill="#15120F" stroke="#211D17"/>
             <polygon points="392,196 540,122 636,170 488,244" fill="#211D17" stroke="#211D17"/>
-            <g fill="none" stroke="#A8432B" stroke-width="1"><path d="M580 142 L614 120 L650 120"/><rect x="647" y="117" width="6" height="6" fill="#A8432B" stroke="none"/></g><text x="650" y="109" text-anchor="end" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#8A331F">03 · RECORDED OUTPUT</text>
-            <text id="op-output-label" x="514" y="184" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#F3EEE4">PIPELINE RECORD</text>
+            <g fill="none" stroke="#A8432B" stroke-width="1"><path d="M580 142 L614 120 L650 120"/><rect x="647" y="117" width="6" height="6" fill="#A8432B" stroke="none"/></g><text x="650" y="109" text-anchor="end" font-family="IBM Plex Mono" font-size="9" font-weight="500" letter-spacing=".75" fill="#8A331F">03 · RESULT OUT</text>
+            <text id="op-output-label" x="514" y="184" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#F3EEE4">UPDATED PIPELINE</text>
           </g>
           <path class="op-signal" d="M192 344 366 258 514 180" fill="none" stroke="#A8432B" stroke-width="1.5"/>
           <circle class="op-packet" cx="340" cy="260" r="5" fill="#A8432B"/>
@@ -667,43 +684,31 @@
         </div>
       </div>
     </div>
-  </div></section><section id="engagements" style="padding: 96px 40px; background: rgb(237, 231, 218); border-top: 1px solid rgba(33, 29, 23, 0.1);">
+  </div></section><section id="engagements" class="engagements-v2">
   <div style="max-width: 1180px; margin: 0px auto;">
-    <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(168, 67, 43); margin-bottom: 16px;">Ways to work together</div>
-    <h2 style="font-family: Newsreader, serif; font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; margin: 0px 0px 44px; max-width: 18ch;">Start with one workflow. Expand from evidence.</h2>
-
-    <div style="border-top: 1px solid rgba(33, 29, 23, 0.2);">
-
-      <div style="border-bottom: 1px solid rgba(33, 29, 23, 0.2);">
-        <button class="scp4" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; padding: 30px 4px; text-align: left; color: rgb(33, 29, 23); font-family: inherit; transition: color 0.22s;">
-          <div style="display: flex; align-items: baseline; gap: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">A</span><span style="font-family: Newsreader, serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: -0.02em;">Build the first agent</span></div>
-          <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 14px; color: rgb(168, 67, 43);">−</span>
-        </button>
-
-          <div hidden style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding: 0px 4px 34px;">
-            <p style="font-size: 16px; line-height: 1.6; color: rgb(75, 70, 60); margin: 0px;">Choose one recurring workflow with clear value. NordSym maps the work, builds the AI agent inside your tech stack and operates it with you.</p>
-            <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; color: rgb(90, 83, 71); line-height: 2;"><div>FOCUS - one recurring workflow</div><div>MODE - build + operate</div><div>RESULT - work moves without constant chasing</div></div>
-          </div>
-
-      </div>
-
-      <div style="border-bottom: 1px solid rgba(33, 29, 23, 0.2);">
-        <button class="scp4" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; padding: 30px 4px; text-align: left; color: rgb(33, 29, 23); font-family: inherit; transition: color 0.22s;">
-          <div style="display: flex; align-items: baseline; gap: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">B</span><span style="font-family: Newsreader, serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: -0.02em;">Take over an existing agent</span></div>
-          <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 14px; color: rgb(168, 67, 43);">+</span>
-        </button>
-        <div hidden><p style="font-size:16px;line-height:1.6;color:#4B463C;margin:0;">NordSym takes responsibility for an agent that still needs too much help. We connect what is missing, handle changes and improve it from real work.</p><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A5347;line-height:2;"><div>FOCUS - an existing agent</div><div>MODE - repair + ongoing operation</div><div>RESULT - less work returns to the team</div></div></div>
-
-      </div>
-
-      <div style="border-bottom: 1px solid rgba(33, 29, 23, 0.2);">
-        <button class="scp4" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; cursor: pointer; padding: 30px 4px; text-align: left; color: rgb(33, 29, 23); font-family: inherit; transition: color 0.22s;">
-          <div style="display: flex; align-items: baseline; gap: 26px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: rgb(168, 67, 43);">C</span><span style="font-family: Newsreader, serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: -0.02em;">Expand what agents handle</span></div>
-          <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 14px; color: rgb(168, 67, 43);">+</span>
-        </button>
-        <div hidden><p style="font-size:16px;line-height:1.6;color:#4B463C;margin:0;">Extend a proven agent into adjacent recurring workflows without rebuilding the foundation each time.</p><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A5347;line-height:2;"><div>FOCUS - adjacent workflows</div><div>MODE - staged expansion</div><div>RESULT - more work handled across the stack</div></div></div>
-
-      </div>
+    <div class="engagements-head">
+      <div><div class="section-kicker">How the relationship grows</div><h2 class="section-title" style="max-width:18ch;">Start where the work is already costing you.</h2></div>
+      <p>We can begin with a new workflow or an agent that already exists. NordSym takes responsibility for getting the work running and improving what the agent handles over time.</p>
+    </div>
+    <div class="engagement-path" aria-label="How a NordSym engagement develops">
+      <article class="engagement-step">
+        <div class="engagement-step__num">01 · FIND</div>
+        <h3>Find the right workflow</h3>
+        <p>Identify one recurring workflow with a clear cost or capacity drain. If an agent already exists, find where the work still returns to the team.</p>
+        <span class="engagement-step__meta">New workflow or existing agent</span>
+      </article>
+      <article class="engagement-step">
+        <div class="engagement-step__num">02 · OWN</div>
+        <h3>Build, repair and operate</h3>
+        <p>Connect the agent to the systems, decisions and exceptions behind the work. NordSym remains responsible after launch.</p>
+        <span class="engagement-step__meta">Build plus ongoing operation</span>
+      </article>
+      <article class="engagement-step">
+        <div class="engagement-step__num">03 · EXPAND</div>
+        <h3>Expand from results</h3>
+        <p>Extend the agent into adjacent work once the first workflow produces evidence that the business can use.</p>
+        <span class="engagement-step__meta">More useful work handled over time</span>
+      </article>
     </div>
   </div></section><section id="faq" style="padding: 96px 40px; background: rgb(237, 231, 218); border-top: 1px solid rgba(33, 29, 23, 0.1);">
   <div style="max-width: 1180px; margin: 0px auto; display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 56px; align-items: start;">
@@ -748,7 +753,7 @@
 (function(){
   function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
   ready(function(){
-    ['engagements','faq'].forEach(function(sectionId){
+    ['faq'].forEach(function(sectionId){
       var section=document.getElementById(sectionId);
       if(!section)return;
       var buttons=[].slice.call(section.querySelectorAll('button.scp4'));
