@@ -41,7 +41,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
   `Vill ni veta om ert företag är redo för AI-agenter? Klicka vidare, svara på fem frågor och boka en kartläggning.`
 
 - Headline: `Innan AI-agenter börjar arbeta`
-- Description: `Svara på fem frågor`
+- Description: `Starta kartläggningen`
 - CTA: `Läs mer`
 - Destination:
 

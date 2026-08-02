@@ -53,7 +53,7 @@ frågor och boka en kartläggning.
 
 ### Description
 
-`Svara på fem frågor`
+`Starta kartläggningen`
 
 ### CTA
 
@@ -101,7 +101,7 @@ the first bridge video because that would repeat the ad after click.
 
 ### Headline
 
-`Fem frågor före mötet.`
+`Är ni redo att låta AI-agenter börja arbeta?`
 
 ### Supporting copy
 
@@ -109,7 +109,7 @@ No separate supporting paragraph is shown. The 16:9 video provides the context.
 
 ### CTA
 
-`Svara på fem frågor`
+`Starta kartläggningen`
 
 ### Expectation line
 
