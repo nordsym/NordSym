@@ -11,8 +11,9 @@
 <script>
   (function(){
     var route = new URLSearchParams(window.location.search);
-    if (route.get("lang") === "sv" && route.get("offer") === "ai_i_drift") {
+    if (route.get("offer") === "ai_i_drift") {
       document.documentElement.dataset.bookingVariant = "sv";
+      document.documentElement.lang = "sv";
       window.setTimeout(function(){
         document.documentElement.dataset.bookingReady = "true";
       }, 1500);
@@ -238,7 +239,7 @@
   var PRIVATE_CONTEXT_KEY = "nordsym_ai_i_drift_pre_call_v1";
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
-  var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
+  var paidVariant = params.get("offer") === SUPPORTED_ROUTE.offer;
   var paidFocus = "Kartlägg vad AI-agenterna behöver";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};

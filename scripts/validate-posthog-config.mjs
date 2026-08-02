@@ -71,7 +71,7 @@ if (!acquisitionList) {
 }
 for (const [text, label] of [
   ['var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };', 'paid offer allowlist'],
-  ['var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;', 'exact paid variant gate'],
+  ['var paidVariant = params.get("offer") === SUPPORTED_ROUTE.offer;', 'paid offer variant gate'],
   ['var ACQUISITION_ALLOWED = {', 'exact qualification value allowlist'],
   ['source: ["meta_paid"],', 'paid source allowlist'],
   ['if (paidVariant) {\n    Object.keys(ACQUISITION_ALLOWED)', 'paid-only qualification parsing'],
@@ -167,6 +167,7 @@ for (const [text, label] of [
 
 const bookingMarkup = readFileSync(resolve(root, 'book/index.html'), 'utf8');
 for (const [text, label] of [
+  ['route.get("offer") === "ai_i_drift"', 'paid offer Swedish route gate'],
   ['dataset.bookingVariant = "sv"', 'pre-render Swedish route marker'],
   ['dataset.bookingReady = "true"', 'localized-shell readiness marker'],
   ['var availabilityEndpoint = "https://nordsym.app.n8n.cloud/webhook/availability"', 'calendar availability endpoint'],
