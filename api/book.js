@@ -38,6 +38,22 @@ function isPaidMapping(body) {
     body?.offerKey === 'ai_i_drift';
 }
 
+function bookingBodyForUpstream(body) {
+  if (!isPaidMapping(body)) return body;
+
+  const context = [`Prioriterat återkommande arbete: ${body.preCall.work_description}`];
+  if (body.preCall.consequence_other_detail) {
+    context.push(`Annan konsekvens: ${body.preCall.consequence_other_detail}`);
+  }
+  if (body.notes) context.push(`Övrigt inför mötet: ${body.notes}`);
+
+  return {
+    ...body,
+    notes: context.join('\n'),
+    preCall: undefined
+  };
+}
+
 function requestIp(req) {
   return String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown')
     .split(',')[0]
@@ -149,10 +165,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    const upstreamBody = bookingBodyForUpstream(validation.value);
     const bookingResponse = await fetch(BOOKING_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: serializedBody,
+      body: JSON.stringify(upstreamBody),
       redirect: 'error',
       signal: AbortSignal.timeout(12_000)
     });

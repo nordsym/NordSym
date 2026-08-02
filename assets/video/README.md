@@ -21,8 +21,8 @@ Bridge VTT SHA-256: `80930d8326a534ca8046a570e2586f2c4e0015fcc5aea71cb6e92332534
 Bridge poster SHA-256: `ade7bcf6dc961e0591aecd965d4d48f9d2a41ef564092531fd917ce841e4266a`.
 
 The Meta ad uses the captioned V2 launch derivative. The original FINAL source remains unchanged as history.
-The bridge uses the separate 16:9 Tella recording, its matching VTT, readable
-transcript and authentic poster. The bridge continues the ad by explaining the
+The bridge uses the separate 16:9 Tella recording, its matching VTT and authentic
+poster. No transcript surface is shown on the bridge. The video continues the ad by explaining the
 five questions and 20-minute booking instead of repeating the ad's argument.
 Production deployment follows the NordSym.com release process and its current release authority.
 

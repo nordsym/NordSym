@@ -112,12 +112,26 @@ test('booking boundary rejects unknown, stale and incomplete paid requests', () 
   assert.equal(validateBookingRequest({ ...validBooking, time: '14:15' }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, admin: true }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, preCall: { work_description: '' } }, now).ok, false);
+  const { preCall, ...withoutPreCall } = validBooking;
+  assert.equal(validateBookingRequest(withoutPreCall, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, preCall: { work_description: 'Bra', extra: 'nope' } }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, submittedAt: '2026-07-24T01:00:00Z' }, now).ok, false);
   assert.equal(
     validateBookingRequest({
       ...validBooking,
       acquisition: { ...validBooking.acquisition, mandate: undefined }
+    }, now).ok,
+    false
+  );
+  assert.equal(
+    validateBookingRequest({
+      ...validBooking,
+      acquisition: {
+        ...validBooking.acquisition,
+        systems_count: '1',
+        mandate: 'exploring',
+        qualification_signal: 'prequalified'
+      }
     }, now).ok,
     false
   );
@@ -185,6 +199,11 @@ test('booking proxy emits one bounded Schedule only after a confirmed consented 
     assert.equal(acceptedRes.statusCode, 200);
     assert.deepEqual(acceptedRes.body, { success: true });
     assert.equal(calls.length, 2);
+
+    const bookingOutbound = JSON.parse(calls[0].options.body);
+    assert.equal(bookingOutbound.preCall, undefined);
+    assert.match(bookingOutbound.notes, /Prioriterat återkommande arbete:/);
+    assert.match(bookingOutbound.notes, new RegExp(validBooking.preCall.work_description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
 
     const outbound = JSON.parse(calls[1].options.body);
     assert.equal(outbound.data[0].event_name, 'Schedule');

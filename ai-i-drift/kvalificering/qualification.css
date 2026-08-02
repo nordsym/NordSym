@@ -12,6 +12,12 @@
   filter: brightness(0) invert(1);
 }
 
+.qualification-page .brand:focus-visible,
+.qualification-page .privacy-note a:focus-visible {
+  outline-color: var(--paper);
+  outline-offset: 4px;
+}
+
 .qualification-page .header-note {
   color: rgba(255, 248, 243, 0.72);
 }

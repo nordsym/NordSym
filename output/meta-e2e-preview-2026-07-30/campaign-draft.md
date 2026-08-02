@@ -51,21 +51,21 @@ This specification is inert. It does not authorize campaign creation, payment ch
 - V2 receipt: SHA-256 `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`
 - Immutable source history: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`
 - Delivery: 1080 x 1920 H.264/AAC, 85.631 seconds, 60 fps, baked Swedish captions
-- Bridge media: separate 16:9 Tella derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` with matching Swedish VTT and readable transcript
+- Bridge media: separate 16:9 Tella derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` with matching Swedish VTT and no on-page transcript
 - Meta ad spoken source: `assets/video/meta-founder-ad-v2-script.sv.txt`
 - Bridge spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
 - Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.
 
 ## Construction hold
 
-Do not create this campaign until Gustav visually accepts the local E2E journey, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
+Do not create this campaign until the production release is verified, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, and Gustav approves construction, budget and activation separately. The local E2E journey and payment method are already approved.
 
 ## Decision rules
 
 - `3,000 SEK` is a technical and early creative smoke test. It can reveal broken
   delivery or obvious message rejection, but cannot validate commercial economics.
 - `7,500 SEK` is the recommended first learning tranche. One broad Swedish ad set
-  and C02 as the primary creative preserve enough concentration to evaluate whether
+  and V01 founder video as the primary creative preserve enough concentration to evaluate whether
   the message produces qualified conversations.
 - `15,000 SEK` is held until the first tranche produces a real commercially interesting
   and meeting-quality signal. It is not justified before tracking and payment are

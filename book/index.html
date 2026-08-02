@@ -651,12 +651,21 @@
         if (request !== availabilityRequest) return;
         if (!raw) throw new Error("Availability returned an empty response");
         var result = JSON.parse(raw);
+        var timePattern = paidVariant
+          ? /^(?:0[9]|1[0-7]):(?:00|20|40)$/
+          : /^(?:0[9]|1[0-8]):(?:00|15|30|45)$/;
         var times = Array.isArray(result.offered) ? result.offered : [];
         var busy = Array.isArray(result.busy) ? result.busy : [];
         var held = Array.isArray(result.held) ? result.held : [];
         var capped = result.capped === true;
         if (result.durationMinutes !== 20) throw new Error("Availability duration mismatch");
         if (!times.length) throw new Error("Availability returned no offered times");
+        if (![times, busy, held].every(function(list){
+          return list.every(function(time){ return typeof time === "string" && timePattern.test(time); });
+        })) throw new Error("Availability returned an invalid time");
+        if (!busy.concat(held).every(function(time){ return times.indexOf(time) !== -1; })) {
+          throw new Error("Availability returned an unknown blocked time");
+        }
         panel.innerHTML = '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
           + '<h3>'+(paidVariant ? 'Välj en tid' : 'Choose a time')+'</h3>'
           + '<p class="availability-date">'+text(displayLongDate(date))+'</p>'
@@ -667,13 +676,14 @@
             var capacityHeld = held.indexOf(time) !== -1;
             var unavailable = calendarBusy || capacityHeld;
             var selected = state.time === time;
-            return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+time+'"'
+            var safeTime = text(time);
+            return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+safeTime+'"'
               +(unavailable ? ' disabled' : '')
-              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+time+(capacityHeld
+              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+safeTime+(capacityHeld
                 ? (paidVariant ? ', reserverad' : ', reserved')
                 : unavailable
                   ? (paidVariant ? ', upptagen' : ', unavailable')
-                  : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+time+'</strong>'
+                  : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+safeTime+'</strong>'
               +(unavailable ? '<span>'+(capped
                 ? (paidVariant ? 'Fullbokad' : 'Full')
                 : capacityHeld
@@ -822,6 +832,10 @@
 
   function renderConfirmed(ok) {
     step = 4;
+    if (ok && paidVariant) {
+      try { window.sessionStorage.removeItem(PRIVATE_CONTEXT_KEY); } catch (storageError) {}
+      preCallContext = {};
+    }
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;justify-content:center;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,3.8vw,40px);letter-spacing:-.02em;margin:0 0 12px;">'+text(ok ? copy.sentHeading : copy.failedHeading)+'</h2>'
       + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+text(ok ? copy.sentDescription : copy.fallback)+'</p>'
@@ -900,6 +914,10 @@
   back.addEventListener("click", function(){
     if (step === 1) return;
     if (step === 4) {
+      if (paidVariant) {
+        try { window.sessionStorage.removeItem(PRIVATE_CONTEXT_KEY); } catch (storageError) {}
+        preCallContext = {};
+      }
       next.style.display = "";
       back.textContent = copy.back;
       state = initialState();

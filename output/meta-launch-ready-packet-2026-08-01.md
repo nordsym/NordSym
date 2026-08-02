@@ -1,6 +1,6 @@
 # NordSym Meta launch packet
 
-Status: Meta ad creative approved. Separate 16:9 bridge media is locally bound and awaiting Gustav's visual E2E acceptance. No Meta upload, activation or spend.
+Status: Founder-approved paid funnel is release-authorized for NordSym.com production. No Meta upload, activation or spend.
 Updated: 2026-08-02
 
 ## Commercial direction
@@ -32,7 +32,7 @@ The intended launch route is:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The bridge CTA continues to `/ai-i-drift/#kvalificering` while preserving the
+The bridge CTA continues to `/ai-i-drift/kvalificering/` while preserving the
 approved UTM fields.
 
 ## Lead creative: founder video V01
@@ -101,11 +101,11 @@ the first bridge video because that would repeat the ad after click.
 
 ### Headline
 
-`Fem frågor. Sedan tar vi nästa steg.`
+`Fem frågor före mötet.`
 
 ### Supporting copy
 
-`Gustav förklarar vad frågorna handlar om och hur det efterföljande 20-minutersmötet går till.`
+No separate supporting paragraph is shown. The 16:9 video provides the context.
 
 ### CTA
 
@@ -113,24 +113,26 @@ the first bridge video because that would repeat the ad after click.
 
 ### Expectation line
 
-`Fem frågor före ett 20-minutersmöte`
+`Därefter väljer ni en tid för ett 20-minutersmöte.`
 
-The bridge candidate carries Gustav's separate 16:9 Tella recording, matching
-Swedish captions timed from the actual audio and a readable exact transcript.
+The bridge carries Gustav's separate 16:9 Tella recording and matching Swedish
+captions timed from the actual audio. No transcript surface is shown on-page.
 It continues from the ad, explains the five questions and 20-minute booking, and
-does not repeat the ad's argument. The existing funnel structure remains. The
-public production route remains unchanged until visual acceptance and a separate
-release decision.
+does not repeat the ad's argument. The complete journey has founder visual
+acceptance and is authorized for a production-inert website release.
 
 ## Qualification contract
 
-The qualification page must lead with:
+The dedicated qualification route contains exactly five primary questions:
 
-`Vilket återkommande arbete vill ni få bort från teamet?`
+1. The recurring work the buyer wants an agent to take over, in one or two sentences.
+2. The consequence today, as bounded multi-select with conditional `Annat` detail.
+3. Where the required information currently lives, as bounded multi-select.
+4. How many systems the work touches.
+5. How close the company is to a decision to proceed.
 
-The existing five categorical questions remain because they establish company
-size, current state, blocker, system count and mandate without collecting names
-or free text. The CTA remains `Välj en tid` after completion.
+The CTA is `Gå vidare till tider`. Free text stays out of URLs and analytics,
+and is forwarded only as bounded meeting context after server validation.
 
 A completed form is not automatically a qualified commercial opportunity. The
 commercially interesting state requires recurring work with meaningful cost, a
@@ -214,8 +216,7 @@ build-and-operate relationship.
 
 - Gustav explicitly approves assigning Page `666511603221872` and
   `@nordsymab` as connected resources to ad account `1017896054501692`.
-- Gustav visually accepts the complete local journey from ad context through the
-  16:9 bridge, CTA, five questions and 20-minute booking.
+- Complete local journey visually accepted by Gustav on 2026-08-02.
 - The measurement candidate is production-deployed with the final media, then
   PageView and Lead are confirmed individually in Test Events. Schedule is
   confirmed after the first genuine consented booking.
