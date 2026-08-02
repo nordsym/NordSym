@@ -8,13 +8,12 @@ Local review package. Nothing in this directory is deployed or uploaded to Meta.
 2. `C02` asks which paid recurring work the first AI agent should take over.
 3. `C03` explains the mechanism: NordSym builds and operates the agent inside the client's tech stack.
 
-All three lead to the approved sparse video bridge:
+All three are intended to lead to the sparse video bridge route:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The bridge is live and continues to the existing qualification flow and
-booking. It remains production-inert as an acquisition route because no Meta
-campaign is active and measurement is disabled pending dataset and token.
+The route continues through the separate 16:9 Tella bridge recording to the
+existing qualification flow and 20-minute booking. It remains production-inert.
 
 ## Editable sources
 

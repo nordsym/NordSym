@@ -4,7 +4,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Campaign
 
-- Name: `NS | Recurring work | Website leads | V1`
+- Name: `NS | AI agents | Website leads | V1`
 - Buying type: Auction
 - Objective: Leads
 - Conversion location: Website
@@ -13,7 +13,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Ad set
 
-- Name: `SE | Broad | Recurring work | V1`
+- Name: `SE | Broad | AI agents | V1`
 - Country: Sweden
 - Age: 25+
 - Language: Swedish
@@ -27,39 +27,47 @@ This specification is inert. It does not authorize campaign creation, payment ch
 - Learning-tranche ceiling: `7,500 SEK`
 - Budget status: Not entered. Separate exact approval required.
 
-## Ad
+## Lead ad
 
-- Name: `C02 | Vad ska en AI-agent ta över | Static | V1`
+- Name: `V01 | Innan AI-agenter börjar arbeta | Founder video | V1`
 - Identity: NordSym Facebook Page and `@nordsymab`, pending final readback in Ads Manager
-- Format: Single image
+- Format: Single video
 - Primary text:
 
-  `Vilket återkommande arbete betalar ni människor för att göra varje vecka?`
+  `Ska AI-agenter börja arbeta hos er? Gör inte det här misstaget.`
 
-  `NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid eller pengar.`
+  `AI-agenter kan utföra återkommande arbete i systemen ni redan använder. Men först behöver informationen vara samlad, aktuell och tydlig.`
 
-- Headline: `Vad ska en AI-agent ta över?`
-- Description: `Se hur arbetet flyttas`
+  `Vill ni veta om ert företag är redo för AI-agenter? Klicka vidare, svara på fem frågor och boka en kartläggning.`
+
+- Headline: `Innan AI-agenter börjar arbeta`
+- Description: `Svara på fem frågor`
 - CTA: `Läs mer`
 - Destination:
 
-  `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=c02_static`
+  `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=founder_video_v1`
 
-- Feed asset: `c02-forsta-agenten-1080x1350.png`
-- Square fallback: `c02-forsta-agenten-1080x1080.png`
+- Meta video asset: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-LAUNCH-V2.mp4`
+- V2 receipt: SHA-256 `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`
+- Immutable source history: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`
+- Delivery: 1080 x 1920 H.264/AAC, 85.631 seconds, 60 fps, baked Swedish captions
+- Bridge media: separate 16:9 Tella derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` with matching Swedish VTT and no on-page transcript
+- Meta ad spoken source: `assets/video/meta-founder-ad-v2-script.sv.txt`
+- Bridge spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
+- Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.
 
 ## Construction hold
 
-Do not create this campaign until the bridge route is live, the final video is accepted, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves the exact budget and activation.
+Do not create this campaign until the production release is verified, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, and Gustav approves construction, budget and activation separately. The local E2E journey and payment method are already approved.
 
 ## Decision rules
 
 - `3,000 SEK` is a technical and early creative smoke test. It can reveal broken
   delivery or obvious message rejection, but cannot validate commercial economics.
 - `7,500 SEK` is the recommended first learning tranche. One broad Swedish ad set
-  and C02 as the primary creative preserve enough concentration to evaluate whether
+  and V01 founder video as the primary creative preserve enough concentration to evaluate whether
   the message produces qualified conversations.
-- `15,000 SEK` is held until the first tranche produces a real qualified-opportunity
+- `15,000 SEK` is held until the first tranche produces a real commercially interesting
   and meeting-quality signal. It is not justified before tracking and payment are
   proven.
 

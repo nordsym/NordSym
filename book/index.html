@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <div style="margin-top: auto; padding-top: 26px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; line-height: 1.7; color: rgb(154, 147, 132);">A 20-minute call with the founder.<br>No deck. We look at the work,<br>your tech stack and the first agent.</div>
+      <div style="margin-top: auto; padding-top: 26px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; line-height: 1.7; color: rgb(154, 147, 132);">A 20-minute call.<br>We look at the work,<br>your tech stack and the first agent.</div>
     </aside>
 
 
@@ -215,11 +215,11 @@
   var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };
   var ACQUISITION_PARAM_KEYS = [
     "source",
-    "company_size",
-    "operation_state",
-    "bottleneck",
+    "consequences",
+    "information_locations",
     "systems_count",
     "mandate",
+    "qualification_signal",
     "utm_id",
     "utm_source",
     "utm_medium",
@@ -228,18 +228,21 @@
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
-    company_size: ["1-19", "20-49", "50-199", "200+"],
-    operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
-    bottleneck: ["process_clarity", "integration", "production_reliability", "delivery_capacity", "governance", "measurement"],
+    consequences: ["time", "delay", "errors_rework", "lost_revenue", "weak_follow_up", "other"],
+    information_locations: ["one_system", "several_systems", "documents_messages_email", "individual_people", "no_complete_overview"],
     systems_count: ["1", "2", "3-5", "6+"],
-    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
+    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"],
+    qualification_signal: ["form_complete", "prequalified"]
   };
+  var MULTI_VALUE_KEYS = ["consequences", "information_locations"];
+  var PRIVATE_CONTEXT_KEY = "nordsym_ai_i_drift_pre_call_v1";
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Hitta rätt arbete för en AI-agent";
+  var paidFocus = "Kartlägg vad AI-agenterna behöver";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
+  var preCallContext = {};
 
   function categoricalValue(value) {
     var raw = String(value || "").trim();
@@ -251,10 +254,35 @@
       .slice(0, 120);
   }
 
+  function privateText(value, maximum) {
+    var raw = typeof value === "string" ? value.trim() : "";
+    if (!raw || raw.length > maximum || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(raw)) return "";
+    return raw;
+  }
+
+  if (paidVariant) {
+    try {
+      var storedContext = JSON.parse(window.sessionStorage.getItem(PRIVATE_CONTEXT_KEY) || "{}");
+      var storedWork = privateText(storedContext.work_description, 280);
+      var storedOther = privateText(storedContext.consequence_other_detail, 160);
+      if (storedWork) preCallContext.work_description = storedWork;
+      if (storedOther) preCallContext.consequence_other_detail = storedOther;
+    } catch (storageError) {
+      preCallContext = {};
+    }
+  }
+
   if (paidVariant) {
     Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
       var value = params.get(key);
-      if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
+      if (MULTI_VALUE_KEYS.indexOf(key) !== -1) {
+        var values = String(value || "").split(",").filter(Boolean);
+        if (values.length && values.every(function(item){ return ACQUISITION_ALLOWED[key].indexOf(item) !== -1; })) {
+          acquisition[key] = Array.from(new Set(values)).join(",");
+        }
+      } else if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) {
+        acquisition[key] = value;
+      }
     });
   }
   UTM_PARAM_KEYS.forEach(function(key){
@@ -267,10 +295,9 @@
     });
   if (hasCompleteQualification) {
     acquisition.qualification_signal =
-      acquisition.operation_state !== "multiple_backlog" &&
       acquisition.systems_count !== "1" &&
       acquisition.mandate !== "exploring"
-        ? "qualified_opportunity"
+        ? "prequalified"
         : "form_complete";
   }
 
@@ -285,27 +312,27 @@
 
   var copy = paidVariant ? {
     title: "Boka en kostnadsfri genomgång - NordSym",
-    description: "Boka en kostnadsfri genomgång av vilket återkommande arbete en AI-agent kan ta över i er tech stack.",
+    description: "Boka en kostnadsfri genomgång av vad som behöver finnas på plats innan AI-agenter kan börja arbeta i er tech stack.",
     heading: "Boka en kostnadsfri genomgång",
-    briefHeading: "Er genomgång",
-    briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "20 minuter med Gustav. <br>Vi tittar på arbetet, er tech stack och vad en AI-agent faktiskt kan ta över.",
+    briefHeading: "Ert möte",
+    briefLabels: { focus: "Underlag", date: "Datum", time: "Tid", contact: "Kontakt" },
+    railDescription: "20 minuter. <br>Vi går igenom era svar, förstår behovet och avgör vilket nästa steg som är mest relevant.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
     continue: "Fortsätt",
-    focusHeading: "Vilket arbete vill ni få bort från teamet?",
+    focusHeading: "Var ska AI-agenter börja göra jobbet?",
     focusDescription: "Välj närmast utgångspunkt. Vi preciserar den under samtalet.",
     focusOptions: [
       {
         value: paidFocus,
-        title: "Hitta rätt arbete för en AI-agent",
-        body: "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenten behöver för att kunna ta över."
+        title: preCallContext.work_description ? "Arbetet ni beskrev" : "Hitta rätt arbete att börja med",
+        body: preCallContext.work_description || "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenterna behöver för att kunna utföra det."
       },
       {
         value: "Löpande ansvar för befintlig agent",
         title: "Löpande ansvar",
-        body: "NordSym bygger agenten och driver arbetet den tar över."
+        body: "NordSym bygger och driver agenterna som utför arbetet."
       },
       {
         value: "Utöka vad agenterna hanterar",
@@ -319,16 +346,16 @@
       }
     ],
     timeHeading: "Välj en tid.",
-    timeDescription: "Välj en dag. Vi visar ett begränsat urval och kontrollerar kalendern direkt.",
+    timeDescription: "Välj en dag. Vi visar ett begränsat urval och kontrollerar lediga tider direkt i kalendern.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "Berätta kort vilket återkommande arbete ni vill att en AI-agent ska ta över och vad som blockerar det i dag.",
+    detailsDescription: "Bekräftelsen och kalenderinbjudan skickas till e-postadressen nedan.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
-    fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
+    fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Något vi bör känna till inför mötet? (valfritt)" },
     send: "Boka tiden",
     sending: "Bokar",
     sentHeading: "Tiden är bokad.",
     failedHeading: "Kunde inte skicka.",
-    sentDescription: "Kalenderinbjudan är skickad. Mötesuppgifterna kommer också via e-post.",
+    sentDescription: "Kalenderinbjudan är skickad. Under mötet går vi igenom svaren och väljer rätt nästa steg.",
     fallback: "Mejla contact@nordsym.com så tar jag hand om det manuellt."
   } : {
     briefLabels: { focus: "Focus", date: "Date", time: "Time", contact: "Contact" },
@@ -599,7 +626,7 @@
     return '<section class="availability-panel" data-availability-panel aria-live="polite">'
       + '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
       + '<h3>'+(paidVariant ? 'Välj ett datum' : 'Choose a date')+'</h3>'
-      + '<p class="availability-message">'+(paidVariant ? 'När du väljer en dag hämtar vi verklig tillgänglighet från kalendern.' : 'Choose a day to check live calendar availability.')+'</p>'
+      + (paidVariant ? '' : '<p class="availability-message">Choose a day to check live calendar availability.</p>')
       + '</section>';
   }
 
@@ -624,12 +651,21 @@
         if (request !== availabilityRequest) return;
         if (!raw) throw new Error("Availability returned an empty response");
         var result = JSON.parse(raw);
+        var timePattern = paidVariant
+          ? /^(?:0[9]|1[0-7]):(?:00|20|40)$/
+          : /^(?:0[9]|1[0-8]):(?:00|15|30|45)$/;
         var times = Array.isArray(result.offered) ? result.offered : [];
         var busy = Array.isArray(result.busy) ? result.busy : [];
         var held = Array.isArray(result.held) ? result.held : [];
         var capped = result.capped === true;
         if (result.durationMinutes !== 20) throw new Error("Availability duration mismatch");
         if (!times.length) throw new Error("Availability returned no offered times");
+        if (![times, busy, held].every(function(list){
+          return list.every(function(time){ return typeof time === "string" && timePattern.test(time); });
+        })) throw new Error("Availability returned an invalid time");
+        if (!busy.concat(held).every(function(time){ return times.indexOf(time) !== -1; })) {
+          throw new Error("Availability returned an unknown blocked time");
+        }
         panel.innerHTML = '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
           + '<h3>'+(paidVariant ? 'Välj en tid' : 'Choose a time')+'</h3>'
           + '<p class="availability-date">'+text(displayLongDate(date))+'</p>'
@@ -640,13 +676,14 @@
             var capacityHeld = held.indexOf(time) !== -1;
             var unavailable = calendarBusy || capacityHeld;
             var selected = state.time === time;
-            return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+time+'"'
+            var safeTime = text(time);
+            return '<button type="button" class="time-slot'+(selected ? ' is-selected' : '')+'" data-time="'+safeTime+'"'
               +(unavailable ? ' disabled' : '')
-              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+time+(capacityHeld
+              +' aria-pressed="'+(selected ? 'true' : 'false')+'" aria-label="'+safeTime+(capacityHeld
                 ? (paidVariant ? ', reserverad' : ', reserved')
                 : unavailable
                   ? (paidVariant ? ', upptagen' : ', unavailable')
-                  : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+time+'</strong>'
+                  : (paidVariant ? ', ledig' : ', available'))+'"><strong>'+safeTime+'</strong>'
               +(unavailable ? '<span>'+(capped
                 ? (paidVariant ? 'Fullbokad' : 'Full')
                 : capacityHeld
@@ -795,6 +832,10 @@
 
   function renderConfirmed(ok) {
     step = 4;
+    if (ok && paidVariant) {
+      try { window.sessionStorage.removeItem(PRIVATE_CONTEXT_KEY); } catch (storageError) {}
+      preCallContext = {};
+    }
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;justify-content:center;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,3.8vw,40px);letter-spacing:-.02em;margin:0 0 12px;">'+text(ok ? copy.sentHeading : copy.failedHeading)+'</h2>'
       + '<p style="font-size:15px;line-height:1.6;color:rgb(90,83,71);max-width:44ch;margin:0;">'+text(ok ? copy.sentDescription : copy.fallback)+'</p>'
@@ -811,21 +852,25 @@
     next.textContent = copy.sending;
     captureBooking("nordsym_booking_submitted", { focus: state.focus });
     try {
+      var bookingPayload = Object.assign({
+        requestId: window.crypto.randomUUID(),
+        source: webhookSource,
+        locale: paidVariant ? "sv-SE" : "en-GB",
+        offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
+        submittedAt: new Date().toISOString()
+      }, state, {
+        acquisition: Object.assign({}, acquisition, paidVariant ? {
+          lang: SUPPORTED_ROUTE.lang,
+          offer: SUPPORTED_ROUTE.offer
+        } : {})
+      });
+      if (paidVariant && preCallContext.work_description) {
+        bookingPayload.preCall = Object.assign({}, preCallContext);
+      }
       var res = await fetch(endpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(Object.assign({
-          requestId: window.crypto.randomUUID(),
-          source: webhookSource,
-          locale: paidVariant ? "sv-SE" : "en-GB",
-          offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
-          submittedAt: new Date().toISOString()
-        }, state, {
-          acquisition: Object.assign({}, acquisition, paidVariant ? {
-            lang: SUPPORTED_ROUTE.lang,
-            offer: SUPPORTED_ROUTE.offer
-          } : {})
-        }))
+        body: JSON.stringify(bookingPayload)
       });
       var responseBody = await res.json().catch(function () { return null; });
       var booked = res.ok && responseBody && responseBody.success === true;
@@ -869,6 +914,10 @@
   back.addEventListener("click", function(){
     if (step === 1) return;
     if (step === 4) {
+      if (paidVariant) {
+        try { window.sessionStorage.removeItem(PRIVATE_CONTEXT_KEY); } catch (storageError) {}
+        preCallContext = {};
+      }
       next.style.display = "";
       back.textContent = copy.back;
       state = initialState();

@@ -38,6 +38,22 @@ function isPaidMapping(body) {
     body?.offerKey === 'ai_i_drift';
 }
 
+function bookingBodyForUpstream(body) {
+  if (!isPaidMapping(body)) return body;
+
+  const context = [`Prioriterat återkommande arbete: ${body.preCall.work_description}`];
+  if (body.preCall.consequence_other_detail) {
+    context.push(`Annan konsekvens: ${body.preCall.consequence_other_detail}`);
+  }
+  if (body.notes) context.push(`Övrigt inför mötet: ${body.notes}`);
+
+  return {
+    ...body,
+    notes: context.join('\n'),
+    preCall: undefined
+  };
+}
+
 function requestIp(req) {
   return String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown')
     .split(',')[0]
@@ -71,7 +87,7 @@ function claimRequestId(id, now) {
   return true;
 }
 
-async function deliverSchedule(cookieHeader) {
+async function deliverSchedule(cookieHeader, clientUserAgent) {
   try {
     if (!isMeasurementEnabled(process.env) || !hasGrantedConsent(cookieHeader)) return;
 
@@ -89,7 +105,9 @@ async function deliverSchedule(cookieHeader) {
       ? process.env.META_GRAPH_API_VERSION
       : DEFAULT_GRAPH_API_VERSION;
     const graphUrl = `https://graph.facebook.com/${version}/${process.env.META_PIXEL_ID}/events`;
-    const payload = { data: [buildMetaEvent(validation.value)] };
+    const payload = {
+      data: [buildMetaEvent(validation.value, { clientUserAgent })]
+    };
 
     if (
       typeof process.env.META_TEST_EVENT_CODE === 'string' &&
@@ -147,10 +165,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    const upstreamBody = bookingBodyForUpstream(validation.value);
     const bookingResponse = await fetch(BOOKING_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: serializedBody,
+      body: JSON.stringify(upstreamBody),
       redirect: 'error',
       signal: AbortSignal.timeout(12_000)
     });
@@ -164,7 +183,10 @@ export default async function handler(req, res) {
 
     const booked = bookingResponse.ok && responseBody?.success === true;
     if (booked && isPaidMapping(validation.value)) {
-      await deliverSchedule(req.headers.cookie || '');
+      await deliverSchedule(
+        req.headers.cookie || '',
+        String(req.headers['user-agent'] || '')
+      );
     }
 
     if (booked) {

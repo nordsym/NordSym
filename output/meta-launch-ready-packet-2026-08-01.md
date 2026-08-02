@@ -1,6 +1,6 @@
 # NordSym Meta launch packet
 
-Status: Review-ready campaign package aligned to the live NordSym position. No Meta upload, activation or spend.
+Status: Founder-approved paid funnel is release-authorized for NordSym.com production. No Meta upload, activation or spend.
 Updated: 2026-08-02
 
 ## Commercial direction
@@ -16,7 +16,7 @@ that working path as the business changes.
 
 The Meta campaign must make one buyer ask:
 
-> Vilket återkommande arbete betalar vi människor för att göra varje vecka?
+> Vad måste finnas på plats innan AI-agenter kan börja arbeta hos oss?
 
 The first funnel is not sold as Agent Badge, an agent directory, generic
 automation, an AI-readiness doctrine or a list of controls. Context, mandate,
@@ -28,43 +28,40 @@ they want removed.
 
 `Meta creative -> video bridge -> five questions -> booking`
 
-All traffic uses:
+The intended launch route is:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The bridge CTA continues to `/ai-i-drift/#kvalificering` while preserving the
+The bridge CTA continues to `/ai-i-drift/kvalificering/` while preserving the
 approved UTM fields.
 
-## Lead creative: C02
+## Lead creative: founder video V01
 
 ### Primary text
 
-Vilket återkommande arbete betalar ni människor för att göra varje vecka?
+Ska AI-agenter börja arbeta hos er? Gör inte det här misstaget.
 
-NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt
-sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och
-lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid
-eller pengar.
+AI-agenter kan utföra återkommande arbete i systemen ni redan använder. Men
+först behöver informationen vara samlad, aktuell och tydlig.
+
+Vill ni veta om ert företag är redo för AI-agenter? Klicka vidare, svara på fem
+frågor och boka en kartläggning.
 
 ### Headline
 
-`Vad ska en AI-agent ta över?`
+`Innan AI-agenter börjar arbeta`
 
 ### Description
 
-`Se hur arbetet flyttas`
+`Svara på fem frågor`
 
 ### CTA
 
 `Läs mer`
 
-### Visible image copy
+### Destination
 
-- Kicker: `Arbetet kostar varje vecka`
-- Headline: `Vad ska er första AI-agent ta över?`
-- Work path: `Rätt underlag hämtas`, `Arbetet utförs`, `Resultatet registreras`
-- Control cues: `Från era system`, `Inom uppdraget`, `Människa vid beslut`
-- Mechanism: `NordSym bygger och driver agenten i er tech stack.`
+`https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=founder_video_v1`
 
 ## Reserve statics
 
@@ -74,87 +71,68 @@ eller pengar.
   `Agenten arbetar där jobbet redan händer.` Its map shows context, system
   action, human decision, recorded result and continued operation.
 
-Do not launch all three together in a small tranche. C02 leads. C01 or C03 may
-replace it only after a specific hold or kill decision.
+Do not launch the video and statics together in the first low-volume cell. V01
+leads. C02 remains the first replacement only after a specific hold or kill
+decision.
 
-## Founder video
+## Meta ad video
 
-### Hook
+### Spoken Swedish script, 85.6 seconds
 
-> Vilket återkommande arbete betalar ni människor för att göra varje vecka?
+The single working source is
+`assets/video/meta-founder-ad-v2-script.sv.txt`. No alternate script
+is approved for the first cell.
 
-### Spoken Swedish script, 45 to 60 seconds
+### Approved asset
 
-Vilket återkommande arbete betalar ni människor för att göra varje vecka?
-
-Det kan vara att samla in underlag, uppdatera flera system, kontrollera att allt
-stämmer eller följa upp samma sak igen och igen.
-
-NordSym bygger AI-agenter inne i er tech stack som tar över det arbetet. Vi
-börjar med en uppgift som kostar tydlig tid eller pengar. Agenten får rätt
-sammanhang och åtkomst för sitt uppdrag, arbetar i systemen ni redan använder
-och registrerar vad den gör.
-
-Agenten sköter det återkommande. En människa kommer in när det behövs ett
-verkligt beslut. NordSym fortsätter driva och förbättra arbetet när
-verksamheten förändras.
-
-Klicka vidare och svara på fem frågor. Då kan vi se vilket arbete som är värt
-att flytta från teamet först.
-
-### Recording brief
-
-- Format: vertical 9:16 master, minimum 1080 x 1920.
-- Duration: 45 to 60 seconds. The first sentence begins in frame one.
+- Format: vertical 9:16 master, 1080 x 1920.
+- Duration: 85.631 seconds. Gustav intentionally enters frame before the first spoken sentence.
 - Framing: medium close-up, eye-level camera, uncluttered home-office background.
 - Delivery: direct and conversational. Do not read section labels or say
   `Operating Layer`, `AI operation`, `readiness` or `governance`.
-- Takes: one complete natural take, one tighter take of the hook and final CTA.
-- Audio: quiet room, external microphone if available, no music needed.
-- Captions: Swedish, sentence case, maximum two lines at a time.
-- Optional cutaways: the C02 work path and the C03 tech-stack map.
-- Authenticity boundary: Gustav must appear and speak if the asset is presented
-  as founder-led. ElevenLabs may be used only as an explicitly voiceover-led
-  variant, not as simulated founder footage.
+- Captions: baked Swedish captions, sentence case, maximum two lines at a time.
 
-### Pass condition
+### Verified condition
 
-The recording sounds like Gustav speaking to one buyer, the hook is complete in
-the first three seconds, every sentence is understandable without NordSym
-context and the CTA matches the bridge.
+The recording is approved as the Meta ad creative only. It must not be reused as
+the first bridge video because that would repeat the ad after click.
 
 ## Bridge page contract
 
 ### Headline
 
-`Se hur en AI-agent kan ta återkommande arbete från teamet.`
+`Fem frågor före mötet.`
 
 ### Supporting copy
 
-`På mindre än en minut visar Gustav hur NordSym hittar rätt arbetsflöde, bygger agenten i er tech stack och tar ansvar för att arbetet fortsätter fungera.`
+No separate supporting paragraph is shown. The 16:9 video provides the context.
 
 ### CTA
 
-`Hitta arbetet en agent kan ta över`
+`Svara på fem frågor`
 
 ### Expectation line
 
-`Fem frågor före bokning`
+`Därefter väljer ni en tid för ett 20-minutersmöte.`
 
-The live V3 bridge, captions and transcript already carry the same recurring
-work promise and may remain unchanged. The V2 ElevenLabs asset and silent
-animatic are historical only because they lead with demos, exception rescue and
-controls as the offer.
+The bridge carries Gustav's separate 16:9 Tella recording and matching Swedish
+captions timed from the actual audio. No transcript surface is shown on-page.
+It continues from the ad, explains the five questions and 20-minute booking, and
+does not repeat the ad's argument. The complete journey has founder visual
+acceptance and is authorized for a production-inert website release.
 
 ## Qualification contract
 
-The qualification page must lead with:
+The dedicated qualification route contains exactly five primary questions:
 
-`Vilket återkommande arbete vill ni få bort från teamet?`
+1. The recurring work the buyer wants an agent to take over, in one or two sentences.
+2. The consequence today, as bounded multi-select with conditional `Annat` detail.
+3. Where the required information currently lives, as bounded multi-select.
+4. How many systems the work touches.
+5. How close the company is to a decision to proceed.
 
-The existing five categorical questions remain because they establish company
-size, current state, blocker, system count and mandate without collecting names
-or free text. The CTA remains `Välj en tid` after completion.
+The CTA is `Gå vidare till tider`. Free text stays out of URLs and analytics,
+and is forwarded only as bounded meeting context after server validation.
 
 A completed form is not automatically a qualified commercial opportunity. The
 commercially interesting state requires recurring work with meaningful cost, a
@@ -171,9 +149,9 @@ build-and-operate relationship.
 - Age: 25+
 - Language: Swedish
 - Audience: Broad. Creative and qualification perform the commercial filtering.
-- Lead creative: C02 static
-- Destination UTM content: `c02_static`
-- Conversion event: `Lead`, only after dataset and Test Events verification
+- Lead creative: V01 founder video
+- Destination UTM content: `founder_video_v1`
+- Conversion event: `Lead`, after final Test Events verification
 - Status if later constructed: Paused
 - Proposed learning ceiling: 7,500 SEK, not approved
 
@@ -185,7 +163,7 @@ build-and-operate relationship.
 - C02 dark ledger composition
 - C03 tech-stack map composition
 - 4:5 and 1:1 export formats
-- Live V3 video bridge, consent and UTM architecture
+- Existing 16:9 video bridge frame, consent and UTM architecture
 - Five-question qualification and booking path
 
 ### Rewrite
@@ -204,16 +182,48 @@ build-and-operate relationship.
 - `AI-readiness` and `build-or-decline` language in buyer-facing creative
 - Any Agent Badge, agent-directory or capability-list framing
 
+## Verified technical state
+
+- Dataset and Pixel: `NordSym Website`, `1283815170364428`
+- Direct CAPI token: stored only in protected Vercel Production and Preview
+  environment storage
+- Protected preview deployment:
+  `https://nordsym-site-b93l1zrwn-gustavs-projects-0c9f35af.vercel.app`
+- Preview `/api/meta-config`: enabled with Pixel `1283815170364428`
+- Browser path: consented PageView activity and completed five-question Lead
+  path reached booking with `utm_content=founder_video_v1` preserved
+- Schedule: contract tests pass, but no live event was manufactured because no
+  genuine booking was submitted
+- Facebook Page `666511603221872` and `@nordsymab`: present in Business
+  Portfolio `1194013423798700`, but ad account `1017896054501692` currently
+  shows no connected resources
+- Billing: 0.00 SEK with verified Mastercard ending `0806` as the standard
+  payment method on the canonical manual account. Meta shows no overdue
+  payment, a 19.00 SEK billing threshold and a Meta-determined 489.58 SEK
+  daily spending limit. The optional tax-information banner is a VAT billing
+  profile step, not a current advertising restriction.
+- Campaigns: none
+- Founder media: launch derivative `NordSym-AI-agenter-LAUNCH-V2.mp4`, SHA-256
+  `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`.
+  The immutable source remains `NordSym-AI-agenter-FINAL.mp4`, SHA-256
+  `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
+- Bridge media: clean Tella source `Kom igång med era AI-agenter.mp4`, SHA-256
+  `a4642aa73669976263511290d944d011a22553202f477154438103f3c64d80f1`.
+  Its fast-start 1920 x 1080 H.264/AAC web derivative has SHA-256
+  `23af2313a26cb8c41486278b8d53967bce0f62fa1829e788314ab81a87476ef1`.
+
 ## Launch gates
 
-- Gustav approves C02 copy and the regenerated 4:5 and 1:1 assets
-- Live V3 bridge, qualification and booking path receive one final read-only
-  message-match check before construction
-- Dataset, Pixel and CAPI approved and verified separately
-- PageView, Lead and Schedule verified in Test Events
-- Page and Instagram identity read back in Ads Manager
-- Payment method approved separately
-- Exact campaign construction approved separately
-- Exact budget and activation approved separately
+- Gustav explicitly approves assigning Page `666511603221872` and
+  `@nordsymab` as connected resources to ad account `1017896054501692`.
+- Complete local journey visually accepted by Gustav on 2026-08-02.
+- The measurement candidate is production-deployed with the final media, then
+  PageView and Lead are confirmed individually in Test Events. Schedule is
+  confirmed after the first genuine consented booking.
+- Payment gate completed by Gustav on 2026-08-02. Live Meta Ads readback
+  confirms `has_payment_method: true`; the account remains `ACTIVE` and
+  queryable.
+- Exact campaign construction, 7,500 SEK learning ceiling and activation each
+  receive separate approval.
 
 Nothing in this packet authorizes Meta mutation, publication, delivery or spend.
