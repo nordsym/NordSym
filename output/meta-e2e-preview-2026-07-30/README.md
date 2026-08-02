@@ -30,5 +30,5 @@ Then open:
 - `evidence/`: mobile screenshots of the review path.
 
 The prior animatic and V2 voiceover no longer match the outcome-first positioning.
-The current packet defines the replacement founder recording. Do not upload or
-launch either historical video asset.
+The current packet binds the approved portrait Meta ad and the separate 16:9 Tella
+bridge recording. Do not upload or launch either historical video asset.

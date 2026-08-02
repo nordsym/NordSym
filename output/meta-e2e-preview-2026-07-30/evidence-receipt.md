@@ -24,8 +24,24 @@ bounded execution, human decisions and recorded results.
 
 ## NEEDS GUSTAV NOW
 
-Approve, revise or reject the recalibrated C02 copy and images. No founder
-recording is required to review or construct the static-first package.
+Reload and visually inspect the local E2E route at
+`http://127.0.0.1:4173/output/meta-e2e-preview-2026-07-30/`. Confirm that the
+separate 16:9 bridge video, captions, CTA, five questions and 20-minute booking
+read as one coherent journey. This visual acceptance remains open.
+
+## 2026-08-02 bridge candidate receipt
+
+- Unchanged Tella source: `/Users/gustavhemmingsson/Desktop/Kom igång med era AI-agenter.mp4`
+- Source SHA-256: `a4642aa73669976263511290d944d011a22553202f477154438103f3c64d80f1`
+- Web derivative SHA-256: `23af2313a26cb8c41486278b8d53967bce0f62fa1829e788314ab81a87476ef1`
+- Swedish VTT SHA-256: `80930d8326a534ca8046a570e2586f2c4e0015fcc5aea71cb6e92332534dbaf8`
+- Media: 1920 x 1080, H.264/AAC, 30 fps, 48.669 seconds, fast-start
+- Captions: timed locally from actual Swedish speech, maximum two lines and one
+  preserved spoken `faktiskt`
+- Path: Meta ad context -> separate bridge video -> five questions -> 20-minute booking
+- HTTP readback: all four local route surfaces returned 200
+- Automated browser navigation to localhost was blocked by the browser safety
+  policy, so current visual acceptance is intentionally not claimed from tests alone
 
 ## LAUNCH-ONLY LATER
 
@@ -38,7 +54,7 @@ Launch-only gates:
 5. Reproduce the paused campaign, ad set and approved C02 ad from `campaign-draft.md`.
 6. Approve the exact budget, ads and activation as a separate action.
 
-## Current Meta readback
+## Historical Meta readback at 2026-07-30
 
 - Manual portfolio: `1194013423798700`
 - Manual ad account: `1017896054501692`
@@ -54,7 +70,7 @@ Launch-only gates:
 - Instagram readback: unavailable through the connector rollout
 - Legacy account `243113670`: separate, `UNSETTLED`, not queryable and untouched
 
-## Verification evidence
+## Historical visual evidence
 
 - `01-meta-feed-mobile.png`
 - `02-video-bridge-mobile.png`

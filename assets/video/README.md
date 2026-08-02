@@ -2,28 +2,25 @@
 
 ## Current status
 
-- `ai-i-drift-sa-fungerar-det-v3.mp4`: temporary local bridge placeholder derived from the corrected portrait Meta ad master. It is not approved for launch or production deployment.
-- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar for the temporary local placeholder only.
+- `ai-i-drift-sa-fungerar-det-v3.mp4`: web-ready 16:9 bridge derivative from Gustav's clean Tella export. H.264/AAC, 1920 x 1080, 48.669 seconds, 30 fps and fast-start enabled.
+- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar timed from the actual spoken audio with local Whisper word timestamps.
 - `render-ai-i-drift-v3.mjs`: deterministic local animatic renderer. It accepts an existing narration MP3 and never calls a provider.
 - `ai-i-drift-sa-fungerar-det-v2.mp4`: retired after the 2026-08-01 positioning cutover. Do not launch.
 - `ai-i-drift-sa-fungerar-det-v2.sv.vtt`: captions for the retired V2 asset only.
 - `ai-i-drift-sa-fungerar-det.mp4`: historical placeholder. Do not launch.
-- `ai-i-drift-sa-fungerar-det-v3-script.sv.txt`: exact spoken source represented by the approved founder edit.
+- `ai-i-drift-sa-fungerar-det-v3-script.sv.txt`: exact spoken source represented by the 16:9 bridge recording.
+- `meta-founder-ad-v1-script.sv.txt`: exact spoken source represented by the approved portrait Meta ad.
 
-Source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
-Clean source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-clean.mp4`, SHA-256 `7e734aa67403eb9db7e85355dcd1ff954fe8012b7cf39e901b6be30b2843bcab`.
-Web MP4 SHA-256: `d20de4f026bff3bad34d52557b5bc72b5b45fb53030b73cd7bf9457c7e3e5b25`.
-VTT SHA-256: `e1a68fd982269e77ae645deea36dd9222813ce9ae7e53c65c2d545ad2a702523`.
+Meta ad source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
+Bridge source receipt: `/Users/gustavhemmingsson/Desktop/Kom igång med era AI-agenter.mp4`, SHA-256 `a4642aa73669976263511290d944d011a22553202f477154438103f3c64d80f1`.
+Bridge web MP4 SHA-256: `23af2313a26cb8c41486278b8d53967bce0f62fa1829e788314ab81a87476ef1`.
+Bridge VTT SHA-256: `80930d8326a534ca8046a570e2586f2c4e0015fcc5aea71cb6e92332534dbaf8`.
+Bridge poster SHA-256: `ade7bcf6dc961e0591aecd965d4d48f9d2a41ef564092531fd917ce841e4266a`.
 
 The Meta ad uses the captioned FINAL source and is approved as campaign creative.
-The bridge currently uses the clean portrait derivative, VTT and transcript only
-as a local placeholder. It must not launch with the Meta ad repeated after click.
-
-The existing bridge frame is already 16:9 and needs no funnel redesign. When
-Gustav supplies the separate landscape Tella recording, the local acceptance pass
-must verify the received file, bind its actual source without inventing a filename,
-replace the matching caption and transcript sources, and remove
-`data-media-status="temporary-local-placeholder"` only after those checks pass.
+The bridge uses the separate 16:9 Tella recording, its matching VTT, readable
+transcript and authentic poster. The bridge continues the ad by explaining the
+five questions and 20-minute booking instead of repeating the ad's argument.
 Production deployment follows the NordSym.com release process and its current release authority.
 
 Local render command:

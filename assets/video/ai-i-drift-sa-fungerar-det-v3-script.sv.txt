@@ -1,21 +1,9 @@
-Om AI-agenter ska börja jobba hos er, gör inte det här misstaget.
+Har ni klickat er hit så har ni säkert ett arbete internt som ni tänker att en agent borde kunna ta över.
 
-Många företag säger att de använder AI idag. Och det gör de.
+I samtal med företag så märker vi samma sak om och om igen. Och det är att idéerna finns, men det är svåra att veta vart man faktiskt ska börja. Och vad som behövs runt omkring agenten så att den ska kunna arbeta effektivt i vardagen.
 
-Men oftast sitter människan fortfarande framför ett chattfönster. Då sitter en person vid sitt chattfönster och samlar ihop allt underlag. Dom skickar hela sammanhanget till agenten. Dom granskar svaren som kommer in och skickar resultatet vidare.
+Därför har vi fem stycken frågor här som ni ska få svara på. Det är hur ni arbetar idag, vart informationen finns och vilka system som ni använder.
 
-Det kan absolut vara effektivt och gå fortare i vissa sammanhang. Men man har inte automatiserat arbetet. Du har flyttat arbetet från ett system till ett chattfönster där en människa jobbar.
+Därefter kan ni boka ett 20 minuters möte med mig där vi går igenom de här svaren och kommer fram till en plan för hur vi bäst integrerar agenter i just er verksamhet.
 
-För att en agent ska kunna göra arbete hos er behöver den veta hur ni arbetar och vad för information som gäller. Och vart agenten kan hitta den här informationen.
-
-Idag finns den informationen ofta lite utspridd överallt. I gamla chattar. I olika system. I huvudet hos kollegor. Eller i gamla Excel-filer som ligger och samlar damm.
-
-Och det är ofta här det faktiskt brister.
-
-Först behöver ni samla all information. Gör det tydligt för agenten vad som faktiskt är sant att utgå ifrån. Kasta allting som är gammalt.
-
-Först då kan agenten faktiskt börja ta över återkommande arbete i era befintliga system.
-
-Vill ni veta vad som krävs för att AI-agenter faktiskt ska kunna arbeta hos er?
-
-Klicka vidare. Svara på fem frågor. Boka en kartläggning. Så börjar vi där ni faktiskt står idag.
+Vi ses snart!

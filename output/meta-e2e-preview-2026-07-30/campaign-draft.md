@@ -50,13 +50,14 @@ This specification is inert. It does not authorize campaign creation, payment ch
 - Meta video asset: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`
 - Source receipt: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`
 - Delivery: 1080 x 1920 H.264/AAC, 88.443 seconds, 60 fps, baked Swedish captions plus matching VTT
-- Bridge media: the current portrait derivative and matching VTT are temporary local placeholders only. Launch requires Gustav's separate 16:9 Tella bridge recording to be received, inspected and bound to the existing frame.
-- Spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
+- Bridge media: separate 16:9 Tella derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` with matching Swedish VTT and readable transcript
+- Meta ad spoken source: `assets/video/meta-founder-ad-v1-script.sv.txt`
+- Bridge spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
 - Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.
 
 ## Construction hold
 
-Do not create this campaign until the separate 16:9 bridge media, captions and transcript pass final validation, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
+Do not create this campaign until Gustav visually accepts the local E2E journey, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
 
 ## Decision rules
 

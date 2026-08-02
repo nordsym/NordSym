@@ -12,9 +12,8 @@ All three are intended to lead to the sparse video bridge route:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The route continues to the existing qualification flow and booking. Its current
-portrait video is a temporary local placeholder only. Launch requires the separate
-16:9 Tella bridge recording to be received, accepted and bound first.
+The route continues through the separate 16:9 Tella bridge recording to the
+existing qualification flow and 20-minute booking. It remains production-inert.
 
 ## Editable sources
 
