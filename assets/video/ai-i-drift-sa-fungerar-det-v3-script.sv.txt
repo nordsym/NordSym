@@ -1,9 +1,19 @@
-Vilket återkommande arbete betalar ni människor för att göra varje vecka?
+Ska AI-agenter börja arbeta hos er? Gör inte det här misstaget.
 
-Det kan vara att samla in underlag, uppdatera flera system, kontrollera att allt stämmer eller följa upp samma sak igen och igen.
+Många företag använder redan AI för att ta fram utkast, gå igenom dokument och hitta svar snabbare.
 
-NordSym bygger AI-agenter inne i er tech stack som tar över det arbetet. Vi börjar med en uppgift som kostar tydlig tid eller pengar. Sedan kopplar vi agenten till systemen där jobbet redan händer och driver den vidare när verksamheten förändras.
+Det sparar tid, men en människa måste fortfarande starta varje uppgift och föra resultatet vidare.
 
-Agenten sköter det återkommande. En människa kommer in när det faktiskt behövs ett beslut.
+AI-agenter ska kunna göra något annat: utföra återkommande arbete direkt i de system ni redan använder.
 
-Klicka vidare och svara på fem frågor. Då kan vi se vilket arbete som är värt att flytta från teamet först.
+Men då måste de kunna utgå från rätt information. I dag ligger den ofta utspridd i olika system, gamla dokument och i huvudet på människor.
+
+Och det är ofta där det brister.
+
+Först behöver ni samla den information agenterna behöver på ett ställe, rensa bort det som är gammalt och göra tydligt vad som faktiskt gäller.
+
+Med det på plats kan agenterna börja göra jobbet, medan människor tar över när det faktiskt behövs.
+
+Vill ni veta om ert företag är redo för AI-agenter?
+
+Klicka vidare, svara på fem frågor och boka en kartläggning.

@@ -237,7 +237,7 @@
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
-  var paidFocus = "Hitta rätt arbete för en AI-agent";
+  var paidFocus = "Kartlägg vad AI-agenterna behöver";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
 
@@ -285,27 +285,27 @@
 
   var copy = paidVariant ? {
     title: "Boka en kostnadsfri genomgång - NordSym",
-    description: "Boka en kostnadsfri genomgång av vilket återkommande arbete en AI-agent kan ta över i er tech stack.",
+    description: "Boka en kostnadsfri genomgång av vad som behöver finnas på plats innan AI-agenter kan börja arbeta i er tech stack.",
     heading: "Boka en kostnadsfri genomgång",
     briefHeading: "Er genomgång",
     briefLabels: { focus: "Fokus", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "20 minuter med Gustav. <br>Vi tittar på arbetet, er tech stack och vad en AI-agent faktiskt kan ta över.",
+    railDescription: "20 minuter med Gustav. <br>Vi tittar på arbetet, er tech stack och vad AI-agenterna behöver för att kunna börja.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
     continue: "Fortsätt",
-    focusHeading: "Vilket arbete vill ni få bort från teamet?",
+    focusHeading: "Var ska AI-agenter börja göra jobbet?",
     focusDescription: "Välj närmast utgångspunkt. Vi preciserar den under samtalet.",
     focusOptions: [
       {
         value: paidFocus,
-        title: "Hitta rätt arbete för en AI-agent",
-        body: "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenten behöver för att kunna ta över."
+        title: "Hitta rätt arbete att börja med",
+        body: "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenterna behöver för att kunna utföra det."
       },
       {
         value: "Löpande ansvar för befintlig agent",
         title: "Löpande ansvar",
-        body: "NordSym bygger agenten och driver arbetet den tar över."
+        body: "NordSym bygger och driver agenterna som utför arbetet."
       },
       {
         value: "Utöka vad agenterna hanterar",
@@ -321,7 +321,7 @@
     timeHeading: "Välj en tid.",
     timeDescription: "Välj en dag. Vi visar ett begränsat urval och kontrollerar kalendern direkt.",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
-    detailsDescription: "Berätta kort vilket återkommande arbete ni vill att en AI-agent ska ta över och vad som blockerar det i dag.",
+    detailsDescription: "Berätta kort vilket återkommande arbete ni vill att AI-agenter ska utföra och vad som blockerar det i dag.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
     fields: { name: "Namn", email: "E-post", company: "Företag", notes: "Anteckningar" },
     send: "Boka tiden",

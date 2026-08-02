@@ -8,3 +8,4 @@ deal/DEAL_DATA_TEMPLATE.json
 node_modules/
 output/company-profile/
 output/sales-playbooks-v2/
+.env*

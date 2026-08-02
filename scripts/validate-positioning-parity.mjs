@@ -30,9 +30,9 @@ assert(agentsMarkdown.includes("builds and operates AI agents inside"), "agents.
 assert(agentsJson.primary_promise === "AI agents that take recurring work off the team.", "agents.json primary promise has drifted.");
 assert(agentInfo.description?.includes("builds and operates AI agents inside"), "agent-info.json description has drifted.");
 assert(apiAgentInfo.includes("builds and operates AI agents inside"), "api/agent-info.js description has drifted.");
-assert(paidLanding.includes("Vad ska en AI-agent ta över först?"), "Paid qualification framing has drifted.");
-assert(paidBridge.includes("Se hur en AI-agent kan ta återkommande arbete från teamet."), "Paid bridge headline has drifted.");
-assert(paidBridge.includes("Hitta arbetet en agent kan ta över"), "Paid bridge CTA has drifted.");
+assert(paidLanding.includes("Vad behöver finnas på plats innan AI-agenter kan börja arbeta hos er?"), "Paid qualification framing has drifted.");
+assert(paidBridge.includes("Ska AI-agenter börja arbeta hos er? Gör inte det här misstaget."), "Paid bridge headline has drifted.");
+assert(paidBridge.includes("Svara på fem frågor"), "Paid bridge CTA has drifted.");
 assert(staticCopy.includes("Vad ska en AI-agent ta över?"), "Lead static headline has drifted.");
 assert(launchPacket.includes("AI agents inside the client's tech stack"), "Meta launch packet has drifted from the site position.");
 assert(!activeLaunchPacket.includes("Demo är inte drift"), "Current Meta launch packet still leads with the retired demo thesis.");

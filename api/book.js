@@ -71,7 +71,7 @@ function claimRequestId(id, now) {
   return true;
 }
 
-async function deliverSchedule(cookieHeader) {
+async function deliverSchedule(cookieHeader, clientUserAgent) {
   try {
     if (!isMeasurementEnabled(process.env) || !hasGrantedConsent(cookieHeader)) return;
 
@@ -89,7 +89,9 @@ async function deliverSchedule(cookieHeader) {
       ? process.env.META_GRAPH_API_VERSION
       : DEFAULT_GRAPH_API_VERSION;
     const graphUrl = `https://graph.facebook.com/${version}/${process.env.META_PIXEL_ID}/events`;
-    const payload = { data: [buildMetaEvent(validation.value)] };
+    const payload = {
+      data: [buildMetaEvent(validation.value, { clientUserAgent })]
+    };
 
     if (
       typeof process.env.META_TEST_EVENT_CODE === 'string' &&
@@ -164,7 +166,10 @@ export default async function handler(req, res) {
 
     const booked = bookingResponse.ok && responseBody?.success === true;
     if (booked && isPaidMapping(validation.value)) {
-      await deliverSchedule(req.headers.cookie || '');
+      await deliverSchedule(
+        req.headers.cookie || '',
+        String(req.headers['user-agent'] || '')
+      );
     }
 
     if (booked) {

@@ -23,7 +23,7 @@ const validBooking = {
   locale: 'sv-SE',
   offerKey: 'ai_i_drift',
   submittedAt: '2026-07-25T10:00:00.000Z',
-  focus: 'Hitta rätt arbete för en AI-agent',
+  focus: 'Kartlägg vad AI-agenterna behöver',
   date: '2026-08-03',
   dateLabel: 'måndag 3 augusti',
   time: '14:00',
@@ -78,7 +78,10 @@ test('request validation rejects PII, junk identifiers and missing match data', 
 });
 
 test('server event is fixed to the booked mapping and contains no direct PII', () => {
-  const event = buildMetaEvent(validBody, { eventTime: 1710000000 });
+  const event = buildMetaEvent(validBody, {
+    eventTime: 1710000000,
+    clientUserAgent: 'Test Browser/1.0'
+  });
 
   assert.deepEqual(event, {
     event_name: 'Schedule',
@@ -88,7 +91,8 @@ test('server event is fixed to the booked mapping and contains no direct PII', (
     event_source_url: 'https://nordsym.com/book/',
     user_data: {
       fbp: 'fb.1.1710000000000.1234567890',
-      fbc: 'fb.1.1710000000000.AbCdEfGhIj'
+      fbc: 'fb.1.1710000000000.AbCdEfGhIj',
+      client_user_agent: 'Test Browser/1.0'
     },
     custom_data: {
       content_name: 'ai_i_drift_readiness_mapping',
@@ -167,6 +171,7 @@ test('booking proxy emits one bounded Schedule only after a confirmed consented 
         method: 'POST',
         headers: {
           origin: 'https://nordsym.com',
+          'user-agent': 'Test Browser/1.0',
           cookie: 'nordsym_marketing_consent=granted; _fbp=fb.1.1710000000000.1234567890'
         },
         body: handlerBooking
@@ -180,7 +185,8 @@ test('booking proxy emits one bounded Schedule only after a confirmed consented 
     const outbound = JSON.parse(calls[1].options.body);
     assert.equal(outbound.data[0].event_name, 'Schedule');
     assert.deepEqual(outbound.data[0].user_data, {
-      fbp: validBody.fbp
+      fbp: validBody.fbp,
+      client_user_agent: 'Test Browser/1.0'
     });
     assert.equal(JSON.stringify(outbound).includes('person@example.com'), false);
     assert.equal(calls[1].options.headers.Authorization, 'Bearer test-token');

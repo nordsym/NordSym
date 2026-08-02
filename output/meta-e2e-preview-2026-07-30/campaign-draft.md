@@ -4,7 +4,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Campaign
 
-- Name: `NS | Recurring work | Website leads | V1`
+- Name: `NS | AI agents | Website leads | V1`
 - Buying type: Auction
 - Objective: Leads
 - Conversion location: Website
@@ -13,7 +13,7 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
 ## Ad set
 
-- Name: `SE | Broad | Recurring work | V1`
+- Name: `SE | Broad | AI agents | V1`
 - Country: Sweden
 - Age: 25+
 - Language: Swedish
@@ -27,30 +27,33 @@ This specification is inert. It does not authorize campaign creation, payment ch
 - Learning-tranche ceiling: `7,500 SEK`
 - Budget status: Not entered. Separate exact approval required.
 
-## Ad
+## Lead ad
 
-- Name: `C02 | Vad ska en AI-agent ta över | Static | V1`
+- Name: `V01 | Innan AI-agenter börjar arbeta | Founder video | V1`
 - Identity: NordSym Facebook Page and `@nordsymab`, pending final readback in Ads Manager
-- Format: Single image
+- Format: Single video
 - Primary text:
 
-  `Vilket återkommande arbete betalar ni människor för att göra varje vecka?`
+  `Ska AI-agenter börja arbeta hos er? Gör inte det här misstaget.`
 
-  `NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid eller pengar.`
+  `AI-agenter kan utföra återkommande arbete i systemen ni redan använder. Men först behöver informationen vara samlad, aktuell och tydlig.`
 
-- Headline: `Vad ska en AI-agent ta över?`
-- Description: `Se hur arbetet flyttas`
+  `Vill ni veta om ert företag är redo för AI-agenter? Klicka vidare, svara på fem frågor och boka en kartläggning.`
+
+- Headline: `Innan AI-agenter börjar arbeta`
+- Description: `Svara på fem frågor`
 - CTA: `Läs mer`
 - Destination:
 
-  `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=c02_static`
+  `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=founder_video_v1`
 
-- Feed asset: `c02-forsta-agenten-1080x1350.png`
-- Square fallback: `c02-forsta-agenten-1080x1080.png`
+- Video asset: pending supplied approved 9:16 founder master
+- Spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
+- Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.
 
 ## Construction hold
 
-Do not create this campaign until the bridge route is live, the final video is accepted, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves the exact budget and activation.
+Do not create this campaign until the final video is accepted, the bridge media, captions and transcript match it, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
 
 ## Decision rules
 
