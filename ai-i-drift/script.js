@@ -52,7 +52,7 @@
     var stepTopic = document.getElementById("step-topic");
     var progressBar = document.getElementById("progress-bar");
     var error = document.getElementById("form-error");
-    var topics = ["Bolagsstorlek", "AI-läge", "Blockering", "System", "Mandat"];
+    var topics = ["Bolaget", "Nuläge", "Hinder", "System", "Beslut"];
     var currentStep = 0;
     var hasStarted = false;
 

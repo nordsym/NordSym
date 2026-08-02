@@ -143,7 +143,7 @@ for (const [text, label] of [
   ['dataset.bookingReady = "true"', 'localized-shell readiness marker'],
   ['var availabilityEndpoint = "https://nordsym.app.n8n.cloud/webhook/availability"', 'calendar availability endpoint'],
   ['class="booking-scheduler"', 'paid calendar layout'],
-  ['Vi visar ett begränsat urval och kontrollerar kalendern direkt.', 'limited live calendar availability disclosure'],
+  ['Vi visar ett begränsat urval och kontrollerar lediga tider direkt i kalendern.', 'limited live calendar availability disclosure'],
   ['var times = Array.isArray(result.offered) ? result.offered : [];', 'server-defined weekday schedule'],
   ['if (result.durationMinutes !== 20)', '20-minute availability contract guard'],
   ["(unavailable ? ' disabled' : '')", 'busy calendar slot disabling'],

@@ -32,7 +32,7 @@ for (const [source, expected, label] of [
   [markup, '/assets/meta-measurement.js', 'Meta measurement client'],
   [markup, "surface: 'lp_ai_i_drift_bridge'", 'PostHog bridge surface'],
   [markup, 'Läs videons text', 'accessible transcript'],
-  [markup, 'Fem frågor. Sedan tar vi nästa steg.', 'bridge continuity headline'],
+  [markup, 'Fem frågor före mötet.', 'bridge continuity headline'],
   [markup, '20 minuters möte med mig', 'truthful spoken booking transcript'],
   [spokenSource, 'vart man faktiskt ska börja.', 'approved single spoken faktiskt'],
   [spokenSource, '20 minuters möte med mig', 'approved spoken booking path'],

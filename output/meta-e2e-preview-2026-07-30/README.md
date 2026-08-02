@@ -21,6 +21,7 @@ Then open:
 ## Contents
 
 - `index.html`: placement-faithful C02 feed preview and click-through.
+- The numbered review bar opens the ad, bridge, five questions and booking independently while preserving the same preview attribution.
 - `animatic.html`: retired pre-positioning animatic kept only as historical evidence.
 - `animatic-frames/`: rendered 1600x900 frame images.
 - `ai-i-drift-sa-fungerar-det-animatic.mp4`: retired pre-positioning review asset. Do not launch.
@@ -31,4 +32,6 @@ Then open:
 
 The prior animatic and V2 voiceover no longer match the outcome-first positioning.
 The current packet binds the approved portrait Meta ad and the separate 16:9 Tella
-bridge recording. Do not upload or launch either historical video asset.
+bridge recording. The five questions are pre-qualification and meeting preparation.
+The need analysis happens in the 20-minute meeting. Do not upload or launch either
+historical video asset.

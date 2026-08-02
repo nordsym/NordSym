@@ -141,12 +141,12 @@
     <section id="kvalificering" class="qualification" aria-labelledby="qualification-title">
       <div class="qualification-shell">
         <div class="qualification-intro">
-          <p class="kicker">Fem korta frågor</p>
-          <h2 id="qualification-title">Vad behöver finnas på plats innan AI-agenter kan börja arbeta hos er?</h2>
-          <p>Välj det som bäst beskriver er. Därefter kan ni boka den kostnadsfria genomgången.</p>
+          <p class="kicker">Inför mötet</p>
+          <h2 id="qualification-title">Ge Gustav rätt utgångspunkt.</h2>
+          <p>Fem korta frågor om nuläget. Svaren används som förberedelse. Själva behovsanalysen gör vi tillsammans under 20-minutersmötet.</p>
           <div class="privacy-note">
             <span aria-hidden="true">□</span>
-            <p>Inga namn eller fritextsvar här. Grundläggande mätning skapar inga namngivna profiler. Meta-mätning kräver samtycke. <a href="/privacy.html">Läs om datahanteringen.</a></p>
+            <p>Här väljer ni bara kategorier. Namn och e-post lämnas först när ni väljer tid. <a href="/privacy.html">Läs om datahanteringen.</a></p>
           </div>
         </div>
 
@@ -158,7 +158,7 @@
           <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
 
           <fieldset class="form-step is-active" data-step="0">
-            <legend>Hur många arbetar i bolaget?</legend>
+            <legend>Hur stort är bolaget?</legend>
             <div class="option-grid option-grid-four">
               <label><input type="radio" name="company_size" value="1-19" required><span>1-19</span></label>
               <label><input type="radio" name="company_size" value="20-49"><span>20-49</span></label>
@@ -168,30 +168,30 @@
           </fieldset>
 
           <fieldset class="form-step" data-step="1" hidden>
-            <legend>Hur långt har ni kommit med det ni vill lösa med AI?</legend>
+            <legend>Vilket läge beskriver er bäst just nu?</legend>
             <div class="option-grid">
-              <label><input type="radio" name="operation_state" value="named_priority" required><span>Vi vet vilket återkommande arbete agenterna ska börja med</span></label>
+              <label><input type="radio" name="operation_state" value="named_priority" required><span>Vi vet vilket återkommande arbete vi vill börja med</span></label>
               <label><input type="radio" name="operation_state" value="active_build"><span>Vi bygger redan, men teamet måste fortfarande hjälpa till</span></label>
-              <label><input type="radio" name="operation_state" value="prototype_only"><span>Vi har testat en prototyp</span></label>
-              <label><input type="radio" name="operation_state" value="multiple_backlog"><span>Vi har flera idéer men ingen tydlig prioritering</span></label>
+              <label><input type="radio" name="operation_state" value="prototype_only"><span>Vi har testat en prototyp, men inte fått in den i vardagen</span></label>
+              <label><input type="radio" name="operation_state" value="multiple_backlog"><span>Vi har flera möjliga arbeten, men har inte valt vilket som går först</span></label>
             </div>
           </fieldset>
 
           <fieldset class="form-step" data-step="2" hidden>
-            <legend>Vad hindrar er från att komma vidare?</legend>
+            <legend>Vad är det största hindret just nu?</legend>
             <div class="option-grid option-grid-three">
               <label><input type="radio" name="bottleneck" value="process_clarity" required><span>Otydlig process eller avgränsning</span></label>
               <label><input type="radio" name="bottleneck" value="integration"><span>Vår tech stack och data hänger inte ihop</span></label>
               <label><input type="radio" name="bottleneck" value="production_reliability"><span>Lösningen håller inte när den används på riktigt</span></label>
               <label><input type="radio" name="bottleneck" value="delivery_capacity"><span>Vi hinner inte bygga det som behövs</span></label>
-              <label><input type="radio" name="bottleneck" value="governance"><span>Mandat, säkerhet eller godkännanden</span></label>
-              <label><input type="radio" name="bottleneck" value="measurement"><span>Affärsutfallet går inte att mäta</span></label>
+              <label><input type="radio" name="bottleneck" value="governance"><span>Ansvar, säkerhet eller godkännanden är oklara</span></label>
+              <label><input type="radio" name="bottleneck" value="measurement"><span>Vi kan inte mäta om arbetet blir bättre</span></label>
             </div>
           </fieldset>
 
           <fieldset class="form-step" data-step="3" hidden>
-            <legend>Hur många system i er tech stack behöver AI-agenterna kunna arbeta i?</legend>
-            <p class="field-hint">Till exempel CRM, ERP, support, e-handel, datalager, mejl, kalkylblad eller interna verktyg.</p>
+            <legend>Hur många system berör arbetet ni vill lösa?</legend>
+            <p class="field-hint">Räkna systemen där underlag hämtas, arbetet sker eller resultatet ska sparas.</p>
             <div class="option-grid option-grid-four">
               <label><input type="radio" name="systems_count" value="1" required><span>1 system</span></label>
               <label><input type="radio" name="systems_count" value="2"><span>2 system</span></label>
@@ -201,12 +201,12 @@
           </fieldset>
 
           <fieldset class="form-step" data-step="4" hidden>
-            <legend>Vilket mandat finns för att gå vidare?</legend>
+            <legend>Hur nära är ni ett beslut att gå vidare?</legend>
             <div class="option-grid">
-              <label><input type="radio" name="mandate" value="sponsor_now" required><span>Ledningen har prioriterat arbetet</span></label>
-              <label><input type="radio" name="mandate" value="owner_in_place"><span>En intern ägare finns redan</span></label>
-              <label><input type="radio" name="mandate" value="hiring_owner"><span>Vi rekryterar en intern ägare</span></label>
-              <label><input type="radio" name="mandate" value="exploring"><span>Vi utforskar fortfarande</span></label>
+              <label><input type="radio" name="mandate" value="sponsor_now" required><span>Arbetet är prioriterat av ledningen</span></label>
+              <label><input type="radio" name="mandate" value="owner_in_place"><span>Det finns en ansvarig person med mandat</span></label>
+              <label><input type="radio" name="mandate" value="hiring_owner"><span>Vi rekryterar någon som ska äga området</span></label>
+              <label><input type="radio" name="mandate" value="exploring"><span>Vi undersöker om detta bör prioriteras</span></label>
             </div>
           </fieldset>
 
@@ -215,7 +215,7 @@
           <div class="form-actions">
             <button id="back-button" class="button button-quiet" type="button" hidden>← Tillbaka</button>
             <button id="next-button" class="button button-primary" type="button">Fortsätt <span aria-hidden="true">→</span></button>
-            <button id="submit-button" class="button button-primary" type="submit" hidden>Välj en tid <span aria-hidden="true">→</span></button>
+            <button id="submit-button" class="button button-primary" type="submit" hidden>Gå vidare till tider <span aria-hidden="true">→</span></button>
           </div>
         </form>
       </div>

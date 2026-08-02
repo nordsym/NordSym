@@ -79,6 +79,46 @@ main {
   letter-spacing: -0.045em;
 }
 
+.journey-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 0 22px;
+  overflow: hidden;
+  background: var(--paper-bright);
+  border: 1px solid var(--line);
+}
+
+.journey-nav a,
+.journey-nav span {
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 8px 10px;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--line);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.journey-nav a:last-child {
+  border-right: 0;
+}
+
+.journey-nav span {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.journey-nav a:hover,
+.journey-nav a:focus-visible {
+  color: var(--ink);
+  background: #efe7d8;
+}
+
 .feed-card {
   overflow: hidden;
   background: #fff;
@@ -280,6 +320,25 @@ main {
     border-right: 0;
     border-left: 0;
     border-radius: 0;
+  }
+
+  .journey-nav {
+    width: calc(100% - 28px);
+    grid-template-columns: repeat(2, 1fr);
+    margin-inline: auto;
+  }
+
+  .journey-nav a,
+  .journey-nav span {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .journey-nav a:nth-child(2) {
+    border-right: 0;
+  }
+
+  .journey-nav a:nth-child(n + 3) {
+    border-bottom: 0;
   }
 
   .primary-copy {
