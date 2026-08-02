@@ -626,7 +626,7 @@
     return '<section class="availability-panel" data-availability-panel aria-live="polite">'
       + '<p class="availability-label">'+(paidVariant ? '20 minuters möte' : '20-minute call')+'</p>'
       + '<h3>'+(paidVariant ? 'Välj ett datum' : 'Choose a date')+'</h3>'
-      + '<p class="availability-message">'+(paidVariant ? 'När du väljer en dag hämtar vi verklig tillgänglighet från kalendern.' : 'Choose a day to check live calendar availability.')+'</p>'
+      + (paidVariant ? '' : '<p class="availability-message">Choose a day to check live calendar availability.</p>')
       + '</section>';
   }
 

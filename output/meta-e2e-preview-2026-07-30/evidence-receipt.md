@@ -61,6 +61,13 @@ read as one coherent journey. This visual acceptance remains open.
   `06-booking-availability-mobile.png`, `07-booking-details-mobile.png` and
   `contact-sheet.png`.
 
+## 2026-08-02 final booking polish
+
+- The pre-selection availability panel now shows only `Välj ett datum`.
+- The redundant live-calendar explanation was removed without changing calendar,
+  accessibility, availability, qualification-context or booking behavior.
+- The corrected state was visually verified at 390 x 844 and 1440 x 1000.
+
 ## 2026-08-02 bridge candidate receipt
 
 - Unchanged Tella source: `/Users/gustavhemmingsson/Desktop/Kom igång med era AI-agenter.mp4`

@@ -186,6 +186,9 @@ for (const [text, label] of [
 if (bookingMarkup.includes('Svensk tid')) {
   failures.push('book/index.html: contains removed Swedish time-zone filler');
 }
+if (bookingMarkup.includes('När du väljer en dag hämtar vi verklig tillgänglighet från kalendern.')) {
+  failures.push('book/index.html: contains removed availability explanation');
+}
 if (bookingMarkup.includes('window.history.replaceState')) {
   failures.push('book/index.html: removes paid attribution from the booking URL');
 }
