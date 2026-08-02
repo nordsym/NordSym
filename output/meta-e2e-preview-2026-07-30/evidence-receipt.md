@@ -32,8 +32,8 @@ read as one coherent journey. This visual acceptance remains open.
 ## 2026-08-02 frontend closure
 
 - The preview now contains a numbered navigator for all four surfaces.
-- The selected first step is the approved 88.443-second portrait Meta video. The static C02 asset remains preserved as an alternate draft.
-- The ad preview uses an intentional frame after the founder is seated as its poster. The approved video itself is unchanged.
+- The selected first step is the 85.631-second portrait V2 launch derivative. The immutable 88.443-second source and static C02 alternate remain preserved.
+- The ad preview poster is a neutral seated frame from source time 8.4 seconds, with closed mouth and no caption overlay.
 - The bridge contains no transcript accordion or repeated explanation around the video.
 - The bridge CTA opens the dedicated qualification route. The long-form `/ai-i-drift/` page remains intact for organic discovery.
 - The five questions remain five categorical primary questions and collect company
@@ -60,6 +60,19 @@ read as one coherent journey. This visual acceptance remains open.
 - HTTP readback: all four local route surfaces returned 200
 - Automated browser navigation to localhost was blocked by the browser safety
   policy, so current visual acceptance is intentionally not claimed from tests alone
+
+## 2026-08-02 Meta ad V2 receipt
+
+- Immutable source: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`
+- Source SHA-256: `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`
+- V2 derivative: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-LAUNCH-V2.mp4`
+- V2 SHA-256: `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`
+- Poster SHA-256: `8f94037f1f0f924452463c751b0e54d3702f01f31d022ba3bb13ce2bb735e26d`
+- Removed source interval: `56.916667-59.733333`
+- Removed sentence: `Och det är ofta här det faktiskt brister.`
+- V2 media: 1080 x 1920, H.264/AAC, 60 fps, 85.631 seconds, fast-start
+- A/V starts: `0.000/0.000`; stream-length difference: `0.014333` seconds
+- Full video and audio decode completed without error
 
 ## LAUNCH-ONLY LATER
 

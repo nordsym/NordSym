@@ -77,16 +77,16 @@ decision.
 
 ## Meta ad video
 
-### Spoken Swedish script, 88.4 seconds
+### Spoken Swedish script, 85.6 seconds
 
 The single working source is
-`assets/video/meta-founder-ad-v1-script.sv.txt`. No alternate script
+`assets/video/meta-founder-ad-v2-script.sv.txt`. No alternate script
 is approved for the first cell.
 
 ### Approved asset
 
 - Format: vertical 9:16 master, 1080 x 1920.
-- Duration: 88.443 seconds. Gustav intentionally enters frame before the first spoken sentence.
+- Duration: 85.631 seconds. Gustav intentionally enters frame before the first spoken sentence.
 - Framing: medium close-up, eye-level camera, uncluttered home-office background.
 - Delivery: direct and conversational. Do not read section labels or say
   `Operating Layer`, `AI operation`, `readiness` or `governance`.
@@ -197,9 +197,10 @@ build-and-operate relationship.
   shows no connected resources
 - Billing: 0.00 SEK and no payment method on the canonical manual account
 - Campaigns: none
-- Founder media: approved source `NordSym-AI-agenter-FINAL.mp4`, SHA-256
+- Founder media: launch derivative `NordSym-AI-agenter-LAUNCH-V2.mp4`, SHA-256
+  `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`.
+  The immutable source remains `NordSym-AI-agenter-FINAL.mp4`, SHA-256
   `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
-  This captioned file is approved as the Meta creative.
 - Bridge media: clean Tella source `Kom igång med era AI-agenter.mp4`, SHA-256
   `a4642aa73669976263511290d944d011a22553202f477154438103f3c64d80f1`.
   Its fast-start 1920 x 1080 H.264/AAC web derivative has SHA-256

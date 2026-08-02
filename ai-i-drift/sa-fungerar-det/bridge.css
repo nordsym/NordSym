@@ -63,21 +63,6 @@
   border-bottom: 1px solid rgba(243, 238, 228, 0.38);
 }
 
-.bridge-video-meta {
-  min-height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 18px;
-  color: #9e9587;
-  border-bottom: 1px solid rgba(243, 238, 228, 0.14);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
 .bridge-video-frame video {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -132,11 +117,6 @@
     font-size: clamp(3rem, 14.5vw, 4.7rem);
   }
 
-  .bridge-video-meta {
-    min-height: 42px;
-    padding-inline: 14px;
-  }
-
   .bridge-action {
     align-items: stretch;
     flex-direction: column;
@@ -160,7 +140,4 @@
     font-size: 3.2rem;
   }
 
-  .bridge-video-meta span:last-child {
-    display: none;
-  }
 }
