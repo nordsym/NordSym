@@ -10,7 +10,7 @@ by `../meta-launch-ready-packet-2026-08-01.md`.
 - UTM preservation, qualification, booking and external-call blocking remain valid.
 - The bridge CTA preserves `utm_source`, `utm_medium`, `utm_campaign`, `utm_id` and `utm_content`, then opens the focused `/ai-i-drift/kvalificering/` route.
 - A complete qualified path reaches the current Swedish booking experience.
-- All form completions can book. `qualification_signal` separates a form completion from a qualified-opportunity signal. Commercial interest remains a later NordSym Sales decision.
+- All form completions can book. `qualification_signal` separates a form completion from a prequalification hypothesis. Commercial interest remains a later NordSym Sales decision.
 - The local preview server returns deterministic availability, keeps one slot visibly occupied and blocks booking submission.
 - The preview server CSP blocks external scripts and connections. The walkthrough does not send PostHog, Meta, n8n or booking requests.
 - The Meta account readback and launch-only gates below remain unchanged.
@@ -36,16 +36,30 @@ read as one coherent journey. This visual acceptance remains open.
 - The ad preview poster is a neutral seated frame from source time 8.4 seconds, with closed mouth and no caption overlay.
 - The bridge contains no transcript accordion or repeated explanation around the video.
 - The bridge CTA opens the dedicated qualification route. The long-form `/ai-i-drift/` page remains intact for organic discovery.
-- The five questions remain five categorical primary questions and collect company
-  scale, current state, primary blocker, system scope and decision readiness.
-- No conditional inputs were added because they would add friction without a proved
-  routing benefit at current traffic volume.
+- The five questions collect the recurring work, its present consequence, where the
+  required information lives, system scope and decision readiness.
+- Question 2 contains one conditional `Annat` detail without creating a sixth step.
+- Free text is bounded, kept out of URLs, PostHog and Meta, and carried in same-tab
+  session storage only until it can be submitted with a completed booking.
 - Reusable bridge and booking UI no longer depend on the founder's name.
 - The booking page uses the five answers as preparation and confirms what happens during the meeting.
 - Preview, bridge, qualification and booking routes all returned HTTP 200 after the
   copy and frontend update.
 - Bridge, positioning, analytics, Meta, systems, booking and Meta measurement test
   suites all passed after the update.
+
+## 2026-08-02 qualification correction
+
+- Both visible `Inför mötet` labels were removed from the focused qualification page.
+- Question 1 is visible in the initial viewport at 390 x 844 and 1440 x 1000.
+- The paid completion URL contains only allowlisted categories and campaign data.
+- `utm_content=founder_video_v1` survived through qualification into booking.
+- The recurring-work answer appeared in the booking brief as `Arbetet ni beskrev`
+  without appearing in the URL.
+- Updated visual evidence: `04-qualification-mobile.png`,
+  `04-qualification-desktop.png`, `05-booking-mobile.png`,
+  `06-booking-availability-mobile.png`, `07-booking-details-mobile.png` and
+  `contact-sheet.png`.
 
 ## 2026-08-02 bridge candidate receipt
 

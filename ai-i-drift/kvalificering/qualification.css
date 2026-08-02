@@ -36,7 +36,7 @@
 
 .qualification-page .qualification-intro h1 {
   max-width: 9ch;
-  margin-top: 12px;
+  margin-top: 0;
   color: var(--paper);
   font-size: clamp(2.5rem, 5vw, 4.4rem);
 }
@@ -73,12 +73,12 @@
 @media (max-width: 760px) {
   .qualification-page .qualification {
     min-height: calc(100vh - 70px);
-    padding-block: 28px 44px;
+    padding-block: 18px 36px;
   }
 
   .qualification-page .qualification-shell {
     width: min(100% - 28px, var(--max));
-    gap: 22px;
+    gap: 14px;
   }
 
   .qualification-page .qualification-intro {
@@ -92,7 +92,7 @@
   .qualification-page .qualification-intro h1 {
     max-width: none;
     margin-top: 0;
-    font-size: clamp(2.25rem, 11vw, 3.15rem);
+    font-size: clamp(2rem, 9.5vw, 2.7rem);
   }
 
   .qualification-page .qualification-intro > p {
@@ -101,7 +101,7 @@
   }
 
   .qualification-page .privacy-note {
-    margin-top: 12px;
+    margin-top: 9px;
   }
 
   .qualification-page .qualification-form {

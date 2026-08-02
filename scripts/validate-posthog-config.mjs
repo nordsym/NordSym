@@ -13,9 +13,8 @@ const trackedPages = [
   'ai-i-drift/kvalificering/index.html'
 ];
 const qualificationValues = {
-  company_size: ['1-19', '20-49', '50-199', '200+'],
-  operation_state: ['named_priority', 'active_build', 'prototype_only', 'multiple_backlog'],
-  bottleneck: ['process_clarity', 'integration', 'production_reliability', 'delivery_capacity', 'governance', 'measurement'],
+  consequences: ['time', 'delay', 'errors_rework', 'lost_revenue', 'weak_follow_up', 'other'],
+  information_locations: ['one_system', 'several_systems', 'documents_messages_email', 'individual_people', 'no_complete_overview'],
   systems_count: ['1', '2', '3-5', '6+'],
   mandate: ['sponsor_now', 'owner_in_place', 'hiring_owner', 'exploring']
 };
@@ -50,11 +49,11 @@ const bookingPath = 'book/index.html';
 const booking = readFileSync(resolve(root, bookingPath), 'utf8');
 const requiredBookingParams = [
   'source',
-  'company_size',
-  'operation_state',
-  'bottleneck',
+  'consequences',
+  'information_locations',
   'systems_count',
   'mandate',
+  'qualification_signal',
   'utm_id',
   'utm_source',
   'utm_medium',
@@ -76,7 +75,7 @@ for (const [text, label] of [
   ['var ACQUISITION_ALLOWED = {', 'exact qualification value allowlist'],
   ['source: ["meta_paid"],', 'paid source allowlist'],
   ['if (paidVariant) {\n    Object.keys(ACQUISITION_ALLOWED)', 'paid-only qualification parsing'],
-  ['if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;', 'qualification value enforcement'],
+  ['MULTI_VALUE_KEYS.indexOf(key) !== -1', 'multi-value qualification enforcement'],
   ['raw.indexOf("@") !== -1 || raw.replace(/\\D/g, "").length >= 7', 'campaign PII rejection'],
   ['var hasCompleteQualification = paidVariant &&', 'complete qualification gate'],
   ['Object.keys(ACQUISITION_ALLOWED).every', 'qualification completeness check'],
@@ -84,6 +83,7 @@ for (const [text, label] of [
   ['locale: paidVariant ? "sv-SE" : "en-GB"', 'explicit booking locale'],
   ['offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default"', 'explicit booking offer key'],
   ['acquisition: Object.assign({}, acquisition', 'nested webhook acquisition payload'],
+  ['bookingPayload.preCall = Object.assign({}, preCallContext);', 'private pre-call booking payload'],
   ['window.__nordsymAnalyticsContext = analyticsContext;', 'privacy-safe analytics context'],
   ['qualification_signal', 'qualification signal'],
   ['Object.assign({ surface: "book" }, analyticsContext, properties || {})', 'allowlisted booking event properties'],
@@ -113,6 +113,20 @@ for (const [text, label] of [
 ]) {
   if (!landing.includes(text)) failures.push(`${paidLandingScript}: missing ${label}`);
 }
+for (const [text, label] of [
+  ['window.sessionStorage.setItem(PRIVATE_CONTEXT_KEY', 'private same-tab qualification context'],
+  ['work_description: workDescription()', 'bounded recurring-work answer'],
+  ['consequence_other_detail: otherDetail()', 'bounded conditional detail'],
+  ['destination.searchParams.set(key, categoricalAnswers[key]);', 'categorical-only booking URL handoff']
+]) {
+  if (!landing.includes(text)) failures.push(`${paidLandingScript}: missing ${label}`);
+}
+for (const forbidden of [
+  'destination.searchParams.set("work_description"',
+  'destination.searchParams.set("consequence_other_detail"'
+]) {
+  if (landing.includes(forbidden)) failures.push(`${paidLandingScript}: free text is exposed in booking URL`);
+}
 for (const [key, values] of Object.entries(qualificationValues)) {
   const declaration = `${key}: [${values.map((value) => `"${value}"`).join(', ')}]`;
   if (!landing.includes(declaration)) {
@@ -133,6 +147,15 @@ for (const [text, label] of [
   ['href="/privacy.html"', 'qualification privacy link']
 ]) {
   if (!landingMarkup.includes(text)) failures.push(`${paidLandingPage}: missing ${label}`);
+}
+if (!focusedQualificationMarkup.includes('name="work_description"')) {
+  failures.push('ai-i-drift/kvalificering/index.html: missing recurring-work answer');
+}
+if ((focusedQualificationMarkup.match(/class="form-step/g) || []).length !== 5) {
+  failures.push('ai-i-drift/kvalificering/index.html: must contain exactly five primary questions');
+}
+if (focusedQualificationMarkup.includes('Inför mötet')) {
+  failures.push('ai-i-drift/kvalificering/index.html: contains removed meeting label');
 }
 for (const [text, label] of [
   ['rätt fit', 'Swenglish fit language'],
@@ -227,7 +250,7 @@ for (const call of landingEventCalls) {
 }
 
 const privacy = readFileSync(resolve(root, 'privacy.html'), 'utf8');
-for (const phrase of ['privacy-preserving hash', 'rotates daily', 'company-size range', 'operation-state category', 'bottleneck category', 'mandate category']) {
+for (const phrase of ['privacy-preserving hash', 'rotates daily', 'consequence categories', 'information-location categories', 'mandate category', 'not placed in the page URL']) {
   if (!privacy.includes(phrase)) failures.push(`privacy.html: missing ${phrase}`);
 }
 if (privacy.includes('memory-only')) failures.push('privacy.html: contains stale memory-only language');

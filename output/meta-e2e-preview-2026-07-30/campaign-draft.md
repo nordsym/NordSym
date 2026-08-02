@@ -67,7 +67,7 @@ Do not create this campaign until Gustav visually accepts the local E2E journey,
 - `7,500 SEK` is the recommended first learning tranche. One broad Swedish ad set
   and C02 as the primary creative preserve enough concentration to evaluate whether
   the message produces qualified conversations.
-- `15,000 SEK` is held until the first tranche produces a real qualified-opportunity
+- `15,000 SEK` is held until the first tranche produces a real commercially interesting
   and meeting-quality signal. It is not justified before tracking and payment are
   proven.
 

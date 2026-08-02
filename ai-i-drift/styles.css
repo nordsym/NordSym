@@ -1002,6 +1002,58 @@ p {
   text-align: center;
 }
 
+.short-answer-label,
+.conditional-answer label {
+  display: block;
+  margin: 18px 0 7px;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.short-answer,
+.conditional-answer input {
+  width: 100%;
+  color: var(--ink);
+  background: var(--paper-light);
+  border: 1px solid rgba(33, 29, 23, 0.22);
+  border-radius: 4px;
+  padding: 14px 15px;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.short-answer {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.short-answer::placeholder,
+.conditional-answer input::placeholder {
+  color: rgba(33, 29, 23, 0.52);
+}
+
+.short-answer:focus-visible,
+.conditional-answer input:focus-visible {
+  outline: 2px solid var(--oxide);
+  outline-offset: 3px;
+}
+
+.short-answer + .field-hint {
+  margin: 8px 0 0;
+  text-align: left;
+}
+
+.conditional-answer {
+  margin-top: 14px;
+  padding-top: 2px;
+}
+
+.conditional-answer[hidden] {
+  display: none;
+}
+
 .option-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

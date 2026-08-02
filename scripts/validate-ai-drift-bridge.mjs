@@ -88,7 +88,9 @@ for (const [source, expected, label] of [
   [markup, 'Därefter väljer ni en tid för ett 20-minutersmöte.', 'concise bridge expectation'],
   [qualification, 'class="qualification-page"', 'dedicated qualification state'],
   [qualification, 'Steg 1 av 5', 'five-question progress'],
-  [qualification, 'Hur stort är bolaget?', 'first question'],
+  [qualification, 'Vilket återkommande arbete vill ni helst att en agent ska kunna ta över?', 'first question'],
+  [qualification, 'Vad blir konsekvensen idag när arbetet fastnar eller inte blir gjort?', 'consequence question'],
+  [qualification, 'Var finns informationen som behövs för arbetet?', 'information question'],
   [qualification, '../script.js', 'shared qualification logic'],
   [preview, '/__review/meta-founder-ad.mp4', 'approved ad video in E2E preview'],
   [preview, '/assets/meta-founder-ad-poster.jpg', 'intentional ad poster'],
@@ -123,6 +125,12 @@ for (const [source, pattern, label] of [
   [script, /utm_term/, 'unused campaign term']
 ]) {
   if (pattern.test(source)) failures.push(`contains forbidden ${label}`);
+}
+if (/Inför mötet/.test(qualification)) {
+  failures.push('focused qualification contains removed meeting label');
+}
+if ((qualification.match(/class="form-step/g) || []).length !== 5) {
+  failures.push('focused qualification must contain exactly five primary questions');
 }
 
 if (/Och det är ofta här det faktiskt brister\./i.test(metaAdV2SpokenSource)) {

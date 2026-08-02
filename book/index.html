@@ -215,11 +215,11 @@
   var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };
   var ACQUISITION_PARAM_KEYS = [
     "source",
-    "company_size",
-    "operation_state",
-    "bottleneck",
+    "consequences",
+    "information_locations",
     "systems_count",
     "mandate",
+    "qualification_signal",
     "utm_id",
     "utm_source",
     "utm_medium",
@@ -228,18 +228,21 @@
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
-    company_size: ["1-19", "20-49", "50-199", "200+"],
-    operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
-    bottleneck: ["process_clarity", "integration", "production_reliability", "delivery_capacity", "governance", "measurement"],
+    consequences: ["time", "delay", "errors_rework", "lost_revenue", "weak_follow_up", "other"],
+    information_locations: ["one_system", "several_systems", "documents_messages_email", "individual_people", "no_complete_overview"],
     systems_count: ["1", "2", "3-5", "6+"],
-    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
+    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"],
+    qualification_signal: ["form_complete", "prequalified"]
   };
+  var MULTI_VALUE_KEYS = ["consequences", "information_locations"];
+  var PRIVATE_CONTEXT_KEY = "nordsym_ai_i_drift_pre_call_v1";
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
   var paidFocus = "Kartlägg vad AI-agenterna behöver";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
+  var preCallContext = {};
 
   function categoricalValue(value) {
     var raw = String(value || "").trim();
@@ -251,10 +254,35 @@
       .slice(0, 120);
   }
 
+  function privateText(value, maximum) {
+    var raw = typeof value === "string" ? value.trim() : "";
+    if (!raw || raw.length > maximum || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(raw)) return "";
+    return raw;
+  }
+
+  if (paidVariant) {
+    try {
+      var storedContext = JSON.parse(window.sessionStorage.getItem(PRIVATE_CONTEXT_KEY) || "{}");
+      var storedWork = privateText(storedContext.work_description, 280);
+      var storedOther = privateText(storedContext.consequence_other_detail, 160);
+      if (storedWork) preCallContext.work_description = storedWork;
+      if (storedOther) preCallContext.consequence_other_detail = storedOther;
+    } catch (storageError) {
+      preCallContext = {};
+    }
+  }
+
   if (paidVariant) {
     Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
       var value = params.get(key);
-      if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
+      if (MULTI_VALUE_KEYS.indexOf(key) !== -1) {
+        var values = String(value || "").split(",").filter(Boolean);
+        if (values.length && values.every(function(item){ return ACQUISITION_ALLOWED[key].indexOf(item) !== -1; })) {
+          acquisition[key] = Array.from(new Set(values)).join(",");
+        }
+      } else if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) {
+        acquisition[key] = value;
+      }
     });
   }
   UTM_PARAM_KEYS.forEach(function(key){
@@ -267,10 +295,9 @@
     });
   if (hasCompleteQualification) {
     acquisition.qualification_signal =
-      acquisition.operation_state !== "multiple_backlog" &&
       acquisition.systems_count !== "1" &&
       acquisition.mandate !== "exploring"
-        ? "qualified_opportunity"
+        ? "prequalified"
         : "form_complete";
   }
 
@@ -299,8 +326,8 @@
     focusOptions: [
       {
         value: paidFocus,
-        title: "Hitta rätt arbete att börja med",
-        body: "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenterna behöver för att kunna utföra det."
+        title: preCallContext.work_description ? "Arbetet ni beskrev" : "Hitta rätt arbete att börja med",
+        body: preCallContext.work_description || "Vi går igenom ett prioriterat återkommande arbete, er tech stack och vad agenterna behöver för att kunna utföra det."
       },
       {
         value: "Löpande ansvar för befintlig agent",
@@ -811,21 +838,25 @@
     next.textContent = copy.sending;
     captureBooking("nordsym_booking_submitted", { focus: state.focus });
     try {
+      var bookingPayload = Object.assign({
+        requestId: window.crypto.randomUUID(),
+        source: webhookSource,
+        locale: paidVariant ? "sv-SE" : "en-GB",
+        offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
+        submittedAt: new Date().toISOString()
+      }, state, {
+        acquisition: Object.assign({}, acquisition, paidVariant ? {
+          lang: SUPPORTED_ROUTE.lang,
+          offer: SUPPORTED_ROUTE.offer
+        } : {})
+      });
+      if (paidVariant && preCallContext.work_description) {
+        bookingPayload.preCall = Object.assign({}, preCallContext);
+      }
       var res = await fetch(endpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(Object.assign({
-          requestId: window.crypto.randomUUID(),
-          source: webhookSource,
-          locale: paidVariant ? "sv-SE" : "en-GB",
-          offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
-          submittedAt: new Date().toISOString()
-        }, state, {
-          acquisition: Object.assign({}, acquisition, paidVariant ? {
-            lang: SUPPORTED_ROUTE.lang,
-            offer: SUPPORTED_ROUTE.offer
-          } : {})
-        }))
+        body: JSON.stringify(bookingPayload)
       });
       var responseBody = await res.json().catch(function () { return null; });
       var booked = res.ok && responseBody && responseBody.success === true;

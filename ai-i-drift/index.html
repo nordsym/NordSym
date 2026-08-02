@@ -141,51 +141,54 @@
     <section id="kvalificering" class="qualification" aria-labelledby="qualification-title">
       <div class="qualification-shell">
         <div class="qualification-intro">
-          <p class="kicker">Inför mötet</p>
           <h2 id="qualification-title">Ge oss rätt utgångspunkt.</h2>
           <p>Fem korta frågor om nuläget. Därefter väljer ni en tid för ett 20-minutersmöte.</p>
           <div class="privacy-note">
             <span aria-hidden="true">□</span>
-            <p>Här väljer ni bara kategorier. Namn och e-post lämnas först när ni väljer tid. <a href="/privacy.html">Läs om datahanteringen.</a></p>
+            <p>Det ni skriver används som underlag inför mötet. Namn och e-post lämnas först när ni väljer tid. <a href="/privacy.html">Läs om datahanteringen.</a></p>
           </div>
         </div>
 
         <form id="qualification-form" class="qualification-form" novalidate>
           <div class="progress-head">
             <span id="step-label">Steg 1 av 5</span>
-            <span id="step-topic">Bolagsstorlek</span>
+            <span id="step-topic">Arbetet</span>
           </div>
           <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
 
           <fieldset class="form-step is-active" data-step="0">
-            <legend>Hur stort är bolaget?</legend>
-            <div class="option-grid option-grid-four">
-              <label><input type="radio" name="company_size" value="1-19" required><span>1-19</span></label>
-              <label><input type="radio" name="company_size" value="20-49"><span>20-49</span></label>
-              <label><input type="radio" name="company_size" value="50-199"><span>50-199</span></label>
-              <label><input type="radio" name="company_size" value="200+"><span>200+</span></label>
-            </div>
+            <legend>Vilket återkommande arbete vill ni helst att en agent ska kunna ta över?</legend>
+            <label class="short-answer-label" for="work-description">Beskriv kort</label>
+            <textarea id="work-description" class="short-answer" name="work_description" rows="3" maxlength="280" required placeholder="Till exempel: följa upp nya kundförfrågningar och föra rätt information vidare till CRM."></textarea>
+            <p class="field-hint">En eller två meningar räcker.</p>
           </fieldset>
 
           <fieldset class="form-step" data-step="1" hidden>
-            <legend>Vilket läge beskriver er bäst just nu?</legend>
-            <div class="option-grid">
-              <label><input type="radio" name="operation_state" value="named_priority" required><span>Vi vet vilket återkommande arbete vi vill börja med</span></label>
-              <label><input type="radio" name="operation_state" value="active_build"><span>Vi bygger redan, men teamet måste fortfarande hjälpa till</span></label>
-              <label><input type="radio" name="operation_state" value="prototype_only"><span>Vi har testat en prototyp, men inte fått in den i vardagen</span></label>
-              <label><input type="radio" name="operation_state" value="multiple_backlog"><span>Vi har flera möjliga arbeten, men har inte valt vilket som går först</span></label>
+            <legend>Vad blir konsekvensen idag när arbetet fastnar eller inte blir gjort?</legend>
+            <p class="field-hint">Välj alla som stämmer.</p>
+            <div class="option-grid option-grid-three">
+              <label><input type="checkbox" name="consequences" value="time"><span>Det tar för mycket tid</span></label>
+              <label><input type="checkbox" name="consequences" value="delay"><span>Väntan eller förseningar</span></label>
+              <label><input type="checkbox" name="consequences" value="errors_rework"><span>Fel eller omarbete</span></label>
+              <label><input type="checkbox" name="consequences" value="lost_revenue"><span>Förlorade intäkter eller möjligheter</span></label>
+              <label><input type="checkbox" name="consequences" value="weak_follow_up"><span>Bristande uppföljning</span></label>
+              <label><input type="checkbox" name="consequences" value="other" aria-controls="consequence-other-wrap"><span>Annat</span></label>
+            </div>
+            <div id="consequence-other-wrap" class="conditional-answer" hidden>
+              <label for="consequence-other">Beskriv kort</label>
+              <input id="consequence-other" name="consequence_other_detail" type="text" maxlength="160" disabled autocomplete="off">
             </div>
           </fieldset>
 
           <fieldset class="form-step" data-step="2" hidden>
-            <legend>Vad är det största hindret just nu?</legend>
+            <legend>Var finns informationen som behövs för arbetet?</legend>
+            <p class="field-hint">Välj alla som stämmer.</p>
             <div class="option-grid option-grid-three">
-              <label><input type="radio" name="bottleneck" value="process_clarity" required><span>Otydlig process eller avgränsning</span></label>
-              <label><input type="radio" name="bottleneck" value="integration"><span>Vår tech stack och data hänger inte ihop</span></label>
-              <label><input type="radio" name="bottleneck" value="production_reliability"><span>Lösningen håller inte när den används på riktigt</span></label>
-              <label><input type="radio" name="bottleneck" value="delivery_capacity"><span>Vi hinner inte bygga det som behövs</span></label>
-              <label><input type="radio" name="bottleneck" value="governance"><span>Ansvar, säkerhet eller godkännanden är oklara</span></label>
-              <label><input type="radio" name="bottleneck" value="measurement"><span>Vi kan inte mäta om arbetet blir bättre</span></label>
+              <label><input type="checkbox" name="information_locations" value="one_system"><span>Främst i ett system</span></label>
+              <label><input type="checkbox" name="information_locations" value="several_systems"><span>I flera system</span></label>
+              <label><input type="checkbox" name="information_locations" value="documents_messages_email"><span>I dokument, chattar och e-post</span></label>
+              <label><input type="checkbox" name="information_locations" value="individual_people"><span>Främst hos enskilda personer</span></label>
+              <label><input type="checkbox" name="information_locations" value="no_complete_overview"><span>Vi har ingen fullständig överblick</span></label>
             </div>
           </fieldset>
 

@@ -31,14 +31,16 @@ const validBooking = {
   email: 'person@example.com',
   company: 'Example AB',
   notes: '',
+  preCall: {
+    work_description: 'Följa upp nya kundförfrågningar och föra rätt information till CRM.'
+  },
   acquisition: {
     source: 'meta_paid',
-    company_size: '20-49',
-    operation_state: 'active_build',
-    bottleneck: 'integration',
+    consequences: 'time,lost_revenue',
+    information_locations: 'several_systems,documents_messages_email',
     systems_count: '3-5',
     mandate: 'sponsor_now',
-    qualification_signal: 'qualified_opportunity',
+    qualification_signal: 'prequalified',
     utm_content: 'c02_static',
     lang: 'sv',
     offer: 'ai_i_drift'
@@ -109,6 +111,8 @@ test('booking boundary rejects unknown, stale and incomplete paid requests', () 
   assert.equal(validateBookingRequest({ ...validBooking, time: '14:20' }, now).ok, true);
   assert.equal(validateBookingRequest({ ...validBooking, time: '14:15' }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, admin: true }, now).ok, false);
+  assert.equal(validateBookingRequest({ ...validBooking, preCall: { work_description: '' } }, now).ok, false);
+  assert.equal(validateBookingRequest({ ...validBooking, preCall: { work_description: 'Bra', extra: 'nope' } }, now).ok, false);
   assert.equal(validateBookingRequest({ ...validBooking, submittedAt: '2026-07-24T01:00:00Z' }, now).ok, false);
   assert.equal(
     validateBookingRequest({
@@ -189,6 +193,7 @@ test('booking proxy emits one bounded Schedule only after a confirmed consented 
       client_user_agent: 'Test Browser/1.0'
     });
     assert.equal(JSON.stringify(outbound).includes('person@example.com'), false);
+    assert.equal(JSON.stringify(outbound).includes(validBooking.preCall.work_description), false);
     assert.equal(calls[1].options.headers.Authorization, 'Bearer test-token');
 
     const duplicateRes = response();

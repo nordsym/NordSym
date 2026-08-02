@@ -11,7 +11,7 @@ This is the later event contract. The local preview does not send events to Meta
 | Bridge CTA | `nordsym_paid_bridge_cta_clicked` | PostHog | CTA to qualification | Placement plus sanitized campaign values |
 | Qualification start | `nordsym_paid_qualification_started` | PostHog | First selected answer | Current implementation records no identity |
 | Form completion | `nordsym_paid_qualification_completed` and consent-gated Meta `Lead` | PostHog and Meta measurement | All five questions complete | Meta receives no answers, names, email, company or free text |
-| Qualified opportunity signal | `qualification_signal=qualified_opportunity` | PostHog and Booking Engine | A prioritized initiative spans more than one system and has mandate beyond exploration | Internal routing signal only. It is not a claim that the lead will buy |
+| Prequalification signal | `qualification_signal=prequalified` | PostHog and Booking Engine | The described work spans more than one system and the company is beyond early exploration | A hypothesis for meeting preparation only. It is not a verified need, budget or buying intent |
 | Booking progression | focus/time/submitted events | Booking Engine and PostHog | Booking steps | Meta receives none of the booking form |
 | Confirmed booking | `nordsym_booking_succeeded` and later server-side Meta `Schedule` | Booking Engine, PostHog and consent-gated CAPI | Booking API confirms success | Meta receives no booking form values |
 | Commercially interesting lead | Lifecycle decision | NordSym Sales | Gustav validates pain, authority, timing and credible contract value | Never inferred from the website form alone |
