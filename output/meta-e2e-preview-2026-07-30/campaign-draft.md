@@ -48,8 +48,8 @@ This specification is inert. It does not authorize campaign creation, payment ch
   `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=founder_video_v1`
 
 - Meta video asset: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`
-- Source receipt: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `c5fd171b9fbcfd8b806a12b52b8a24c54f268702730ef68d700edd376a9213d0`
-- Delivery: 1080 x 1920 H.264/AAC, 88.545 seconds, baked Swedish captions plus matching VTT
+- Source receipt: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`
+- Delivery: 1080 x 1920 H.264/AAC, 88.443 seconds, 60 fps, baked Swedish captions plus matching VTT
 - Bridge media: clean web derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` plus matching VTT
 - Spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
 - Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.

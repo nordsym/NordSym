@@ -2,18 +2,18 @@
 
 ## Current status
 
-- `ai-i-drift-sa-fungerar-det-v3.mp4`: web delivery derivative of Gustav's approved clean founder master. H.264/AAC, 1080 x 1920, 88.545 seconds, fast-start enabled. The bridge pairs it with the VTT to avoid duplicate captions.
-- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar generated from the approved edit's `captions.ass` timing.
+- `ai-i-drift-sa-fungerar-det-v3.mp4`: web delivery derivative of Gustav's corrected clean founder master. H.264/AAC, 1080 x 1920, 88.448 seconds, 60 fps, fast-start enabled. The bridge pairs it with the VTT to avoid duplicate captions.
+- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar generated from the corrected edit's `captions-v2.ass` timing.
 - `render-ai-i-drift-v3.mjs`: deterministic local animatic renderer. It accepts an existing narration MP3 and never calls a provider.
 - `ai-i-drift-sa-fungerar-det-v2.mp4`: retired after the 2026-08-01 positioning cutover. Do not launch.
 - `ai-i-drift-sa-fungerar-det-v2.sv.vtt`: captions for the retired V2 asset only.
 - `ai-i-drift-sa-fungerar-det.mp4`: historical placeholder. Do not launch.
 - `ai-i-drift-sa-fungerar-det-v3-script.sv.txt`: exact spoken source represented by the approved founder edit.
 
-Source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`, SHA-256 `c5fd171b9fbcfd8b806a12b52b8a24c54f268702730ef68d700edd376a9213d0`.
-Clean source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-clean.mp4`, SHA-256 `e85d5f47ebba21a143b289102743c96c1b572bd57eea9907addc2ae81c5ad680`.
-Web MP4 SHA-256: `b211f14dedc37be70a6d366723ba63035b061b1bf14f4ea622ee3660d0d67f73`.
-VTT SHA-256: `6a805ce88711578b510cdab4359a4d2ffb808bbe33c65d823e921724fce8df9a`.
+Source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`, SHA-256 `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
+Clean source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-clean.mp4`, SHA-256 `7e734aa67403eb9db7e85355dcd1ff954fe8012b7cf39e901b6be30b2843bcab`.
+Web MP4 SHA-256: `d20de4f026bff3bad34d52557b5bc72b5b45fb53030b73cd7bf9457c7e3e5b25`.
+VTT SHA-256: `e1a68fd982269e77ae645deea36dd9222813ce9ae7e53c65c2d545ad2a702523`.
 
 The Meta ad uses the captioned FINAL source. The bridge uses the clean V3 MP4,
 the VTT and the same readable transcript from the approved edit.

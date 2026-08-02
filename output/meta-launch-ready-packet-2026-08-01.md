@@ -77,7 +77,7 @@ decision.
 
 ## Founder video
 
-### Spoken Swedish script, 88.5 seconds
+### Spoken Swedish script, 88.4 seconds
 
 The single working source is
 `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`. No alternate script
@@ -86,7 +86,7 @@ is approved for the first cell.
 ### Recording brief
 
 - Format: vertical 9:16 master, minimum 1080 x 1920.
-- Duration: 88.5 seconds. Gustav intentionally enters frame before the first spoken sentence.
+- Duration: 88.443 seconds. Gustav intentionally enters frame before the first spoken sentence.
 - Framing: medium close-up, eye-level camera, uncluttered home-office background.
 - Delivery: direct and conversational. Do not read section labels or say
   `Operating Layer`, `AI operation`, `readiness` or `governance`.
@@ -202,10 +202,10 @@ build-and-operate relationship.
 - Billing: 0.00 SEK and no payment method on the canonical manual account
 - Campaigns: none
 - Founder media: approved source `NordSym-AI-agenter-FINAL.mp4`, SHA-256
-  `c5fd171b9fbcfd8b806a12b52b8a24c54f268702730ef68d700edd376a9213d0`.
+  `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
   This captioned file is the Meta creative. The bridge uses a clean 1080 x 1920
   H.264/AAC derivative, SHA-256
-  `b211f14dedc37be70a6d366723ba63035b061b1bf14f4ea622ee3660d0d67f73`,
+  `d20de4f026bff3bad34d52557b5bc72b5b45fb53030b73cd7bf9457c7e3e5b25`,
   with fast-start and a VTT derived from the approved caption timing. This avoids
   duplicate captions while preserving identical spoken content.
 
