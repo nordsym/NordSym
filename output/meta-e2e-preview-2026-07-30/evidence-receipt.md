@@ -99,14 +99,15 @@ read as one coherent journey. This visual acceptance remains open.
 
 Launch-only gates:
 
-1. Create or select the Meta dataset and install the approved Pixel ID and CAPI token.
-2. Verify `PageView`, `Lead` and server-side `Schedule` in Meta Test Events.
-3. Read back the intended NordSym Facebook Page and `@nordsymab` identity in Ads Manager.
-4. Add and verify a payment method on manual ad account `1017896054501692`.
+1. Production-deploy the approved funnel and the existing consent-gated Pixel/CAPI configuration for dataset `1283815170364428`.
+2. Verify `PageView` and `Lead` in Meta Test Events. Verify server-side `Schedule` after the first genuine confirmed booking.
+3. Assign and read back the intended NordSym Facebook Page and `@nordsymab` identity in Ads Manager after exact approval.
+4. Payment completed on 2026-08-02: verified Mastercard ending `0806` is the
+   standard payment method on manual ad account `1017896054501692`.
 5. Reproduce the paused campaign, ad set and approved C02 ad from `campaign-draft.md`.
 6. Approve the exact budget, ads and activation as a separate action.
 
-## Historical Meta readback at 2026-07-30
+## Current Meta readback at 2026-08-02
 
 - Manual portfolio: `1194013423798700`
 - Manual ad account: `1017896054501692`
@@ -115,8 +116,12 @@ Launch-only gates:
 - Ads MCP: enabled
 - Queryable: yes
 - Currency: SEK
-- Payment method: none
-- Datasets: 0
+- Payment method: verified Mastercard ending `0806`, standard, expiry 09/28
+- Billing: 0.00 SEK current balance, no overdue payment, 19.00 SEK billing
+  threshold and 489.58 SEK Meta-determined daily spending limit
+- Tax information: optional VAT billing-profile completion banner visible;
+  no account-specific restriction shown
+- Dataset and Pixel: `NordSym Website`, `1283815170364428`; verified in protected preview, production inactive
 - Campaigns: 0
 - Page readback: NordSym Ab `666511603221872`
 - Instagram readback: unavailable through the connector rollout

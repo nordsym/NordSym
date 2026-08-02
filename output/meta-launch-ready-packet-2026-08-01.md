@@ -195,7 +195,11 @@ build-and-operate relationship.
 - Facebook Page `666511603221872` and `@nordsymab`: present in Business
   Portfolio `1194013423798700`, but ad account `1017896054501692` currently
   shows no connected resources
-- Billing: 0.00 SEK and no payment method on the canonical manual account
+- Billing: 0.00 SEK with verified Mastercard ending `0806` as the standard
+  payment method on the canonical manual account. Meta shows no overdue
+  payment, a 19.00 SEK billing threshold and a Meta-determined 489.58 SEK
+  daily spending limit. The optional tax-information banner is a VAT billing
+  profile step, not a current advertising restriction.
 - Campaigns: none
 - Founder media: launch derivative `NordSym-AI-agenter-LAUNCH-V2.mp4`, SHA-256
   `8e2e06008f997f4ba8e27815ecfdaafa566049649b7098de078da77b6db3d51e`.
@@ -215,7 +219,9 @@ build-and-operate relationship.
 - The measurement candidate is production-deployed with the final media, then
   PageView and Lead are confirmed individually in Test Events. Schedule is
   confirmed after the first genuine consented booking.
-- Gustav personally adds the payment method to the canonical manual account.
+- Payment gate completed by Gustav on 2026-08-02. Live Meta Ads readback
+  confirms `has_payment_method: true`; the account remains `ACTIVE` and
+  queryable.
 - Exact campaign construction, 7,500 SEK learning ceiling and activation each
   receive separate approval.
 
