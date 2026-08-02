@@ -16,9 +16,10 @@ function read(relativePath) {
 const markup = read('ai-i-drift/sa-fungerar-det/index.html');
 const styles = read('ai-i-drift/sa-fungerar-det/bridge.css');
 const script = read('ai-i-drift/sa-fungerar-det/bridge.js');
+const spokenSource = read('assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt');
+const captions = read('assets/video/ai-i-drift-sa-fungerar-det-v3.sv.vtt');
 read('assets/ai-i-drift-video-poster.svg');
 read('assets/video/ai-i-drift-sa-fungerar-det-v3.mp4');
-read('assets/video/ai-i-drift-sa-fungerar-det-v3.sv.vtt');
 
 for (const [source, expected, label] of [
   [markup, 'lang="sv"', 'Swedish language'],
@@ -30,6 +31,10 @@ for (const [source, expected, label] of [
   [markup, '/assets/meta-measurement.js', 'Meta measurement client'],
   [markup, "surface: 'lp_ai_i_drift_bridge'", 'PostHog bridge surface'],
   [markup, 'Läs videons text', 'accessible transcript'],
+  [markup, 'Klicka vidare. Svara på fem frågor. Boka en kartläggning.', 'truthful spoken CTA transcript'],
+  [spokenSource, 'Klicka vidare. Svara på fem frågor. Boka en kartläggning.', 'approved spoken CTA source'],
+  [captions, 'Svara på fem frågor.', 'captioned five-question CTA'],
+  [captions, 'Boka en kartläggning.', 'captioned booking CTA'],
   [styles, '@media (max-width: 760px)', 'mobile layout'],
   [script, 'nordsym_paid_bridge_video_started', 'video start event'],
   [script, 'nordsym_paid_bridge_video_completed', 'video completion event'],

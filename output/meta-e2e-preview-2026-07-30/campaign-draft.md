@@ -47,13 +47,16 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
   `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=founder_video_v1`
 
-- Video asset: pending supplied approved 9:16 founder master
+- Meta video asset: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4`
+- Source receipt: `NordSym-AI-agenter-FINAL.mp4`, SHA-256 `c5fd171b9fbcfd8b806a12b52b8a24c54f268702730ef68d700edd376a9213d0`
+- Delivery: 1080 x 1920 H.264/AAC, 88.545 seconds, baked Swedish captions plus matching VTT
+- Bridge media: clean web derivative `assets/video/ai-i-drift-sa-fungerar-det-v3.mp4` plus matching VTT
 - Spoken source: `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`
 - Static reserve: C02 remains held and is not launched simultaneously in the first low-volume cell.
 
 ## Construction hold
 
-Do not create this campaign until the final video is accepted, the bridge media, captions and transcript match it, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
+Do not create this campaign until the bridge media, captions and transcript pass final validation, the dataset and CAPI are verified in Test Events, the NordSym identity reads back in Ads Manager, a payment method is approved, and Gustav approves construction, budget and activation separately.
 
 ## Decision rules
 
