@@ -24,8 +24,9 @@ read('assets/video/ai-i-drift-sa-fungerar-det-v3.mp4');
 for (const [source, expected, label] of [
   [markup, 'lang="sv"', 'Swedish language'],
   [markup, 'id="bridge-video"', 'video element'],
+  [markup, 'data-media-status="temporary-local-placeholder"', 'truthful temporary media status'],
   [markup, 'poster="/assets/ai-i-drift-video-poster.svg"', 'video poster'],
-  [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v3.mp4"', 'release video path'],
+  [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v3.mp4"', 'temporary local video path'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v3.sv.vtt"', 'Swedish captions'],
   [markup, 'href="/ai-i-drift/#kvalificering"', 'qualification destination'],
   [markup, '/assets/meta-measurement.js', 'Meta measurement client'],

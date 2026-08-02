@@ -1,6 +1,6 @@
 # NordSym Meta launch packet
 
-Status: Review-ready campaign package aligned to the live NordSym position. No Meta upload, activation or spend.
+Status: Meta ad creative approved. Bridge media blocked on the separate 16:9 Tella recording. No Meta upload, activation or spend.
 Updated: 2026-08-02
 
 ## Commercial direction
@@ -28,7 +28,7 @@ they want removed.
 
 `Meta creative -> video bridge -> five questions -> booking`
 
-All traffic uses:
+The intended launch route is:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
@@ -75,7 +75,7 @@ Do not launch the video and statics together in the first low-volume cell. V01
 leads. C02 remains the first replacement only after a specific hold or kill
 decision.
 
-## Founder video
+## Meta ad video
 
 ### Spoken Swedish script, 88.4 seconds
 
@@ -83,26 +83,19 @@ The single working source is
 `assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`. No alternate script
 is approved for the first cell.
 
-### Recording brief
+### Approved asset
 
-- Format: vertical 9:16 master, minimum 1080 x 1920.
+- Format: vertical 9:16 master, 1080 x 1920.
 - Duration: 88.443 seconds. Gustav intentionally enters frame before the first spoken sentence.
 - Framing: medium close-up, eye-level camera, uncluttered home-office background.
 - Delivery: direct and conversational. Do not read section labels or say
   `Operating Layer`, `AI operation`, `readiness` or `governance`.
-- Takes: one complete natural take, one tighter take of the hook and final CTA.
-- Audio: quiet room, external microphone if available, no music needed.
-- Captions: Swedish, sentence case, maximum two lines at a time.
-- Optional cutaways: the C02 work path and the C03 tech-stack map.
-- Authenticity boundary: Gustav must appear and speak if the asset is presented
-  as founder-led. ElevenLabs may be used only as an explicitly voiceover-led
-  variant, not as simulated founder footage.
+- Captions: baked Swedish captions, sentence case, maximum two lines at a time.
 
-### Pass condition
+### Verified condition
 
-The recording sounds like Gustav speaking to one buyer, the hook is complete in
-the first three seconds, every sentence is understandable without NordSym
-context and the CTA matches the bridge.
+The recording is approved as the Meta ad creative only. It must not be reused as
+the first bridge video because that would repeat the ad after click.
 
 ## Bridge page contract
 
@@ -122,9 +115,13 @@ context and the CTA matches the bridge.
 
 `Fem frågor före bokning`
 
-The bridge candidate now carries the approved founder edit, its original caption
-timing and a matching readable transcript. The public production route remains
-unchanged until a separate release decision.
+The bridge candidate currently carries the portrait Meta ad derivative, its
+caption timing and matching transcript as a temporary local placeholder only.
+Gustav will supply a separate short 16:9 Tella recording. Its purpose is to
+continue from the ad, explain the five short questions and the booking step, and
+not repeat the ad's argument. The existing 16:9 frame and funnel structure remain.
+The public production route remains unchanged until the new file is received,
+checked, bound and separately released.
 
 ## Qualification contract
 
@@ -165,7 +162,7 @@ build-and-operate relationship.
 - C02 dark ledger composition
 - C03 tech-stack map composition
 - 4:5 and 1:1 export formats
-- Live V3 video bridge, consent and UTM architecture
+- Existing 16:9 video bridge frame, consent and UTM architecture
 - Five-question qualification and booking path
 
 ### Rewrite
@@ -203,16 +200,20 @@ build-and-operate relationship.
 - Campaigns: none
 - Founder media: approved source `NordSym-AI-agenter-FINAL.mp4`, SHA-256
   `ba68e0e1319531490eb6be1ce968aa66dae689ae6c5b001a73088328006e3cec`.
-  This captioned file is the Meta creative. The bridge uses a clean 1080 x 1920
-  H.264/AAC derivative, SHA-256
+  This captioned file is approved as the Meta creative. The bridge currently uses
+  a clean 1080 x 1920 H.264/AAC derivative, SHA-256
   `d20de4f026bff3bad34d52557b5bc72b5b45fb53030b73cd7bf9457c7e3e5b25`,
-  with fast-start and a VTT derived from the approved caption timing. This avoids
-  duplicate captions while preserving identical spoken content.
+  with fast-start and a VTT derived from the approved caption timing, strictly as
+  a temporary local placeholder. It is not approved bridge media and must not be
+  deployed as the post-click video.
 
 ## Launch gates
 
 - Gustav explicitly approves assigning Page `666511603221872` and
   `@nordsymab` as connected resources to ad account `1017896054501692`.
+- Gustav supplies the separate short 16:9 Tella bridge recording. Local acceptance
+  verifies its media properties, caption readability, message continuity, truthful
+  explanation of the five questions and booking step, and exact bridge binding.
 - The measurement candidate is production-deployed with the final media, then
   PageView and Lead are confirmed individually in Test Events. Schedule is
   confirmed after the first genuine consented booking.

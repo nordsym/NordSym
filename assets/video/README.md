@@ -2,8 +2,8 @@
 
 ## Current status
 
-- `ai-i-drift-sa-fungerar-det-v3.mp4`: web delivery derivative of Gustav's corrected clean founder master. H.264/AAC, 1080 x 1920, 88.448 seconds, 60 fps, fast-start enabled. The bridge pairs it with the VTT to avoid duplicate captions.
-- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar generated from the corrected edit's `captions-v2.ass` timing.
+- `ai-i-drift-sa-fungerar-det-v3.mp4`: temporary local bridge placeholder derived from the corrected portrait Meta ad master. It is not approved for launch or production deployment.
+- `ai-i-drift-sa-fungerar-det-v3.sv.vtt`: Swedish sidecar for the temporary local placeholder only.
 - `render-ai-i-drift-v3.mjs`: deterministic local animatic renderer. It accepts an existing narration MP3 and never calls a provider.
 - `ai-i-drift-sa-fungerar-det-v2.mp4`: retired after the 2026-08-01 positioning cutover. Do not launch.
 - `ai-i-drift-sa-fungerar-det-v2.sv.vtt`: captions for the retired V2 asset only.
@@ -15,8 +15,15 @@ Clean source receipt: `/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/
 Web MP4 SHA-256: `d20de4f026bff3bad34d52557b5bc72b5b45fb53030b73cd7bf9457c7e3e5b25`.
 VTT SHA-256: `e1a68fd982269e77ae645deea36dd9222813ce9ae7e53c65c2d545ad2a702523`.
 
-The Meta ad uses the captioned FINAL source. The bridge uses the clean V3 MP4,
-the VTT and the same readable transcript from the approved edit.
+The Meta ad uses the captioned FINAL source and is approved as campaign creative.
+The bridge currently uses the clean portrait derivative, VTT and transcript only
+as a local placeholder. It must not launch with the Meta ad repeated after click.
+
+The existing bridge frame is already 16:9 and needs no funnel redesign. When
+Gustav supplies the separate landscape Tella recording, the local acceptance pass
+must verify the received file, bind its actual source without inventing a filename,
+replace the matching caption and transcript sources, and remove
+`data-media-status="temporary-local-placeholder"` only after those checks pass.
 Production deployment follows the NordSym.com release process and its current release authority.
 
 Local render command:
