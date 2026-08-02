@@ -4,6 +4,7 @@ import { extname, join, normalize, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const port = Number(process.env.PORT || 4173);
+const approvedMetaAd = "/Users/gustavhemmingsson/Desktop/NordSym-AI-agenter-edit/NordSym-AI-agenter-FINAL.mp4";
 const mime = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -31,6 +32,42 @@ function targetPath(urlPath) {
 
 const server = createServer((request, response) => {
   const requestUrl = new URL(request.url || "/", `http://${request.headers.host || "127.0.0.1"}`);
+
+  if (request.method === "GET" && requestUrl.pathname === "/__review/meta-founder-ad.mp4") {
+    if (!existsSync(approvedMetaAd)) {
+      response.writeHead(404, { ...previewHeaders, "Content-Type": "text/plain; charset=utf-8" });
+      response.end("Approved Meta ad source not found");
+      return;
+    }
+    const size = statSync(approvedMetaAd).size;
+    const range = String(request.headers.range || "").match(/^bytes=(\d*)-(\d*)$/);
+    if (range) {
+      const start = range[1] ? Number(range[1]) : 0;
+      const end = range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+      if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end < start || start >= size) {
+        response.writeHead(416, { ...previewHeaders, "Content-Range": `bytes */${size}` });
+        response.end();
+        return;
+      }
+      response.writeHead(206, {
+        ...previewHeaders,
+        "Accept-Ranges": "bytes",
+        "Content-Length": end - start + 1,
+        "Content-Range": `bytes ${start}-${end}/${size}`,
+        "Content-Type": "video/mp4"
+      });
+      createReadStream(approvedMetaAd, { start, end }).pipe(response);
+      return;
+    }
+    response.writeHead(200, {
+      ...previewHeaders,
+      "Accept-Ranges": "bytes",
+      "Content-Length": size,
+      "Content-Type": "video/mp4"
+    });
+    createReadStream(approvedMetaAd).pipe(response);
+    return;
+  }
 
   if (request.method === "GET" && requestUrl.pathname === "/api/availability") {
     response.writeHead(200, {

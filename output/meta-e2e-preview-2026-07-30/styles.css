@@ -193,15 +193,12 @@ main {
   margin-bottom: 0;
 }
 
-.creative-link {
+.creative-video {
+  width: 100%;
+  max-height: 920px;
   display: block;
   background: #14110d;
-}
-
-.creative-link img {
-  width: 100%;
-  height: auto;
-  display: block;
+  object-fit: contain;
 }
 
 .link-card {

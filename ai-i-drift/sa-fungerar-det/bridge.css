@@ -28,13 +28,6 @@
   font-size: clamp(3.1rem, 6.2vw, 5.6rem);
 }
 
-.bridge-intro > p:last-child {
-  max-width: 42rem;
-  margin: 0 auto 36px;
-  color: var(--ink-soft);
-  font-size: clamp(1rem, 1.7vw, 1.16rem);
-}
-
 .bridge-video-frame {
   position: relative;
   overflow: hidden;
@@ -119,49 +112,6 @@
   text-transform: uppercase;
 }
 
-.bridge-transcript {
-  max-width: 900px;
-  margin: 34px auto 0;
-  border-top: 1px solid rgba(33, 29, 23, 0.22);
-  border-bottom: 1px solid rgba(33, 29, 23, 0.22);
-}
-
-.bridge-transcript summary {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  list-style: none;
-}
-
-.bridge-transcript summary::-webkit-details-marker {
-  display: none;
-}
-
-.bridge-transcript summary span {
-  color: var(--oxide);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1.1rem;
-  transition: transform 150ms ease;
-}
-
-.bridge-transcript[open] summary span {
-  transform: rotate(45deg);
-}
-
-.bridge-transcript p {
-  max-width: 48rem;
-  margin: 0 0 18px;
-  color: var(--ink-soft);
-}
-
-.bridge-transcript p:last-child {
-  margin-bottom: 30px;
-}
-
 .bridge-footer {
   min-height: 118px;
 }
@@ -180,10 +130,6 @@
     max-width: 12ch;
     margin-inline: 0;
     font-size: clamp(3rem, 14.5vw, 4.7rem);
-  }
-
-  .bridge-intro > p:last-child {
-    margin: 0 0 28px;
   }
 
   .bridge-video-meta {
@@ -207,9 +153,6 @@
     text-align: left;
   }
 
-  .bridge-transcript {
-    margin-top: 28px;
-  }
 }
 
 @media (max-width: 420px) {

@@ -6,9 +6,9 @@ by `../meta-launch-ready-packet-2026-08-01.md`.
 ## Still valid
 
 - The production-inert preview architecture remains valid.
-- The image and CTA open the local `/ai-i-drift/sa-fungerar-det/` bridge with sanitized campaign parameters.
+- The approved portrait video and CTA open the local `/ai-i-drift/sa-fungerar-det/` bridge with sanitized campaign parameters.
 - UTM preservation, qualification, booking and external-call blocking remain valid.
-- The bridge CTA preserves `utm_source`, `utm_medium`, `utm_campaign`, `utm_id` and `utm_content`, then opens the five-question qualification.
+- The bridge CTA preserves `utm_source`, `utm_medium`, `utm_campaign`, `utm_id` and `utm_content`, then opens the focused `/ai-i-drift/kvalificering/` route.
 - A complete qualified path reaches the current Swedish booking experience.
 - All form completions can book. `qualification_signal` separates a form completion from a qualified-opportunity signal. Commercial interest remains a later NordSym Sales decision.
 - The local preview server returns deterministic availability, keeps one slot visibly occupied and blocks booking submission.
@@ -32,13 +32,16 @@ read as one coherent journey. This visual acceptance remains open.
 ## 2026-08-02 frontend closure
 
 - The preview now contains a numbered navigator for all four surfaces.
-- The bridge explains that the questions are pre-qualification and meeting input.
+- The selected first step is the approved 88.443-second portrait Meta video. The static C02 asset remains preserved as an alternate draft.
+- The ad preview uses an intentional frame after the founder is seated as its poster. The approved video itself is unchanged.
+- The bridge contains no transcript accordion or repeated explanation around the video.
+- The bridge CTA opens the dedicated qualification route. The long-form `/ai-i-drift/` page remains intact for organic discovery.
 - The five questions remain five categorical primary questions and collect company
   scale, current state, primary blocker, system scope and decision readiness.
 - No conditional inputs were added because they would add friction without a proved
   routing benefit at current traffic volume.
-- The booking page states that the need analysis happens with Gustav, uses the five
-  answers as preparation and confirms what happens during the meeting.
+- Reusable bridge and booking UI no longer depend on the founder's name.
+- The booking page uses the five answers as preparation and confirms what happens during the meeting.
 - Preview, bridge, qualification and booking routes all returned HTTP 200 after the
   copy and frontend update.
 - Bridge, positioning, analytics, Meta, systems, booking and Meta measurement test

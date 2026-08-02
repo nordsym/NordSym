@@ -1,0 +1,110 @@
+.qualification-page {
+  min-height: 100vh;
+  color: var(--paper);
+  background: var(--oxide);
+}
+
+.qualification-page .site-header {
+  border-bottom-color: rgba(255, 248, 243, 0.2);
+}
+
+.qualification-page .brand img {
+  filter: brightness(0) invert(1);
+}
+
+.qualification-page .header-note {
+  color: rgba(255, 248, 243, 0.72);
+}
+
+.qualification-page .qualification {
+  min-height: calc(100vh - 88px);
+  padding-block: clamp(28px, 5vh, 58px);
+}
+
+.qualification-page .qualification-shell {
+  width: min(100% - 80px, 1120px);
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(560px, 1.3fr);
+  align-items: start;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.qualification-page .qualification-intro {
+  margin: 14px 0 0;
+  text-align: left;
+}
+
+.qualification-page .qualification-intro h1 {
+  max-width: 9ch;
+  margin-top: 12px;
+  color: var(--paper);
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+}
+
+.qualification-page .qualification-intro > p {
+  max-width: 30ch;
+  margin: 18px 0 0;
+  color: #fff8f3;
+}
+
+.qualification-page .privacy-note {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.qualification-page .qualification-form {
+  min-height: 500px;
+}
+
+@media (max-width: 860px) {
+  .qualification-page .qualification-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .qualification-page .qualification-intro {
+    max-width: none;
+  }
+
+  .qualification-page .qualification-intro h1 {
+    max-width: 12ch;
+  }
+}
+
+@media (max-width: 760px) {
+  .qualification-page .qualification {
+    min-height: calc(100vh - 70px);
+    padding-block: 28px 44px;
+  }
+
+  .qualification-page .qualification-shell {
+    width: min(100% - 28px, var(--max));
+    gap: 22px;
+  }
+
+  .qualification-page .qualification-intro {
+    margin-top: 0;
+  }
+
+  .qualification-page .qualification-intro .kicker {
+    margin-bottom: 8px;
+  }
+
+  .qualification-page .qualification-intro h1 {
+    max-width: none;
+    margin-top: 0;
+    font-size: clamp(2.25rem, 11vw, 3.15rem);
+  }
+
+  .qualification-page .qualification-intro > p {
+    margin-top: 10px;
+    font-size: 0.92rem;
+  }
+
+  .qualification-page .privacy-note {
+    margin-top: 12px;
+  }
+
+  .qualification-page .qualification-form {
+    min-height: 0;
+  }
+}

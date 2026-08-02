@@ -9,7 +9,8 @@ const trackedPages = [
   'index.html',
   'book/index.html',
   paidLandingPage,
-  'ai-i-drift/sa-fungerar-det/index.html'
+  'ai-i-drift/sa-fungerar-det/index.html',
+  'ai-i-drift/kvalificering/index.html'
 ];
 const qualificationValues = {
   company_size: ['1-19', '20-49', '50-199', '200+'],
@@ -102,7 +103,7 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landing = readFileSync(resolve(root, paidLandingScript), 'utf8');
 for (const [text, label] of [
-  ['var SURFACE = "lp_ai_i_drift";', 'paid landing surface'],
+  ['var SURFACE = document.body.dataset.analyticsSurface || "lp_ai_i_drift";', 'route-aware paid funnel surface'],
   ['var OFFER = "ai_i_drift";', 'paid landing offer'],
   ['var destination = new URL("/book/", window.location.origin);', 'default booking destination'],
   ['destination.searchParams.set("offer", OFFER);', 'paid booking offer handoff'],
@@ -120,6 +121,10 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 }
 
 const landingMarkup = readFileSync(resolve(root, paidLandingPage), 'utf8');
+const focusedQualificationMarkup = readFileSync(resolve(root, 'ai-i-drift/kvalificering/index.html'), 'utf8');
+if (!focusedQualificationMarkup.includes('data-analytics-surface="lp_ai_i_drift_qualification"')) {
+  failures.push('ai-i-drift/kvalificering/index.html: missing focused qualification analytics surface');
+}
 for (const [text, label] of [
   ['Se vad som saknas', 'readiness review CTA'],
   ['Grundarledd leverans', 'founder delivery trust marker'],
@@ -170,6 +175,18 @@ for (const [key, expectedValues] of Object.entries(qualificationValues)) {
   });
   if (JSON.stringify(actualValues) !== JSON.stringify(expectedValues)) {
     failures.push(`${paidLandingPage}: ${key} form values differ from the paid-funnel contract`);
+  }
+}
+
+const focusedQualificationInputs = [...focusedQualificationMarkup.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
+for (const [key, expectedValues] of Object.entries(qualificationValues)) {
+  const actualValues = focusedQualificationInputs.flatMap((input) => {
+    const name = input.match(/\bname="([^"]+)"/)?.[1];
+    const value = input.match(/\bvalue="([^"]+)"/)?.[1];
+    return name === key && value ? [value] : [];
+  });
+  if (JSON.stringify(actualValues) !== JSON.stringify(expectedValues)) {
+    failures.push(`ai-i-drift/kvalificering/index.html: ${key} form values differ from the paid-funnel contract`);
   }
 }
 

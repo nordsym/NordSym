@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var SURFACE = "lp_ai_i_drift";
+  var SURFACE = document.body.dataset.analyticsSurface || "lp_ai_i_drift";
   var OFFER = "ai_i_drift";
   var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content"];
   var ALLOWED = {

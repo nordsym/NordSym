@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Fem frågor inför mötet | NordSym</title>
+  <meta name="description" content="Svara på fem korta frågor och välj sedan en tid för ett 20-minutersmöte.">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/nordsym-favicon.svg">
+  <link rel="stylesheet" href="/assets/fonts/nordsym-fonts.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./qualification.css">
+  <link rel="stylesheet" href="/assets/meta-measurement.css">
+</head>
+<body class="qualification-page" data-analytics-surface="lp_ai_i_drift_qualification">
+  <a class="skip-link" href="#qualification-form">Hoppa till frågorna</a>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="NordSym, startsida">
+      <img src="/assets/brand/nordsym-header-lockup.svg" alt="NordSym" width="186" height="50">
+    </a>
+    <span class="header-note">Inför mötet</span>
+  </header>
+
+  <main>
+    <section class="qualification" aria-labelledby="qualification-title">
+      <div class="qualification-shell">
+        <div class="qualification-intro">
+          <p class="kicker">Inför mötet</p>
+          <h1 id="qualification-title">Ge oss rätt utgångspunkt.</h1>
+          <p>Fem korta frågor om nuläget. Därefter väljer ni en tid för ett 20-minutersmöte.</p>
+          <div class="privacy-note">
+            <span aria-hidden="true">□</span>
+            <p>Här väljer ni bara kategorier. Namn och e-post lämnas när ni väljer tid. <a href="/privacy.html">Läs om datahanteringen.</a></p>
+          </div>
+        </div>
+
+        <form id="qualification-form" class="qualification-form" novalidate>
+          <div class="progress-head">
+            <span id="step-label">Steg 1 av 5</span>
+            <span id="step-topic">Bolagsstorlek</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
+
+          <fieldset class="form-step is-active" data-step="0">
+            <legend>Hur stort är bolaget?</legend>
+            <div class="option-grid option-grid-four">
+              <label><input type="radio" name="company_size" value="1-19" required><span>1-19</span></label>
+              <label><input type="radio" name="company_size" value="20-49"><span>20-49</span></label>
+              <label><input type="radio" name="company_size" value="50-199"><span>50-199</span></label>
+              <label><input type="radio" name="company_size" value="200+"><span>200+</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="1" hidden>
+            <legend>Vilket läge beskriver er bäst just nu?</legend>
+            <div class="option-grid">
+              <label><input type="radio" name="operation_state" value="named_priority" required><span>Vi vet vilket återkommande arbete vi vill börja med</span></label>
+              <label><input type="radio" name="operation_state" value="active_build"><span>Vi bygger redan, men teamet måste fortfarande hjälpa till</span></label>
+              <label><input type="radio" name="operation_state" value="prototype_only"><span>Vi har testat en prototyp, men inte fått in den i vardagen</span></label>
+              <label><input type="radio" name="operation_state" value="multiple_backlog"><span>Vi har flera möjliga arbeten, men har inte valt vilket som går först</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="2" hidden>
+            <legend>Vad är det största hindret just nu?</legend>
+            <div class="option-grid option-grid-three">
+              <label><input type="radio" name="bottleneck" value="process_clarity" required><span>Otydlig process eller avgränsning</span></label>
+              <label><input type="radio" name="bottleneck" value="integration"><span>Vår tech stack och data hänger inte ihop</span></label>
+              <label><input type="radio" name="bottleneck" value="production_reliability"><span>Lösningen håller inte när den används på riktigt</span></label>
+              <label><input type="radio" name="bottleneck" value="delivery_capacity"><span>Vi hinner inte bygga det som behövs</span></label>
+              <label><input type="radio" name="bottleneck" value="governance"><span>Ansvar, säkerhet eller godkännanden är oklara</span></label>
+              <label><input type="radio" name="bottleneck" value="measurement"><span>Vi kan inte mäta om arbetet blir bättre</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="3" hidden>
+            <legend>Hur många system berör arbetet ni vill lösa?</legend>
+            <p class="field-hint">Räkna systemen där underlag hämtas, arbetet sker eller resultatet ska sparas.</p>
+            <div class="option-grid option-grid-four">
+              <label><input type="radio" name="systems_count" value="1" required><span>1 system</span></label>
+              <label><input type="radio" name="systems_count" value="2"><span>2 system</span></label>
+              <label><input type="radio" name="systems_count" value="3-5"><span>3-5 system</span></label>
+              <label><input type="radio" name="systems_count" value="6+"><span>6+ system</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="4" hidden>
+            <legend>Hur nära är ni ett beslut att gå vidare?</legend>
+            <div class="option-grid">
+              <label><input type="radio" name="mandate" value="sponsor_now" required><span>Arbetet är prioriterat av ledningen</span></label>
+              <label><input type="radio" name="mandate" value="owner_in_place"><span>Det finns en ansvarig person med mandat</span></label>
+              <label><input type="radio" name="mandate" value="hiring_owner"><span>Vi rekryterar någon som ska äga området</span></label>
+              <label><input type="radio" name="mandate" value="exploring"><span>Vi undersöker om detta bör prioriteras</span></label>
+            </div>
+          </fieldset>
+
+          <p id="form-error" class="form-error" role="alert" hidden>Välj ett alternativ för att fortsätta.</p>
+
+          <div class="form-actions">
+            <button id="back-button" class="button button-quiet" type="button" hidden>← Tillbaka</button>
+            <button id="next-button" class="button button-primary" type="button">Fortsätt <span aria-hidden="true">→</span></button>
+            <button id="submit-button" class="button button-primary" type="submit" hidden>Gå vidare till tider <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script id="nordsym-posthog">
+  (function(){
+    if (window.__nordsymPosthogLoaded) return;
+    window.__nordsymPosthogLoaded = true;
+    var campaign = {};
+    var params = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_id','utm_content'].forEach(function(key){
+      var raw = String(params.get(key) || '').trim();
+      if (!raw || raw.indexOf('@') !== -1 || raw.replace(/\D/g, '').length >= 7) return;
+      var value = raw.toLowerCase().replace(/[^a-z0-9._~-]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 120);
+      if (value) campaign[key] = value;
+    });
+    window.__nordsymPaidContext = campaign;
+    !function(d,p){var s=d.createElement('script'),first=d.getElementsByTagName('script')[0];p=p||[];window.posthog=p;p._i=p._i||[];p.init=function(token,config,name){var target=name?p[name]=[]:p;target.people=target.people||[];['capture','register','set_config'].forEach(function(method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};});p._i.push([token,config,name]);};s.async=true;s.crossOrigin='anonymous';s.src='https://eu-assets.i.posthog.com/static/array.js';first.parentNode.insertBefore(s,first);}(document,window.posthog);
+    window.posthog.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {
+      api_host: 'https://eu.i.posthog.com', ui_host: 'https://eu.posthog.com', defaults: '2026-05-30',
+      cookieless_mode: 'always', person_profiles: 'identified_only', autocapture: false,
+      capture_pageview: false, capture_pageleave: false, disable_session_recording: true,
+      loaded: function(posthog) {
+        posthog.register({ product: 'Nordsym-Com', surface: 'lp_ai_i_drift_qualification', offer: 'ai_i_drift' });
+        posthog.capture('$pageview', Object.assign({ path: location.pathname, privacy_mode: 'server_hash' }, campaign));
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/meta-measurement.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

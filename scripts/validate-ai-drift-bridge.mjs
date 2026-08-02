@@ -16,6 +16,9 @@ function read(relativePath) {
 const markup = read('ai-i-drift/sa-fungerar-det/index.html');
 const styles = read('ai-i-drift/sa-fungerar-det/bridge.css');
 const script = read('ai-i-drift/sa-fungerar-det/bridge.js');
+const qualification = read('ai-i-drift/kvalificering/index.html');
+const preview = read('output/meta-e2e-preview-2026-07-30/index.html');
+const previewServer = read('scripts/serve-meta-e2e-preview.mjs');
 const spokenSource = read('assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt');
 const captions = read('assets/video/ai-i-drift-sa-fungerar-det-v3.sv.vtt');
 read('assets/ai-i-drift-video-poster.jpg');
@@ -28,12 +31,19 @@ for (const [source, expected, label] of [
   [markup, 'poster="/assets/ai-i-drift-video-poster.jpg"', 'authentic video poster'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v3.mp4"', '16:9 bridge video path'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v3.sv.vtt"', 'Swedish captions'],
-  [markup, 'href="/ai-i-drift/#kvalificering"', 'qualification destination'],
+  [markup, 'href="/ai-i-drift/kvalificering/"', 'focused qualification destination'],
   [markup, '/assets/meta-measurement.js', 'Meta measurement client'],
   [markup, "surface: 'lp_ai_i_drift_bridge'", 'PostHog bridge surface'],
-  [markup, 'Läs videons text', 'accessible transcript'],
   [markup, 'Fem frågor före mötet.', 'bridge continuity headline'],
-  [markup, '20 minuters möte med mig', 'truthful spoken booking transcript'],
+  [markup, 'Därefter väljer ni en tid för ett 20-minutersmöte.', 'concise bridge expectation'],
+  [qualification, 'class="qualification-page"', 'dedicated qualification state'],
+  [qualification, 'Steg 1 av 5', 'five-question progress'],
+  [qualification, 'Hur stort är bolaget?', 'first question'],
+  [qualification, '../script.js', 'shared qualification logic'],
+  [preview, '/__review/meta-founder-ad.mp4', 'approved ad video in E2E preview'],
+  [preview, '/assets/meta-founder-ad-poster.jpg', 'intentional ad poster'],
+  [preview, '/ai-i-drift/kvalificering/', 'focused qualification in E2E navigator'],
+  [previewServer, 'NordSym-AI-agenter-FINAL.mp4', 'immutable approved ad source'],
   [spokenSource, 'vart man faktiskt ska börja.', 'approved single spoken faktiskt'],
   [spokenSource, '20 minuters möte med mig', 'approved spoken booking path'],
   [captions, 'vart man faktiskt ska börja.', 'captioned single faktiskt'],
@@ -52,12 +62,18 @@ for (const [source, pattern, label] of [
   [markup, /autoplay/i, 'autoplay'],
   [markup, /LOKAL ANIMATIK|EJ SLUTMEDIA/i, 'preview-only media label'],
   [markup, /temporary-local-placeholder/, 'temporary bridge placeholder'],
+  [markup, /Läs videons text|bridge-transcript/, 'bridge transcript surface'],
+  [markup, /Gustav/, 'founder-name coupling'],
   [markup, /Gör inte det här misstaget/, 'repeated ad argument'],
   [markup, /\b(?:email|company|notes|qualification_answers)\s*:/, 'PII field'],
   [script, /\b(?:email|company|notes|qualification_answers)\s*:/, 'PII field in tracking'],
   [script, /utm_term/, 'unused campaign term']
 ]) {
   if (pattern.test(source)) failures.push(`contains forbidden ${label}`);
+}
+
+if (preview.includes('c02-forsta-agenten-1080x1350.png')) {
+  failures.push('E2E preview still selects the retired static creative');
 }
 
 for (const [source, label] of [

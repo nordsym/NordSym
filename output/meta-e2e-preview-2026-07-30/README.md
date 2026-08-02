@@ -2,7 +2,7 @@
 
 Production-inert review path:
 
-`local Meta feed -> local video bridge -> current qualification -> current booking`
+`local Meta video ad -> local video bridge -> focused qualification -> current booking`
 
 ## Open
 
@@ -20,7 +20,7 @@ Then open:
 
 ## Contents
 
-- `index.html`: placement-faithful C02 feed preview and click-through.
+- `index.html`: placement-faithful preview of the approved portrait founder video and click-through.
 - The numbered review bar opens the ad, bridge, five questions and booking independently while preserving the same preview attribution.
 - `animatic.html`: retired pre-positioning animatic kept only as historical evidence.
 - `animatic-frames/`: rendered 1600x900 frame images.
@@ -28,10 +28,10 @@ Then open:
 - `measurement-map.md`: event ownership and data boundary.
 - `campaign-draft.md`: inert Ads Manager reproduction spec.
 - `evidence-receipt.md`: verified state and blocker classification.
-- `evidence/`: mobile screenshots of the review path.
+- `evidence/`: historical screenshots from the superseded static-led review path.
 
 The prior animatic and V2 voiceover no longer match the outcome-first positioning.
 The current packet binds the approved portrait Meta ad and the separate 16:9 Tella
-bridge recording. The five questions are pre-qualification and meeting preparation.
-The need analysis happens in the 20-minute meeting. Do not upload or launch either
-historical video asset.
+bridge recording. The bridge now opens a dedicated five-question route rather than
+an anchor inside the long-form page. The questions prepare the 20-minute meeting.
+The static C02 creative remains an alternate draft and is not the selected E2E path.
