@@ -1,20 +1,28 @@
 # NordSym Meta launch packet
 
-Status: Coordinated positioning candidate. No Meta upload, activation or spend.
-Date: 2026-08-01
+Status: Review-ready campaign package aligned to the live NordSym position. No Meta upload, activation or spend.
+Updated: 2026-08-02
 
 ## Commercial direction
 
 NordSym builds and operates AI agents inside the client's tech stack to take
 over recurring work that costs time and money.
 
+The commercial promise is capacity, not governance. The mechanism is that each
+agent works with the context and access required for a bounded assignment,
+hands real decisions to a person, records its result and stops safely when the
+work leaves its mandate. NordSym stays responsible for building and operating
+that working path as the business changes.
+
 The Meta campaign must make one buyer ask:
 
 > Vilket återkommande arbete betalar vi människor för att göra varje vecka?
 
-The first funnel is not sold as governance, an AI-readiness doctrine or a rescue
-for failed prototypes. Those remain useful qualification and credibility
-details after the buyer recognizes the work they want removed.
+The first funnel is not sold as Agent Badge, an agent directory, generic
+automation, an AI-readiness doctrine or a list of controls. Context, mandate,
+access, approvals, records and stop controls explain why the agent can take over
+real work. They are supporting credibility after the buyer recognizes the work
+they want removed.
 
 ## Intended path
 
@@ -33,9 +41,10 @@ approved UTM fields.
 
 Vilket återkommande arbete betalar ni människor för att göra varje vecka?
 
-NordSym bygger och driver AI-agenter i er tech stack som samlar in underlag,
-uppdaterar system och följer upp arbetet. Börja med att hitta den första
-uppgiften som är värd att flytta från teamet.
+NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt
+sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och
+lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid
+eller pengar.
 
 ### Headline
 
@@ -43,7 +52,7 @@ uppgiften som är värd att flytta från teamet.
 
 ### Description
 
-`Hitta första arbetsflödet`
+`Se hur arbetet flyttas`
 
 ### CTA
 
@@ -51,9 +60,10 @@ uppgiften som är värd att flytta från teamet.
 
 ### Visible image copy
 
-- Kicker: `Ta arbetet från teamet`
+- Kicker: `Arbetet kostar varje vecka`
 - Headline: `Vad ska er första AI-agent ta över?`
-- Examples: `Underlag samlas in`, `System uppdateras`, `Uppföljning sker`
+- Work path: `Rätt underlag hämtas`, `Arbetet utförs`, `Resultatet registreras`
+- Control cues: `Från era system`, `Inom uppdraget`, `Människa vid beslut`
 - Mechanism: `NordSym bygger och driver agenten i er tech stack.`
 
 ## Reserve statics
@@ -61,7 +71,8 @@ uppgiften som är värd att flytta från teamet.
 - C01 keeps the same promise and tests recognition of recurring cost:
   `Vilket arbete borde teamet slippa?`
 - C03 keeps the same promise and tests mechanism:
-  `Agenten arbetar där jobbet redan händer.`
+  `Agenten arbetar där jobbet redan händer.` Its map shows context, system
+  action, human decision, recorded result and continued operation.
 
 Do not launch all three together in a small tranche. C02 leads. C01 or C03 may
 replace it only after a specific hold or kill decision.
@@ -80,12 +91,13 @@ Det kan vara att samla in underlag, uppdatera flera system, kontrollera att allt
 stämmer eller följa upp samma sak igen och igen.
 
 NordSym bygger AI-agenter inne i er tech stack som tar över det arbetet. Vi
-börjar med en uppgift som kostar tydlig tid eller pengar. Sedan kopplar vi
-agenten till systemen där jobbet redan händer och driver den vidare när
-verksamheten förändras.
+börjar med en uppgift som kostar tydlig tid eller pengar. Agenten får rätt
+sammanhang och åtkomst för sitt uppdrag, arbetar i systemen ni redan använder
+och registrerar vad den gör.
 
-Agenten sköter det återkommande. En människa kommer in när det faktiskt behövs
-ett beslut.
+Agenten sköter det återkommande. En människa kommer in när det behövs ett
+verkligt beslut. NordSym fortsätter driva och förbättra arbetet när
+verksamheten förändras.
 
 Klicka vidare och svara på fem frågor. Då kan vi se vilket arbete som är värt
 att flytta från teamet först.
@@ -100,7 +112,7 @@ att flytta från teamet först.
 - Takes: one complete natural take, one tighter take of the hook and final CTA.
 - Audio: quiet room, external microphone if available, no music needed.
 - Captions: Swedish, sentence case, maximum two lines at a time.
-- Optional cutaways: the C02 task rows and the real NordSym tech-stack map.
+- Optional cutaways: the C02 work path and the C03 tech-stack map.
 - Authenticity boundary: Gustav must appear and speak if the asset is presented
   as founder-led. ElevenLabs may be used only as an explicitly voiceover-led
   variant, not as simulated founder footage.
@@ -129,10 +141,10 @@ context and the CTA matches the bridge.
 
 `Fem frågor före bokning`
 
-The current V2 ElevenLabs MP4 and the old silent animatic are retired because
-they lead with demos, exception rescue and governance. They must not be used in
-the coordinated release. The HTML, captions and transcript must match the final
-replacement recording exactly before deployment.
+The live V3 bridge, captions and transcript already carry the same recurring
+work promise and may remain unchanged. The V2 ElevenLabs asset and silent
+animatic are historical only because they lead with demos, exception rescue and
+controls as the offer.
 
 ## Qualification contract
 
@@ -173,16 +185,14 @@ build-and-operate relationship.
 - C02 dark ledger composition
 - C03 tech-stack map composition
 - 4:5 and 1:1 export formats
-- Video bridge route, consent and UTM architecture
+- Live V3 video bridge, consent and UTM architecture
 - Five-question qualification and booking path
 
 ### Rewrite
 
-- All three static on-image messages and Meta copy
-- Campaign names, headline, description and buyer-recognition language
-- Bridge headline, supporting copy, CTA, transcript and captions
-- Founder and voiceover scripts
-- Qualification entry framing
+- C01-C03 supporting labels and Meta copy so control language explains the work
+  instead of becoming the offer
+- Founder-ad script and campaign manifest
 
 ### Retire
 
@@ -192,12 +202,13 @@ build-and-operate relationship.
 - Current V2 ElevenLabs bridge MP4
 - Historical silent animatic
 - `AI-readiness` and `build-or-decline` language in buyer-facing creative
+- Any Agent Badge, agent-directory or capability-list framing
 
 ## Launch gates
 
-- Final replacement bridge recording approved and installed
-- Bridge captions and transcript match the final recording
-- Coordinated website and funnel release deployed and read back
+- Gustav approves C02 copy and the regenerated 4:5 and 1:1 assets
+- Live V3 bridge, qualification and booking path receive one final read-only
+  message-match check before construction
 - Dataset, Pixel and CAPI approved and verified separately
 - PageView, Lead and Schedule verified in Test Events
 - Page and Instagram identity read back in Ads Manager

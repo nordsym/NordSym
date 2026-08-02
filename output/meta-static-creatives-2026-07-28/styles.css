@@ -198,8 +198,8 @@ body {
 }
 
 .sheet-row .index,
-.exception-row .index,
-.exception-card .index {
+.work-row .index,
+.work-card .index {
   align-self: start;
   padding-top: 8px;
   color: var(--oxide-light);
@@ -295,12 +295,12 @@ body {
   font-size: 96px;
 }
 
-.exception-ledger {
+.work-path {
   margin-top: 48px;
   border-top: 1px solid rgba(243, 238, 228, 0.18);
 }
 
-.exception-row {
+.work-row {
   min-height: 118px;
   display: grid;
   grid-template-columns: 52px 1fr auto;
@@ -309,11 +309,11 @@ body {
   border-bottom: 1px solid rgba(243, 238, 228, 0.18);
 }
 
-.exception-row strong {
+.work-row strong {
   font: 400 32px/1.1 "Newsreader", serif;
 }
 
-.rescue {
+.control-label {
   padding: 12px 15px;
   color: var(--oxide-light);
   border: 1px solid rgba(224, 138, 110, 0.65);
@@ -343,7 +343,7 @@ body {
   letter-spacing: -0.03em;
 }
 
-.exception-grid {
+.work-grid {
   margin-top: 38px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -351,7 +351,7 @@ body {
   border-bottom: 1px solid rgba(243, 238, 228, 0.18);
 }
 
-.exception-card {
+.work-card {
   min-height: 230px;
   display: flex;
   flex-direction: column;
@@ -360,15 +360,15 @@ body {
   border-right: 1px solid rgba(243, 238, 228, 0.18);
 }
 
-.exception-card:last-child {
+.work-card:last-child {
   border-right: 0;
 }
 
-.exception-card strong {
+.work-card strong {
   font: 400 28px/1.08 "Newsreader", serif;
 }
 
-.exception-card .rescue {
+.work-card .control-label {
   margin-top: auto;
   padding-inline: 10px;
   font-size: 16px;
@@ -383,22 +383,22 @@ body {
   font-size: 43px;
 }
 
-.operations-statement {
+.stack-statement {
   margin-top: 86px;
 }
 
-.operations-statement .kicker {
+.stack-statement .kicker {
   margin-bottom: 24px;
 }
 
-.operations-statement h1 {
+.stack-statement h1 {
   margin: 0;
   max-width: 840px;
   font: 400 94px/0.94 "Newsreader", serif;
   letter-spacing: -0.045em;
 }
 
-.operations-statement > p:last-child {
+.stack-statement > p:last-child {
   margin: 24px 0 0;
   max-width: 780px;
   color: var(--oxide);
@@ -406,7 +406,7 @@ body {
   letter-spacing: -0.025em;
 }
 
-.operation-map {
+.work-map {
   margin-top: 72px;
   color: var(--paper);
   background: var(--night);
@@ -464,46 +464,46 @@ body {
   transform: rotate(45deg);
 }
 
-.operations-statement-square {
+.stack-statement-square {
   margin-top: 140px;
 }
 
-.operations-statement-square .kicker {
+.stack-statement-square .kicker {
   margin-bottom: 16px;
 }
 
-.operations-statement-square h1 {
+.stack-statement-square h1 {
   max-width: 900px;
   font-size: 72px;
 }
 
-.operations-statement-square > p:last-child {
+.stack-statement-square > p:last-child {
   margin-top: 14px;
   font-size: 40px;
 }
 
-.operation-map-square {
+.work-map-square {
   margin-top: 70px;
 }
 
-.operation-map-square .map-line {
+.work-map-square .map-line {
   min-height: 82px;
   padding-inline: 18px;
 }
 
-.operation-map-square .map-node {
+.work-map-square .map-node {
   padding: 11px 9px;
   font-size: 15px;
 }
 
-.operation-map-square .map-line i {
+.work-map-square .map-line i {
   min-width: 10px;
 }
 
-.concept-operation.portrait .operations-statement {
+.concept-stack.portrait .stack-statement {
   margin-top: auto;
 }
 
-.concept-operation.portrait .operation-map {
+.concept-stack.portrait .work-map {
   margin-bottom: auto;
 }

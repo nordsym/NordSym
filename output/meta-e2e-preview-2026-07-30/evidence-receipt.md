@@ -17,27 +17,17 @@ by `../meta-launch-ready-packet-2026-08-01.md`.
 
 ## Superseded evidence
 
-The screenshots, C02 copy, V2 ElevenLabs asset and animatic show the prior
-demo-and-exception-led positioning. They are historical evidence only and must
-not be used as launch approval for the coordinated positioning release.
+The original screenshots, V2 ElevenLabs asset and animatic show the prior
+demo-and-exception-led positioning. They are historical evidence only. The C02
+source and exports were recalibrated on 2026-08-02 around recurring work,
+bounded execution, human decisions and recorded results.
 
 ## NEEDS GUSTAV NOW
 
-Record the founder bridge video from
-`../../assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`, or explicitly
-authorize a separate voiceover production. The final MP4, captions and HTML
-transcript must match before the coordinated site release.
+Approve, revise or reject the recalibrated C02 copy and images. No founder
+recording is required to review or construct the static-first package.
 
 ## LAUNCH-ONLY LATER
-
-Founder recording specification:
-
-- Script: `../../assets/video/ai-i-drift-sa-fungerar-det-v3-script.sv.txt`.
-- Framing: vertical 9:16 master, chest-up, eye level, simple NordSym home-office background.
-- Duration: 45 to 60 seconds.
-- Delivery: calm, direct, one thought per sentence.
-- Export: H.264 MP4, minimum 1080x1920, clean speech, no music required.
-- Acceptance check: natural Swedish, intelligible on a phone, transcript and spoken promise match, no unsupported outcome or security claim.
 
 Launch-only gates:
 
@@ -45,7 +35,7 @@ Launch-only gates:
 2. Verify `PageView`, `Lead` and server-side `Schedule` in Meta Test Events.
 3. Read back the intended NordSym Facebook Page and `@nordsymab` identity in Ads Manager.
 4. Add and verify a payment method on manual ad account `1017896054501692`.
-5. Reproduce the paused campaign, ad set and C02 ad from `campaign-draft.md`.
+5. Reproduce the paused campaign, ad set and approved C02 ad from `campaign-draft.md`.
 6. Approve the exact budget, ads and activation as a separate action.
 
 ## Current Meta readback

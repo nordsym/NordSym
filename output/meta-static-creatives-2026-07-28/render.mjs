@@ -61,7 +61,7 @@ const contactPage = await browser.newPage({
 await contactPage.goto(pathToFileURL(path.join(root, "contact-sheet.html")).href);
 await contactPage.evaluate(() => document.fonts.ready);
 await contactPage.screenshot({
-  path: path.join(exportDir, "contact-sheet-1080x1350.png"),
+  path: path.join(exportDir, "contact-sheet-1800x880.png"),
   fullPage: true,
   animations: "disabled"
 });
