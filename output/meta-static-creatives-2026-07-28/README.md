@@ -12,11 +12,9 @@ All three lead to the approved sparse video bridge:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The bridge route is production-inert and must not be used as an ad destination
-until the coordinated positioning release, replacement video and remaining Meta
-launch gates have passed.
-
-Once implemented, the bridge continues to the existing qualification flow and booking.
+The bridge is live and continues to the existing qualification flow and
+booking. It remains production-inert as an acquisition route because no Meta
+campaign is active and measurement is disabled pending dataset and token.
 
 ## Editable sources
 
@@ -37,8 +35,8 @@ NordSym fonts, production logo assets and AI i drift colors.
 
 The formats and hierarchy follow Meta's current image guidance: mobile-first `4:5`
 and `1:1`, one primary focal point, high contrast, restrained on-image copy and
-concise primary text. Headlines are 18, 22 and 32 characters. Descriptions are
-17, 27 and 16 characters.
+concise primary text. Copy is checked against Meta's recommended visible lengths
+in `copy.md`; longer primary text deliberately front-loads the recognition hook.
 
 ## Render
 

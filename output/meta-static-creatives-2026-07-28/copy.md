@@ -4,9 +4,9 @@ Destination for all three concepts:
 
 `https://nordsym.com/ai-i-drift/sa-fungerar-det/`
 
-The route is the intended sparse video bridge. Its CTA continues to the existing
-qualification flow and booking. Do not use it as an ad destination until the
-production release returns `200` and the Meta launch gates are complete.
+The route is the live sparse video bridge. Its CTA continues to the existing
+qualification flow and booking. It remains unused by paid traffic until the
+Meta launch gates and exact activation approval are complete.
 
 ## C01 - Vilket arbete borde teamet slippa?
 
@@ -16,8 +16,8 @@ Varje vecka går tid till samma kontroller, uppdateringar och uppföljningar i
 systemen ni redan använder.
 
 NordSym bygger och driver AI-agenter i er tech stack som tar över det
-återkommande arbetet. Börja med att hitta uppgiften som kostar mest tid eller
-pengar.
+återkommande arbetet inom ett tydligt uppdrag. En människa tar de verkliga
+besluten. Börja med uppgiften som kostar mest tid eller pengar.
 
 ### Headline
 
@@ -25,7 +25,7 @@ Vilket arbete borde teamet slippa?
 
 ### Description
 
-Hitta första arbetsflödet
+Hitta arbetet att börja med
 
 ### CTA
 
@@ -41,9 +41,10 @@ Whether recurring cost creates enough recognition to start the review.
 
 Vilket återkommande arbete betalar ni människor för att göra varje vecka?
 
-NordSym bygger och driver AI-agenter i er tech stack som samlar in underlag,
-uppdaterar system och följer upp arbetet. Börja med att hitta den första
-uppgiften som är värd att flytta från teamet.
+NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt
+sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och
+lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid
+eller pengar.
 
 ### Headline
 
@@ -51,7 +52,7 @@ Vad ska en AI-agent ta över?
 
 ### Description
 
-Hitta första arbetsflödet
+Se hur arbetet flyttas
 
 ### CTA
 
@@ -66,19 +67,20 @@ recognition.
 
 ### Primary text
 
-En AI-agent skapar kapacitet först när den kan arbeta i systemen där jobbet
-redan händer.
+En AI-agent skapar kapacitet först när den har rätt sammanhang, kan arbeta i
+rätt system och lämnar över verkliga beslut.
 
-NordSym bygger, kopplar in och driver agenten i er tech stack. Börja med ett
-återkommande arbetsflöde som kostar teamet tid eller företaget pengar.
+NordSym bygger och driver hela arbetsvägen i er tech stack, med avgränsad
+åtkomst, tydliga stopp och registrerade resultat. Börja med återkommande arbete
+som kostar teamet tid eller företaget pengar.
 
 ### Headline
 
-Bygg agenten där jobbet händer
+Agenten arbetar i er tech stack
 
 ### Description
 
-Se hur NordSym arbetar
+NordSym bygger och driver
 
 ### CTA
 
@@ -87,4 +89,4 @@ Läs mer
 ### Variable
 
 Whether the inside-your-tech-stack mechanism increases trust without making
-governance the sales promise.
+the controls the sales promise.

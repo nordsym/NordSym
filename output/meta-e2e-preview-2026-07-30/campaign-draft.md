@@ -36,17 +36,17 @@ This specification is inert. It does not authorize campaign creation, payment ch
 
   `Vilket återkommande arbete betalar ni människor för att göra varje vecka?`
 
-  `NordSym bygger och driver AI-agenter i er tech stack som samlar in underlag, uppdaterar system och följer upp arbetet. Börja med att hitta den första uppgiften som är värd att flytta från teamet.`
+  `NordSym bygger och driver AI-agenter i er tech stack. Agenten får rätt sammanhang och åtkomst för ett avgränsat uppdrag, registrerar vad som händer och lämnar verkliga beslut till en människa. Börja med arbetet som kostar mest tid eller pengar.`
 
 - Headline: `Vad ska en AI-agent ta över?`
-- Description: `Hitta första arbetsflödet`
+- Description: `Se hur arbetet flyttas`
 - CTA: `Läs mer`
 - Destination:
 
   `https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&utm_medium=paid_social&utm_campaign=ai_i_drift_v1&utm_content=c02_static`
 
-- Feed asset: `c02-dolda-manuella-arbetet-1080x1350.png`
-- Square fallback: `c02-dolda-manuella-arbetet-1080x1080.png`
+- Feed asset: `c02-forsta-agenten-1080x1350.png`
+- Square fallback: `c02-forsta-agenten-1080x1080.png`
 
 ## Construction hold
 
