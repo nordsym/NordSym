@@ -317,7 +317,7 @@
     heading: "Boka en kostnadsfri genomgång",
     briefHeading: "Ert möte",
     briefLabels: { focus: "Underlag", date: "Datum", time: "Tid", contact: "Kontakt" },
-    railDescription: "20 minuter. <br>Vi går igenom era svar, förstår behovet och avgör vilket nästa steg som är mest relevant.",
+    railDescription: "20 minuter. <br>Ett fokuserat samtal om arbetet ni vill få gjort, vad som krävs för att få det att fungera och om NordSym är rätt nästa steg.",
     stepLabels: ["Fokus", "Tid", "Uppgifter", "Klart"],
     back: "← Tillbaka",
     startOver: "Börja om",
@@ -347,7 +347,7 @@
       }
     ],
     timeHeading: "Välj en tid.",
-    timeDescription: "Välj en dag. Vi visar ett begränsat urval och kontrollerar lediga tider direkt i kalendern.",
+    timeDescription: "",
     detailsHeading: "Vart ska jag skicka bekräftelsen?",
     detailsDescription: "Bekräftelsen och kalenderinbjudan skickas till e-postadressen nedan.",
     privacyLabel: "Så behandlar NordSym bokningsuppgifter.",
@@ -793,7 +793,7 @@
     step = 2;
     content.innerHTML = '<div style="animation:.35s ease 0s 1 normal both running fadeup;flex:1;display:flex;flex-direction:column;">'
       + '<h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:0 0 6px;">'+text(copy.timeHeading)+'</h2>'
-      + '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.timeDescription)+'</p>'
+      + (copy.timeDescription ? '<p style="font-size:14.5px;color:rgb(90,83,71);margin:0 0 22px;">'+text(copy.timeDescription)+'</p>' : '')
       +(bookingError ? '<p role="alert" style="font-size:13px;line-height:1.5;color:#8C2F1B;background:rgba(168,67,43,.08);border:1px solid rgba(168,67,43,.2);padding:10px 12px;margin:0 0 14px;">'+text(bookingError)+'</p>' : '')
       + '<div class="booking-scheduler">'+calendarMarkup()+availabilityPlaceholder()+'</div></div>';
     bindCalendar();
