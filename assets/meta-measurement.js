@@ -124,11 +124,6 @@
     }
   }
 
-  function eventId() {
-    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
-    return 'evt_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 18);
-  }
-
   function customData() {
     return {
       content_name: 'ai_i_drift_qualification',
@@ -146,9 +141,11 @@
     }
 
     loadPixel();
-    var id = eventId();
     var data = customData();
-    window.fbq('track', eventName, data, { eventID: id });
+    // Lead is browser-only after all five qualification steps. Schedule is a
+    // separate server-only event after a confirmed booking, so they are not
+    // duplicates and do not share an event identifier.
+    window.fbq('track', eventName, data);
     return true;
   }
 

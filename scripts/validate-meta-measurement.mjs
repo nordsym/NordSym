@@ -33,7 +33,7 @@ const privacy = read('privacy.html');
 for (const [source, text, label] of [
   [landing, '/assets/meta-measurement.js', 'landing measurement client'],
   [landingScript, 'window.nordsymMeta?.track("Lead")', 'qualified Lead event'],
-  [client, "window.fbq('track', eventName, data, { eventID: id })", 'browser deduplication identifier'],
+  [client, "window.fbq('track', eventName, data)", 'browser Lead event'],
   [client, "window.fbq('set', 'autoConfig', false, config.pixelId)", 'automatic event collection disabled'],
   [booking, 'var endpoint = "/api/book";', 'same-origin booking proxy'],
   [booking, 'requestId: window.crypto.randomUUID()', 'booking idempotency key'],
@@ -61,6 +61,7 @@ for (const [source, pattern, label] of [
   [booking, /nordsymMeta\?\.track\([^)]*state\./, 'booking PII state in Meta call'],
   [booking, /meta-measurement\.js/, 'Pixel loader on booking form'],
   [client, /fetch\(['"]\/api\/meta-(?:conversion|event)/, 'public browser CAPI relay'],
+  [client, /eventID\s*:/, 'unnecessary browser event identifier'],
   [landing + booking + client + server, /EA[A-Za-z0-9]{40,}/, 'hardcoded Meta token']
 ]) {
   if (pattern.test(source)) failures.push(`contains forbidden ${label}`);
