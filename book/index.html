@@ -301,6 +301,7 @@
         ? "prequalified"
         : "form_complete";
   }
+  var paidBookingReady = hasCompleteQualification && Boolean(preCallContext.work_description);
 
   var analyticsContext = Object.assign({
     booking_variant: paidVariant ? "ai_i_drift_sv" : "default"
@@ -932,7 +933,21 @@
     if (step === 3) return renderTime();
     if (step === 2) return renderFocus();
   });
+  function redirectIncompletePaidBooking() {
+    if (!paidVariant || paidBookingReady) return false;
+    var qualificationDestination = new URL("/ai-i-drift/", window.location.origin);
+    UTM_PARAM_KEYS.forEach(function(key){
+      var value = categoricalValue(params.get(key));
+      if (value) qualificationDestination.searchParams.set(key, value);
+    });
+    window.location.replace(qualificationDestination.pathname + qualificationDestination.search);
+    return true;
+  }
+
   localizeShell();
+  if (redirectIncompletePaidBooking()) {
+    return;
+  }
   if (paidVariant) {
     setBrief("focus", focusLabel(state.focus));
     renderTime();
