@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import vm from 'node:vm';
 
 import {
   buildMetaEvent,
@@ -134,6 +136,70 @@ test('booking boundary rejects unknown, stale and incomplete paid requests', () 
       }
     }, now).ok,
     false
+  );
+  const directPaid = {
+    ...validBooking,
+    acquisition: { lang: 'sv', offer: 'ai_i_drift' }
+  };
+  delete directPaid.preCall;
+  assert.equal(
+    validateBookingRequest(directPaid, now).error,
+    'invalid_acquisition'
+  );
+});
+
+test('incomplete paid booking handoffs return to qualification before a submit can occur', async () => {
+  const bookingPage = await readFile(new URL('../book/index.html', import.meta.url), 'utf8');
+  const functionStart = bookingPage.indexOf('function redirectIncompletePaidBooking()');
+  const functionEnd = bookingPage.indexOf('\n\n  localizeShell();', functionStart);
+  assert.ok(functionStart >= 0 && functionEnd > functionStart);
+  const redirectFunction = bookingPage.slice(functionStart, functionEnd);
+
+  const exerciseRedirect = ({ paidVariant, paidBookingReady, search }) => {
+    const replacements = [];
+    const context = {
+      URL,
+      paidVariant,
+      paidBookingReady,
+      params: new URLSearchParams(search),
+      UTM_PARAM_KEYS: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content'],
+      categoricalValue(value) {
+        const raw = String(value || '').trim();
+        if (!raw || raw.includes('@') || raw.replace(/\D/g, '').length >= 7) return '';
+        return raw
+          .toLowerCase()
+          .replace(/[^a-z0-9._~-]+/g, '_')
+          .replace(/^_+|_+$/g, '')
+          .slice(0, 120);
+      },
+      window: {
+        location: {
+          origin: 'https://nordsym.com',
+          replace(value) {
+            replacements.push(value);
+          }
+        }
+      }
+    };
+    vm.runInNewContext(`${redirectFunction}; result = redirectIncompletePaidBooking();`, context);
+    return { result: context.result, replacements };
+  };
+
+  assert.deepEqual(
+    exerciseRedirect({
+      paidVariant: true,
+      paidBookingReady: false,
+      search: 'lang=sv&offer=ai_i_drift&utm_source=Meta+Ads&utm_campaign=ai_drift'
+    }),
+    { result: true, replacements: ['/ai-i-drift/?utm_source=meta_ads&utm_campaign=ai_drift'] }
+  );
+  assert.deepEqual(
+    exerciseRedirect({ paidVariant: true, paidBookingReady: true, search: 'utm_source=meta' }),
+    { result: false, replacements: [] }
+  );
+  assert.deepEqual(
+    exerciseRedirect({ paidVariant: false, paidBookingReady: false, search: 'utm_source=meta' }),
+    { result: false, replacements: [] }
   );
 });
 
