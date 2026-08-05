@@ -23,6 +23,8 @@ read('assets/video/ai-i-drift-sa-fungerar-det-v2.sv.vtt');
 for (const [source, expected, label] of [
   [markup, 'lang="sv"', 'Swedish language'],
   [markup, 'id="bridge-video"', 'video element'],
+  [markup, 'autoplay', 'autoplay attribute'],
+  [markup, 'muted', 'muted autoplay attribute'],
   [markup, 'poster="/assets/ai-i-drift-video-poster.svg"', 'video poster'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v2.mp4"', 'release video path'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v2.sv.vtt"', 'Swedish captions'],
@@ -41,7 +43,6 @@ for (const [source, expected, label] of [
 }
 
 for (const [source, pattern, label] of [
-  [markup, /autoplay/i, 'autoplay'],
   [markup, /LOKAL ANIMATIK|EJ SLUTMEDIA/i, 'preview-only media label'],
   [markup, /\b(?:email|company|notes|qualification_answers)\s*:/, 'PII field'],
   [script, /\b(?:email|company|notes|qualification_answers)\s*:/, 'PII field in tracking'],
