@@ -49,17 +49,24 @@ const bookingPath = 'book/index.html';
 const booking = readFileSync(resolve(root, bookingPath), 'utf8');
 const requiredBookingParams = [
   'source',
-  'company_size',
-  'operation_state',
-  'bottleneck',
+  'consequences',
+  'information_locations',
   'systems_count',
   'mandate',
+  'qualification_signal',
   'utm_id',
   'utm_source',
   'utm_medium',
   'utm_campaign',
   'utm_content'
 ];
+const paidBookingValues = {
+  consequences: ['time', 'delay', 'errors_rework', 'lost_revenue', 'weak_follow_up', 'other'],
+  information_locations: ['one_system', 'several_systems', 'documents_messages_email', 'individual_people', 'no_complete_overview'],
+  systems_count: ['1', '2', '3-5', '6+'],
+  mandate: ['sponsor_now', 'owner_in_place', 'hiring_owner', 'exploring'],
+  qualification_signal: ['form_complete', 'prequalified'],
+};
 const acquisitionList = booking.match(/var ACQUISITION_PARAM_KEYS = \[([\s\S]*?)\];/);
 if (!acquisitionList) {
   failures.push(`${bookingPath}: missing acquisition parameter allowlist`);
@@ -93,7 +100,7 @@ for (const [text, label] of [
 ]) {
   if (!booking.includes(text)) failures.push(`${bookingPath}: missing ${label}`);
 }
-for (const [key, values] of Object.entries(qualificationValues)) {
+for (const [key, values] of Object.entries(paidBookingValues)) {
   const declaration = `${key}: [${values.map((value) => `"${value}"`).join(', ')}]`;
   if (!booking.includes(declaration)) {
     failures.push(`${bookingPath}: ${key} values differ from the paid-funnel contract`);

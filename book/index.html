@@ -214,11 +214,11 @@
   var SUPPORTED_ROUTE = { lang: "sv", offer: "ai_i_drift" };
   var ACQUISITION_PARAM_KEYS = [
     "source",
-    "company_size",
-    "operation_state",
-    "bottleneck",
+    "consequences",
+    "information_locations",
     "systems_count",
     "mandate",
+    "qualification_signal",
     "utm_id",
     "utm_source",
     "utm_medium",
@@ -227,11 +227,11 @@
   ];
   var ACQUISITION_ALLOWED = {
     source: ["meta_paid"],
-    company_size: ["1-19", "20-49", "50-199", "200+"],
-    operation_state: ["named_priority", "active_build", "prototype_only", "multiple_backlog"],
-    bottleneck: ["process_clarity", "integration", "production_reliability", "delivery_capacity", "governance", "measurement"],
+    consequences: ["time", "delay", "errors_rework", "lost_revenue", "weak_follow_up", "other"],
+    information_locations: ["one_system", "several_systems", "documents_messages_email", "individual_people", "no_complete_overview"],
     systems_count: ["1", "2", "3-5", "6+"],
-    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"]
+    mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"],
+    qualification_signal: ["form_complete", "prequalified"]
   };
   var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
   var params = new URLSearchParams(window.location.search);
@@ -239,6 +239,9 @@
   var paidFocus = "AI-beredskapskartläggning";
   var webhookSource = paidVariant ? "nordsym.com/ai-i-drift" : "nordsym.com/book";
   var acquisition = {};
+  var preCallContext = {};
+  var MULTI_VALUE_KEYS = ["consequences", "information_locations"];
+  if (paidVariant) { try { preCallContext = JSON.parse(sessionStorage.getItem("nordsym_ai_i_drift_pre_call_v1") || "{}"); } catch (_) { preCallContext = {}; } }
 
   function categoricalValue(value) {
     var raw = String(value || "").trim();
@@ -253,7 +256,10 @@
   if (paidVariant) {
     Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
       var value = params.get(key);
-      if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
+      if (MULTI_VALUE_KEYS.indexOf(key) !== -1) {
+        var values = String(value || "").split(",").filter(Boolean);
+        if (values.length && values.every(function(item){ return ACQUISITION_ALLOWED[key].indexOf(item) !== -1; })) acquisition[key] = Array.from(new Set(values)).join(",");
+      } else if (ACQUISITION_ALLOWED[key].indexOf(value) !== -1) acquisition[key] = value;
     });
   }
   UTM_PARAM_KEYS.forEach(function(key){
@@ -266,10 +272,9 @@
     });
   if (hasCompleteQualification) {
     acquisition.qualification_signal =
-      acquisition.operation_state !== "multiple_backlog" &&
       acquisition.systems_count !== "1" &&
       acquisition.mandate !== "exploring"
-        ? "qualified_opportunity"
+        ? "prequalified"
         : "form_complete";
   }
 
@@ -853,6 +858,13 @@
     next.disabled = true;
     next.textContent = copy.sending;
     captureBooking("nordsym_booking_submitted", { focus: state.focus });
+    var submissionState = Object.assign({}, state);
+    if (paidVariant && (preCallContext.work_description || preCallContext.consequence_other_detail)) {
+      var contextLines = [];
+      if (preCallContext.work_description) contextLines.push("Återkommande arbete: " + String(preCallContext.work_description).slice(0, 280));
+      if (preCallContext.consequence_other_detail) contextLines.push("Annan konsekvens: " + String(preCallContext.consequence_other_detail).slice(0, 160));
+      submissionState.notes = contextLines.concat(state.notes ? [state.notes] : []).join("\n").slice(0, 1000);
+    }
     try {
       var res = await fetch(endpoint, {
         method: "POST",
@@ -863,7 +875,7 @@
           locale: paidVariant ? "sv-SE" : "en-GB",
           offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
           submittedAt: new Date().toISOString()
-        }, state, {
+        }, submissionState, {
           acquisition: Object.assign({}, acquisition, paidVariant ? {
             lang: SUPPORTED_ROUTE.lang,
             offer: SUPPORTED_ROUTE.offer

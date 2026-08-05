@@ -33,12 +33,11 @@ const validBooking = {
   notes: '',
   acquisition: {
     source: 'meta_paid',
-    company_size: '20-49',
-    operation_state: 'active_build',
-    bottleneck: 'integration',
+    consequences: 'time,delay',
+    information_locations: 'several_systems,documents_messages_email',
     systems_count: '3-5',
     mandate: 'sponsor_now',
-    qualification_signal: 'qualified_opportunity',
+    qualification_signal: 'prequalified',
     utm_content: 'c02_static',
     lang: 'sv',
     offer: 'ai_i_drift'
