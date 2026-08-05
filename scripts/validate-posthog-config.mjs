@@ -102,7 +102,7 @@ for (const [key, values] of Object.entries(qualificationValues)) {
 
 const landing = readFileSync(resolve(root, paidLandingScript), 'utf8');
 for (const [text, label] of [
-  ['var SURFACE = "lp_ai_i_drift";', 'paid landing surface'],
+  ['document.body.dataset.analyticsSurface || "lp_ai_i_drift"', 'paid landing surface'],
   ['var OFFER = "ai_i_drift";', 'paid landing offer'],
   ['var destination = new URL("/book/", window.location.origin);', 'default booking destination'],
   ['destination.searchParams.set("offer", OFFER);', 'paid booking offer handoff'],

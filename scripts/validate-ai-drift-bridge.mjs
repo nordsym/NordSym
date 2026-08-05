@@ -28,7 +28,7 @@ for (const [source, expected, label] of [
   [markup, 'poster="/assets/ai-i-drift-video-poster.svg"', 'video poster'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v2.mp4"', 'release video path'],
   [markup, 'src="/assets/video/ai-i-drift-sa-fungerar-det-v2.sv.vtt"', 'Swedish captions'],
-  [markup, 'href="/ai-i-drift/#kvalificering"', 'qualification destination'],
+  [markup, 'href="/ai-i-drift/kvalificering/"', 'qualification destination'],
   [markup, '/assets/meta-measurement.js', 'Meta measurement client'],
   [markup, "surface: 'lp_ai_i_drift_bridge'", 'PostHog bridge surface'],
   [markup, 'Läs videons text', 'accessible transcript'],
