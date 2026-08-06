@@ -207,6 +207,7 @@
   </div></div></div></div>
 
 
+<script src="/assets/paid-attribution.js"></script>
 <script id="nordsym-booking-flow">
 (function(){
   var endpoint = "/api/book";
@@ -263,7 +264,7 @@
     });
   }
   UTM_PARAM_KEYS.forEach(function(key){
-    var value = categoricalValue(params.get(key));
+    var value = categoricalValue((window.__nordsymPaidContext && window.__nordsymPaidContext[key]) || params.get(key));
     if (value) acquisition[key] = value;
   });
   var hasCompleteQualification = paidVariant &&
@@ -279,7 +280,11 @@
   }
 
   var analyticsContext = Object.assign({
-    booking_variant: paidVariant ? "ai_i_drift_sv" : "default"
+    booking_variant: paidVariant ? "ai_i_drift_sv" : "default",
+    entry_type: window.__nordsymPaidContext && window.__nordsymPaidContext.entry_type,
+    entry_id: window.__nordsymPaidContext && window.__nordsymPaidContext.entry_id,
+    entry_path: window.__nordsymPaidContext && window.__nordsymPaidContext.entry_path,
+    entry_timestamp: window.__nordsymPaidContext && window.__nordsymPaidContext.entry_timestamp
   }, acquisition);
   if (paidVariant) {
     analyticsContext.lang = SUPPORTED_ROUTE.lang;
@@ -397,6 +402,7 @@
   calendarView.setHours(12, 0, 0, 0);
   calendarView.setDate(1);
   var availabilityRequest = 0;
+  var bookingRequestId = null;
   var main = document.querySelector("main");
   if (!main) return;
   var sections = Array.prototype.slice.call(main.children);
@@ -857,7 +863,8 @@
   async function submit() {
     next.disabled = true;
     next.textContent = copy.sending;
-    captureBooking("nordsym_booking_submitted", { focus: state.focus });
+    bookingRequestId = window.crypto.randomUUID();
+    captureBooking("nordsym_booking_submitted", { focus: state.focus, request_id: bookingRequestId, step_index: 7, step_name: "booking_submitted" });
     var submissionState = Object.assign({}, state);
     if (paidVariant && (preCallContext.work_description || preCallContext.consequence_other_detail)) {
       var contextLines = [];
@@ -870,7 +877,7 @@
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(Object.assign({
-          requestId: window.crypto.randomUUID(),
+          requestId: bookingRequestId,
           source: webhookSource,
           locale: paidVariant ? "sv-SE" : "en-GB",
           offerKey: paidVariant ? SUPPORTED_ROUTE.offer : "default",
@@ -884,10 +891,10 @@
       });
       var responseBody = await res.json().catch(function () { return null; });
       var booked = res.ok && responseBody && responseBody.success === true;
-      captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus });
+      captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus, request_id: bookingRequestId, step_index: booked ? 8 : 7, step_name: booked ? "booking_succeeded" : "booking_failed" });
       renderConfirmed(booked);
     } catch (err) {
-      captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "network" });
+      captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "network", request_id: bookingRequestId, step_index: 7, step_name: "booking_failed" });
       renderConfirmed(false);
     }
   }

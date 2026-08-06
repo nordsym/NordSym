@@ -85,6 +85,7 @@
     <p>NordSym AB</p>
   </footer>
 
+  <script src="/assets/paid-attribution.js"></script>
   <script id="nordsym-posthog">
   (function(){
     if (window.__nordsymPosthogLoaded) return;
@@ -101,6 +102,7 @@
         .slice(0, 120);
       if (value) campaign[key] = value;
     });
+    campaign = Object.assign({}, campaign, window.__nordsymPaidContext || {});
     window.__nordsymPaidContext = campaign;
     !function(d,p){var s=d.createElement('script'),first=d.getElementsByTagName('script')[0];p=p||[];window.posthog=p;p._i=p._i||[];p.init=function(token,config,name){var target=name?p[name]=[]:p;target.people=target.people||[];['capture','register','set_config'].forEach(function(method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};});p._i.push([token,config,name]);};s.async=true;s.crossOrigin='anonymous';s.src='https://eu-assets.i.posthog.com/static/array.js';first.parentNode.insertBefore(s,first);}(document,window.posthog);
     window.posthog.init('phc_prXdjcKDtkz7BUsTooS42jKjZerJtL7GmtYSRCNGZpmR', {

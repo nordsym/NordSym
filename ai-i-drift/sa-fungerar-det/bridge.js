@@ -43,7 +43,7 @@
     video.addEventListener("play", function () {
       if (milestones.started) return;
       milestones.started = true;
-      capture("nordsym_paid_bridge_video_started");
+      capture("nordsym_paid_bridge_video_started", { step_index: 1, step_name: "bridge_video_started" });
     });
 
     video.addEventListener("timeupdate", function () {
@@ -53,7 +53,7 @@
         var label = String(threshold * 100);
         if (progress >= threshold && !milestones[label]) {
           milestones[label] = true;
-          capture("nordsym_paid_bridge_video_progress", { percent: threshold * 100 });
+          capture("nordsym_paid_bridge_video_progress", { percent: threshold * 100, step_index: 1, step_name: "bridge_video_progress" });
         }
       });
     });
@@ -61,7 +61,7 @@
     video.addEventListener("ended", function () {
       if (milestones.completed) return;
       milestones.completed = true;
-      capture("nordsym_paid_bridge_video_completed");
+      capture("nordsym_paid_bridge_video_completed", { step_index: 2, step_name: "bridge_video_completed" });
     });
   }
 
@@ -71,7 +71,9 @@
   if (cta) {
     cta.addEventListener("click", function () {
       capture("nordsym_paid_bridge_cta_clicked", {
-        placement: cta.dataset.placement || "video_bridge"
+        placement: cta.dataset.placement || "video_bridge",
+        step_index: 3,
+        step_name: "bridge_cta"
       });
     });
   }
