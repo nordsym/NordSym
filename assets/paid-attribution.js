@@ -2,12 +2,19 @@
   "use strict";
 
   var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content"];
+  var technicalKeys = ["ns_campaign_id", "ns_adset_id", "ns_ad_id", "ns_creative_id", "ns_placement"];
   var storageKey = "nordsym_paid_entry_v1";
   var params = new URLSearchParams(window.location.search);
 
   function value(raw) {
     raw = String(raw || "").trim();
     if (!raw || raw.indexOf("@") !== -1 || raw.replace(/\D/g, "").length >= 7) return "";
+    return raw.toLowerCase().replace(/[^a-z0-9._~-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 120);
+  }
+
+  function technicalValue(raw) {
+    raw = String(raw || "").trim();
+    if (!raw || raw.indexOf("@") !== -1) return "";
     return raw.toLowerCase().replace(/[^a-z0-9._~-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 120);
   }
 
@@ -18,6 +25,10 @@
   var current = {};
   keys.forEach(function (key) {
     var item = value(params.get(key));
+    if (item) current[key] = item;
+  });
+  technicalKeys.forEach(function (key) {
+    var item = technicalValue(params.get(key));
     if (item) current[key] = item;
   });
   var isTest = current.utm_campaign === "e2e_booking_test" || current.utm_content === "controlled_booking";
@@ -33,6 +44,7 @@
   };
   if (!existing) {
     keys.forEach(function (key) { if (current[key]) entry[key] = current[key]; });
+    technicalKeys.forEach(function (key) { if (current[key]) entry[key] = current[key]; });
     try { sessionStorage.setItem(storageKey, JSON.stringify(entry)); } catch (_) {}
   }
 

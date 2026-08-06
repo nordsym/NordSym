@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content"];
+  var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_content", "ns_campaign_id", "ns_adset_id", "ns_ad_id", "ns_creative_id", "ns_placement"];
   var video = document.getElementById("bridge-video");
   var cta = document.getElementById("bridge-cta");
   var milestones = {};
@@ -16,7 +16,7 @@
 
   function campaignValue(value) {
     var raw = String(value || "").trim();
-    if (!raw || raw.indexOf("@") !== -1 || raw.replace(/\D/g, "").length >= 7) return "";
+    if (!raw || raw.indexOf("@") !== -1) return "";
     return raw
       .toLowerCase()
       .replace(/[^a-z0-9._~-]+/g, "_")

@@ -234,7 +234,7 @@
     mandate: ["sponsor_now", "owner_in_place", "hiring_owner", "exploring"],
     qualification_signal: ["form_complete", "prequalified"]
   };
-  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
+  var UTM_PARAM_KEYS = ["utm_id", "utm_source", "utm_medium", "utm_campaign", "utm_content", "ns_campaign_id", "ns_adset_id", "ns_ad_id", "ns_creative_id", "ns_placement"];
   var params = new URLSearchParams(window.location.search);
   var paidVariant = params.get("lang") === SUPPORTED_ROUTE.lang && params.get("offer") === SUPPORTED_ROUTE.offer;
   var paidFocus = "AI-beredskapskartläggning";
@@ -254,6 +254,12 @@
       .slice(0, 120);
   }
 
+  function technicalValue(value) {
+    var raw = String(value || "").trim();
+    if (!raw || raw.indexOf("@") !== -1) return "";
+    return raw.toLowerCase().replace(/[^a-z0-9._~-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 120);
+  }
+
   if (paidVariant) {
     Object.keys(ACQUISITION_ALLOWED).forEach(function(key){
       var value = params.get(key);
@@ -264,7 +270,8 @@
     });
   }
   UTM_PARAM_KEYS.forEach(function(key){
-    var value = categoricalValue((window.__nordsymPaidContext && window.__nordsymPaidContext[key]) || params.get(key));
+    var sourceValue = (window.__nordsymPaidContext && window.__nordsymPaidContext[key]) || params.get(key);
+    var value = key.indexOf("ns_") === 0 ? technicalValue(sourceValue) : categoricalValue(sourceValue);
     if (value) acquisition[key] = value;
   });
   var hasCompleteQualification = paidVariant &&

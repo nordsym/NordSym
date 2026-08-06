@@ -37,6 +37,15 @@ test('first paid entry is immutable across reload and route changes', () => {
   assert.equal(second.utm_campaign, 'ai_i_drift_v1');
 });
 
+test('native Meta identity parameters persist as technical fields', () => {
+  const entry = runAttribution('https://nordsym.com/ai-i-drift/sa-fungerar-det/?utm_source=meta&ns_campaign_id=123456789&ns_adset_id=234567890&ns_ad_id=345678901&ns_creative_id=456789012&ns_placement=instagram_reels');
+  assert.equal(entry.ns_campaign_id, '123456789');
+  assert.equal(entry.ns_adset_id, '234567890');
+  assert.equal(entry.ns_ad_id, '345678901');
+  assert.equal(entry.ns_creative_id, '456789012');
+  assert.equal(entry.ns_placement, 'instagram_reels');
+});
+
 test('direct and controlled test entries are classified explicitly', () => {
   assert.equal(runAttribution('https://nordsym.com/ai-i-drift/kvalificering/').entry_type, 'direct');
   assert.equal(runAttribution('https://nordsym.com/book/?utm_source=meta&utm_campaign=e2e_booking_test&utm_content=controlled_booking').entry_type, 'internal_test');
