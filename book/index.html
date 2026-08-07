@@ -274,6 +274,12 @@
     var value = key.indexOf("ns_") === 0 ? technicalValue(sourceValue) : categoricalValue(sourceValue);
     if (value) acquisition[key] = value;
   });
+  if (paidVariant && window.__nordsymPaidContext) {
+    ["entry_id", "entry_type", "entry_path"].forEach(function(key){
+      var value = key === "entry_id" ? technicalValue(window.__nordsymPaidContext[key]) : categoricalValue(window.__nordsymPaidContext[key]);
+      if (value) acquisition[key] = value;
+    });
+  }
   var hasCompleteQualification = paidVariant &&
     Object.keys(ACQUISITION_ALLOWED).every(function(key){
       return Boolean(acquisition[key]);
@@ -870,6 +876,7 @@
   async function submit() {
     next.disabled = true;
     next.textContent = copy.sending;
+    // requestId: window.crypto.randomUUID() is generated once per submission below.
     bookingRequestId = window.crypto.randomUUID();
     captureBooking("nordsym_booking_submitted", { focus: state.focus, request_id: bookingRequestId, step_index: 7, step_name: "booking_submitted" });
     var submissionState = Object.assign({}, state);
@@ -898,7 +905,8 @@
       });
       var responseBody = await res.json().catch(function () { return null; });
       var booked = res.ok && responseBody && responseBody.success === true;
-      captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus, request_id: bookingRequestId, step_index: booked ? 8 : 7, step_name: booked ? "booking_succeeded" : "booking_failed" });
+      var failureReason = booked ? undefined : ((responseBody && responseBody.error) || (res.status >= 500 ? "booking_service_unavailable" : "booking_rejected"));
+      captureBooking(booked ? "nordsym_booking_succeeded" : "nordsym_booking_failed", { focus: state.focus, reason: failureReason, request_id: bookingRequestId, step_index: booked ? 8 : 7, step_name: booked ? "booking_succeeded" : "booking_failed" });
       renderConfirmed(booked);
     } catch (err) {
       captureBooking("nordsym_booking_failed", { focus: state.focus, reason: "network", request_id: bookingRequestId, step_index: 7, step_name: "booking_failed" });

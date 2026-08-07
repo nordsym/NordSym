@@ -74,3 +74,13 @@ test('new attribution fields are categorical and no form PII is added', () => {
   assert.match(booking, /Object\.assign\(\{\s*booking_variant/);
   assert.doesNotMatch(booking.match(/var analyticsContext[\s\S]{0,500}/)?.[0] || '', /\b(name|email|company|notes)\s*:/);
 });
+
+test('paid booking carries immutable entry attribution and categorical failure reasons', () => {
+  const bookingRequest = fs.readFileSync(`${root}/book/index.html`, 'utf8');
+  const contract = fs.readFileSync(`${root}/lib/booking-request.mjs`, 'utf8');
+  assert.match(bookingRequest, /entry_id/);
+  assert.match(bookingRequest, /responseBody && responseBody\.error/);
+  assert.match(contract, /entry_type/);
+  assert.match(contract, /ENTRY_TYPES/);
+  assert.doesNotMatch(bookingRequest.match(/captureBooking\("nordsym_booking_failed"[\s\S]{0,180}/)?.[0] || '', /(?:^|[,{])\s*(?:name|email|company|notes)\s*:/);
+});
